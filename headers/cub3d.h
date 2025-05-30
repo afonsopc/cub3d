@@ -6,7 +6,7 @@
 /*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/29 16:23:58 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:00:08 by paude-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct s_camera
 typedef struct s_billboard
 {
 	t_entity	entity;
-	t_sprite	*sprite;
+	t_sprite	*sprites[360];
 }	t_billboard;
 
 typedef struct s_enemy

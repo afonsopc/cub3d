@@ -39,7 +39,11 @@ STATS_HUD_7_SPRITE_LOOP TRUE
 STATS_HUD_7_SPRITE_UPDATE_DELAY 2
 
 e_TYPE BILLBOARD
-e_SPRITE assets/wolf3d/textures/billboards/soldier/halt.xpm
+e_1_SPRITE assets/wolf3d/textures/billboards/soldier/still-front.xpm
+e_2_SPRITE assets/wolf3d/textures/billboards/soldier/still-right.xpm
+e_3_SPRITE assets/wolf3d/textures/billboards/soldier/still-back.xpm
+e_4_SPRITE assets/wolf3d/textures/billboards/soldier/still-back-left.xpm
+e_5_SPRITE assets/wolf3d/textures/billboards/soldier/still-back-right.xpm
 
 ._TYPE BILLBOARD
 ._SPRITE assets/wolf3d/textures/billboards/blue-plant.xpm

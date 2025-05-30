@@ -6,7 +6,7 @@
 /*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/05/30 18:57:35 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/05/30 21:11:14 by paude-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ static void	render_billboard(t_billboard *bill, t_ftm_image *canvas,
 	double		relative_angle;
 	t_coords	centered_bill_coords;
 
-	image = get_sprite_image(bill->sprite);
-	if (!image)
-		return ;
 	centered_bill_coords = (t_coords){bill->entity.coords.x + 0.5,
 		bill->entity.coords.y + 0.5, bill->entity.coords.yaw};
 	relative_angle = get_relative_angle(camera->entity->coords,
 			centered_bill_coords);
+	image = get_sprite_image(bill->sprites[(int)ft_angle_distance(camera->entity->coords, centered_bill_coords)]);
+	if (!image)
+		return ;
 	screen_x = get_screen_x(canvas, camera, relative_angle);
 	new_size = get_size((t_get_size_config){
 			camera, centered_bill_coords,
 			image->size, canvas->size, relative_angle});
-	if (screen_x + get_image_width(bill->sprite) * 0.7 < 0 || screen_x - get_image_width(bill->sprite) * 0.7 > canvas->size.width)
+	if (screen_x + get_image_width(bill->sprites[(int)ft_angle_distance(camera->entity->coords, centered_bill_coords)]) * 0.7 < 0 || screen_x - get_image_width(bill->sprites[(int)ft_angle_distance(camera->entity->coords, centered_bill_coords)]) * 0.7 > canvas->size.width)
 		return ;
 	render_billboard_slices((t_render_billboard_slices_config){new_size,
 		screen_x, canvas, image, camera, centered_bill_coords});
