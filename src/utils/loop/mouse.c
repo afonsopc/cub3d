@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:06:16 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/31 19:55:16 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:43:46 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	mouse_hook(t_coords coords)
 		movement = movement * (0.5 + (fabs(movement) / 20.0));
 	player = cub3d()->game.player;
 	if (player)
-		player->billboard.entity.controller.mouse_moviment = movement;
+		player->character.billboard.entity.controller.mouse_moviment = movement;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 16:14:28 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	init_weapon(t_game *game, t_ftm_window *window, t_weapon *weapon,
 	weapon->item.clear = clear_weapon;
 	weapon->item.frame = weapon_frame;
 	weapon->item.use = weapon_use;
-	weapon->damage = ft_atoi(hashmap_get_with_identifier(game->map->types, identifier, "DAMAGE"));
-	weapon->ammo_usage = ft_atoi(hashmap_get_with_identifier(game->map->types, identifier, "AMMO_USAGE"));
+	weapon->damage = ft_atoi(hashmap_get_with_identifier(game, game->map->types, identifier, "DAMAGE"));
+	weapon->ammo_usage = ft_atoi(hashmap_get_with_identifier(game, game->map->types, identifier, "AMMO_USAGE"));
 }
 
 t_weapon	*weapon_new(t_game *game, t_ftm_window *window, char identifier)

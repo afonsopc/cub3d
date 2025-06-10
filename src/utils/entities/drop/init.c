@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 13:02:34 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_item(t_game *game, t_ftm_window *window, t_drop *drop, char iden
 	t_item_creator	item_creator;
 	char			*item_type;
 
-	item_type = hashmap_get_with_identifier(game->map->types, identifier, "ITEM");
+	item_type = hashmap_get_with_identifier(game, game->map->types, identifier, "ITEM");
 	if (!item_type)
 		return ;
 	item_creator = get_item_creator(&game->map->identifiers, item_type[0]);
@@ -34,9 +34,9 @@ void	init_drop(t_game *game, t_ftm_window *window, t_drop *drop, char identifier
 	drop->billboard.entity.clear = clear_drop;
 	drop->billboard.entity.action = drop_action;
 	drop->billboard.entity.shot = drop_shot;
-	drop->auto_use = ft_strequal(hashmap_get_with_identifier(game->map->types,
+	drop->auto_use = ft_strequal(hashmap_get_with_identifier(game, game->map->types,
 		identifier, "AUTO_USE"), "TRUE");
-	drop->auto_pickup = ft_strequal(hashmap_get_with_identifier(game->map->types,
+	drop->auto_pickup = ft_strequal(hashmap_get_with_identifier(game, game->map->types,
 		identifier, "AUTO_PICKUP"), "TRUE");
 	set_item(game, window, drop, identifier);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 17:17:09 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_ammo(t_game *game, t_ftm_window *window, t_ammo *ammo,
 	ammo->item.clear = clear_ammo;
 	ammo->item.frame = ammo_frame;
 	ammo->item.use = ammo_use;
-	ammo->amount = abs(ft_atoi(hashmap_get_with_identifier(game->map->types,
+	ammo->amount = abs(ft_atoi(hashmap_get_with_identifier(game, game->map->types,
 			identifier, "AMOUNT")));
 }
 

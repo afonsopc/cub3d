@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 19:42:10 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ void	init_door_e(t_game *game, t_ftm_window *window, t_door *door, char identifi
 	door->wall.entity.action = door_action;
 	door->wall.entity.shot = door_shot;
 	door->wall.entity.actionable = true;
-	door->auto_close_delay = fabs(ft_atof(hashmap_get_with_identifier(game->map->types, identifier, "AUTO_CLOSE_DELAY")));
-	door->direction = ft_direction_from_str(hashmap_get_with_identifier(game->map->types, identifier, "DIRECTION"));
+	door->auto_close_delay = fabs(ft_atof(hashmap_get_with_identifier(game, game->map->types, identifier, "AUTO_CLOSE_DELAY")));
+	door->direction = ft_direction_from_str(hashmap_get_with_identifier(game, game->map->types, identifier, "DIRECTION"));
 	if (door->direction == (t_direction)-1)
 		return (fte_set("door direction missing"));
-	door->door_sprite = hashmap_get_with_identifier(game->sprites, identifier, "DOOR");
-	door->door_sides_sprite = hashmap_get_with_identifier(game->sprites, identifier, "SIDES");
+	door->door_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "DOOR");
+	door->door_sides_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "SIDES");
 	if (!door->door_sprite)
 		return (fte_set("door sprite missing"));
-	door->open_sound = hashmap_get_with_identifier(game->sounds, identifier, "OPEN");
-	door->close_sound = hashmap_get_with_identifier(game->sounds, identifier, "CLOSE");
+	door->open_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "OPEN");
+	door->close_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "CLOSE");
 	set_sprites(door);
 	init_animation_sprites_e(door, window);
 }

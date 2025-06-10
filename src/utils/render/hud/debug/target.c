@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   target.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:41:28 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/08 15:59:20 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:43:32 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	set_target(t_game *game)
 	static t_entity	*last_entity;
 	t_entity		*target_entity;
 
-	if (!game->player || !game->player->billboard.entity.target_entity)
+	if (!game->player || !game->player->character.billboard.entity.target_entity)
 		return ;
-	target_entity = game->player->billboard.entity.target_entity;
+	target_entity = game->player->character.billboard.entity.target_entity;
 	if (last_entity == target_entity)
 		return ;
 	(free(game->hud.debug.target_x), free(game->hud.debug.target_y),

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:48:25 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/07 10:26:24 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/10 16:43:21 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ static void render_entities(t_ftm_image *canvas, t_game *game, t_coords minimap_
     scale = original_scale * game->hud.minimap.zoom_level;
     entity_size = (t_size){scale, scale};
     player_center = (t_coords){
-        game->player->billboard.entity.coords.x,
-        game->player->billboard.entity.coords.y,
+        game->player->character.billboard.entity.coords.x,
+        game->player->character.billboard.entity.coords.y,
         0};
     entity_offset = (t_coords){
         (minimap_size.width / 2) - (player_center.x * scale),

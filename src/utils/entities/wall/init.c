@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 13:01:05 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	init_wall(t_game *game, t_ftm_window *window, t_wall *wall, char identifier
 	wall->entity.wall = true;
 	if (identifier == '1')
 		identifier = '\0';
-	wall->north_sprite = hashmap_get_with_identifier(game->sprites, identifier, "NO");
-	wall->south_sprite = hashmap_get_with_identifier(game->sprites, identifier, "SO");
-	wall->west_sprite = hashmap_get_with_identifier(game->sprites, identifier, "WE");
-	wall->east_sprite = hashmap_get_with_identifier(game->sprites, identifier, "EA");
+	wall->north_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "NO");
+	wall->south_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "SO");
+	wall->west_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "WE");
+	wall->east_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "EA");
 }
 
 t_wall	*wall_new(t_game *game, t_ftm_window *window, char identifier)

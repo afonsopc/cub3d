@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stats.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 22:14:35 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 13:12:50 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:43:15 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	render_ammo_text(t_game *game, t_ftm_image *canvas)
 	char				*ammo_text;
 	double				ammo_scaler;
 
-	ammo_text = ft_strf("%d", game->player->billboard.entity.ammo);
+	ammo_text = ft_strf("%d", game->player->character.billboard.entity.ammo);
 	ammo_scaler = 1.47;
 	if (ft_strlen(ammo_text) == 3)
 		ammo_scaler = 1.50;
@@ -43,7 +43,7 @@ void	render_health_text(t_game *game, t_ftm_image *canvas)
 	char				*health_text;
 	double				health_scaler;
 
-	health_text = ft_strf("%d%%", game->player->billboard.entity.health);
+	health_text = ft_strf("%d%%", game->player->character.billboard.entity.health);
 	health_scaler = 1.84;
 	if (ft_strlen(health_text) == 3)
 		health_scaler = 1.81;
@@ -125,8 +125,8 @@ void	render_stats(t_game *game, t_ftm_image *canvas)
 		return ;
 	stats_size = (t_size){canvas->size.width, canvas->size.width / 8};
 	index = (int)(game->hud.stats.states
-			* ((float)game->player->billboard.entity.health
-				/ game->player->billboard.entity.max_health));
+			* ((float)game->player->character.billboard.entity.health
+				/ game->player->character.billboard.entity.max_health));
 	index = game->hud.stats.states - index;
 	if (index >= game->hud.stats.states)
 		index = game->hud.stats.states - 1;

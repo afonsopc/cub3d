@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 01:49:57 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/27 20:08:57 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:43:39 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	set_player(t_game *game)
 		free(game->hud.debug.player_yaw), free(game->hud.debug.player_fov),
 		free(game->hud.debug.player_health));
 	game->hud.debug.player_x = ft_strf("X: %d",
-			(int)game->player->billboard.entity.coords.x);
+			(int)game->player->character.billboard.entity.coords.x);
 	game->hud.debug.player_y = ft_strf("Y: %d",
-			(int)game->player->billboard.entity.coords.y);
+			(int)game->player->character.billboard.entity.coords.y);
 	game->hud.debug.player_yaw = ft_strf("Yaw: %d",
-			(int)game->player->billboard.entity.coords.yaw);
+			(int)game->player->character.billboard.entity.coords.yaw);
 	game->hud.debug.player_fov = ft_strf("FOV: %d", (int)game->camera.fov);
 	game->hud.debug.player_health = ft_strf("Health: %d",
-			game->player->billboard.entity.health);
+			game->player->character.billboard.entity.health);
 }
 
 void	render_debug_player_strs(t_game *game, t_ftm_image *canvas,

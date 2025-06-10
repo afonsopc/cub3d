@@ -10,6 +10,9 @@ HUD TRUE
 DEBUG_HUD TRUE
 STATUS_HUD TRUE
 
+0_INVENTORY P
+AMMO 8
+
 STATS_HUD_FONT assets/fonts/wolf3d
 
 STATS_HUD_1_SPRITE assets/wolf3d/textures/hud/stats/1-0.xpm:assets/wolf3d/textures/hud/stats/1-1.xpm:assets/wolf3d/textures/hud/stats/1-0.xpm:assets/wolf3d/textures/hud/stats/1-2.xpm
@@ -81,6 +84,8 @@ e_DEATH_SPRITE_UPDATE_DELAY 0.1
 e_HIT_SPRITE assets/wolf3d/textures/billboards/soldier/hit.xpm
 e_DEATH_SOUND assets/wolf3d/sounds/deathscream5.mp3
 e_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+e_0_INVENTORY P
+e_AMMO 2147483647
 
 ._TYPE BILLBOARD
 ._SPRITE assets/wolf3d/textures/billboards/blue-plant.xpm

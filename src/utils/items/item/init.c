@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 19:42:11 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,25 @@ void	init_item(t_game *game, t_ftm_window *window, t_item *item,
 	item->frame = item_frame;
 	item->use = item_use;
 	item->identifier = identifier;
-	item->name = hashmap_get_with_identifier(game->map->types, identifier,
+	item->name = hashmap_get_with_identifier(game, game->map->types, identifier,
 		"NAME");
-	item->description = hashmap_get_with_identifier(game->map->types,
+	item->description = hashmap_get_with_identifier(game, game->map->types,
 		identifier, "DESCRIPTION");
-	item->icon_sprite = hashmap_get_with_identifier(game->sprites,
+	item->icon_sprite = hashmap_get_with_identifier(game, game->sprites,
 		identifier, "ICON");
-	item->screen_sprite = hashmap_get_with_identifier(game->sprites,
+	item->screen_sprite = hashmap_get_with_identifier(game, game->sprites,
 		identifier, "SCREEN");
-	item->icon_use_sprite = hashmap_get_with_identifier(game->sprites,
+	item->icon_use_sprite = hashmap_get_with_identifier(game, game->sprites,
 		identifier, "ICON_USE");
-	item->screen_use_sprite = hashmap_get_with_identifier(game->sprites,
+	item->screen_use_sprite = hashmap_get_with_identifier(game, game->sprites,
 		identifier, "SCREEN_USE");
 	item->_icon_sprite = item->icon_sprite;
 	item->_screen_sprite = item->screen_sprite;
-	item->single_use = ft_strequal(hashmap_get_with_identifier(game->map->types,
+	item->single_use = ft_strequal(hashmap_get_with_identifier(game, game->map->types,
 		identifier, "SINGLE_USE"), "TRUE");
-	item->use_sound = hashmap_get_with_identifier(game->sounds,
+	item->use_sound = hashmap_get_with_identifier(game, game->sounds,
 		identifier, "USE");
-	item->cant_sound = hashmap_get_with_identifier(game->sounds,
+	item->cant_sound = hashmap_get_with_identifier(game, game->sounds,
 		identifier, "CANT_USE");
 }
 

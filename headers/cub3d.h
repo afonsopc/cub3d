@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 15:37:45 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:02:48 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ struct s_controller
 {
 	void		(*key)(t_entity *entity, int key, bool down);
 	void		(*frame)(t_entity *entity, double delta_time);
+	t_time		last_shot;
 	bool		walking_forward;
 	bool		walking_left;
 	bool		walking_backward;
@@ -253,11 +254,6 @@ struct s_billboard
 	t_sprite		**sprites;
 };
 
-struct s_player
-{
-	t_billboard	billboard;
-};
-
 struct s_character
 {
 	t_billboard billboard;
@@ -269,6 +265,11 @@ struct s_character
 	t_fta_audio	*hit_sound;
 	t_fta_audio	*death_sound;
 	bool		dead;
+};
+
+struct s_player
+{
+	t_character character;
 };
 
 struct s_drop
@@ -443,7 +444,7 @@ struct s_cub3d
 // cub3d
 t_cub3d		*cub3d(void);
 void		cub3d_exit(int code);
-void		*hashmap_get_with_identifier(t_hashmap *hashmap, char identifier, char *rest);
+void		*hashmap_get_with_identifier(t_game *game, t_hashmap *hashmap, char identifier, char *rest);
 
 // Game
 void		game_load_map_e(t_game *game, t_ftm_window *window, t_map *map);

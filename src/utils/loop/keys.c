@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:21:37 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/09 19:24:05 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:44:13 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void	hud_debug_keys(t_hud_debug *hud_debug, int key, bool down)
 	if (key == XK_v && down)
 		cub3d()->game.camera.rays = cub3d()->window.canvas->size.width;
 	if (key == XK_b && down)
-		cub3d()->game.player->billboard.entity.hard = !cub3d()->game.player->billboard.entity.hard;
+		cub3d()->game.player->character.billboard.entity.hard = !cub3d()->game.player->character.billboard.entity.hard;
 	if (key == XK_n && down)
 	{
 		map_size = cub3d()->game.map->size;
-		cub3d()->game.player->billboard.entity.coords = (t_coords){map_size.width / 2,
+		cub3d()->game.player->character.billboard.entity.coords = (t_coords){map_size.width / 2,
 		map_size.height / 2, 0};
 	}
 	if (key == XK_m && down)
@@ -48,9 +48,9 @@ static void	hud_debug_keys(t_hud_debug *hud_debug, int key, bool down)
 	if (key == XK_p && down)
 		cub3d()->game.camera.fov *= 1.2;
 	if (key == XK_y && down)
-		cub3d()->game.player->billboard.entity.health /= 1.2;
+		cub3d()->game.player->character.billboard.entity.health /= 1.2;
 	if (key == XK_u && down)
-		cub3d()->game.player->billboard.entity.health = cub3d()->game.player->billboard.entity.max_health;
+		cub3d()->game.player->character.billboard.entity.health = cub3d()->game.player->character.billboard.entity.max_health;
 }
 
 static void	hud_minimap_keys(int key, bool down)

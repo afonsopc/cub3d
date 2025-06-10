@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities0.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:49:46 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/09 17:30:39 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,10 +167,10 @@ void	fill_3d_sprites_from_game(t_game *game, t_sprite **dst, char identifier, ch
     t_sprite	**sprites;
     t_sprite	*sprite;
 
-    sprites = hashmap_get_with_identifier(game->sprites_3d, identifier, key);
+    sprites = hashmap_get_with_identifier(game, game->sprites_3d, identifier, key);
     if (sprites)
         return (fill_3d_sprites_from_src(dst, sprites));
-    sprite = hashmap_get_with_identifier(game->sprites, identifier, key);
+    sprite = hashmap_get_with_identifier(game, game->sprites, identifier, key);
     if (key && ft_strequal(key, "DEATH"))
         return (fill_death_sprites(dst, sprite));
     fill_3d_sprites_from_single(dst, sprite);
