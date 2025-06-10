@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moviment.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:51:55 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 15:35:05 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:24:29 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static void	mouse_moviment(t_entity *entity, double delta_time)
 static void	actions(t_list *entities, t_entity *entity)
 {
 	t_entity	*overlapping_entity;
+	t_entity	*target_entity;
 
 	overlapping_entity = position_overlaps(entities, entity, entity->coords);
 	if (overlapping_entity
@@ -110,9 +111,13 @@ static void	actions(t_list *entities, t_entity *entity)
 	if (entity->controller.action && entity->controller.already_actioned)
 		return ;
 	entity->controller.already_actioned = entity->controller.action;
-	if (entity->controller.action && entity->target_entity
-		&& entity->target_entity->action)
-		entity->target_entity->action(entity->target_entity, entity);
+	if (!entity->controller.action || !entity->character)
+		return ;
+	target_entity = ((t_character *)entity)->target_entity;
+	if (!target_entity)
+		return ;
+	if (target_entity->action)
+		target_entity->action((t_entity *)target_entity, entity);
 }
 
 void	moviment_frame(t_entity *entity, double delta_time)

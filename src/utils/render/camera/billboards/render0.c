@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render0.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/08 20:34:41 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:08:48 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_size	get_size(t_get_size_config gsc)
 	double		fov_factor;
 	double		fix_fisheye;
 
-	distance = ft_distance(gsc.camera->entity->coords, gsc.bill_coords);
+	distance = ft_distance(gsc.camera->character->billboard.entity.coords, gsc.bill_coords);
 	fix_fisheye = distance * ft_cos_degrees(gsc.relative_angle);
 	fov_factor = 73.5 / gsc.camera->fov;
 	return ((t_size){(gsc.bill_image_size.width / distance)
@@ -62,9 +62,9 @@ static void	render_billboard(t_billboard *bill, t_ftm_image *canvas,
 
 	if (!bill->entity.active)
 		return ;
-	relative_angle = get_relative_angle(camera->entity->coords,
+	relative_angle = get_relative_angle(camera->character->billboard.entity.coords,
 			bill->entity.coords);
-	image = get_sprite_image(bill->sprites[((int)ft_angle_distance(bill->entity.coords, camera->entity->coords)) % 359]);
+	image = get_sprite_image(bill->sprites[((int)ft_angle_distance(bill->entity.coords, camera->character->billboard.entity.coords)) % 359]);
 	if (!image)
 		return ;
 	screen_x = get_screen_x(canvas, camera, relative_angle);
@@ -81,10 +81,10 @@ void	render_billboards(t_game *game, t_ftm_image *canvas, t_camera *camera)
 {
 	int	i;
 
-	ft_strvorder((void *)game->billboards, &camera->entity->coords,
+	ft_strvorder((void *)game->billboards, &camera->character->billboard.entity.coords,
 		(void *)cmp_billboards);
 	i = -1;
 	while (game->billboards[++i])
-		if (game->billboards[i] != camera->entity)
+		if (game->billboards[i] != (t_entity *)camera->character)
 			render_billboard((t_billboard *)game->billboards[i], canvas, camera);
 }

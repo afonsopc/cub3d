@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:59:45 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/24 00:45:50 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:03:25 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_ray ray, int i)
 	if (!hit_entity_image)
 		return ;
 	ray_size.height = canvas->size.height / (fmax(ray.distance, 0.1)
-			* ft_cos_degrees((ray.yaw - camera->entity->coords.yaw)));
+			* ft_cos_degrees((ray.yaw - camera->character->billboard.entity.coords.yaw)));
 	ray_size.height = fmin(ray_size.height, canvas->size.height * 3);
 	pixel_modifier_data = (t_pixel_modifier_data){canvas, &ray_size};
 	ftm_put_image_to_canvas(canvas, hit_entity_image,

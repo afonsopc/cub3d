@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game5.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:18:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 19:36:30 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:14:55 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	init_sounds_e(t_game *game)
 
 void	init_camera(t_game *game, t_ftm_window *window)
 {
-	game->camera.entity = (t_entity *)game->player;
+	game->camera.character = (t_character *)game->player;
 	game->camera.rays = window->canvas->size.width;
 	game->camera.fov = PLAYER_FOV;
 }

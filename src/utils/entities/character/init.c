@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 17:17:22 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:54:38 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ void	init_character(t_game *game, t_ftm_window *window, t_character *character, 
 	character->death_sprite = ft_calloc(360, sizeof(t_sprite *));
 	character->walking_sprite = ft_calloc(360, sizeof(t_sprite *));
 	character->hit_sprite = ft_calloc(360, sizeof(t_sprite *));
+	character->billboard.entity.character = true;
 	fill_3d_sprites_from_game(game, character->walking_sprite, identifier, "WALKING");
 	fill_3d_sprites_from_game(game, character->death_sprite, identifier, "DEATH");
 	fill_3d_sprites_from_game(game, character->hit_sprite, identifier, "HIT");
 	character->_sprite = character->billboard.sprites;
 	character->death_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "DEATH");
 	character->hit_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "HIT");
-	character->billboard.entity.target_entity = (t_entity *)game->player;
+	character->target_entity = (t_entity *)game->player;
 	create_inventory_items(game, window, character);
 }
 

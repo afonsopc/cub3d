@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 17:02:48 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:15:25 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ struct s_entity
 	bool			wall;
 	bool			actionable;
 	bool			billboard;
+	bool			character;
 	char			identifier;
 	bool			active;
 	int				ammo;
@@ -235,14 +236,12 @@ struct s_entity
 	t_coords		coords;
 	t_dsize			size;
 	t_entity_type	type;
-	t_entity		*target_entity;
-	t_direction		target_entity_direction;
 	t_fta_audio		*collision_sound;
 };
 
 struct s_camera
 {
-	t_entity		*entity;
+	t_character		*character;
 	double			fov;
 	unsigned int	rays;
 	double			*ray_distances;
@@ -264,6 +263,8 @@ struct s_character
 	t_time		last_hit;
 	t_fta_audio	*hit_sound;
 	t_fta_audio	*death_sound;
+	t_entity	*target_entity;
+	t_direction	target_entity_direction;
 	bool		dead;
 };
 

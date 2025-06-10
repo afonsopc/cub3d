@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/08 14:13:40 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:13:55 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	is_behind_wall(int i, unsigned int ray_index, t_render_billboard_sli
 		* cos(ft_radians(rbsc.bill_coords.yaw + 90));
 	world_y = rbsc.bill_coords.y + offset
 		* sin(ft_radians(rbsc.bill_coords.yaw + 90));
-	dist = ft_distance(rbsc.camera->entity->coords,
+	dist = ft_distance(rbsc.camera->character->billboard.entity.coords,
 			(t_coords){world_x, world_y, 0});
 	return (dist >= rbsc.camera->ray_distances[ray_index]);
 }
@@ -69,7 +69,7 @@ void	render_billboard_slices(t_render_billboard_slices_config rbsc)
 			continue ;
 		pitc_config = get_pitc_config(i, rbsc);
 		if (ray_index == rbsc.camera->rays / 2 && rbsc.bill->entity.targetable)
-			rbsc.camera->entity->target_entity = (t_entity *)rbsc.bill;
+			rbsc.camera->character->target_entity = (t_entity *)rbsc.bill;
 		ftm_put_image_to_canvas(rbsc.canvas, rbsc.image, pitc_config);
 	}
 }

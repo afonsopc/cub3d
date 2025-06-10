@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   methods0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:31:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 13:43:21 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:39:42 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ void	clear_weapon(void *data)
 void	weapon_use(t_item *item)
 {
 	t_weapon	*weapon;
+	t_entity	*target_entity;
 
 	item_use(item);
 	weapon = (t_weapon *)item;
 	item->user->ammo -= weapon->ammo_usage;
-	if (!item->user)
+	if (!item->user || !item->user->character)
 		return ;
-	if (!item->user || !item->user->target_entity || !item->user->target_entity->shot)
-		return ;
-	item->user->target_entity->shot(item->user->target_entity, item->user);
+	target_entity = ((t_character *)item->user)->target_entity;
+	if (target_entity && target_entity->shot)
+		target_entity->shot(target_entity, item->user);
 }
 
 void	weapon_frame(t_item *item)
