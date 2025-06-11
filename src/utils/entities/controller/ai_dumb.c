@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:34:50 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 17:56:46 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:06:44 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ static void	frame(t_entity *entity, double delta_time)
     double			dx;
 	double			dy;
 	double			distance_to_player;
+	t_character		*character;
 
-    if (!cub3d()->game.player)
+    if (!cub3d()->game.player || !entity->character)
 		return ;
+	character = (t_character *)entity;
 	dx = cub3d()->game.player->character.billboard.entity.coords.x - entity->coords.x;
 	dy = cub3d()->game.player->character.billboard.entity.coords.y - entity->coords.y;
 	angle_to_player = ft_degrees(atan2(dy, dx));
@@ -32,15 +34,15 @@ static void	frame(t_entity *entity, double delta_time)
 	entity->controller.walking_right = false;
 	entity->controller.walking_backward = false;
 	entity->controller.sprinting = (distance_to_player > 4.0);
-	if (entity->inventory[entity->inventory_index])
+	if (character->inventory[character->inventory_index])
 	{
 		if (ft_get_time() - entity->controller.last_shot >= 100)
 		{
 			entity->controller.last_shot = ft_get_time();
-			entity->inventory[entity->inventory_index]->user = entity;
+			character->inventory[character->inventory_index]->user = character;
 		}
 		else
-			entity->inventory[entity->inventory_index]->user = NULL;
+			character->inventory[character->inventory_index]->user = NULL;
 	}
     moviment_frame(entity, delta_time);
 }

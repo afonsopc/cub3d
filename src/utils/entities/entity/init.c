@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 17:15:17 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:05:13 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	init_entity(t_game *game, t_ftm_window *window, t_entity *entity, char iden
 	entity->hard = !ft_strequal(
 		hashmap_get_with_identifier(game, game->map->types, identifier,
 			"HARD"), "FALSE");
-	entity->ammo = ft_atoi(hashmap_get_with_identifier(game, game->map->types, identifier, "AMMO"));
 	entity->collision_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "COLLISION");
 	entity->identifier = identifier;
 	entity->size = (t_dsize){1, 1};

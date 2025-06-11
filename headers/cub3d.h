@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 18:15:25 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:30:40 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ struct s_item
 	bool			weapon;
 	bool			food;
 	bool			can_use;
-	t_entity		*user;
+	t_character		*user;
 	bool			prev_using;
 	bool			already_using;
 	bool			single_use;
@@ -215,8 +215,8 @@ struct s_entity
 {
 	void			(*frame)(t_entity *entity, double delta_time);
 	void			(*clear)(void *this);
-	void			(*action)(t_entity *entity, t_entity *actioner);
-	void			(*shot)(t_entity *shooted, t_entity *shooter);
+	void			(*action)(t_entity *entity, t_character *actioner);
+	void			(*shot)(t_entity *shooted, t_character *shooter);
 	t_controller	controller;
 	bool			targetable;
 	bool			transparent;
@@ -229,10 +229,6 @@ struct s_entity
 	bool			character;
 	char			identifier;
 	bool			active;
-	int				ammo;
-	t_time			last_inventory_scroll;
-	t_item			*inventory[INVENTORY_SIZE];
-	int				inventory_index;
 	t_coords		coords;
 	t_dsize			size;
 	t_entity_type	type;
@@ -265,6 +261,10 @@ struct s_character
 	t_fta_audio	*death_sound;
 	t_entity	*target_entity;
 	t_direction	target_entity_direction;
+	t_time		last_inventory_scroll;
+	t_item		*inventory[INVENTORY_SIZE];
+	int			inventory_index;
+	int			ammo;
 	bool		dead;
 };
 
@@ -276,6 +276,8 @@ struct s_player
 struct s_drop
 {
 	t_billboard	billboard;
+	t_item		*item;
+	t_item		*prev_item;
 	bool		auto_use;
 	bool		auto_pickup;
 };

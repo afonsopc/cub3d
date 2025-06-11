@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   methods0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:31:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/09 17:47:34 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:44:07 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	character_frame(t_entity *entity, double delta_time)
 {
 	t_character *character;
+	int			i;
 
 	billboard_frame(entity, delta_time);
 	character = (t_character *)entity;
@@ -32,6 +33,10 @@ void	character_frame(t_entity *entity, double delta_time)
 		character->billboard.sprites = character->walking_sprite;
 	else
 		character->billboard.sprites = character->_sprite;
+	i = -1;
+	while (++i < INVENTORY_SIZE)
+		if (character->inventory[i] && character->inventory[i]->frame)
+			character->inventory[i]->frame(character->inventory[i]);
 }
 
 void	clear_character(void *character)
@@ -39,12 +44,12 @@ void	clear_character(void *character)
 	clear_billboard(character);
 }
 
-void	character_action(t_entity *entity, t_entity *actioner)
+void	character_action(t_entity *entity, t_character *actioner)
 {
 	billboard_action(entity, actioner);
 }
 
-void	character_shot(t_entity *shooted, t_entity *shooter)
+void	character_shot(t_entity *shooted, t_character *shooter)
 {
 	t_character	*character;
 	int			i;

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:51:55 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 18:24:29 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:48:28 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,32 +97,33 @@ static void	mouse_moviment(t_entity *entity, double delta_time)
 	entity->coords.yaw = ft_normalize_angle(entity->coords.yaw + velocity);
 }
 
-static void	actions(t_list *entities, t_entity *entity)
+static void	actions(t_list *entities, t_character *character)
 {
 	t_entity	*overlapping_entity;
 	t_entity	*target_entity;
 
-	overlapping_entity = position_overlaps(entities, entity, entity->coords);
+	overlapping_entity = position_overlaps(entities, (t_entity *)character, character->billboard.entity.coords);
 	if (overlapping_entity
 		&& overlapping_entity->type == ENTITY_DOOR
 		&& !((t_door *)overlapping_entity)->opened
 		&& overlapping_entity->action)
-		overlapping_entity->action(overlapping_entity, entity);
-	if (entity->controller.action && entity->controller.already_actioned)
+		overlapping_entity->action(overlapping_entity, character);
+	if (character->billboard.entity.controller.action && character->billboard.entity.controller.already_actioned)
 		return ;
-	entity->controller.already_actioned = entity->controller.action;
-	if (!entity->controller.action || !entity->character)
+	character->billboard.entity.controller.already_actioned = character->billboard.entity.controller.action;
+	if (!character->billboard.entity.controller.action)	
 		return ;
-	target_entity = ((t_character *)entity)->target_entity;
+	target_entity = character->target_entity;
 	if (!target_entity)
 		return ;
 	if (target_entity->action)
-		target_entity->action((t_entity *)target_entity, entity);
+		target_entity->action((t_entity *)target_entity, character);
 }
 
 void	moviment_frame(t_entity *entity, double delta_time)
 {
-	actions(cub3d()->game.entities, entity);
+	if (entity->character)
+		actions(cub3d()->game.entities, (t_character *)entity);
 	looks(entity, delta_time);
 	mouse_moviment(entity, delta_time);
 	walks(cub3d()->game.entities, entity, delta_time);

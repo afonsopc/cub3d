@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   methods0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:31:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/08 17:35:48 by paude-so         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:28:42 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,24 @@
 
 static void	set_sprite(t_drop	*drop)
 {
-	t_item	*prev_item;
-	t_item	*item;
-	int		i;
-
-	item = drop->billboard.entity.inventory[0];
-	prev_item = drop->billboard.entity.inventory[1];
-	if (!item)
+	if (!drop->item)
 		return ;
-	if (prev_item == item)
+	if (drop->prev_item == drop->item)
 		return ;
-	prev_item = item;
-	i = -1;
-	while (++i <= 360)
-		drop->billboard.sprites[i] = item->icon_sprite;
+	drop->prev_item = drop->item;
+	fill_3d_sprites_from_single(drop->billboard.sprites, drop->item->icon_sprite);
 }
 
-static bool	add_ammo_if_already_has_the_weapon(t_entity *entity, t_weapon *weapon)
+static bool	add_ammo_if_already_has_the_weapon(t_character *character, t_weapon *weapon)
 {
 	int			i;
 	t_weapon	*inv_weapon;
 
 	i = -1;
-	entity->ammo += weapon->ammo_usage * 10;
+	character->ammo += weapon->ammo_usage * 10;
 	while (++i < INVENTORY_SIZE)
 	{
-		inv_weapon = (t_weapon *)entity->inventory[i];
+		inv_weapon = (t_weapon *)character->inventory[i];
 		if (!inv_weapon || !inv_weapon->item.weapon)
 			continue ;
 		if (inv_weapon->item.identifier != weapon->item.identifier)
@@ -53,10 +45,8 @@ static void	do_the_thing(t_game *game, t_drop *drop)
 {
 	int			i;
 	t_entity	*entity;
-	t_item		*item;
 
-	item = drop->billboard.entity.inventory[0];
-	if (!item || (!drop->auto_use && !drop->auto_pickup))
+	if (!drop->item || (!drop->auto_use && !drop->auto_pickup))
 		return ;
 	i = -1;
 	while (game->billboards[++i])
@@ -70,13 +60,13 @@ static void	do_the_thing(t_game *game, t_drop *drop)
 			continue ;
 		if (drop->auto_use)
 		{
-			item->user = entity;
+			drop->item->user = (t_character *)entity;
 			drop->billboard.entity.active = false;
 		}
 		else if (drop->auto_pickup)
 		{
-			if (!item->weapon || !add_ammo_if_already_has_the_weapon(entity, (t_weapon *)item))
-				add_item_to_inventory(entity, item);
+			if (!drop->item->weapon || !add_ammo_if_already_has_the_weapon((t_character *)entity, (t_weapon *)drop->item))
+				add_item_to_inventory((t_character *)entity, drop->item);
 			drop->billboard.entity.active = false;
 		}
 	}
@@ -87,9 +77,13 @@ void	drop_frame(t_entity *entity, double delta_time)
 	t_drop	*drop;
 
 	billboard_frame(entity, delta_time);
+	if (!entity)
+		return ;
+		drop = (t_drop *)entity;
+	if (drop->item && drop->item->frame)
+		drop->item->frame(drop->item);
 	if (!entity->active)
 		return ;
-	drop = (t_drop *)entity;
 	set_sprite(drop);
 	do_the_thing(&cub3d()->game, drop);
 }
@@ -99,15 +93,15 @@ void	clear_drop(void *drop)
 	clear_billboard(drop);
 	if (!drop)
 		return ;
-	free_item(((t_entity *)drop)->inventory[0]);
+	free_item(((t_drop *)drop)->item);
 }
 
-void	drop_action(t_entity *entity, t_entity *actioner)
+void	drop_action(t_entity *entity, t_character *actioner)
 {
 	billboard_action(entity, actioner);
 }
 
-void	drop_shot(t_entity *shooted, t_entity *shooter)
+void	drop_shot(t_entity *shooted, t_character *shooter)
 {
 	billboard_shot(shooted, shooter);
 }

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:49:46 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:30:14 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,18 +107,18 @@ t_entity_creator	get_entity_creator(t_identifiers *identifiers, char identifier)
 	return (NULL);
 }
 
-bool	add_item_to_inventory(t_entity *entity, t_item *item)
+bool	add_item_to_inventory(t_character *character, t_item *item)
 {
 	int	i;
 
-	if (!entity || !item)
+	if (!character || !item)
 		return (false);
 	i = -1;
 	while (++i < INVENTORY_SIZE)
 	{
-		if (entity->inventory[i])
+		if (character->inventory[i])
 			continue ;
-		entity->inventory[i] = item;
+		character->inventory[i] = item;
 		return (true);
 	}
 	return (false);

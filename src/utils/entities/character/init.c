@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 18:54:38 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:05:34 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	create_inventory_items(t_game *game, t_ftm_window *window, t_charact
 		item_creator = get_item_creator(&game->map->identifiers, inv_item_type[0]);
 		if (!item_creator)
 			continue ;
-		character->billboard.entity.inventory[i] = item_creator(game, window, inv_item_type[0]);
+		character->inventory[i] = item_creator(game, window, inv_item_type[0]);
 	}
 }
 
@@ -51,6 +51,7 @@ void	init_character(t_game *game, t_ftm_window *window, t_character *character, 
 	fill_3d_sprites_from_game(game, character->walking_sprite, identifier, "WALKING");
 	fill_3d_sprites_from_game(game, character->death_sprite, identifier, "DEATH");
 	fill_3d_sprites_from_game(game, character->hit_sprite, identifier, "HIT");
+	character->ammo = ft_atoi(hashmap_get_with_identifier(game, game->map->types, identifier, "AMMO"));
 	character->_sprite = character->billboard.sprites;
 	character->death_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "DEATH");
 	character->hit_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "HIT");

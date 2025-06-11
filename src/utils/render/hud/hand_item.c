@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 23:28:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/06 20:10:21 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:57:58 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ t_ftm_pitc_config	get_pitc_config(t_ftm_image *canvas, t_ftm_image *image)
 
 void	render_hand_item(t_game *game, t_ftm_image *canvas)
 {
-	t_entity	*entity;
+	t_character	*character;
 	t_item		*item;
 	t_sprite	*sprite;
 	t_ftm_image	*image;
 
-	entity = (t_entity *)game->player;
-	if (!entity)
+	character = (t_character *)game->player;
+	if (!character)
 		return ;
-	item = entity->inventory[entity->inventory_index];
+	item = character->inventory[character->inventory_index];
 	if (!item)
 		return ;
 	sprite = item->screen_sprite;

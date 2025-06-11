@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 22:14:35 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 16:43:15 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:01:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	render_ammo_text(t_game *game, t_ftm_image *canvas)
 	char				*ammo_text;
 	double				ammo_scaler;
 
-	ammo_text = ft_strf("%d", game->player->character.billboard.entity.ammo);
+	ammo_text = ft_strf("%d", game->player->character.ammo);
 	ammo_scaler = 1.47;
 	if (ft_strlen(ammo_text) == 3)
 		ammo_scaler = 1.50;
@@ -92,14 +92,14 @@ static t_size	get_hand_item_size(t_ftm_image *image, double max_w, double max_h)
 void	render_hand_item_icon(t_game *game, t_ftm_image *canvas)
 {
     t_item		*item;
-    t_entity	*entity;
+    t_character	*character;
     t_ftm_image	*image;
     t_size		item_size;
 
-    entity = (t_entity *)game->player;
-    if (!entity)
+    character = (t_character *)game->player;
+    if (!character)
         return ;
-    item = entity->inventory[entity->inventory_index];
+    item = character->inventory[character->inventory_index];
     if (!item)
         return ;
     image = get_sprite_image(item->icon_sprite);
