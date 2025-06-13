@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:57:16 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	init_door_e(t_game *game, t_ftm_window *window, t_door *door, char identifi
 	door->direction = ft_direction_from_str(hashmap_get_with_identifier(game, game->map->types, identifier, "DIRECTION"));
 	if (door->direction == (t_direction)-1)
 		return (fte_set("door direction missing"));
-	door->door_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "DOOR");
-	door->door_sides_sprite = hashmap_get_with_identifier(game, game->sprites, identifier, "SIDES");
+	sprite_soft_copy(&door->door_sprite, hashmap_get_with_identifier(game, game->sprites, identifier, "DOOR"));
+	sprite_soft_copy(&door->door_sides_sprite, hashmap_get_with_identifier(game, game->sprites, identifier, "SIDES"));
 	if (!door->door_sprite)
 		return (fte_set("door sprite missing"));
 	door->open_sound = hashmap_get_with_identifier(game, game->sounds, identifier, "OPEN");

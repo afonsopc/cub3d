@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 19:05:34 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:25:23 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	init_character(t_game *game, t_ftm_window *window, t_character *character, 
 	character->death_sprite = ft_calloc(360, sizeof(t_sprite *));
 	character->walking_sprite = ft_calloc(360, sizeof(t_sprite *));
 	character->hit_sprite = ft_calloc(360, sizeof(t_sprite *));
+	character->using_sprite = ft_calloc(360, sizeof(t_sprite *));
 	character->billboard.entity.character = true;
 	fill_3d_sprites_from_game(game, character->walking_sprite, identifier, "WALKING");
 	fill_3d_sprites_from_game(game, character->death_sprite, identifier, "DEATH");

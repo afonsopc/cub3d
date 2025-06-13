@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: paude-so <paude-so@student.42.fr>          +#+  +:+       +#+         #
+#    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/06/07 16:46:39 by paude-so         ###   ########.fr        #
+#    Updated: 2025/06/11 12:55:42 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,9 @@ run: clean $(NAME)
 
 val: $(NAME)
 	@valgrind --show-leak-kinds=all --leak-check=full --track-fds=all --suppressions=ma.supp ./$(NAME) maps/subject.cub
+
+lldb: $(NAME)
+	@lldb -o "run" ./$(NAME) maps/e1m1.cub
 
 update-wolf3d-assets:
 	@echo "\033[1;32mEncrypting \033[1;0m\"assets/wolf3d\"\033[1;32m into \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m.\033[0m"

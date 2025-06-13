@@ -83,6 +83,10 @@ e_DEATH_SPRITE_UPDATE_DELAY 0.1
 e_HIT_SPRITE assets/wolf3d/textures/billboards/soldier/hit.xpm
 e_DEATH_SOUND assets/wolf3d/sounds/deathscream5.mp3
 e_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+e_CONTROLLER AI_DUMB
+e_0_INVENTORY P
+e_USING_P_1_SPRITE assets/wolf3d/textures/billboards/soldier/aim.xpm:assets/wolf3d/textures/billboards/soldier/shoot.xpm
+e_USING_P_1_SPRITE_UPDATE_DELAY 0.1
 e_AMMO 2147483647
 
 ._TYPE BILLBOARD

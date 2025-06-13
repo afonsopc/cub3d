@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 21:30:40 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:35:03 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ struct s_billboard
 struct s_character
 {
 	t_billboard billboard;
+	t_sprite	**using_sprite;
 	t_sprite	**death_sprite;
 	t_sprite	**hit_sprite;
 	t_sprite	**walking_sprite;
@@ -264,6 +265,7 @@ struct s_character
 	t_time		last_inventory_scroll;
 	t_item		*inventory[INVENTORY_SIZE];
 	int			inventory_index;
+	char		last_used_item_identifier;
 	int			ammo;
 	bool		dead;
 };
@@ -473,6 +475,7 @@ void		free_sprite(void *data);
 void		clear_sprite(void *data);
 void		init_sprite(t_sprite *sprite, t_list *images, t_time update_delay);
 t_sprite	*sprite_new(t_list *images, t_time update_delay);
+void		sprite_soft_copy(t_sprite **dst, t_sprite *src);
 
 // Entities
 t_entity_creator	get_entity_creator(t_identifiers *identifiers, char identifier);

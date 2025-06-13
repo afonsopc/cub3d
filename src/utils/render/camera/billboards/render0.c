@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/10 18:08:48 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:41:46 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ static void	render_billboard(t_billboard *bill, t_ftm_image *canvas,
 		return ;
 	relative_angle = get_relative_angle(camera->character->billboard.entity.coords,
 			bill->entity.coords);
-	image = get_sprite_image(bill->sprites[((int)ft_angle_distance(bill->entity.coords, camera->character->billboard.entity.coords)) % 359]);
+	image = NULL;
+	if (bill->sprites)
+		image = get_sprite_image(bill->sprites[((int)ft_angle_distance(bill->entity.coords, camera->character->billboard.entity.coords)) % 359]);
 	if (!image)
 		return ;
 	screen_x = get_screen_x(canvas, camera, relative_angle);

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/10 16:50:19 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:53:24 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	init_item(t_game *game, t_ftm_window *window, t_item *item,
 		"NAME");
 	item->description = hashmap_get_with_identifier(game, game->map->types,
 		identifier, "DESCRIPTION");
-	item->icon_sprite = hashmap_get_with_identifier(game, game->sprites,
-		identifier, "ICON");
-	item->screen_sprite = hashmap_get_with_identifier(game, game->sprites,
-		identifier, "SCREEN");
-	item->icon_use_sprite = hashmap_get_with_identifier(game, game->sprites,
-		identifier, "ICON_USE");
-	item->screen_use_sprite = hashmap_get_with_identifier(game, game->sprites,
-		identifier, "SCREEN_USE");
+	sprite_soft_copy(&item->icon_sprite, hashmap_get_with_identifier(game, game->sprites,
+		identifier, "ICON"));
+	sprite_soft_copy(&item->screen_sprite, hashmap_get_with_identifier(game, game->sprites,
+		identifier, "SCREEN"));
+	sprite_soft_copy(&item->icon_use_sprite, hashmap_get_with_identifier(game, game->sprites,
+		identifier, "ICON_USE"));
+	sprite_soft_copy(&item->screen_use_sprite, hashmap_get_with_identifier(game, game->sprites,
+		identifier, "SCREEN_USE"));
 	item->_icon_sprite = item->icon_sprite;
 	item->_screen_sprite = item->screen_sprite;
 	item->single_use = ft_strequal(hashmap_get_with_identifier(game, game->map->types,
