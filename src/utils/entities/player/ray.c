@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:05:46 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/26 12:45:31 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 15:22:16 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,32 +75,32 @@ static void	set_step_and_side_dist(t_dda_ray *data, t_coords coords)
 	}
 }
 
-static double	perform_dda(t_dda_ray *data, t_game *game)
+static double	perform_dda(t_dda_ray *ray, t_game *game)
 {
-	t_coords	check_pos;
-
-	while (1)
+	while (true)
 	{
-		if (data->side_dist.x < data->side_dist.y)
+		ray->side = ray->side_dist.x >= ray->side_dist.y;
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			data->side_dist.x += data->delta_dist.x;
-			data->map_pos.x += data->step.x;
-			data->side = 0;
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map_pos.x += ray->step.x;
 		}
 		else
 		{
-			data->side_dist.y += data->delta_dist.y;
-			data->map_pos.y += data->step.y;
-			data->side = 1;
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map_pos.y += ray->step.y;
 		}
-		check_pos = (t_coords){data->map_pos.x, data->map_pos.y, 0, 0};
-		if (hit_wall(game, check_pos))
-			break ;
-		if (data->map_pos.x < 0 || data->map_pos.x >= game->map->size.width
-			|| data->map_pos.y < 0 || data->map_pos.y >= game->map->size.height)
+		if (ray->side_dist.x >= PLAYER_RAYS_NO_HIT_LENGTH
+			&& ray->side_dist.y >= PLAYER_RAYS_NO_HIT_LENGTH)
 			return (PLAYER_RAYS_NO_HIT_LENGTH);
+		if ((int)ray->map_pos.x < 0
+			|| (int)ray->map_pos.x >= game->map->size.width
+			|| (int)ray->map_pos.y < 0
+			|| (int)ray->map_pos.y >= game->map->size.height)
+			continue ;
+		if (hit_wall(game, ray->map_pos))
+			return (0);
 	}
-	return (0);
 }
 
 t_raycast	send_ray(t_game *game, t_coords coords)

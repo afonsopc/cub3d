@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 13:22:43 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 15:20:56 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define FPS60 0.01666666667
 
 // Player Config
-# define PLAYER_RAYS_NO_HIT_LENGTH 50.0
+# define PLAYER_RAYS_NO_HIT_LENGTH 100.0
 # define PLAYER_FOV 50.0
 # define PLAYER_RAYS W_WIDTH
 # define PLAYER_KEY_LOOK_VELOCITY 2.0
