@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 16:27:08 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 18:48:58 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:04:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_hashmaps_e(t_game *game)
 	if (!game->fonts)
 		return (fte_set("init sounds"));
 	game->sprites_3d = ft_hashmap_new();
-	if (!game->fonts)
+	if (!game->sprites_3d)
 		return (fte_set("init sprites 3d"));
 }
 

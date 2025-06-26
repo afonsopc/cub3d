@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/25 20:03:58 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:26:09 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	is_behind_wall(int i, int ray_index,
 	double			world_y;
 	double			dist;
 
-	if (ray_index >= rbsc.camera->rays)
+	if (ray_index >= rbsc.camera->rays || ray_index < 0)
 		return (false);
 	offset = (i - rbsc.new_size.width / 2.0) / rbsc.new_size.width;
 	world_x = rbsc.bill_coords.x + offset

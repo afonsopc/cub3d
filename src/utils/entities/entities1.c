@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:10:50 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 16:10:58 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:16:34 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,23 @@ void	clear_3d_sprite(t_sprite **sprites)
 	{
 		if (!sprites[i])
 			continue ;
+		// Only free the sprite structure allocated by sprite_soft_copy
+		// Don't call clear_sprite because that would free the shared images list
 		free(sprites[i]);
 		sprites[i] = NULL;
 	}
+}
+
+// Add a new function to properly free 3D sprite arrays
+void	free_3d_sprite_array(void *sprites_array)
+{
+	t_sprite	**sprites;
+
+	sprites = (t_sprite **)sprites_array;
+	if (!sprites)
+		return ;
+	clear_3d_sprite(sprites);
+	free(sprites);
 }
 
 void	fill_3d_sprites_from_src(t_sprite **dst, t_sprite **src)

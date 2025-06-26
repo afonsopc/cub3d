@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 18:48:36 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 18:48:40 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:04:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	clear_game(void *data)
 		return ;
 	ft_list_destroy(&game->entities);
 	ft_hashmap_destroy(game->sprites);
+	ft_hashmap_destroy(game->sprites_3d);
 	kill_threads(game);
 	ft_hashmap_destroy(game->fonts);
 	ft_hashmap_destroy(game->sounds);

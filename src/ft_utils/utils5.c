@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 00:03:31 by afonsocouti       #+#    #+#             */
-/*   Updated: 2025/05/18 00:19:40 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:04:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ static void	free_all(char **strs)
 {
 	size_t	i;
 
+	if (!strs)
+		return ;
 	i = -1;
 	while (strs[++i])
 		free(strs[i]);
+	free(strs);
 }
 
 static int	count_items(const char *s1, const char *s2)

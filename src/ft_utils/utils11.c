@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:52:26 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/21 14:16:08 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:04:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	ft_hashmap_destroy(t_hashmap *hashmap)
 	while (curr_el)
 	{
 		next_el = curr_el->next;
-		ft_hashmap_del(hashmap, curr_el->key);
+		if (curr_el->value_free)
+			curr_el->value_free(curr_el->value);
+		free(curr_el->key);
+		free(curr_el);
 		curr_el = next_el;
 	}
-	free(hashmap->table);
 	free(hashmap);
 }
 
