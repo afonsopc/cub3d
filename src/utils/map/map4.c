@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 13:18:07 by pvcordeiro        #+#    #+#             */
-/*   Updated: 2025/06/26 12:53:55 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 13:56:56 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_backtrack_e(t_game *game)
 	map = game->map;
 	fte_set(ERROR_NO_ERROR);
 	if (!validate_textures(game))
-		return (fte_set(ERROR_INVALID_TYPE));
+		return (fte_set(ERROR_INVALID_MAP));
 	if (!validate_player_position(map, &player_x, &player_y))
 		return (fte_set(ERROR_INVALID_MAP));
 	map_copy = ft_strvdup(map->map);

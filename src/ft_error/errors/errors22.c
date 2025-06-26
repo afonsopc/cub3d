@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   errors22.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 21:53:37 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 13:37:25 by pvcordeiro       ###   ########.fr       */
+/*   Created: 2025/04/26 22:25:55 by afpachec          #+#    #+#             */
+/*   Updated: 2025/06/26 14:01:28 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <ft_error.h>
 
-t_cub3d	*cub3d(void)
+char	*get_error_message22(t_error _error)
 {
-	static t_cub3d	singleton;
-
-	return (&singleton);
-}
-
-void	cub3d_exit(int code)
-{
-	t_cub3d	*cube;
-
-	cube = cub3d();
-	clear_game(&cube->game);
-	ftm_clear_window(&cube->window);
-	if (cube->curr_map)
-		destroy_map(cube->curr_map);
-	exit(code);
+	(void)_error;
+	return (ERROR_INVALID_MSG);
 }

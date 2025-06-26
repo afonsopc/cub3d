@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 08:42:58 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/22 11:37:35 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 13:59:43 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,23 @@ t_map	*parse_map_e(char *path)
 	t_map	*map;
 
 	fte_set(ERROR_NO_ERROR);
+	if (!path)
+		return (fte_set(ERROR_INVALID_MAP), NULL);
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		return (fte_set(ERROR_MAP_ALLOC), NULL);
 	map->path = ft_strdup(path);
 	if (!map->path || !ft_str_endswith(map->path, ".cub"))
-		return (fte_set(ERROR_INVALID_MAP), NULL);
+		return (fte_set(ERROR_INVALID_FILETYPE), destroy_map(map), NULL);
 	read_map_raw_lines_e(map);
 	if (fte_flagged())
-		return (ft_strvfree(map->raw), free(map), NULL);
+		return (destroy_map(map), NULL);
 	process_raw_map_e(map);
 	if (fte_flagged())
-		return (ft_strvfree(map->raw), ft_hashmap_destroy(map->types),
-			free(map), NULL);
+		return (destroy_map(map), NULL);
 	parse_identifiers_e(map);
+	if (fte_flagged())
+		return (destroy_map(map), NULL);
 	set_map_size(map);
 	return (map);
 }

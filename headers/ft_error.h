@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 22:05:32 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/14 18:48:12 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 13:59:30 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef enum e_error
 	ERROR_DUPLICATE_TYPE_IDENTIFIER,
 	ERROR_INVALID_IDENTIFIER_TYPE,
 	ERROR_CEILING_OR_FLOORING_UNDEFINED,
+	ERROR_INVALID_FILETYPE
 }	t_error;
 
 typedef struct s_error_storage
@@ -74,6 +75,7 @@ typedef struct s_error_storage
 # define ERROR_DUPLICATE_TYPE_IDENTIFIER_MSG "Duplicate type identifier"
 # define ERROR_INVALID_IDENTIFIER_TYPE_MSG "Invalid identifier type"
 # define ERROR_INVALID_MSG "Invalid Error"
+# define ERROR_INVALID_FILETYPE_MSG "Invalid File Extension"
 
 // Set ft_error global error
 void			fte_set(t_error _error);
