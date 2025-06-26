@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:05:41 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/22 11:53:56 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 12:37:35 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_ftm_image	*get_wall_texture(t_render_data *data)
 	rays = data->player->rays;
 	ray_idx = data->ray_idx;
 	texture = get_sprite_image(get_entity_sprite(rays[ray_idx].hit_entity,
-				rays[ray_idx].direction_of_hit_on_entity));
+				rays[ray_idx].hit_direction));
 	if (!texture)
 		return (NULL);
 	data->tex_x = rays[ray_idx].x_of_hit_in_entity

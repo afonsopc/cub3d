@@ -6,7 +6,7 @@
 #    By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/06/22 12:01:18 by pvcordeiro       ###   ########.fr        #
+#    Updated: 2025/06/26 12:54:36 by pvcordeiro       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,14 +62,11 @@ fclean: clean
 
 re: fclean all
 
-dev: $(NAME)
+run: $(NAME)
 	./$(NAME) maps/subject.cub
+	rm headers/mlx.h
 
 val: $(NAME)
 	@valgrind --show-leak-kinds=all --leak-check=full --track-fds=all ./$(NAME) maps/subject.cub
-
-errors:
-	@bash -c "python3 <(git show error-msgs-script:gen_error_msgs.py)"
-	@bash -c "python3 <(git show error-msgs-script:check_error_signals.py) src"
 
 .PHONY: all re clean fclean run val errors

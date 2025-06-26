@@ -6,7 +6,7 @@
 /*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/15 15:54:11 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/06/26 12:37:58 by pvcordeiro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_ray
 	double			length;
 	double			angle;
 	t_entity		*hit_entity;
-	t_direction		direction_of_hit_on_entity;
+	t_direction		hit_direction;
 	double			x_of_hit_in_entity;
 	int				_height;
 }					t_ray;
