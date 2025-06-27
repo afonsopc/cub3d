@@ -1,0 +1,498 @@
+BACKGROUND_SPRITE assets/42lisboa/424242.xpm
+
+STILL_8_SPRITE assets/textures/billboards/afonsomaria/still-front.xpm
+STILL_7_SPRITE assets/textures/billboards/afonsomaria/still-front-right.xpm
+STILL_6_SPRITE assets/textures/billboards/afonsomaria/still-left.xpm
+STILL_5_SPRITE assets/textures/billboards/afonsomaria/still-back-left.xpm
+STILL_4_SPRITE assets/textures/billboards/afonsomaria/still-back.xpm
+STILL_3_SPRITE assets/textures/billboards/afonsomaria/still-back-right.xpm
+STILL_2_SPRITE assets/textures/billboards/afonsomaria/still-right.xpm
+STILL_1_SPRITE assets/textures/billboards/afonsomaria/still-front-left.xpm
+WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.xpm:assets/textures/billboards/afonsomaria/still-front.xpm:assets/textures/billboards/afonsomaria/front2.xpm:assets/textures/billboards/afonsomaria/still-front.xpm
+WALKING_8_SPRITE_UPDATE_DELAY 0.2
+WALKING_8_SPRITE_LOOP TRUE
+WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.xpm:assets/textures/billboards/afonsomaria/still-front-right.xpm:assets/textures/billboards/afonsomaria/front-right2.xpm:assets/textures/billboards/afonsomaria/still-front-right.xpm
+WALKING_7_SPRITE_UPDATE_DELAY 0.2
+WALKING_7_SPRITE_LOOP TRUE
+WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.xpm:assets/textures/billboards/afonsomaria/still-left.xpm:assets/textures/billboards/afonsomaria/left2.xpm:assets/textures/billboards/afonsomaria/still-left.xpm
+WALKING_6_SPRITE_UPDATE_DELAY 0.2
+WALKING_6_SPRITE_LOOP TRUE
+WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.xpm:assets/textures/billboards/afonsomaria/still-back-left.xpm:assets/textures/billboards/afonsomaria/back-left2.xpm:assets/textures/billboards/afonsomaria/still-back-left.xpm
+WALKING_5_SPRITE_UPDATE_DELAY 0.2
+WALKING_5_SPRITE_LOOP TRUE
+WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.xpm:assets/textures/billboards/afonsomaria/still-back.xpm:assets/textures/billboards/afonsomaria/back2.xpm:assets/textures/billboards/afonsomaria/still-back.xpm
+WALKING_4_SPRITE_UPDATE_DELAY 0.2
+WALKING_4_SPRITE_LOOP TRUE
+WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.xpm:assets/textures/billboards/afonsomaria/still-back-right.xpm:assets/textures/billboards/afonsomaria/back-right2.xpm:assets/textures/billboards/afonsomaria/still-back-right.xpm
+WALKING_3_SPRITE_UPDATE_DELAY 0.2
+WALKING_3_SPRITE_LOOP TRUE
+WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.xpm:assets/textures/billboards/afonsomaria/still-right.xpm:assets/textures/billboards/afonsomaria/right2.xpm:assets/textures/billboards/afonsomaria/still-right.xpm
+WALKING_2_SPRITE_UPDATE_DELAY 0.2
+WALKING_2_SPRITE_LOOP TRUE
+WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.xpm:assets/textures/billboards/afonsomaria/still-front-left.xpm:assets/textures/billboards/afonsomaria/front-left2.xpm:assets/textures/billboards/afonsomaria/still-front-left.xpm
+WALKING_1_SPRITE_UPDATE_DELAY 0.2
+WALKING_1_SPRITE_LOOP TRUE
+DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.xpm
+DEATH_SPRITE_UPDATE_DELAY 0.1
+HIT_SPRITE assets/textures/billboards/afonsomaria/hit.xpm
+DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
+HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+USING_P_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.xpm:assets/textures/billboards/afonsomaria/aim-front.xpm
+USING_P_8_SPRITE_UPDATE_DELAY 0.05
+USING_P_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.xpm:assets/textures/billboards/afonsomaria/aim-front-right.xpm
+USING_P_7_SPRITE_UPDATE_DELAY 0.05
+USING_P_6_SPRITE assets/textures/billboards/afonsomaria/shoot-left.xpm:assets/textures/billboards/afonsomaria/aim-left.xpm
+USING_P_6_SPRITE_UPDATE_DELAY 0.05
+USING_P_5_SPRITE assets/textures/billboards/afonsomaria/shoot-back-left.xpm:assets/textures/billboards/afonsomaria/aim-back-left.xpm
+USING_P_5_SPRITE_UPDATE_DELAY 0.05
+USING_P_4_SPRITE assets/textures/billboards/afonsomaria/shoot-back.xpm:assets/textures/billboards/afonsomaria/aim-back.xpm
+USING_P_4_SPRITE_UPDATE_DELAY 0.05
+USING_P_3_SPRITE assets/textures/billboards/afonsomaria/shoot-back-right.xpm:assets/textures/billboards/afonsomaria/aim-back-right.xpm
+USING_P_3_SPRITE_UPDATE_DELAY 0.05
+USING_P_2_SPRITE assets/textures/billboards/afonsomaria/shoot-right.xpm:assets/textures/billboards/afonsomaria/aim-right.xpm
+USING_P_2_SPRITE_UPDATE_DELAY 0.05
+USING_P_1_SPRITE assets/textures/billboards/afonsomaria/shoot-front-left.xpm:assets/textures/billboards/afonsomaria/aim-front-left.xpm
+USING_P_1_SPRITE_UPDATE_DELAY 0.05
+USING_M_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.xpm:assets/textures/billboards/afonsomaria/aim-front.xpm
+USING_M_8_SPRITE_UPDATE_DELAY 0.05
+USING_M_8_SPRITE_LOOP TRUE
+USING_M_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.xpm:assets/textures/billboards/afonsomaria/aim-front-right.xpm
+USING_M_7_SPRITE_UPDATE_DELAY 0.05
+USING_M_7_SPRITE_LOOP TRUE
+USING_M_6_SPRITE assets/textures/billboards/afonsomaria/shoot-left.xpm:assets/textures/billboards/afonsomaria/aim-left.xpm
+USING_M_6_SPRITE_UPDATE_DELAY 0.05
+USING_M_6_SPRITE_LOOP TRUE
+USING_M_5_SPRITE assets/textures/billboards/afonsomaria/shoot-back-left.xpm:assets/textures/billboards/afonsomaria/aim-back-left.xpm
+USING_M_5_SPRITE_UPDATE_DELAY 0.05
+USING_M_5_SPRITE_LOOP TRUE
+USING_M_4_SPRITE assets/textures/billboards/afonsomaria/shoot-back.xpm:assets/textures/billboards/afonsomaria/aim-back.xpm
+USING_M_4_SPRITE_UPDATE_DELAY 0.05
+USING_M_4_SPRITE_LOOP TRUE
+USING_M_3_SPRITE assets/textures/billboards/afonsomaria/shoot-back-right.xpm:assets/textures/billboards/afonsomaria/aim-back-right.xpm
+USING_M_3_SPRITE_UPDATE_DELAY 0.05
+USING_M_3_SPRITE_LOOP TRUE
+USING_M_2_SPRITE assets/textures/billboards/afonsomaria/shoot-right.xpm:assets/textures/billboards/afonsomaria/aim-right.xpm
+USING_M_2_SPRITE_UPDATE_DELAY 0.05
+USING_M_2_SPRITE_LOOP TRUE
+USING_M_1_SPRITE assets/textures/billboards/afonsomaria/shoot-front-left.xpm:assets/textures/billboards/afonsomaria/aim-front-left.xpm
+USING_M_1_SPRITE_UPDATE_DELAY 0.05
+USING_M_1_SPRITE_LOOP TRUE
+USING_K_8_SPRITE assets/textures/billboards/afonsomaria/sword-front.xpm
+USING_K_7_SPRITE assets/textures/billboards/afonsomaria/sword-front-right.xpm
+USING_K_6_SPRITE assets/textures/billboards/afonsomaria/sword-left.xpm
+USING_K_5_SPRITE assets/textures/billboards/afonsomaria/sword-back-left.xpm
+USING_K_4_SPRITE assets/textures/billboards/afonsomaria/sword-back.xpm
+USING_K_3_SPRITE assets/textures/billboards/afonsomaria/sword-back-right.xpm
+USING_K_2_SPRITE assets/textures/billboards/afonsomaria/sword-right.xpm
+USING_K_1_SPRITE assets/textures/billboards/afonsomaria/sword-front-left.xpm
+
+W_STILL_8_SPRITE assets/textures/billboards/pv/still-front.xpm
+W_STILL_7_SPRITE assets/textures/billboards/pv/still-front-right.xpm
+W_STILL_6_SPRITE assets/textures/billboards/pv/still-left.xpm
+W_STILL_5_SPRITE assets/textures/billboards/pv/still-back-left.xpm
+W_STILL_4_SPRITE assets/textures/billboards/pv/still-back.xpm
+W_STILL_3_SPRITE assets/textures/billboards/pv/still-back-right.xpm
+W_STILL_2_SPRITE assets/textures/billboards/pv/still-right.xpm
+W_STILL_1_SPRITE assets/textures/billboards/pv/still-front-left.xpm
+W_WALKING_8_SPRITE assets/textures/billboards/pv/front1.xpm:assets/textures/billboards/pv/front2.xpm
+W_WALKING_8_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_8_SPRITE_LOOP TRUE
+W_WALKING_7_SPRITE assets/textures/billboards/pv/front-right1.xpm:assets/textures/billboards/pv/front-right2.xpm
+W_WALKING_7_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_7_SPRITE_LOOP TRUE
+W_WALKING_6_SPRITE assets/textures/billboards/pv/left1.xpm:assets/textures/billboards/pv/left2.xpm
+W_WALKING_6_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_6_SPRITE_LOOP TRUE
+W_WALKING_5_SPRITE assets/textures/billboards/pv/back-left1.xpm:assets/textures/billboards/pv/back-left2.xpm
+W_WALKING_5_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_5_SPRITE_LOOP TRUE
+W_WALKING_4_SPRITE assets/textures/billboards/pv/back1.xpm:assets/textures/billboards/pv/back2.xpm
+W_WALKING_4_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_4_SPRITE_LOOP TRUE
+W_WALKING_3_SPRITE assets/textures/billboards/pv/back-right1.xpm:assets/textures/billboards/pv/back-right2.xpm
+W_WALKING_3_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_3_SPRITE_LOOP TRUE
+W_WALKING_2_SPRITE assets/textures/billboards/pv/right1.xpm:assets/textures/billboards/pv/right2.xpm
+W_WALKING_2_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_2_SPRITE_LOOP TRUE
+W_WALKING_1_SPRITE assets/textures/billboards/pv/front-left1.xpm:assets/textures/billboards/pv/front-left2.xpm
+W_WALKING_1_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_1_SPRITE_LOOP TRUE
+W_DEATH_SPRITE assets/textures/billboards/pv/dead.xpm
+W_DEATH_SPRITE_UPDATE_DELAY 0.1
+W_HIT_SPRITE assets/textures/billboards/pv/hit.xpm
+W_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
+W_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+W_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.xpm:assets/textures/billboards/pv/aim-front.xpm
+W_USING_P_8_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.xpm:assets/textures/billboards/pv/aim-front-right.xpm
+W_USING_P_7_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_6_SPRITE assets/textures/billboards/pv/shoot-left.xpm:assets/textures/billboards/pv/aim-left.xpm
+W_USING_P_6_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_5_SPRITE assets/textures/billboards/pv/shoot-back-left.xpm:assets/textures/billboards/pv/aim-back-left.xpm
+W_USING_P_5_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_4_SPRITE assets/textures/billboards/pv/shoot-back.xpm:assets/textures/billboards/pv/aim-back.xpm
+W_USING_P_4_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_3_SPRITE assets/textures/billboards/pv/shoot-back-right.xpm:assets/textures/billboards/pv/aim-back-right.xpm
+W_USING_P_3_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_2_SPRITE assets/textures/billboards/pv/shoot-right.xpm:assets/textures/billboards/pv/aim-right.xpm
+W_USING_P_2_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_1_SPRITE assets/textures/billboards/pv/shoot-front-left.xpm:assets/textures/billboards/pv/aim-front-left.xpm
+W_USING_P_1_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_8_SPRITE assets/textures/billboards/pv/shoot-front.xpm:assets/textures/billboards/pv/aim-front.xpm
+W_USING_M_8_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_8_SPRITE_LOOP TRUE
+W_USING_M_7_SPRITE assets/textures/billboards/pv/shoot-front-right.xpm:assets/textures/billboards/pv/aim-front-right.xpm
+W_USING_M_7_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_7_SPRITE_LOOP TRUE
+W_USING_M_6_SPRITE assets/textures/billboards/pv/shoot-left.xpm:assets/textures/billboards/pv/aim-left.xpm
+W_USING_M_6_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_6_SPRITE_LOOP TRUE
+W_USING_M_5_SPRITE assets/textures/billboards/pv/shoot-back-left.xpm:assets/textures/billboards/pv/aim-back-left.xpm
+W_USING_M_5_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_5_SPRITE_LOOP TRUE
+W_USING_M_4_SPRITE assets/textures/billboards/pv/shoot-back.xpm:assets/textures/billboards/pv/aim-back.xpm
+W_USING_M_4_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_4_SPRITE_LOOP TRUE
+W_USING_M_3_SPRITE assets/textures/billboards/pv/shoot-back-right.xpm:assets/textures/billboards/pv/aim-back-right.xpm
+W_USING_M_3_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_3_SPRITE_LOOP TRUE
+W_USING_M_2_SPRITE assets/textures/billboards/pv/shoot-right.xpm:assets/textures/billboards/pv/aim-right.xpm
+W_USING_M_2_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_2_SPRITE_LOOP TRUE
+W_USING_M_1_SPRITE assets/textures/billboards/pv/shoot-front-left.xpm:assets/textures/billboards/pv/aim-front-left.xpm
+W_USING_M_1_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_1_SPRITE_LOOP TRUE
+W_USING_K_8_SPRITE assets/textures/billboards/pv/sword-front.xpm
+W_USING_K_7_SPRITE assets/textures/billboards/pv/sword-front-right.xpm
+W_USING_K_6_SPRITE assets/textures/billboards/pv/sword-left.xpm
+W_USING_K_5_SPRITE assets/textures/billboards/pv/sword-back-left.xpm
+W_USING_K_4_SPRITE assets/textures/billboards/pv/sword-back.xpm
+W_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.xpm
+W_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.xpm
+W_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.xpm
+
+NO assets/42lisboa/cluster2-wall.xpm
+SO assets/42lisboa/cluster2-wall.xpm
+WE assets/42lisboa/cluster2-wall.xpm
+EA assets/42lisboa/cluster2-wall.xpm
+
+a_TYPE WALL
+a_NO assets/42lisboa/cluster2-wall.xpm
+a_SO assets/42lisboa/cluster2-left.xpm
+a_EA assets/42lisboa/cluster2-wall.xpm
+a_WE assets/42lisboa/cluster2-wall.xpm
+
+b_TYPE WALL
+b_NO assets/42lisboa/cluster2-wall.xpm
+b_SO assets/42lisboa/cluster2-right.xpm
+b_EA assets/42lisboa/cluster2-wall.xpm
+b_WE assets/42lisboa/cluster2-wall.xpm
+
+c_TYPE BILLBOARD
+c_HARD FALSE
+c_STILL_3_SPRITE assets/42lisboa/pc-table-3.xpm
+c_STILL_2_SPRITE assets/42lisboa/pc-table-2.xpm
+c_STILL_1_SPRITE assets/42lisboa/pc-table-1.xpm
+
+d_TYPE WALL
+d_NO assets/42lisboa/cluster2-wall.xpm
+d_SO assets/42lisboa/cluster2-wall.xpm
+d_EA assets/42lisboa/cluster2-meeting-chair.xpm
+d_WE assets/42lisboa/cluster2-wall.xpm
+
+e_TYPE WALL
+e_NO assets/42lisboa/cluster2-wall.xpm
+e_SO assets/42lisboa/cluster2-wall.xpm
+e_EA assets/42lisboa/cluster2-door-moulinette.xpm
+e_WE assets/42lisboa/cluster2-wall.xpm
+
+f_TYPE WALL
+f_NO assets/42lisboa/cluster2-wall.xpm
+f_SO assets/42lisboa/cluster2-wall.xpm
+f_EA assets/42lisboa/cluster2-nonbinary-wc.xpm
+f_WE assets/42lisboa/cluster2-wall.xpm
+
+g_TYPE WALL
+g_NO assets/42lisboa/window.xpm
+g_SO assets/42lisboa/window.xpm
+g_EA assets/42lisboa/window.xpm
+g_WE assets/42lisboa/window.xpm
+
+h_TYPE DOOR
+h_TARGETABLE TRUE
+h_ANIMATION_DELAY 1.3
+h_DOOR_SPRITE assets/42lisboa/cluster2-door.xpm
+h_DIRECTION NORTH
+h_OPEN_SOUND assets/42lisboa/cluster2-door-open.mp3
+h_OPEN_SOUND_VOLUME 0.8
+h_CLOSE_SOUND assets/42lisboa/cluster2-door-close.mp3
+h_CLOSE_SOUND_VOLUME 0.8
+
+i_TYPE WALL
+i_NO assets/42lisboa/cluster1-world-left.xpm
+i_SO assets/42lisboa/cluster2-wall.xpm
+i_EA assets/42lisboa/cluster2-wall.xpm
+i_WE assets/42lisboa/cluster2-wall.xpm
+
+j_TYPE WALL
+j_NO assets/42lisboa/cluster1-world-right.xpm
+j_SO assets/42lisboa/cluster2-wall.xpm
+j_EA assets/42lisboa/cluster2-wall.xpm
+j_WE assets/42lisboa/cluster2-wall.xpm
+
+k_TYPE WALL
+k_NO assets/42lisboa/cluster1-left.xpm
+k_SO assets/42lisboa/cluster2-wall.xpm
+k_EA assets/42lisboa/cluster2-wall-electric.xpm
+k_WE assets/42lisboa/cluster2-wall.xpm
+
+l_TYPE WALL
+l_NO assets/42lisboa/cluster1-right.xpm
+l_SO assets/42lisboa/cluster2-wall.xpm
+l_EA assets/42lisboa/cluster2-wall.xpm
+l_WE assets/42lisboa/cluster2-wall.xpm
+
+m_TYPE WALL
+m_NO assets/42lisboa/cluster2-wall.xpm
+m_SO assets/42lisboa/cluster2-lockers.xpm
+m_EA assets/42lisboa/cluster2-wall.xpm
+m_WE assets/42lisboa/cluster2-wall.xpm
+
+n_TYPE WALL
+n_NO assets/42lisboa/cluster1-wall.xpm
+n_SO assets/42lisboa/cluster1-wall.xpm
+n_EA assets/42lisboa/cluster1-wall.xpm
+n_WE assets/42lisboa/cluster1-wall.xpm
+
+o_TYPE DOOR
+o_TARGETABLE TRUE
+o_ANIMATION_DELAY 1
+o_DOOR_SPRITE assets/42lisboa/cluster1-wall.xpm
+o_DIRECTION NORTH
+
+p_TYPE WALL
+p_NO assets/42lisboa/cluster1-42-wall.xpm
+p_SO assets/42lisboa/cluster1-dreambig-left.xpm
+p_EA assets/42lisboa/cluster1-wall.xpm
+p_WE assets/42lisboa/cluster1-wall.xpm
+
+q_TYPE WALL
+q_NO assets/42lisboa/cluster1-wall.xpm
+q_SO assets/42lisboa/cluster1-dreambig-right.xpm
+q_EA assets/42lisboa/cluster1-wall.xpm
+q_WE assets/42lisboa/cluster1-wall.xpm
+
+r_TYPE WALL
+r_ULTRA_MEGA_TRANSPARENT TRUE
+r_NO_TRANSPARENCY_FOR_BILL TRUE
+r_NO assets/42lisboa/tumo-wall.xpm
+r_SO assets/42lisboa/tumo-wall.xpm
+r_EA assets/42lisboa/tumo-wall.xpm
+r_WE assets/42lisboa/tumo-wall.xpm
+
+x_TYPE BILLBOARD
+x_HARD TRUE
+x_STILL_SPRITE assets/42lisboa/bookshelf.xpm
+
+y_TYPE WALL
+y_NO assets/42lisboa/masonry-room-2.xpm
+y_SO assets/42lisboa/masonry-room.xpm
+y_EA assets/42lisboa/cluster2-wall.xpm
+y_WE assets/42lisboa/cluster2-wall.xpm
+
+z_TYPE WALL
+z_NO assets/42lisboa/cluster2-wall.xpm
+z_SO assets/42lisboa/kitchen-left.xpm
+z_EA assets/42lisboa/cluster2-wall.xpm
+z_WE assets/42lisboa/cluster2-wall.xpm
+
+A_TYPE WALL
+A_NO assets/42lisboa/cluster2-wall.xpm
+A_SO assets/42lisboa/kitchen-right.xpm
+A_EA assets/42lisboa/quiet-room-1.xpm
+A_WE assets/42lisboa/cluster2-wall.xpm
+
+B_TYPE WALL
+B_NO assets/42lisboa/cluster2-wall.xpm
+B_SO assets/42lisboa/cluster2-wall.xpm
+B_EA assets/42lisboa/bocal.xpm
+B_WE assets/42lisboa/cluster2-wall.xpm
+
+C_TYPE WALL
+C_NO assets/42lisboa/lounge-kitchen-left.xpm
+C_SO assets/42lisboa/cluster2-wall.xpm
+C_EA assets/42lisboa/quiet-room-2.xpm
+C_WE assets/42lisboa/cluster2-wall.xpm
+
+D_TYPE WALL
+D_NO assets/42lisboa/lounge-kitchen-right.xpm
+D_SO assets/42lisboa/cluster2-wall.xpm
+D_EA assets/42lisboa/cluster2-wall.xpm
+D_WE assets/42lisboa/cluster2-wall.xpm
+
+F_TYPE WALL
+F_NO assets/42lisboa/cluster2-wall.xpm
+F_SO assets/42lisboa/cluster2-wall.xpm
+F_EA assets/42lisboa/cluster2-door-moulinette.xpm
+F_WE assets/42lisboa/cluster2-wall.xpm
+
+G_TYPE WALL
+G_NO assets/42lisboa/lounge-patrons-left.xpm
+G_SO assets/42lisboa/cluster2-wall.xpm
+G_EA assets/42lisboa/cluster2-wall.xpm
+G_WE assets/42lisboa/cluster2-wall.xpm
+
+H_TYPE WALL
+H_NO assets/42lisboa/lounge-patrons-right.xpm
+H_SO assets/42lisboa/cluster2-wall.xpm
+H_EA assets/42lisboa/cluster2-wall.xpm
+H_WE assets/42lisboa/cluster2-wall.xpm
+
+I_TYPE WALL
+I_NO assets/42lisboa/cluster1-world-middle.xpm
+I_SO assets/42lisboa/cluster2-wall.xpm
+I_EA assets/42lisboa/cluster2-wall.xpm
+I_WE assets/42lisboa/cluster2-wall.xpm
+
+J_TYPE BILLBOARD
+J_HARD TRUE
+J_STILL_1_SPRITE assets/42lisboa/lounge-yellow-sofa-back-left.xpm
+J_STILL_2_SPRITE assets/42lisboa/lounge-yellow-sofa-left.xpm
+J_STILL_3_SPRITE assets/42lisboa/lounge-yellow-sofa-front-right.xpm
+J_STILL_4_SPRITE assets/42lisboa/lounge-yellow-sofa-front.xpm
+J_STILL_5_SPRITE assets/42lisboa/lounge-yellow-sofa-front-left.xpm
+J_STILL_6_SPRITE assets/42lisboa/lounge-yellow-sofa-right.xpm
+J_STILL_7_SPRITE assets/42lisboa/lounge-yellow-sofa-back-right.xpm
+J_STILL_8_SPRITE assets/42lisboa/lounge-yellow-sofa-back.xpm
+
+K_TYPE BILLBOARD
+K_HARD TRUE
+K_STILL_1_SPRITE assets/42lisboa/lounge-blue-sofa-front-right.xpm
+K_STILL_2_SPRITE assets/42lisboa/lounge-blue-sofa-front.xpm
+K_STILL_3_SPRITE assets/42lisboa/lounge-blue-sofa-front-left.xpm
+
+L_TYPE WALL
+L_NO assets/42lisboa/cluster2-wall.xpm
+L_SO assets/42lisboa/cluster2-wall.xpm
+L_EA assets/42lisboa/cluster2-wall.xpm
+L_WE assets/42lisboa/cluster2-wc.xpm
+
+M_TYPE BILLBOARD
+M_HARD TRUE
+M_STILL_1_SPRITE assets/42lisboa/cluster-pcs-front-left.xpm
+M_STILL_2_SPRITE assets/42lisboa/cluster-pcs-front.xpm
+M_STILL_3_SPRITE assets/42lisboa/cluster-pcs-front-right.xpm
+M_STILL_4_SPRITE assets/42lisboa/cluster-pcs-left.xpm
+M_STILL_5_SPRITE assets/42lisboa/cluster-pcs-left.xpm
+M_STILL_6_SPRITE assets/42lisboa/cluster-pcs-front-left.xpm
+M_STILL_7_SPRITE assets/42lisboa/cluster-pcs-front.xpm
+M_STILL_8_SPRITE assets/42lisboa/cluster-pcs-front.xpm
+M_STILL_9_SPRITE assets/42lisboa/cluster-pcs-front-right.xpm
+M_STILL_10_SPRITE assets/42lisboa/cluster-pcs-left.xpm
+
+O_TYPE BILLBOARD
+O_STILL_SPRITE assets/42lisboa/kitchen-table.xpm
+
+s_TYPE WALL
+s_NO assets/42lisboa/cluster2-wall.xpm
+s_SO assets/42lisboa/cluster2-wall.xpm
+s_EA assets/42lisboa/wall-of-fame.xpm
+s_WE assets/42lisboa/cluster2-wall.xpm
+
+t_TYPE BILLBOARD
+t_HARD TRUE
+t_STILL_3_SPRITE assets/42lisboa/vending-machine-front-left.xpm
+t_STILL_2_SPRITE assets/42lisboa/vending-machine-front.xpm
+t_STILL_1_SPRITE assets/42lisboa/vending-machine-front-right.xpm
+
+u_TYPE BILLBOARD
+u_HARD TRUE
+u_STILL_SPRITE assets/42lisboa/tumo-table.xpm
+
+v_TYPE BILLBOARD
+v_HARD TRUE
+v_STILL_7_SPRITE assets/42lisboa/piscine-guard-front-left.xpm
+v_STILL_8_SPRITE assets/42lisboa/piscine-guard-left.xpm
+v_STILL_1_SPRITE assets/42lisboa/piscine-guard-front-right.xpm
+v_STILL_2_SPRITE assets/42lisboa/piscine-guard-front.xpm
+v_STILL_3_SPRITE assets/42lisboa/piscine-guard-front-left.xpm
+v_STILL_4_SPRITE assets/42lisboa/piscine-guard-right.xpm
+v_STILL_5_SPRITE assets/42lisboa/piscine-guard-front-right.xpm
+v_STILL_6_SPRITE assets/42lisboa/piscine-guard-front.xpm
+
+w_TYPE WALL
+w_ULTRA_MEGA_TRANSPARENT TRUE
+w_NO assets/42lisboa/cluster2-wall.xpm
+w_SO assets/42lisboa/piscine-wall-locker.xpm
+w_EA assets/42lisboa/cluster2-wall.xpm
+w_WE assets/42lisboa/piscine-wall-inside.xpm
+
+P_TYPE BILLBOARD
+P_HARD TRUE
+P_STILL_4_SPRITE assets/42lisboa/white-board-front.xpm
+P_STILL_3_SPRITE assets/42lisboa/white-board-front-right.xpm
+P_STILL_2_SPRITE assets/42lisboa/white-board-front.xpm
+P_STILL_1_SPRITE assets/42lisboa/white-board-front-left.xpm
+
+F 50,50,50
+C 140,140,140
+
+  11111111
+  gE    wg
+  g   JJ g
+  g   JK g
+  g   KJ g
+  g   JK g
+  g      g
+gggHG DC g
+g   1 zA g
+g   F  W g
+g   s OOOg
+g   B OOOg
+g   1POOOg
+g   1  t g
+g   1 y11g
+g1111 y11g
+gv uu uxug
+g      u g
+g rrrrrr g
+g r    r g
+g r    r g
+g r    r g
+g r    r g
+g r    r g
+g r    r g
+g rrrrrr g
+g        g
+gonnpqnnog
+g     W  g
+gMMMM MMMg
+g        g
+gMMMM MMMg
+g        g
+gMMMM MMMg
+g        g
+gMMMM MMMg
+g        g
+gMMMM MMMg
+g        g
+ghlk jIihg
+g 11 L1f g
+g 11 11dcg
+g 1e 11dcg
+g abhmmm g
+g  E     g
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+gMMM MMMMg
+g        g
+gggggggggg

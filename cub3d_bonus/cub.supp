@@ -1,0 +1,58 @@
+{
+   pulse_reachable_1
+   Memcheck:Leak
+   ...
+   fun:ma*
+   ...
+}
+
+{
+   pulse_reachable_2
+   Memcheck:Leak
+   ...
+   fun:pa*
+   ...
+}
+
+{
+   val_reachable_1
+   Memcheck:Leak
+   ...
+   fun:*dl*
+   ...
+}
+
+{
+   dbus_reachable_1
+   Memcheck:Leak
+   ...
+   fun:*dbus*
+   ...
+}
+
+{
+   dbus_reachable_2
+   Memcheck:Leak
+   ...
+   fun:*DBus*
+   ...
+}
+
+{
+   mlx_mouse_reachable_2
+   Memcheck:Leak
+   ...
+   fun:*_Xrm*
+   ...
+}
+
+{
+   x11_xcb_writev_uninit
+   Memcheck:Param
+   writev(vector[...])
+   fun:__writev
+   fun:writev
+   ...
+   fun:xcb_writev
+   ...
+}

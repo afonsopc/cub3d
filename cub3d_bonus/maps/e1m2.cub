@@ -1,0 +1,808 @@
+BACKGROUND_SOUND assets/wolf3d/sounds/xfunkie.mp3
+BACKGROUND_SOUND_VOLUME 0.7
+BACKGROUND_SOUND_LOOP TRUE
+BACKGROUND_SPRITE assets/wolf3d/textures/wood-wall-dark.xpm
+
+COLLISION_SOUND assets/wolf3d/sounds/hitwall.mp3
+COLLISION_SOUND_VOLUME 0.1
+
+MAX_HEALTH 100
+
+0_INVENTORY P
+1_INVENTORY K
+DROP_ITEMS TRUE
+AMMO 8
+
+FRIENDLY_FIRE FALSE
+
+STILL_8_SPRITE assets/textures/billboards/afonsomaria/still-front.xpm
+STILL_7_SPRITE assets/textures/billboards/afonsomaria/still-front-right.xpm
+STILL_6_SPRITE assets/textures/billboards/afonsomaria/still-left.xpm
+STILL_5_SPRITE assets/textures/billboards/afonsomaria/still-back-left.xpm
+STILL_4_SPRITE assets/textures/billboards/afonsomaria/still-back.xpm
+STILL_3_SPRITE assets/textures/billboards/afonsomaria/still-back-right.xpm
+STILL_2_SPRITE assets/textures/billboards/afonsomaria/still-right.xpm
+STILL_1_SPRITE assets/textures/billboards/afonsomaria/still-front-left.xpm
+WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.xpm:assets/textures/billboards/afonsomaria/front2.xpm
+WALKING_8_SPRITE_UPDATE_DELAY 0.4
+WALKING_8_SPRITE_LOOP TRUE
+WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.xpm:assets/textures/billboards/afonsomaria/front-right2.xpm
+WALKING_7_SPRITE_UPDATE_DELAY 0.4
+WALKING_7_SPRITE_LOOP TRUE
+WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.xpm:assets/textures/billboards/afonsomaria/left2.xpm
+WALKING_6_SPRITE_UPDATE_DELAY 0.4
+WALKING_6_SPRITE_LOOP TRUE
+WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.xpm:assets/textures/billboards/afonsomaria/back-left2.xpm
+WALKING_5_SPRITE_UPDATE_DELAY 0.4
+WALKING_5_SPRITE_LOOP TRUE
+WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.xpm:assets/textures/billboards/afonsomaria/back2.xpm
+WALKING_4_SPRITE_UPDATE_DELAY 0.4
+WALKING_4_SPRITE_LOOP TRUE
+WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.xpm:assets/textures/billboards/afonsomaria/back-right2.xpm
+WALKING_3_SPRITE_UPDATE_DELAY 0.4
+WALKING_3_SPRITE_LOOP TRUE
+WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.xpm:assets/textures/billboards/afonsomaria/right2.xpm
+WALKING_2_SPRITE_UPDATE_DELAY 0.4
+WALKING_2_SPRITE_LOOP TRUE
+WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.xpm:assets/textures/billboards/afonsomaria/front-left2.xpm
+WALKING_1_SPRITE_UPDATE_DELAY 0.4
+WALKING_1_SPRITE_LOOP TRUE
+DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.xpm
+DEATH_SPRITE_UPDATE_DELAY 0.1
+HIT_SPRITE assets/textures/billboards/afonsomaria/hit.xpm
+DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
+HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+USING_P_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.xpm:assets/textures/billboards/afonsomaria/aim-front.xpm
+USING_P_8_SPRITE_UPDATE_DELAY 0.05
+USING_P_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.xpm:assets/textures/billboards/afonsomaria/aim-front-right.xpm
+USING_P_7_SPRITE_UPDATE_DELAY 0.05
+USING_P_6_SPRITE assets/textures/billboards/afonsomaria/shoot-left.xpm:assets/textures/billboards/afonsomaria/aim-left.xpm
+USING_P_6_SPRITE_UPDATE_DELAY 0.05
+USING_P_5_SPRITE assets/textures/billboards/afonsomaria/shoot-back-left.xpm:assets/textures/billboards/afonsomaria/aim-back-left.xpm
+USING_P_5_SPRITE_UPDATE_DELAY 0.05
+USING_P_4_SPRITE assets/textures/billboards/afonsomaria/shoot-back.xpm:assets/textures/billboards/afonsomaria/aim-back.xpm
+USING_P_4_SPRITE_UPDATE_DELAY 0.05
+USING_P_3_SPRITE assets/textures/billboards/afonsomaria/shoot-back-right.xpm:assets/textures/billboards/afonsomaria/aim-back-right.xpm
+USING_P_3_SPRITE_UPDATE_DELAY 0.05
+USING_P_2_SPRITE assets/textures/billboards/afonsomaria/shoot-right.xpm:assets/textures/billboards/afonsomaria/aim-right.xpm
+USING_P_2_SPRITE_UPDATE_DELAY 0.05
+USING_P_1_SPRITE assets/textures/billboards/afonsomaria/shoot-front-left.xpm:assets/textures/billboards/afonsomaria/aim-front-left.xpm
+USING_P_1_SPRITE_UPDATE_DELAY 0.05
+USING_M_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.xpm:assets/textures/billboards/afonsomaria/aim-front.xpm
+USING_M_8_SPRITE_UPDATE_DELAY 0.05
+USING_M_8_SPRITE_LOOP TRUE
+USING_M_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.xpm:assets/textures/billboards/afonsomaria/aim-front-right.xpm
+USING_M_7_SPRITE_UPDATE_DELAY 0.05
+USING_M_7_SPRITE_LOOP TRUE
+USING_M_6_SPRITE assets/textures/billboards/afonsomaria/shoot-left.xpm:assets/textures/billboards/afonsomaria/aim-left.xpm
+USING_M_6_SPRITE_UPDATE_DELAY 0.05
+USING_M_6_SPRITE_LOOP TRUE
+USING_M_5_SPRITE assets/textures/billboards/afonsomaria/shoot-back-left.xpm:assets/textures/billboards/afonsomaria/aim-back-left.xpm
+USING_M_5_SPRITE_UPDATE_DELAY 0.05
+USING_M_5_SPRITE_LOOP TRUE
+USING_M_4_SPRITE assets/textures/billboards/afonsomaria/shoot-back.xpm:assets/textures/billboards/afonsomaria/aim-back.xpm
+USING_M_4_SPRITE_UPDATE_DELAY 0.05
+USING_M_4_SPRITE_LOOP TRUE
+USING_M_3_SPRITE assets/textures/billboards/afonsomaria/shoot-back-right.xpm:assets/textures/billboards/afonsomaria/aim-back-right.xpm
+USING_M_3_SPRITE_UPDATE_DELAY 0.05
+USING_M_3_SPRITE_LOOP TRUE
+USING_M_2_SPRITE assets/textures/billboards/afonsomaria/shoot-right.xpm:assets/textures/billboards/afonsomaria/aim-right.xpm
+USING_M_2_SPRITE_UPDATE_DELAY 0.05
+USING_M_2_SPRITE_LOOP TRUE
+USING_M_1_SPRITE assets/textures/billboards/afonsomaria/shoot-front-left.xpm:assets/textures/billboards/afonsomaria/aim-front-left.xpm
+USING_M_1_SPRITE_UPDATE_DELAY 0.05
+USING_M_1_SPRITE_LOOP TRUE
+USING_K_8_SPRITE assets/textures/billboards/afonsomaria/sword-front.xpm
+USING_K_7_SPRITE assets/textures/billboards/afonsomaria/sword-front-right.xpm
+USING_K_6_SPRITE assets/textures/billboards/afonsomaria/sword-left.xpm
+USING_K_5_SPRITE assets/textures/billboards/afonsomaria/sword-back-left.xpm
+USING_K_4_SPRITE assets/textures/billboards/afonsomaria/sword-back.xpm
+USING_K_3_SPRITE assets/textures/billboards/afonsomaria/sword-back-right.xpm
+USING_K_2_SPRITE assets/textures/billboards/afonsomaria/sword-right.xpm
+USING_K_1_SPRITE assets/textures/billboards/afonsomaria/sword-front-left.xpm
+
+W_STILL_8_SPRITE assets/textures/billboards/pv/still-front.xpm
+W_STILL_7_SPRITE assets/textures/billboards/pv/still-front-right.xpm
+W_STILL_6_SPRITE assets/textures/billboards/pv/still-left.xpm
+W_STILL_5_SPRITE assets/textures/billboards/pv/still-back-left.xpm
+W_STILL_4_SPRITE assets/textures/billboards/pv/still-back.xpm
+W_STILL_3_SPRITE assets/textures/billboards/pv/still-back-right.xpm
+W_STILL_2_SPRITE assets/textures/billboards/pv/still-right.xpm
+W_STILL_1_SPRITE assets/textures/billboards/pv/still-front-left.xpm
+W_WALKING_8_SPRITE assets/textures/billboards/pv/front1.xpm:assets/textures/billboards/pv/front2.xpm
+W_WALKING_8_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_8_SPRITE_LOOP TRUE
+W_WALKING_7_SPRITE assets/textures/billboards/pv/front-right1.xpm:assets/textures/billboards/pv/front-right2.xpm
+W_WALKING_7_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_7_SPRITE_LOOP TRUE
+W_WALKING_6_SPRITE assets/textures/billboards/pv/left1.xpm:assets/textures/billboards/pv/left2.xpm
+W_WALKING_6_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_6_SPRITE_LOOP TRUE
+W_WALKING_5_SPRITE assets/textures/billboards/pv/back-left1.xpm:assets/textures/billboards/pv/back-left2.xpm
+W_WALKING_5_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_5_SPRITE_LOOP TRUE
+W_WALKING_4_SPRITE assets/textures/billboards/pv/back1.xpm:assets/textures/billboards/pv/back2.xpm
+W_WALKING_4_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_4_SPRITE_LOOP TRUE
+W_WALKING_3_SPRITE assets/textures/billboards/pv/back-right1.xpm:assets/textures/billboards/pv/back-right2.xpm
+W_WALKING_3_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_3_SPRITE_LOOP TRUE
+W_WALKING_2_SPRITE assets/textures/billboards/pv/right1.xpm:assets/textures/billboards/pv/right2.xpm
+W_WALKING_2_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_2_SPRITE_LOOP TRUE
+W_WALKING_1_SPRITE assets/textures/billboards/pv/front-left1.xpm:assets/textures/billboards/pv/front-left2.xpm
+W_WALKING_1_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_1_SPRITE_LOOP TRUE
+W_DEATH_SPRITE assets/textures/billboards/pv/dead.xpm
+W_DEATH_SPRITE_UPDATE_DELAY 0.1
+W_HIT_SPRITE assets/textures/billboards/pv/hit.xpm
+W_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
+W_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+W_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.xpm:assets/textures/billboards/pv/aim-front.xpm
+W_USING_P_8_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.xpm:assets/textures/billboards/pv/aim-front-right.xpm
+W_USING_P_7_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_6_SPRITE assets/textures/billboards/pv/shoot-left.xpm:assets/textures/billboards/pv/aim-left.xpm
+W_USING_P_6_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_5_SPRITE assets/textures/billboards/pv/shoot-back-left.xpm:assets/textures/billboards/pv/aim-back-left.xpm
+W_USING_P_5_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_4_SPRITE assets/textures/billboards/pv/shoot-back.xpm:assets/textures/billboards/pv/aim-back.xpm
+W_USING_P_4_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_3_SPRITE assets/textures/billboards/pv/shoot-back-right.xpm:assets/textures/billboards/pv/aim-back-right.xpm
+W_USING_P_3_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_2_SPRITE assets/textures/billboards/pv/shoot-right.xpm:assets/textures/billboards/pv/aim-right.xpm
+W_USING_P_2_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_1_SPRITE assets/textures/billboards/pv/shoot-front-left.xpm:assets/textures/billboards/pv/aim-front-left.xpm
+W_USING_P_1_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_8_SPRITE assets/textures/billboards/pv/shoot-front.xpm:assets/textures/billboards/pv/aim-front.xpm
+W_USING_M_8_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_8_SPRITE_LOOP TRUE
+W_USING_M_7_SPRITE assets/textures/billboards/pv/shoot-front-right.xpm:assets/textures/billboards/pv/aim-front-right.xpm
+W_USING_M_7_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_7_SPRITE_LOOP TRUE
+W_USING_M_6_SPRITE assets/textures/billboards/pv/shoot-left.xpm:assets/textures/billboards/pv/aim-left.xpm
+W_USING_M_6_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_6_SPRITE_LOOP TRUE
+W_USING_M_5_SPRITE assets/textures/billboards/pv/shoot-back-left.xpm:assets/textures/billboards/pv/aim-back-left.xpm
+W_USING_M_5_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_5_SPRITE_LOOP TRUE
+W_USING_M_4_SPRITE assets/textures/billboards/pv/shoot-back.xpm:assets/textures/billboards/pv/aim-back.xpm
+W_USING_M_4_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_4_SPRITE_LOOP TRUE
+W_USING_M_3_SPRITE assets/textures/billboards/pv/shoot-back-right.xpm:assets/textures/billboards/pv/aim-back-right.xpm
+W_USING_M_3_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_3_SPRITE_LOOP TRUE
+W_USING_M_2_SPRITE assets/textures/billboards/pv/shoot-right.xpm:assets/textures/billboards/pv/aim-right.xpm
+W_USING_M_2_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_2_SPRITE_LOOP TRUE
+W_USING_M_1_SPRITE assets/textures/billboards/pv/shoot-front-left.xpm:assets/textures/billboards/pv/aim-front-left.xpm
+W_USING_M_1_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_1_SPRITE_LOOP TRUE
+W_USING_K_8_SPRITE assets/textures/billboards/pv/sword-front.xpm
+W_USING_K_7_SPRITE assets/textures/billboards/pv/sword-front-right.xpm
+W_USING_K_6_SPRITE assets/textures/billboards/pv/sword-left.xpm
+W_USING_K_5_SPRITE assets/textures/billboards/pv/sword-back-left.xpm
+W_USING_K_4_SPRITE assets/textures/billboards/pv/sword-back.xpm
+W_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.xpm
+W_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.xpm
+W_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.xpm
+
+STATS_HUD_FONT assets/fonts/wolf3d
+
+STATS_HUD_1_SPRITE assets/wolf3d/textures/hud/stats/0-0.xpm:assets/wolf3d/textures/hud/stats/0-1.xpm:assets/wolf3d/textures/hud/stats/0-2.xpm
+STATS_HUD_1_SPRITE_LOOP TRUE
+STATS_HUD_1_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_2_SPRITE assets/wolf3d/textures/hud/stats/1-0.xpm:assets/wolf3d/textures/hud/stats/1-1.xpm:assets/wolf3d/textures/hud/stats/1-2.xpm
+STATS_HUD_2_SPRITE_LOOP TRUE
+STATS_HUD_2_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_3_SPRITE assets/wolf3d/textures/hud/stats/2-0.xpm:assets/wolf3d/textures/hud/stats/2-1.xpm:assets/wolf3d/textures/hud/stats/2-2.xpm
+STATS_HUD_3_SPRITE_LOOP TRUE
+STATS_HUD_3_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_4_SPRITE assets/wolf3d/textures/hud/stats/3-0.xpm:assets/wolf3d/textures/hud/stats/3-1.xpm:assets/wolf3d/textures/hud/stats/3-2.xpm
+STATS_HUD_4_SPRITE_LOOP TRUE
+STATS_HUD_4_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_5_SPRITE assets/wolf3d/textures/hud/stats/4-0.xpm:assets/wolf3d/textures/hud/stats/4-1.xpm:assets/wolf3d/textures/hud/stats/4-2.xpm
+STATS_HUD_5_SPRITE_LOOP TRUE
+STATS_HUD_5_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_6_SPRITE assets/wolf3d/textures/hud/stats/5-0.xpm:assets/wolf3d/textures/hud/stats/5-1.xpm:assets/wolf3d/textures/hud/stats/5-2.xpm
+STATS_HUD_6_SPRITE_LOOP TRUE
+STATS_HUD_6_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_7_SPRITE assets/wolf3d/textures/hud/stats/6-0.xpm:assets/wolf3d/textures/hud/stats/6-1.xpm:assets/wolf3d/textures/hud/stats/6-2.xpm
+STATS_HUD_7_SPRITE_LOOP TRUE
+STATS_HUD_7_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_DEAD_SPRITE assets/wolf3d/textures/hud/stats/7-0.xpm
+STATS_HUD_CHEAT_SPRITE assets/wolf3d/textures/hud/stats/7-1.xpm
+
+e_TYPE CHARACTER
+e_MAX_HEALTH 100
+e_TARGETABLE TRUE
+e_STILL_8_SPRITE assets/wolf3d/textures/billboards/soldier/still-front.xpm
+e_STILL_7_SPRITE assets/wolf3d/textures/billboards/soldier/still-front-right.xpm
+e_STILL_6_SPRITE assets/wolf3d/textures/billboards/soldier/still-left.xpm
+e_STILL_5_SPRITE assets/wolf3d/textures/billboards/soldier/still-back-left.xpm
+e_STILL_4_SPRITE assets/wolf3d/textures/billboards/soldier/still-back.xpm
+e_STILL_3_SPRITE assets/wolf3d/textures/billboards/soldier/still-back-right.xpm
+e_STILL_2_SPRITE assets/wolf3d/textures/billboards/soldier/still-right.xpm
+e_STILL_1_SPRITE assets/wolf3d/textures/billboards/soldier/still-front-left.xpm
+e_WALKING_8_SPRITE assets/wolf3d/textures/billboards/soldier/front1.xpm:assets/wolf3d/textures/billboards/soldier/front2.xpm:assets/wolf3d/textures/billboards/soldier/front3.xpm:assets/wolf3d/textures/billboards/soldier/front4.xpm
+e_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_8_SPRITE_LOOP TRUE
+e_WALKING_7_SPRITE assets/wolf3d/textures/billboards/soldier/front-right1.xpm:assets/wolf3d/textures/billboards/soldier/front-right2.xpm:assets/wolf3d/textures/billboards/soldier/front-right3.xpm:assets/wolf3d/textures/billboards/soldier/front-right4.xpm
+e_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_7_SPRITE_LOOP TRUE
+e_WALKING_6_SPRITE assets/wolf3d/textures/billboards/soldier/left1.xpm:assets/wolf3d/textures/billboards/soldier/left2.xpm:assets/wolf3d/textures/billboards/soldier/left3.xpm:assets/wolf3d/textures/billboards/soldier/left4.xpm
+e_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_6_SPRITE_LOOP TRUE
+e_WALKING_5_SPRITE assets/wolf3d/textures/billboards/soldier/back-left1.xpm:assets/wolf3d/textures/billboards/soldier/back-left2.xpm:assets/wolf3d/textures/billboards/soldier/back-left3.xpm:assets/wolf3d/textures/billboards/soldier/back-left4.xpm
+e_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_5_SPRITE_LOOP TRUE
+e_WALKING_4_SPRITE assets/wolf3d/textures/billboards/soldier/back1.xpm:assets/wolf3d/textures/billboards/soldier/back2.xpm:assets/wolf3d/textures/billboards/soldier/back3.xpm:assets/wolf3d/textures/billboards/soldier/back4.xpm
+e_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_4_SPRITE_LOOP TRUE
+e_WALKING_3_SPRITE assets/wolf3d/textures/billboards/soldier/back-right1.xpm:assets/wolf3d/textures/billboards/soldier/back-right2.xpm:assets/wolf3d/textures/billboards/soldier/back-right3.xpm:assets/wolf3d/textures/billboards/soldier/back-right4.xpm
+e_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_3_SPRITE_LOOP TRUE
+e_WALKING_2_SPRITE assets/wolf3d/textures/billboards/soldier/right1.xpm:assets/wolf3d/textures/billboards/soldier/right2.xpm:assets/wolf3d/textures/billboards/soldier/right3.xpm:assets/wolf3d/textures/billboards/soldier/right4.xpm
+e_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_2_SPRITE_LOOP TRUE
+e_WALKING_1_SPRITE assets/wolf3d/textures/billboards/soldier/front-left1.xpm:assets/wolf3d/textures/billboards/soldier/front-left2.xpm:assets/wolf3d/textures/billboards/soldier/front-left3.xpm:assets/wolf3d/textures/billboards/soldier/front-left4.xpm
+e_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_1_SPRITE_LOOP TRUE
+e_DEATH_SPRITE assets/wolf3d/textures/billboards/soldier/death1.xpm:assets/wolf3d/textures/billboards/soldier/death2.xpm:assets/wolf3d/textures/billboards/soldier/death3.xpm:assets/wolf3d/textures/billboards/soldier/death4.xpm:assets/wolf3d/textures/billboards/soldier/death5.xpm
+e_DEATH_SPRITE_UPDATE_DELAY 0.1
+e_HIT_SPRITE assets/wolf3d/textures/billboards/soldier/hit.xpm
+e_DEATH_SOUND assets/wolf3d/sounds/deathscream5.mp3
+e_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+e_CONTROLLER ENEMY
+e_OPTIMAL_PROXIMITY 2
+e_0_INVENTORY H
+e_1_INVENTORY Y
+e_USING_Y_1_SPRITE assets/wolf3d/textures/billboards/soldier/shoot.xpm:assets/wolf3d/textures/billboards/soldier/aim.xpm
+e_USING_Y_1_SPRITE_UPDATE_DELAY 0.5
+e_USING_Y_1_SPRITE_LOOP TRUE
+e_USING_H_1_SPRITE assets/wolf3d/textures/billboards/soldier/halt.xpm
+e_AMMO 2147483647
+e_DROP ;
+e_DROP_ITEMS TRUE
+
+d_TYPE CHARACTER
+d_MAX_HEALTH 1
+d_HARD FALSE
+d_TARGETABLE TRUE
+d_STILL_8_SPRITE assets/wolf3d/textures/billboards/dog/front1.xpm
+d_STILL_7_SPRITE assets/wolf3d/textures/billboards/dog/front-right1.xpm
+d_STILL_6_SPRITE assets/wolf3d/textures/billboards/dog/left1.xpm
+d_STILL_5_SPRITE assets/wolf3d/textures/billboards/dog/back-left1.xpm
+d_STILL_4_SPRITE assets/wolf3d/textures/billboards/dog/back1.xpm
+d_STILL_3_SPRITE assets/wolf3d/textures/billboards/dog/back-right1.xpm
+d_STILL_2_SPRITE assets/wolf3d/textures/billboards/dog/right1.xpm
+d_STILL_1_SPRITE assets/wolf3d/textures/billboards/dog/front-left1.xpm
+d_WALKING_8_SPRITE assets/wolf3d/textures/billboards/dog/front1.xpm:assets/wolf3d/textures/billboards/dog/front2.xpm:assets/wolf3d/textures/billboards/dog/front3.xpm:assets/wolf3d/textures/billboards/dog/front4.xpm
+d_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_8_SPRITE_LOOP TRUE
+d_WALKING_7_SPRITE assets/wolf3d/textures/billboards/dog/front-right1.xpm:assets/wolf3d/textures/billboards/dog/front-right2.xpm:assets/wolf3d/textures/billboards/dog/front-right3.xpm:assets/wolf3d/textures/billboards/dog/front-right4.xpm
+d_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_7_SPRITE_LOOP TRUE
+d_WALKING_6_SPRITE assets/wolf3d/textures/billboards/dog/left1.xpm:assets/wolf3d/textures/billboards/dog/left2.xpm:assets/wolf3d/textures/billboards/dog/left3.xpm:assets/wolf3d/textures/billboards/dog/left4.xpm
+d_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_6_SPRITE_LOOP TRUE
+d_WALKING_5_SPRITE assets/wolf3d/textures/billboards/dog/back-left1.xpm:assets/wolf3d/textures/billboards/dog/back-left2.xpm:assets/wolf3d/textures/billboards/dog/back-left3.xpm:assets/wolf3d/textures/billboards/dog/back-left4.xpm
+d_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_5_SPRITE_LOOP TRUE
+d_WALKING_4_SPRITE assets/wolf3d/textures/billboards/dog/back1.xpm:assets/wolf3d/textures/billboards/dog/back2.xpm:assets/wolf3d/textures/billboards/dog/back3.xpm:assets/wolf3d/textures/billboards/dog/back4.xpm
+d_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_4_SPRITE_LOOP TRUE
+d_WALKING_3_SPRITE assets/wolf3d/textures/billboards/dog/back-right1.xpm:assets/wolf3d/textures/billboards/dog/back-right2.xpm:assets/wolf3d/textures/billboards/dog/back-right3.xpm:assets/wolf3d/textures/billboards/dog/back-right4.xpm
+d_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_3_SPRITE_LOOP TRUE
+d_WALKING_2_SPRITE assets/wolf3d/textures/billboards/dog/right1.xpm:assets/wolf3d/textures/billboards/dog/right2.xpm:assets/wolf3d/textures/billboards/dog/right3.xpm:assets/wolf3d/textures/billboards/dog/right4.xpm
+d_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_2_SPRITE_LOOP TRUE
+d_WALKING_1_SPRITE assets/wolf3d/textures/billboards/dog/front-left1.xpm:assets/wolf3d/textures/billboards/dog/front-left2.xpm:assets/wolf3d/textures/billboards/dog/front-left3.xpm:assets/wolf3d/textures/billboards/dog/front-left4.xpm
+d_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_1_SPRITE_LOOP TRUE
+d_DEATH_SPRITE assets/wolf3d/textures/billboards/dog/death1.xpm:assets/wolf3d/textures/billboards/dog/death2.xpm:assets/wolf3d/textures/billboards/dog/death3.xpm
+d_DEATH_SPRITE_UPDATE_DELAY 0.1
+d_HIT_SPRITE assets/wolf3d/textures/billboards/dog/hit.xpm
+d_DEATH_SOUND assets/wolf3d/sounds/dogdeath.mp3
+d_HIT_SOUND assets/wolf3d/sounds/dogbark.mp3
+d_CONTROLLER ENEMY
+d_OPTIMAL_PROXIMITY 0.1
+d_0_INVENTORY C
+d_USING_C_1_SPRITE assets/wolf3d/textures/billboards/dog/bite1.xpm:assets/wolf3d/textures/billboards/dog/bite2.xpm:assets/wolf3d/textures/billboards/dog/bite3.xpm
+d_USING_C_1_SPRITE_UPDATE_DELAY 0.5
+d_USING_C_1_SPRITE_LOOP TRUE
+
+._TYPE BILLBOARD
+._STILL_SPRITE assets/wolf3d/textures/billboards/blue-plant.xpm
+
+,_TYPE BILLBOARD
+,_HARD FALSE
+,_STILL_SPRITE assets/wolf3d/textures/billboards/ceiling-light.xpm
+
+/_TYPE BILLBOARD
+/_HARD FALSE
+/_STILL_SPRITE assets/wolf3d/textures/billboards/chandelier.xpm
+
+=_TYPE BILLBOARD
+=_STILL_SPRITE assets/wolf3d/textures/billboards/brown-pot.xpm
+
+'_TYPE BILLBOARD
+'_TARGETABLE TRUE
+'_STILL_SPRITE assets/wolf3d/textures/billboards/barrel.xpm
+
+?_TYPE BILLBOARD
+?_STILL_SPRITE assets/wolf3d/textures/billboards/well.xpm
+
++_TYPE BILLBOARD
++_STILL_SPRITE assets/wolf3d/textures/billboards/well-water.xpm
+
+-_TYPE BILLBOARD
+-_STILL_SPRITE assets/wolf3d/textures/billboards/table.xpm
+
+|_TYPE BILLBOARD
+|_STILL_SPRITE assets/wolf3d/textures/billboards/bones.xpm
+
+"_TYPE BILLBOARD
+"_STILL_SPRITE assets/wolf3d/textures/billboards/skeleton-ground.xpm
+
+\_TYPE BILLBOARD
+\_STILL_SPRITE assets/wolf3d/textures/billboards/armour.xpm
+
+~_TYPE BILLBOARD
+~_STILL_SPRITE assets/wolf3d/textures/billboards/table-and-chairs.xpm
+
+!_TYPE BILLBOARD
+!_STILL_SPRITE assets/wolf3d/textures/billboards/blue-pot.xpm
+
+@_TYPE BILLBOARD
+@_STILL_SPRITE assets/wolf3d/textures/billboards/lamp.xpm
+
+#_TYPE BILLBOARD
+#_STILL_SPRITE assets/wolf3d/textures/billboards/nazi-flag.xpm
+
+$_TYPE BILLBOARD
+$_STILL_SPRITE assets/wolf3d/textures/billboards/gold-plant.xpm
+
+%_TYPE BILLBOARD
+%_STILL_SPRITE assets/wolf3d/textures/billboards/green-barrel.xpm
+
+^_TYPE BILLBOARD
+^_STILL_SPRITE assets/wolf3d/textures/billboards/pillar.xpm
+
+&_TYPE BILLBOARD
+&_STILL_SPRITE assets/wolf3d/textures/billboards/skeleton-hang.xpm
+
+<_TYPE BILLBOARD
+<_STILL_SPRITE assets/wolf3d/textures/billboards/dog-food.xpm
+
+U_TYPE COLLECTIBLE
+U_HEALTH 10
+U_NAME FOOD
+U_SINGLE_USE TRUE
+U_USE_SOUND assets/wolf3d/sounds/health1.mp3
+U_DESCRIPTION The Greatest Food ever for real
+U_ICON_SPRITE assets/wolf3d/textures/billboards/food.xpm
+
+Z_TYPE COLLECTIBLE
+Z_AMMO 10
+Z_NAME Ammo
+Z_SINGLE_USE TRUE
+Z_USE_SOUND assets/wolf3d/sounds/getammo.mp3
+Z_DESCRIPTION Ammo, needed for weapons
+Z_ICON_SPRITE assets/wolf3d/textures/billboards/ammo.xpm
+
+o_TYPE COLLECTIBLE
+o_SCORE 500
+o_NAME Chalice
+o_SINGLE_USE TRUE
+o_USE_SOUND assets/wolf3d/sounds/bonus2.mp3
+o_DESCRIPTION Point giver Chalice
+o_ICON_SPRITE assets/wolf3d/textures/billboards/holy-cup.xpm
+
+z_TYPE COLLECTIBLE
+z_SCORE 100
+z_NAME Holy Cross
+z_SINGLE_USE TRUE
+z_USE_SOUND assets/wolf3d/sounds/bonus1.mp3
+z_DESCRIPTION God himself
+z_ICON_SPRITE assets/wolf3d/textures/billboards/holy-cross.xpm
+
+7_TYPE COLLECTIBLE
+7_SCORE 1000
+7_NAME MEGA Holy Treasure
+7_SINGLE_USE TRUE
+7_USE_SOUND assets/wolf3d/sounds/bonus3.mp3
+7_DESCRIPTION God himself
+7_ICON_SPRITE assets/wolf3d/textures/billboards/treasure.xpm
+
+I_TYPE COLLECTIBLE
+I_HEALTH 25
+I_NAME Medic Kit
+I_SINGLE_USE TRUE
+I_USE_SOUND assets/wolf3d/sounds/health2.mp3
+I_DESCRIPTION Heal yourself bro
+I_ICON_SPRITE assets/wolf3d/textures/billboards/medic-kit.xpm
+
+Y_TYPE WEAPON
+Y_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+Y_DAMAGE 10
+Y_AMMO_USAGE 1
+Y_NAME Soldier's Weapon
+Y_USE_SOUND assets/wolf3d/sounds/nazifire.mp3
+Y_DESCRIPTION Weapon of the National Socialist soldier
+Y_USE_DELAY 0.8
+Y_SCREEN_SPRITE assets/wolf3d/textures/items/machinegun/screen/0.xpm
+Y_SCREEN_USE_SPRITE assets/wolf3d/textures/items/machinegun/screen/2.xpm:assets/wolf3d/textures/items/machinegun/screen/3.xpm
+Y_SCREEN_USE_SPRITE_UPDATE_DELAY 0.4
+Y_SCREEN_USE_SPRITE_LOOP TRUE
+Y_ICON_SPRITE assets/wolf3d/textures/items/machinegun/icon.xpm
+
+C_TYPE WEAPON
+C_DAMAGE 3
+C_AMMO_USAGE 0
+C_NAME Dog's Mouth
+C_RANGE 1.5
+C_USE_SOUND assets/wolf3d/sounds/dogbark.mp3
+C_DESCRIPTION Weapon of the National Socialist soldier
+C_USE_DELAY 1.0
+C_SCREEN_SPRITE assets/wolf3d/textures/billboards/dog/right1.xpm
+C_SCREEN_USE_SPRITE assets/wolf3d/textures/billboards/dog/right1.xpm:assets/wolf3d/textures/billboards/dog/right2.xpm:assets/wolf3d/textures/billboards/dog/right3.xpm
+C_SCREEN_USE_SPRITE_UPDATE_DELAY 0.5
+C_SCREEN_USE_SPRITE_LOOP TRUE
+C_ICON_SPRITE assets/wolf3d/textures/billboards/dog/right1.xpm
+
+H_TYPE ITEM
+H_NAME Halt SIR
+H_USE_SOUND assets/wolf3d/sounds/halt.mp3
+H_SINGLE_USE TRUE
+H_DESCRIPTION Halt SIR, you are not allowed to pass
+H_USE_DELAY 0.6
+H_SCREEN_SPRITE assets/wolf3d/textures/billboards/soldier/still-front.xpm
+H_SCREEN_USE_SPRITE assets/wolf3d/textures/billboards/soldier/halt.xpm
+H_ICON_SPRITE assets/wolf3d/textures/billboards/soldier/still-front.xpm
+
+P_TYPE WEAPON
+P_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+P_DAMAGE 34
+P_AMMO_USAGE 1
+P_NAME Pistol
+P_USE_SOUND assets/wolf3d/sounds/atkpistol.mp3
+P_SINGLE_USE TRUE
+P_DESCRIPTION Normal pistol, good for close combat
+P_USE_DELAY 0.2
+P_SCREEN_SPRITE assets/wolf3d/textures/items/pistol/screen/0.xpm
+P_SCREEN_USE_SPRITE assets/wolf3d/textures/items/pistol/screen/1.xpm:assets/wolf3d/textures/items/pistol/screen/2.xpm:assets/wolf3d/textures/items/pistol/screen/3.xpm:assets/wolf3d/textures/items/pistol/screen/4.xpm
+P_SCREEN_USE_SPRITE_UPDATE_DELAY 0.1
+P_SCREEN_USE_SPRITE_LOOP TRUE
+P_ICON_SPRITE assets/wolf3d/textures/items/pistol/icon.xpm
+
+G_TYPE WEAPON
+G_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+G_DAMAGE 30
+G_AMMO_USAGE 1
+G_NAME Gatling
+G_USE_SOUND assets/wolf3d/sounds/atkgatling.mp3
+G_GET_SOUND assets/wolf3d/sounds/getgatling.mp3
+G_DESCRIPTION Gatling gun, very powerful, but slow
+G_USE_DELAY 0.1
+G_SCREEN_SPRITE assets/wolf3d/textures/items/gatling/screen/0.xpm
+G_SCREEN_USE_SPRITE assets/wolf3d/textures/items/gatling/screen/2.xpm:assets/wolf3d/textures/items/gatling/screen/3.xpm
+G_SCREEN_USE_SPRITE_UPDATE_DELAY 0.1
+G_SCREEN_USE_SPRITE_LOOP TRUE
+G_ICON_SPRITE assets/wolf3d/textures/items/gatling/icon.xpm
+
+K_TYPE WEAPON
+K_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+K_DAMAGE 25
+K_AMMO_USAGE 0
+K_NAME Knife
+K_RANGE 1
+K_USE_SOUND assets/wolf3d/sounds/atkknife.mp3
+K_SINGLE_USE TRUE
+K_DESCRIPTION A knife, good for close combat
+K_USE_DELAY 0.1
+K_SCREEN_SPRITE assets/wolf3d/textures/items/knife/screen/0.xpm
+K_SCREEN_USE_SPRITE assets/wolf3d/textures/items/knife/screen/1.xpm:assets/wolf3d/textures/items/knife/screen/2.xpm:assets/wolf3d/textures/items/knife/screen/3.xpm:assets/wolf3d/textures/items/knife/screen/4.xpm
+K_SCREEN_USE_SPRITE_UPDATE_DELAY 0.05
+K_SCREEN_USE_SPRITE_LOOP TRUE
+K_ICON_SPRITE assets/wolf3d/textures/items/knife/icon.xpm
+
+M_TYPE WEAPON
+M_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+M_DAMAGE 25
+M_AMMO_USAGE 1
+M_NAME Machine Gun
+M_USE_SOUND assets/wolf3d/sounds/atkmachinegun.mp3
+M_GET_SOUND assets/wolf3d/sounds/getmachine.mp3
+M_DESCRIPTION Machine gun, good for medium range combat
+M_USE_DELAY 0.1
+M_SCREEN_SPRITE assets/wolf3d/textures/items/machinegun/screen/0.xpm
+M_SCREEN_USE_SPRITE assets/wolf3d/textures/items/machinegun/screen/2.xpm:assets/wolf3d/textures/items/machinegun/screen/3.xpm
+M_SCREEN_USE_SPRITE_UPDATE_DELAY 0.05
+M_SCREEN_USE_SPRITE_LOOP TRUE
+M_ICON_SPRITE assets/wolf3d/textures/items/machinegun/icon.xpm
+
+:_TYPE DROP
+:_ITEM U
+:_AUTO_USE TRUE
+:_HARD FALSE
+
+{_TYPE DROP
+{_ITEM P
+{_AUTO_PICKUP TRUE
+{_HARD FALSE
+
+}_TYPE DROP
+}_ITEM I
+}_AUTO_USE TRUE
+}_HARD FALSE
+
+(_TYPE DROP
+(_ITEM z
+(_AUTO_USE TRUE
+(_HARD FALSE
+
+)_TYPE DROP
+)_ITEM o
+)_AUTO_USE TRUE
+)_HARD FALSE
+
+*_TYPE DROP
+*_ITEM 7
+*_AUTO_USE TRUE
+*_HARD FALSE
+
+[_TYPE DROP
+[_ITEM K
+[_AUTO_PICKUP TRUE
+[_HARD FALSE
+
+]_TYPE DROP
+]_ITEM M
+]_AUTO_PICKUP TRUE
+]_HARD FALSE
+
+2_TYPE DROP
+2_ITEM G
+2_AUTO_PICKUP TRUE
+2_HARD FALSE
+
+;_TYPE DROP
+;_ITEM Z
+;_AUTO_USE TRUE
+;_HARD FALSE
+
+v_TYPE DOOR
+v_TARGETABLE TRUE
+v_AUTO_CLOSE_DELAY 8000.0
+v_ANIMATION_DELAY 1
+v_DOOR_SPRITE assets/wolf3d/textures/door.xpm
+v_SIDES_SPRITE assets/wolf3d/textures/door-frame.xpm
+v_DIRECTION WEST
+v_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
+v_OPEN_SOUND_VOLUME 0.8
+v_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
+v_CLOSE_SOUND_VOLUME 0.8
+
+h_TYPE DOOR
+h_TARGETABLE TRUE
+h_AUTO_CLOSE_DELAY 8000.0
+h_ANIMATION_DELAY 1
+h_DOOR_SPRITE assets/wolf3d/textures/door.xpm
+h_SIDES_SPRITE assets/wolf3d/textures/door-frame.xpm
+h_DIRECTION NORTH
+h_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
+h_OPEN_SOUND_VOLUME 0.8
+h_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
+h_CLOSE_SOUND_VOLUME 0.8
+
+s_TYPE DOOR
+s_TARGETABLE TRUE
+s_ANIMATION_DELAY 2.3
+s_CLOSEABLE FALSE
+s_DOOR_SPRITE assets/wolf3d/textures/wood-wall-eagle-dark.xpm
+s_SIDES_SPRITE assets/wolf3d/textures/wood-wall.xpm
+s_DIRECTION WEST
+s_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+s_OPEN_SOUND_VOLUME 0.8
+
+T_TYPE DOOR
+T_TARGETABLE TRUE
+T_ANIMATION_DELAY 2.3
+T_CLOSEABLE FALSE
+T_DOOR_SPRITE assets/wolf3d/textures/wood-wall-eagle.xpm
+T_SIDES_SPRITE assets/wolf3d/textures/wood-wall.xpm
+T_DIRECTION NORTH
+T_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+T_OPEN_SOUND_VOLUME 0.8
+
+t_TYPE DOOR
+t_TARGETABLE TRUE
+t_ANIMATION_DELAY 2.3
+t_CLOSEABLE FALSE
+t_DOOR_SPRITE assets/wolf3d/textures/grey-wall-hitler.xpm
+t_SIDES_SPRITE assets/wolf3d/textures/grey-wall0.xpm
+t_DIRECTION NORTH
+t_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+t_OPEN_SOUND_VOLUME 0.8
+
+u_TYPE DOOR
+u_TARGETABLE TRUE
+u_ANIMATION_DELAY 1
+u_DOOR_SPRITE assets/wolf3d/textures/electric-door-button-dark.xpm
+u_SIDES_SPRITE assets/wolf3d/textures/door-frame.xpm
+u_DIRECTION WEST
+u_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
+u_OPEN_SOUND_VOLUME 0.8
+u_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
+u_CLOSE_SOUND_VOLUME 0.8
+
+w_TYPE DOOR
+w_TARGETABLE TRUE
+w_ANIMATION_DELAY 2.3
+w_CLOSEABLE FALSE
+w_DOOR_SPRITE assets/wolf3d/textures/grey-wall0.xpm
+w_SIDES_SPRITE assets/wolf3d/textures/grey-wall0-dark.xpm
+w_DIRECTION NORTH
+w_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+w_OPEN_SOUND_VOLUME 0.8
+
+x_TYPE DOOR
+x_TARGETABLE TRUE
+x_ANIMATION_DELAY 2.3
+x_CLOSEABLE FALSE
+x_DOOR_SPRITE assets/wolf3d/textures/grey-wall0-dark.xpm
+x_SIDES_SPRITE assets/wolf3d/textures/grey-wall0.xpm
+x_DIRECTION WEST
+x_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+x_OPEN_SOUND_VOLUME 0.8
+
+a_TYPE WALL
+a_NO assets/wolf3d/textures/blue-wall1.xpm
+a_SO assets/wolf3d/textures/blue-wall0.xpm
+a_WE assets/wolf3d/textures/blue-wall1-dark.xpm
+a_EA assets/wolf3d/textures/blue-wall0-dark.xpm
+
+b_TYPE WALL
+b_NO assets/wolf3d/textures/blue-wall-cage.xpm
+b_SO assets/wolf3d/textures/blue-wall-cage.xpm
+b_WE assets/wolf3d/textures/blue-wall-cage-dark.xpm
+b_EA assets/wolf3d/textures/blue-wall-cage-dark.xpm
+
+c_TYPE WALL
+c_NO assets/wolf3d/textures/blue-wall-cage-skull.xpm
+c_SO assets/wolf3d/textures/blue-wall-cage-skull.xpm
+c_WE assets/wolf3d/textures/blue-wall-cage-skull.xpm
+c_EA assets/wolf3d/textures/blue-wall-cage-skull.xpm
+
+f_TYPE WALL
+f_NO assets/wolf3d/textures/grey-wall1.xpm
+f_SO assets/wolf3d/textures/grey-wall0.xpm
+f_WE assets/wolf3d/textures/grey-wall1-dark.xpm
+f_EA assets/wolf3d/textures/grey-wall0-dark.xpm
+
+g_TYPE WALL
+g_NO assets/wolf3d/textures/eagle-arch.xpm
+g_SO assets/wolf3d/textures/eagle-arch.xpm
+g_WE assets/wolf3d/textures/eagle-arch-dark.xpm
+g_EA assets/wolf3d/textures/eagle-arch-dark.xpm
+
+k_TYPE WALL
+k_NO assets/wolf3d/textures/grey-wall-hitler.xpm
+k_SO assets/wolf3d/textures/grey-wall-hitler.xpm
+k_WE assets/wolf3d/textures/grey-wall-hitler-dark.xpm
+k_EA assets/wolf3d/textures/grey-wall-hitler-dark.xpm
+
+i_TYPE WALL
+i_NO assets/wolf3d/textures/grey-wall-nazi.xpm
+i_SO assets/wolf3d/textures/grey-wall-nazi.xpm
+i_WE assets/wolf3d/textures/grey-wall-nazi-dark.xpm
+i_EA assets/wolf3d/textures/grey-wall-nazi-dark.xpm
+
+j_TYPE WALL
+j_NO assets/wolf3d/textures/wood-wall.xpm
+j_SO assets/wolf3d/textures/wood-wall.xpm
+j_WE assets/wolf3d/textures/wood-wall-dark.xpm
+j_EA assets/wolf3d/textures/wood-wall-dark.xpm
+
+l_TYPE WALL
+l_NO assets/wolf3d/textures/wood-wall-eagle.xpm
+l_SO assets/wolf3d/textures/wood-wall-eagle.xpm
+l_WE assets/wolf3d/textures/wood-wall-eagle-dark.xpm
+l_EA assets/wolf3d/textures/wood-wall-eagle-dark.xpm
+
+m_TYPE WALL
+m_NO assets/wolf3d/textures/wood-wall-hitler.xpm
+m_SO assets/wolf3d/textures/wood-wall-hitler.xpm
+m_WE assets/wolf3d/textures/wood-wall-hitler-dark.xpm
+m_EA assets/wolf3d/textures/wood-wall-hitler-dark.xpm
+
+n_TYPE ELEVATOR
+n_TARGETABLE TRUE
+n_MAP_PATH maps/smol.cub
+n_NO assets/wolf3d/textures/lever-down.xpm
+n_SO assets/wolf3d/textures/lever-down.xpm
+n_WE assets/wolf3d/textures/lever-down.xpm
+n_EA assets/wolf3d/textures/lever-down.xpm
+
+p_TYPE WALL
+p_SO assets/wolf3d/textures/electric-door.xpm
+p_NO assets/wolf3d/textures/electric-door.xpm
+p_WE assets/wolf3d/textures/electric-door.xpm
+p_EA assets/wolf3d/textures/electric-door.xpm
+
+F 100, 100, 100
+C 50, 50, 50
+
+              jjmjjljjmjjljjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+              j!        *(!jjjjjjjjjjjjjjjjjjjjjj )  ))))) e;  j
+              l   e   e   *j                   ej -   )))    - j
+              j         e~)m ,   ,   ,   ,   ,  v            ) j
+              j   e   e   )j                   ej    - ** -    j
+              j!      e  (!j   jjjjjjjjjjjjjjjjjj  /        /  j
+              jjhjjljjmjjljj   jjjljjmjjljjmjjljj    -    -    j
+              j                                 j           e* j
+              j ,   ,    ,   ,   ,   ,   ,   ,  j - e* (     - j
+              j                                 j     ((( } ; )j
+              jjmjjjmjmjjljjmjjljjmjjljjmjj     mjjjjjjjjjjjjjjj
+              j;:; j$   e         j ( **  j     j?jjjjj j     jj
+              jjj] s   ,   ,   ,  j(@   @*j  ,  j , ;e,}j    :jj
+ffffiffffiffffj;:; j$      e    e l(( - * m     l ~   ~ j   %:jj
+fff : 2:: ;ffffjjljjmjjljjmjj     j)      j     j       j  %%%jj
+ff@;:    : @fff             j  ,  j e    )j e   j ,   , j   % jj
+f e      e   ff             l     m   -   l  ,  m ~   ~ j d   jj
+f            ff             j     j @   @ j     j       j     jj
+i         e  if             j     j e     j     j     e j     jj
+f            ff             mjjhjjjjljhjmjjjjhjjjjjjhjjjjjjhjjjj
+ffe        efff             j               . .                j
+fffkfhffhfkffff             j ,  ,  ,  ,  ,  , e,  ,  ,  ,  ,  j
+f   .    .   ff             j                        e         j
+f      d     ffjjjljjjjjjjjmjjjjjljjmjjljjmjjljjjjjljjmjjljj   j
+f d            j  e           j                 j      e       j
+i              v         e    v  ,     ,     ,  v  ,  ,  ,  ,  j
+f  ,      ,    j              j                 j $ $      $ $ j
+f     ff     ffjjjljjjjjjjjmjjjjjmjjjj   jTjjmjjjjjhjjjjjjjjhjjj
+f     ff     ffffffffffffffffffffffffj   j  jmjjlj   jjjjjj   jj
+i  ,  if d,                      faaaaahaj ;j   $    e $      .j
+f     ff                       , fa2 a e aj;l;$ )              m
+f     ff                    e    fa; a   aj;je   )          !**j
+f     ff     ffffffffffffffffffhffaaaa   aajm) )              *l
+i  ,  if  ,d f     e  fffffff]   fa;e  , \aaj$   $   e       $ j
+f     ff     v    e   fffgfff   :faaaa   aaal  e          e .  m
+f     ff     f  d     ffe-;ff'e::ffffa   ajjj !))         )    j
+f     ffffffffffffffffff ,;ffffffffffa   ajjjmjjljjmjjljjmjjljjj
+f  ,  f     ffffffffffff   ffffffffffaahaaffffffffffffffffffffff
+f     f  )  ff         ffhff &  &   ff   ff''d ))           ''ff
+f        e) ff &       f   f      " ff   ff'  )    '    :    :ff
+f        ,~eff         v   v      e%ff   ff:             :   )+f
+f  ,e       ff  e,     f , f    ,   ff , ff        }~~       ~ff
+f   d f   e ff     e   v   v       "ff   ff:      d         ):?f
+f     f     ff &e   &  f   f       e?f   fffffffhffffffffhffffff
+fffffhffffffff        ff   ff       ~f   ff % %  %  %%  %  % % f
+fff     fffffffffifffff.   .fffffkffff , ff                    f
+fff^    ff   f                       f   ff e               e  f
+fff  e  ff , v   ,   ,   ,   ,   ,d  v   gf                    f
+n u e,  ff   f                       f   ff -                - f
+fff     ff   ffffif             fkffff , ff        ::         ef
+fff^    ff       faaaaaaahaaaaaaa;;  f   ffffhffffffffffffffhfff
+fff   e ff    e ,fa|:  a   a    a;;  f   ff                    f
+ffffffffffffffffhfa    v , v "  a;   f   ff)-          -  -  - f
+aaaaaaaaaaaaaaa   a    a   a    a    i , if            e       f
+a?aaaa d  a ==a   aaaaaa   aaaaaa    f   fk @      /         @ i
+a= d~a   =a  =a , a    a   a    a    f   ff  e               e)f
+a    aaahaaahaa   a    v   v   |a    f   ff;-          -  -  -;f
+a             a   a"   a , a    a)(  f , ffe           e       f
+a             v   aaaaaa   aaaaaa*)( f   ffff   ff   ffgf   fgff
+a             a , a|   a   a    a**) f   ffkffhffffhffffffhfffff
+a    aaahaaahaa   a    v , v    afff f       . .  . .ff%     ?ff
+a d  a <  a   a N a    a   a   |aaf  v ,   ,   ,   , ff      fff
+a    a d  a d aapaaaaaaa   aaaaaaaffff               ff% e   ?ff
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffkffffffffffffffffffff

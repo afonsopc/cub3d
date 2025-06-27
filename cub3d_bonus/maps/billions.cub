@@ -1,0 +1,52 @@
+NO assets/textures/billiosn-ust-smile.xpm
+SO assets/textures/billiosn-ust-smile.xpm
+WE assets/textures/billiosn-ust-smile.xpm
+EA assets/textures/billiosn-ust-smile.xpm
+2_TYPE DOOR
+2_DIRECTION NORTH
+2_DOOR_SPRITE assets/textures/billiosn-ust-smile.xpm
+2_SIDES assets/textures/billiosn-ust-smile.xpm
+6_TYPE DOOR
+6_DIRECTION WEST
+6_DOOR_SPRITE assets/textures/billiosn-ust-smile.xpm
+6_SIDES assets/textures/billiosn-ust-smile.xpm
+3_TYPE WALL
+3_SO assets/textures/billiosn-ust-smile.xpm
+3_NO NULL
+3_WE NULL
+3_EA NULL
+s_TYPE WALL
+s_SO assets/textures/billiosn-ust-smile.xpm
+s_NO NULL
+s_WE assets/textures/billiosn-ust-smile.xpm
+s_EA assets/textures/billiosn-ust-smile.xpm
+p_TYPE WALL
+p_SO assets/textures/billiosn-ust-smile.xpm
+p_NO NULL
+p_WE NULL
+p_EA NULL
+9_TYPE WALL
+9_SO assets/textures/billiosn-ust-smile.xpm
+9_NO assets/textures/billiosn-ust-smile.xpm
+9_WE assets/textures/billiosn-ust-smile.xpm
+9_EA assets/textures/billiosn-ust-smile.xpm
+MOUSE TRUE
+BACKGROUND_SOUND assets/sounds/billiosmustsmile.mp3
+
+F 46,39,30
+C 67,63,1
+
+        11111111111111p1s11131111
+        1000000000110000000000001
+        1011000001110000000000001
+        1001000000000000060002001
+111111111011000001110000000000001
+100000000011000001110111192911111
+11110111111111011100000010001
+11110111111111011101010010001
+11000000110101011100000010001
+10000000000000001100000010000
+1000000000000000110101001001
+11000001110101011101011110N0111
+11110111 1110101 101110000001
+11111111 1111111 101110111111
