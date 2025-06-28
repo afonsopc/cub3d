@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:58:13 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 16:18:39 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/28 23:52:03 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,21 @@
 void	ftm_init_window_e(t_ftm_window *window, t_size size, char *title)
 {
 	fte_set(NULL);
-	window->display = mlx_init();
-	if (!window->display)
-		return (fte_set("init mlx"));
-	window->win = mlx_new_window(window->display,
-			size.width, size.height, title);
+	if (!update_sdl_usage(1))
+		return (fte_set("SDL usage update failed"));
+	window->win = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED,
+			SDL_WINDOWPOS_UNDEFINED, size.width, size.height,
+			SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 	if (!window->win)
-		return (mlx_destroy_display(window->display),
-			fte_set("init window"));
+		return (update_sdl_usage(-1), fte_set("%s", SDL_GetError()));
+	window->display = SDL_CreateRenderer(window->win, -1,
+			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (!window->display)
+		return (SDL_DestroyWindow(window->win), update_sdl_usage(-1),
+			fte_set("%s", SDL_GetError()));
 	window->size = size;
 	window->title = title;
+	window->running = true;
 	ftm_window_reload_controllers(window);
 }
 
@@ -50,9 +55,10 @@ void	ftm_clear_window(void *data)
 		return ;
 	window = (t_ftm_window *)data;
 	ft_list_destroy(&window->controllers);
-	mlx_destroy_window(window->display, window->win);
-	mlx_destroy_display(window->display);
-	free(window->display);
+	SDL_DestroyWindow(window->win);
+	SDL_DestroyRenderer(window->display);
+	update_sdl_usage(-1);
+	ft_bzero(window, sizeof(t_ftm_window));
 }
 
 void	ftm_free_window(void *data)

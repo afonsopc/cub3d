@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 16:17:44 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:06:00 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,42 @@
 # define FTM_GAMEPAD_SHARE -16
 # define FTM_GAMEPAD_MAIN -6
 
+# define FTM_KEY_W 119
+# define FTM_KEY_S 115
+# define FTM_KEY_A 97
+# define FTM_KEY_D 100
+# define FTM_KEY_LEFT 1073741904
+# define FTM_KEY_RIGHT 1073741903
+# define FTM_KEY_E 101
+# define FTM_KEY_LSHIFT 1073742049
+# define FTM_KEY_R 114
+# define FTM_KEY_SPACE 32
+# define FTM_KEY_Q 113
+# define FTM_KEY_I 105
+# define FTM_KEY_B 98
+# define FTM_KEY_F1 1073741882
+# define FTM_KEY_F2 1073741883
+# define FTM_KEY_F3 1073741884
+# define FTM_KEY_F4 1073741885
+# define FTM_KEY_F5 1073741886
+# define FTM_KEY_F6 1073741887
+# define FTM_KEY_F7 1073741888
+# define FTM_KEY_0 48
+# define FTM_KEY_1 49
+# define FTM_KEY_2 50
+# define FTM_KEY_3 51
+# define FTM_KEY_4 52
+# define FTM_KEY_5 53
+# define FTM_KEY_6 54
+# define FTM_KEY_7 55
+# define FTM_KEY_8 56
+# define FTM_KEY_9 57
+# define FTM_KEY_M 109
+# define FTM_KEY_ESC 27
+# define FTM_KEY_K 107
+# define FTM_KEY_P 112
+# define FTM_KEY_O 111
+
 typedef struct s_ftm_image				t_ftm_image;
 typedef struct s_ftm_key_hook_values	t_ftm_key_hook_values;
 typedef struct s_ftm_controller			t_ftm_controller;
@@ -64,6 +100,12 @@ typedef struct s_ftm_text_config		t_ftm_text_config;
 typedef struct s_ftm_rectangle			t_ftm_rectangle;
 typedef struct s_win_list				t_win_list;
 typedef struct s_xvar					t_xvar;
+typedef struct s_sdl_context			t_sdl_context;
+
+struct s_sdl_context
+{
+	int	usage_count;
+};
 
 struct s_ftm_image
 {
@@ -100,6 +142,7 @@ struct s_ftm_controller
 
 struct s_ftm_window
 {
+	bool				running;
 	t_size				size;
 	void				*win;
 	void				*display;
@@ -224,7 +267,6 @@ void				ftm_free_window(void *window);
 t_ftm_window		*ftm_window_new_e(t_size size, char *title);
 void				ftm_init_window_e(t_ftm_window *window, t_size size,
 						char *title);
-void				ftm_update_hooks(t_ftm_window *window);
 void				ftm_window_loop(t_ftm_window *window);
 void				ftm_window_wipe(t_ftm_window *window);
 
@@ -250,5 +292,8 @@ void				ftm_draw_rectangle(t_ftm_image *canvas, t_coords coords,
 						t_size size, t_ftm_rectangle rectangle);
 void				ftm_draw_arrow(t_ftm_image *canvas, t_coords coords,
 						t_size size, unsigned int color);
+
+bool				update_sdl_usage(int value);
+t_sdl_context		*sdl_context(void);
 
 #endif

@@ -6,30 +6,22 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 20:46:22 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 22:35:20 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/28 23:35:45 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "controllers.h"
-
-t_sdl_context	*sdl_context(void)
-{
-	static t_sdl_context	context;
-
-	return (&context);
-}
 
 void	ftm_controller_init_e(t_ftm_controller *controller, int id)
 {
 	fte_set(NULL);
 	if (!controller)
 		return ;
-	update_sdl_usage_e(1);
-	if (fte_flagged())
+	if (!update_sdl_usage(1))
 		return ;
 	controller->controller = SDL_GameControllerOpen(id);
 	if (!controller->controller)
-		return (update_sdl_usage_e(-1), fte_set("Controller fail %d", id));
+		return (update_sdl_usage(-1), fte_set("Controller fail %d", id));
 	controller->id = SDL_JoystickInstanceID(
 			SDL_GameControllerGetJoystick(controller->controller));
 	controller->joy_id = id;
@@ -43,7 +35,7 @@ void	ftm_controller_clear(void *data)
 	if (!controller)
 		return ;
 	SDL_GameControllerClose(controller->controller);
-	(update_sdl_usage_e(-1), fte_set(NULL));
+	(update_sdl_usage(-1), fte_set(NULL));
 	controller->controller = NULL;
 	controller->id = -1;
 }

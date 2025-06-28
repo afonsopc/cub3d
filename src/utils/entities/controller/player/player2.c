@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:27:20 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 15:29:06 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:04:15 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 t_player_keys	get_player_keyboard_keys(void)
 {
 	return ((t_player_keys){
-		.walking_forward = {XK_w, false, 0.0, 1.0, false, {0}, {0}},
-		.walking_backward = {XK_s, false, 0.0, 1.0, false, {0}, {0}},
-		.walking_left = {XK_a, false, 0.0, 1.0, false, {0}, {0}},
-		.walking_right = {XK_d, false, 0.0, 1.0, false, {0}, {0}},
-		.looking_left = {XK_Left, false, 0.0, 1.0, false, {0}, {0}},
-		.looking_right = {XK_Right, false, 0.0, 1.0, false, {0}, {0}},
-		.action = {XK_e, false, 0.0, 1.0, false, {0}, {0}},
-		.sprinting = {XK_Shift_L, false, 0.0, 1.0, false, {0}, {0}},
-		.move_inventory_index = {XK_r, false, 0.0, 1.0, false, {0}, {0}},
-		.item_use = {XK_space, false, 0.0, 1.0, false, {0}, {0}},
-		.item_drop = {XK_q, false, 0.0, 1.0, false, {0}, {0}},
+		.walking_forward = {FTM_KEY_W, false, 0.0, 1.0, false, {0}, {0}},
+		.walking_backward = {FTM_KEY_S, false, 0.0, 1.0, false, {0}, {0}},
+		.walking_left = {FTM_KEY_A, false, 0.0, 1.0, false, {0}, {0}},
+		.walking_right = {FTM_KEY_D, false, 0.0, 1.0, false, {0}, {0}},
+		.looking_left = {FTM_KEY_LEFT, false, 0.0, 1.0, false, {0}, {0}},
+		.looking_right = {FTM_KEY_RIGHT, false, 0.0, 1.0, false, {0}, {0}},
+		.action = {FTM_KEY_E, false, 0.0, 1.0, false, {0}, {0}},
+		.sprinting = {FTM_KEY_LSHIFT, false, 0.0, 1.0, false, {0}, {0}},
+		.move_inventory_index = {FTM_KEY_R, false, 0.0, 1.0, false, {0}, {0}},
+		.item_use = {FTM_KEY_SPACE, false, 0.0, 1.0, false, {0}, {0}},
+		.item_drop = {FTM_KEY_Q, false, 0.0, 1.0, false, {0}, {0}},
 		.activate = {0},
 	});
 }
@@ -60,13 +60,13 @@ void	do_internal_keys(t_entity *entity, t_ftm_key_hook_values khv)
 	t_character	*character;
 
 	character = (t_character *)entity;
-	if (khv.key == XK_i && khv.down)
+	if (khv.key == FTM_KEY_I && khv.down)
 	{
 		character->cheating = true;
 		entity->invencible = !entity->invencible;
 		entity->health = entity->max_health;
 	}
-	if (khv.key == XK_b && khv.down)
+	if (khv.key == FTM_KEY_B && khv.down)
 	{
 		character->cheating = true;
 		entity->hard = !entity->hard;
