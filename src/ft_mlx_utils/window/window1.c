@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:38:00 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 02:40:36 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:12:24 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int	window_loop_hook(void *data)
 	{
 		previous_using_mouse = window->using_mouse;
 		if (previous_using_mouse)
-			mlx_mouse_hide(window->display, window->win);
+			SDL_ShowCursor(SDL_DISABLE);
 		else
-			mlx_mouse_show(window->display, window->win);
+			SDL_ShowCursor(SDL_ENABLE);
 	}
-	ftm_call_controllers_event_handlers(window->controllers);
 	if (window->loop_hook)
 		window->loop_hook();
 	return (0);

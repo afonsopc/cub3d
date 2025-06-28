@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 00:06:00 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:11:56 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,6 @@ void				ftm_controller_free(void *data);
 t_list				*ftm_load_controllers(void);
 void				ftm_controller_event_handler(void *userdata,
 						SDL_Event *event);
-void				ftm_call_controllers_event_handlers(t_list *controllers);
 
 void				ftm_free_image(void *image);
 t_ftm_image			*ftm_image_from_file(t_ftm_window *window, char *path);

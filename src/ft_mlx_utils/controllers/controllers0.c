@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 20:46:22 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/28 23:35:45 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:11:15 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,4 @@ t_list	*ftm_load_controllers(void)
 		++i;
 	}
 	return (list);
-}
-
-void	ftm_call_controllers_event_handlers(t_list *controllers)
-{
-	SDL_Event	event;
-
-	while (SDL_PollEvent(&event))
-		ft_list_foreach(controllers, (void *)ftm_controller_event_handler,
-			&event);
 }

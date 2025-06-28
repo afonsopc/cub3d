@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 22:21:31 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/28 23:50:39 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:17:49 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	ftm_window_resize_e(t_ftm_window *window, t_size size)
 {
-	char	*title;
-
-	title = window->title;
-	mlx_destroy_window(window->display, window->win);
-	window->win = mlx_new_window(window->display,
-			size.width, size.height, title);
+	SDL_SetWindowSize(window->win, size.width, size.height);
 	window->size = size;
 }
 
@@ -30,36 +25,31 @@ t_size	ftm_window_toggle_fullscreen(t_ftm_window *window, t_size prev_size)
 	window->fullscreen = !window->fullscreen;
 	new_size = prev_size;
 	if (window->fullscreen)
-		new_size = ftm_get_screen_size(window);
-	ftm_window_resize_e(window, new_size);
-	ftm_window_notify_fullscreen(window);
+	{
+		SDL_SetWindowFullscreen(window->win, SDL_WINDOW_FULLSCREEN_DESKTOP);
+        new_size = ftm_get_screen_size(window);
+	}
+	else
+	{
+		SDL_SetWindowFullscreen(window->win, 0);
+        ftm_window_resize_e(window, prev_size);
+	}
+	window->size = new_size;
 	return (new_size);
 }
 
 t_size	ftm_get_screen_size(t_ftm_window *window)
 {
-	return ((t_size){XDisplayWidth(((t_xvar *)window->display)->display,
-			((t_xvar *)window->display)->screen),
-		XDisplayHeight(((t_xvar *)window->display)->display,
-			((t_xvar *)window->display)->screen)});
+	SDL_DisplayMode	dm;
+	int				display_index;
+		
+	display_index = SDL_GetWindowDisplayIndex(window->win);
+	if (SDL_GetDisplayMode(display_index, 0, &dm) != 0)
+		return ((t_size){0, 0});
+	return ((t_size){dm.w, dm.h});
 }
 
 void	ftm_window_notify_fullscreen(t_ftm_window *window)
 {
-	XEvent	xev;
-	Display	*display;
-
-	display = ((t_xvar *)window->display)->display;
-	ft_bzero(&xev, sizeof(XEvent));
-	xev.type = ClientMessage;
-	xev.xclient.window = ((t_win_list *)window->win)->window;
-	xev.xclient.message_type = XInternAtom(display, "_NET_WM_STATE",
-			False);
-	xev.xclient.format = 32;
-	xev.xclient.data.l[0] = window->fullscreen;
-	xev.xclient.data.l[1] = XInternAtom(display, "_NET_WM_STATE_FULLSCREEN",
-			False);
-	XSendEvent(display, DefaultRootWindow(display), False,
-		SubstructureRedirectMask | SubstructureNotifyMask, &xev);
-	XFlush(display);
+	(void)window;
 }

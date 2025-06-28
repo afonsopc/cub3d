@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:52:09 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 00:07:43 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:11:37 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	ftm_handle_hooks(t_ftm_window *window)
 			window_mouse_up_hook(event.button.button, event.button.x, event.button.y, window);
 		else if (event.type == SDL_MOUSEMOTION)
 			window_mouse_hook(event.motion.x, event.motion.y, window);
+		else
+			ft_list_foreach(window->controllers, (void *)ftm_controller_event_handler,
+				&event);
 	}
 	window_loop_hook(window);
 }
