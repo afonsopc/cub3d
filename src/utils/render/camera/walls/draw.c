@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:59:45 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 20:17:35 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:50:21 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 {
 	t_size					ray_size;
 	t_ftm_image				*hit_entity_image;
-	t_pixel_modifier_data	pixel_modifier_data;
 
 	ray_size.width = canvas->size.width / camera->rays;
 	hit_entity_image = get_sprite_image(get_entity_sprite(ray.hit,
@@ -49,8 +48,7 @@ void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 			* ft_cos_degrees((ray.yaw
 					- camera->character->billboard.entity.coords.yaw)));
 	ray_size.height = fmin(ray_size.height, canvas->size.height * 3);
-	pixel_modifier_data = (t_pixel_modifier_data){canvas, &ray_size};
 	ftm_put_image_to_canvas(canvas, hit_entity_image,
 		get_pitc_config((t_get_pitc_config_config){i, &ray_size,
-			hit_entity_image, &ray, canvas, &pixel_modifier_data}));
+			hit_entity_image, &ray, canvas}));
 }
