@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 16:20:04 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 17:56:54 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:22:16 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	**get_sprite_paths(const char *paths_str)
 	while (paths[++i])
 	{
 		if (!ft_strequal(paths[i], "NULL")
-			&& !ft_str_endswith(paths[i], ".xpm")
+			&& !ft_str_endswith(paths[i], ".bmp")
 			&& !ft_is_file(paths[i]))
 			return (ft_strvfree(paths), NULL);
 	}

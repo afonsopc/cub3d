@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 20:14:58 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:22:16 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
 # define DEFAULT_FONT_PATH "assets/fonts/IBM-VGA-8x16"
 
 // Main Images
-# define PLACEHOLDER_IMAGE_PATH "assets/textures/placeholder.xpm"
-# define LOADING_IMAGE_PATH "assets/textures/loading.xpm"
+# define PLACEHOLDER_IMAGE_PATH "assets/textures/placeholder.bmp"
+# define LOADING_IMAGE_PATH "assets/textures/loading.bmp"
 
 // Player Config
 # define PLAYER_RAYS_NO_HIT_LENGTH 50.0
