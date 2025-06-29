@@ -2,12 +2,12 @@
 static char *oms_093[] = {
 /* columns rows colors chars-per-pixel */
 "128 54 6 1 ",
-"  c #00000000",
-". c #FF4C4C4C",
-"X c #FF4F4F4F",
-"o c #FF626262",
-"O c #FF636363",
-"+ c #FF646464",
+"  c #FF00FF",
+". c #4C4C4C",
+"X c #4F4F4F",
+"o c #626262",
+"O c #636363",
+"+ c #646464",
 /* pixels */
 "                                                                                                                                ",
 "                                                                                                                                ",

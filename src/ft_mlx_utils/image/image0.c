@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:06 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/28 00:22:16 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:17:25 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ void	ftm_free_image(void *image)
 {
 	if (!image)
 		return ;
-	mlx_destroy_image(((t_ftm_image *)image)->display,
-		((t_ftm_image *)image)->img_ptr);
+	SDL_FreeSurface(((t_ftm_image *)image)->surface);
+	if (((t_ftm_image *)image)->texture)
+		SDL_DestroyTexture(((t_ftm_image *)image)->texture);
 	free(image);
 }
 
 static bool	load_image_addresses(t_ftm_image *image)
 {
-	image->data = mlx_get_data_addr(image->img_ptr, &image->bits_per_pixel,
-			&image->size_line, &image->endian);
-	return (!!image->data);
+	if (!image->surface)
+		return (false);
+	image->data = (char *)image->surface->pixels;
+	image->bits_per_pixel = image->surface->format->BitsPerPixel;
+	image->size_line = image->surface->pitch;
+	return (true);
 }
 
 t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
@@ -37,10 +41,14 @@ t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
 		return (NULL);
 	image->display = window->display;
 	image->path = path;
-	image->img_ptr = mlx_xpm_file_to_image(image->display, path,
-			&image->size.width, &image->size.height);
-	if (!image->img_ptr)
+	image->surface = SDL_LoadBMP(path);
+	if (!image->surface)
 		return (free(image), NULL);
+	image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
+	if (!image->texture)
+		return (SDL_FreeSurface(image->surface), free(image), NULL);
+	image->size.width = image->surface->w;
+	image->size.height = image->surface->h;
 	if (!load_image_addresses(image))
 		return (ftm_free_image(image), NULL);
 	return (image);

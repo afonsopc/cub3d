@@ -2,8 +2,8 @@
 static char *cluster1_wall[] = {
 /* columns rows colors chars-per-pixel */
 "128 128 2 1 ",
-"  c #FFE8E7DD",
-". c #FFFEFEFE",
+"  c #E8E7DD",
+". c #FEFEFE",
 /* pixels */
 "                                                                                                                                ",
 "                                                                                                                                ",

@@ -2,7 +2,7 @@
 static char *_69[] = {
 /* columns rows colors chars-per-pixel */
 "14 30 256 2 ",
-"   c #00000000",
+"   c #FF00FF",
 /* pixels */
 "              ",
 "              ",

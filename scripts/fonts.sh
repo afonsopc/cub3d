@@ -32,6 +32,6 @@ for font in assets/fonts/*.ttf; do
             -pointsize 12 -gravity center -fill "#FFFFFFF1" \
             -annotate 0 "$char" "$FOLDER/$i.xpm"
     done
-    find "$FOLDER" -name '*.xpm' -exec sed "${SED_INPLACE[@]}" 's/ c white/ c #FEFFFFFF/g' {} +
-    find "$FOLDER" -name '*.xpm' -exec sed "${SED_INPLACE[@]}" 's/ c None/ c #00000000/g' {} +
+    find "$FOLDER" -name '*.xpm' -exec sed "${SED_INPLACE[@]}" 's/ c white/ c #FFFFFF/g' {} +
+    find "$FOLDER" -name '*.xpm' -exec sed "${SED_INPLACE[@]}" 's/ c None/ c #FF00FF/g' {} +
 done

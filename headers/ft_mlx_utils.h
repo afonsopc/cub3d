@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 00:11:56 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 01:26:43 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ struct s_sdl_context
 
 struct s_ftm_image
 {
+    SDL_Surface		*surface;
+    SDL_Texture		*texture;
 	void			*display;
 	char			*path;
 	void			*img_ptr;
