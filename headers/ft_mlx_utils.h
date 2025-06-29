@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 01:26:43 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:33:28 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <SDL2/SDL.h>
 
 // Internal Libs
+# include <ft_threads.h>
 # include <ft_utils.h>
 # include <ft_error.h>
 
@@ -111,6 +112,7 @@ struct s_ftm_image
 {
     SDL_Surface		*surface;
     SDL_Texture		*texture;
+	pthread_mutex_t	mutex;
 	void			*display;
 	char			*path;
 	void			*img_ptr;

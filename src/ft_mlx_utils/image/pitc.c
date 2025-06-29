@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:48:02 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/04 23:17:35 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:40:30 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,8 @@ void	ftm_put_image_to_canvas(t_ftm_image *canvas, t_ftm_image *image,
 		while (++pd.index.height < pd.it_limits.height)
 			set_pixel_maybe(&pd);
 	}
+	pthread_mutex_lock(&canvas->mutex);
+	SDL_UpdateTexture(canvas->texture, NULL, canvas->data,
+		canvas->size_line);
+	pthread_mutex_unlock(&canvas->mutex);
 }

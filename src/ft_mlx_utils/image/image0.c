@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:06 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 19:17:25 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:32:38 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
 	image->size.height = image->surface->h;
 	if (!load_image_addresses(image))
 		return (ftm_free_image(image), NULL);
+	pthread_mutex_init(&image->mutex, NULL);
 	return (image);
 }
 
@@ -62,12 +63,17 @@ t_ftm_image	*ftm_image_new(t_ftm_window *window, t_size size)
 	if (!image)
 		return (NULL);
 	image->display = window->display;
-	image->img_ptr = mlx_new_image(image->display, size.width, size.height);
-	if (!image->img_ptr)
+	image->surface = SDL_CreateRGBSurface(0, size.width, size.height, 32,
+		0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if (!image->surface)
 		return (free(image), NULL);
+	image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
+	if (!image->texture)
+		return (SDL_FreeSurface(image->surface), free(image), NULL);
 	image->size = size;
 	if (!load_image_addresses(image))
 		return (ftm_free_image(image), NULL);
+	pthread_mutex_init(&image->mutex, NULL);
 	return (image);
 }
 

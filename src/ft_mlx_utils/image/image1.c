@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:51:11 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 16:22:47 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:27:18 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,16 @@ char	*ftm_image_to_str(t_ftm_image *image)
 void	ftm_put_image_to_window(t_ftm_window *window, t_ftm_image *image,
 			t_coords coords)
 {
-	if (!image || !image->img_ptr)
+	SDL_Rect dst_rect;
+
+	if (!image || !image->texture)
 		return ;
-	mlx_put_image_to_window(window->display, window->win,
-		image->img_ptr, coords.x, coords.y);
-	mlx_do_sync(window->display);
+	dst_rect.x = coords.x;
+	dst_rect.y = coords.y;
+	dst_rect.w = image->size.width;
+	dst_rect.h = image->size.height;
+	SDL_RenderCopy(window->display, image->texture, NULL, &dst_rect);
+	SDL_RenderPresent(window->display);
 }
 
 void	ftm_put_image_to_window_pitc(t_ftm_window *window, t_ftm_image *image,
@@ -41,7 +46,7 @@ void	ftm_put_image_to_window_pitc(t_ftm_window *window, t_ftm_image *image,
 {
 	t_ftm_image	*canvas;
 
-	if (!image || !image->img_ptr)
+	if (!image)
 		return ;
 	canvas = ftm_image_new(window, window->size);
 	if (!canvas)
