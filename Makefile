@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+         #
+#    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/06/27 20:00:21 by afpachec         ###   ########.fr        #
+#    Updated: 2025/06/29 20:20:16 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,7 @@ lldb: $(NAME)
 update-wolf3d-assets:
 	@echo "\033[1;32mEncrypting \033[1;0m\"assets/wolf3d\"\033[1;32m into \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m.\033[0m"
 	@cd assets/wolf3d && zip --password "$$(curl -sSL accounts.omelhorsite.pt)" -qr assets.zip *
-	@cd assets/wolf3d && zip --password "$$(curl -sSL jokes.omelhorsite.pt)" -qr wolf3d-assets.zip assets.zip
+	@cd assets/wolf3d && zip --password "$$(curl -sSL notifications.omelhorsite.pt)" -qr wolf3d-assets.zip assets.zip
 	@cd assets/wolf3d && rm -rf assets.zip
 	@rm -rf assets/wolf3d-assets.zip
 	@mv assets/wolf3d/wolf3d-assets.zip assets
@@ -140,7 +140,7 @@ update-wolf3d-assets:
 assets/wolf3d:
 	@echo "\033[1;32mDecrypting \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m into \033[1;0m\"assets/wolf3d\"\033[1;32m.\033[0m"
 	@rm -rf assets/wolf3d
-	@cd assets && unzip -q -o -P "$$(curl -sSL jokes.omelhorsite.pt)" wolf3d-assets.zip
+	@cd assets && unzip -q -o -P "$$(curl -sSL notifications.omelhorsite.pt)" wolf3d-assets.zip
 	@mkdir -p assets/wolf3d
 	@cd assets/wolf3d && unzip -q -o -P "$$(curl -sSL accounts.omelhorsite.pt)" ../assets.zip
 	@rm -f assets/assets.zip
