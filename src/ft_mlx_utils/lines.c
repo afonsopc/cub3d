@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:37:16 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 14:57:57 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 21:14:37 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,59 @@ void	ftm_draw_line_angle(t_ftm_image *canvas, t_coords start,
 void	ftm_draw_rectangle(t_ftm_image *canvas, t_coords coords, t_size size,
 	t_ftm_rectangle rectangle)
 {
-	int				i;
-	int				j;
-	unsigned int	tmp_color;
+	SDL_Renderer	*renderer;
+	SDL_Rect		rect;
+	SDL_Rect		border_rect;
+	Uint8			r, g, b, a;
 
-	i = -1;
-	while (++i < size.width)
+	if (!canvas || !canvas->texture)
+		return ;
+	renderer = (SDL_Renderer *)canvas->display;
+	if (!renderer)
+		return ;
+	rect.x = (int)coords.x;
+	rect.y = (int)coords.y;
+	rect.w = size.width;
+	rect.h = size.height;
+	pthread_mutex_lock(&canvas->mutex);
+	SDL_SetRenderTarget(renderer, canvas->texture);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	if ((rectangle.background_color >> 24) > 0)
 	{
-		j = -1;
-		while (++j < size.height)
+		a = (rectangle.background_color >> 24) & 0xFF;
+		r = (rectangle.background_color >> 16) & 0xFF;
+		g = (rectangle.background_color >> 8) & 0xFF;
+		b = rectangle.background_color & 0xFF;
+		SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		SDL_RenderFillRect(renderer, &rect);
+	}
+	if ((rectangle.border_color >> 24) > 0 && 
+		(rectangle.border_size.width > 0 || rectangle.border_size.height > 0))
+	{
+		a = (rectangle.border_color >> 24) & 0xFF;
+		r = (rectangle.border_color >> 16) & 0xFF;
+		g = (rectangle.border_color >> 8) & 0xFF;
+		b = rectangle.border_color & 0xFF;
+		SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		if (rectangle.border_size.height > 0)
 		{
-			tmp_color = rectangle.background_color;
-			if (i == 0 || i == size.width - rectangle.border_size.width
-				|| j == 0 || j == size.height - rectangle.border_size.height)
-				tmp_color = rectangle.border_color;
-			ftm_set_pixel(ftm_image_pixel(canvas,
-					(t_coords){coords.x + i, coords.y + j, 0}), tmp_color);
+			border_rect = (SDL_Rect){rect.x, rect.y, rect.w, rectangle.border_size.height};
+			SDL_RenderFillRect(renderer, &border_rect);
+			border_rect = (SDL_Rect){rect.x, rect.y + rect.h - rectangle.border_size.height, 
+									rect.w, rectangle.border_size.height};
+			SDL_RenderFillRect(renderer, &border_rect);
+		}
+		if (rectangle.border_size.width > 0)
+		{
+			border_rect = (SDL_Rect){rect.x, rect.y, rectangle.border_size.width, rect.h};
+			SDL_RenderFillRect(renderer, &border_rect);
+			border_rect = (SDL_Rect){rect.x + rect.w - rectangle.border_size.width, rect.y, 
+									rectangle.border_size.width, rect.h};
+			SDL_RenderFillRect(renderer, &border_rect);
 		}
 	}
+	SDL_SetRenderTarget(renderer, NULL);
+	pthread_mutex_unlock(&canvas->mutex);
 }
 
 void	ftm_draw_arrow(t_ftm_image *canvas, t_coords coords, t_size size,
