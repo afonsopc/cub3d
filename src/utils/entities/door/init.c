@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 18:51:55 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 00:22:58 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	init_animation_sprites_e(t_door *door, t_ftm_window *window)
 	i = -1;
 	while (++i < door->animation_frames - 1)
 	{
-		frame = ftm_image_new(window, door_image->size);
+		frame = ftm_image_new_multiple_choice(window, door_image->size, false);
 		if (!frame)
 			return (fte_set("init door frame"));
 		config.coords = (t_coords){(int)((double)door_image->size.width

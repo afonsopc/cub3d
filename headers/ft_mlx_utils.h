@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 20:33:28 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 00:22:35 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,8 @@ void				ftm_controller_event_handler(void *userdata,
 
 void				ftm_free_image(void *image);
 t_ftm_image			*ftm_image_from_file(t_ftm_window *window, char *path);
+t_ftm_image			*ftm_image_new_multiple_choice(t_ftm_window *window, t_size size,
+						bool from_surface);
 t_ftm_image			*ftm_image_new(t_ftm_window *window, t_size size);
 t_list				*ftm_images_from_files(t_ftm_window *window,
 						char **file_paths);
