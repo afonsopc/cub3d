@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:06 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 22:32:32 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 00:08:03 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ t_ftm_image	*ftm_image_new(t_ftm_window *window, t_size size)
 	if (!image->surface)
 		return (free(image), NULL);
 	SDL_SetColorKey(image->surface, SDL_TRUE, SDL_MapRGB(image->surface->format, 255, 0, 255));
+	// this works but is too slow
+	// image->texture = SDL_CreateTexture(window->display, SDL_PIXELFORMAT_RGBA8888,
+	// 	SDL_TEXTUREACCESS_TARGET, size.width, size.height);
 	image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
 	if (!image->texture)
 		return (SDL_FreeSurface(image->surface), free(image), NULL);
