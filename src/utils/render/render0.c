@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:49:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 20:46:15 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/29 22:31:55 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,11 @@
 
 static void	render_ceiling_and_floor(t_game *game, t_ftm_image *canvas)
 {
-	unsigned int	*pixels;
-	int				i;
-
-	pixels = (unsigned int *)canvas->data;
-	i = 0;
-	while (i < canvas->size.width * (canvas->size.height / 2))
-	{
-		pixels[i] = game->environment.ceiling_color;
-		i++;
-	}
-	i = canvas->size.width * (canvas->size.height / 2);
-	while (i < canvas->size.width * canvas->size.height)
-	{
-		pixels[i] = game->environment.floor_color;
-		i++;
-	}
+	ftm_draw_rectangle(canvas, (t_coords){0, 0, 0}, canvas->size,
+		(t_ftm_rectangle){game->environment.ceiling_color, 0, (t_size){0, 0}});
+	ftm_draw_rectangle(canvas, (t_coords){0, canvas->size.height / 2, 0},
+		canvas->size, (t_ftm_rectangle){game->environment.floor_color,
+			0, (t_size){0, 0}});
 }
 
 void	render_game(t_game *game, t_ftm_image *canvas, t_character *character)
