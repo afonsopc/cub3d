@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   methods0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:31:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 18:54:33 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 22:50:44 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "door.h"
+
+bool	door_is_transparent_at(t_entity *entity, t_direction direction, double x)
+{
+	t_door		*door;
+	t_ftm_image	*image;
+	int			max_x_for_transparency;
+	t_sprite	*sprite;
+
+	door = (t_door *)entity;
+	sprite = get_entity_sprite(entity, direction);
+	if (!sprite)
+		return (true);
+	image = get_sprite_image(sprite);
+	if (!image)
+		return (true);
+	max_x_for_transparency = (int)((double)image->size.width
+				/ door->animation_frames * sprite->index);
+	return ((x * image->size.width) < max_x_for_transparency);
+}
 
 void	door_frame(t_game *game, t_entity *entity, double delta_time)
 {

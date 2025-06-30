@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:11:16 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 11:44:46 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 22:48:34 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ bool	entity_x_is_transparent(t_entity *entity, t_direction direction,
 	actual_x = x;
 	if (direction == NORTH || direction == EAST)
 		actual_x = 1.0 - x;
+	if (entity->type == ENTITY_DOOR)
+		return (door_is_transparent_at(entity, direction, actual_x));
 	image = get_sprite_image(get_entity_sprite(entity, direction));
 	if (!image)
 		return (true);

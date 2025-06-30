@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 18:04:16 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 22:20:23 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 22:48:47 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	fill_3d_sprites_from_game(t_game *game, t_sprite **dst, char identifier,
 void	fill_3d_sprites_from_src(t_sprite **dst, t_sprite **src);
 void	fill_3d_sprites_from_single(t_sprite **dst, t_sprite *src);
 void	reset_3d_sprites(t_sprite **sprites);
+bool	door_is_transparent_at(t_entity *entity, t_direction direction,
+			double x);
 
 // Entity
 void	init_entity(t_game *game, t_ftm_window *window, t_entity *entity,
