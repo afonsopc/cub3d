@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:52:09 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 00:11:37 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:03:33 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ftm_handle_hooks(t_ftm_window *window)
 
 void	ftm_window_loop(t_ftm_window *window)
 {
+	ftm_window_update_controllers_hooks(window);
 	while (window->running)
 	{
 		ftm_handle_hooks(window);
