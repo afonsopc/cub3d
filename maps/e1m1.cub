@@ -440,7 +440,7 @@ C_TYPE WEAPON
 C_DAMAGE 3
 C_AMMO_USAGE 0
 C_NAME Dog's Mouth
-C_RANGE 2
+C_RANGE 2.5
 C_USE_SOUND assets/wolf3d/sounds/dogbark.mp3
 C_DESCRIPTION Weapon of the National Socialist soldier
 C_USE_DELAY 1.0

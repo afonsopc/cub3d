@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:00:14 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 16:04:00 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:19:42 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void	set_sprite(t_drop	*drop)
 		drop->item->icon_sprite);
 }
 
-bool	add_ammo_if_already_has_the_weapon(t_character *character,
-	t_weapon *weapon)
+bool	already_has_the_weapon(t_character *character, t_weapon *weapon)
 {
 	int			i;
 	t_weapon	*inv_weapon;
 
 	i = -1;
-	character->ammo += weapon->ammo_usage * 10;
 	while (++i < INVENTORY_SIZE)
 	{
 		inv_weapon = (t_weapon *)character->inventory[i];
@@ -76,12 +74,12 @@ void	do_the_thing(t_game *game, t_drop *drop)
 			drop->item->use(drop->item, drop);
 			drop->billboard.entity.active = false;
 		}
-		else if (drop->auto_pickup)
+		else if (drop->auto_pickup && !already_has_the_weapon(
+				(t_character *)entity, (t_weapon *)drop->item))
 		{
-			if (!drop->item->weapon || !add_ammo_if_already_has_the_weapon(
-					(t_character *)entity, (t_weapon *)drop->item))
-				add_item_to_inventory((t_character *)entity, drop->item);
+			add_item_to_inventory((t_character *)entity, drop->item);
 			drop->billboard.entity.active = false;
+			drop->item = NULL;
 		}
 	}
 }

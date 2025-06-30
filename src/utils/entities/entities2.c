@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:11:16 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/30 22:48:34 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:15:38 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ bool	add_item_to_inventory(t_character *character, t_item *item)
 	{
 		if (character->inventory[i])
 			continue ;
+		if (item->weapon && !item->last_use)
+			character->ammo += ((t_weapon *)item)->ammo_usage * 10;
 		character->inventory[i] = item;
 		fta_play(item->get_sound);
 		return (true);
