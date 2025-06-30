@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:20:20 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 20:26:05 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:59:10 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	process_fps_limit(t_game *game)
 
 static void	load_new_map(bool *playing_bg_music)
 {
+	t_time		load_start;
 	char		*path;
 
 	pthread_mutex_lock(&cub3d()->game_mutex);
@@ -69,7 +70,7 @@ static void	load_new_map(bool *playing_bg_music)
 	ftm_put_image_to_window_pitc(cub3d()->window, cub3d()->loading_image,
 		(t_ftm_pitc_config){.coords = {0, 0, 0}, .pixel_modifier = NULL,
 		.resize = true, .size = cub3d()->window->size, .crop = false});
-	ft_sleep(1000);
+	load_start = ft_get_time();
 	(free_game(cub3d()->game), free_map(cub3d()->curr_map));
 	cub3d()->game = NULL;
 	cub3d()->curr_map = NULL;
@@ -77,6 +78,7 @@ static void	load_new_map(bool *playing_bg_music)
 	cub3d()->curr_map = parse_map_e(path);
 	(free(path), fte_assert(), fta_init_e());
 	cub3d()->game = game_new_e(cub3d()->window, cub3d()->curr_map);
+	ft_sleep(ft_max(0, LOADING_MIN_LENGTH - (ft_get_time() - load_start)));
 	fte_assert();
 	*playing_bg_music = false;
 	pthread_mutex_unlock(&cub3d()->game_mutex);

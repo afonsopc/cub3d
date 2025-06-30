@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 20:22:16 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:59:06 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@
 # define DOOR_ANIMATION_FPS 6
 
 // Map Config
+# define DEFAULT_MAP_PATH "maps/hub.cub"
 # define DEFAULT_AIR_TYPES "0 \t\n\v\f\r"
 # define DEFAULT_WALL_TYPES "1"
 # define DEFAULT_PLAYER_TYPES "NSEW"
@@ -92,6 +93,9 @@
 
 // Delta Time Config
 # define DELTA_TIME_START 0.016f
+
+// Loading Screen Min Length
+# define LOADING_MIN_LENGTH 1000
 
 // FPS Config
 # define FPS_LIMIT 1000

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:15:19 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 19:03:58 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:52:47 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(int argc, char **argv)
 	fte_storage()->exit = cub3d_exit;
 	pthread_mutex_init(&cub3d()->game_mutex, NULL);
 	cub3d()->new_map_path = argv[1];
+	if (!cub3d()->new_map_path)
+		cub3d()->new_map_path = DEFAULT_MAP_PATH;
 	init_window();
 	load_main_sprite();
 	fta_init_e();

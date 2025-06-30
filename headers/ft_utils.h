@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 12:15:46 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/25 21:25:23 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:57:03 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,5 +265,6 @@ bool					ft_list_all(t_list *list,
 size_t					ft_list_count(t_list *list,
 							bool (*condition)(void *data, void *params),
 							void *params);
+int						ft_max(int a, int b);
 
 #endif

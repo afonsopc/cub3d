@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 00:27:36 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 15:11:34 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:56:55 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,11 @@ size_t	ft_list_count(t_list *list, bool (*condition)(void *data, void *params),
 		list = list->next;
 	}
 	return (count);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }
