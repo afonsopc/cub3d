@@ -172,12 +172,12 @@ W_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.bmp
 W_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.bmp
 W_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.bmp
 
-NO assets/wolf3d/textures/grey-wall1-dark.bmp
-SO assets/wolf3d/textures/grey-wall0-dark.bmp
-WE assets/wolf3d/textures/grey-wall1-dark.bmp
-EA assets/wolf3d/textures/grey-wall0-dark.bmp
+SO assets/textures/oms-wall.bmp
+NO assets/textures/pv-wall.bmp
+EA assets/wolf3d/textures/wood-wall-dark.bmp
+WE assets/wolf3d/textures/wood-wall-dark.bmp
 
-F 100, 100, 100
+F 76,56,40
 C 50, 50, 50
 
 a_TYPE ELEVATOR
@@ -1275,12 +1275,32 @@ c_STILL_359_SPRITE assets/textures/oms-text/oms-359.bmp
 c_STILL_359_SPRITE_UPDATE_DELAY 0.05
 c_STILL_359_SPRITE_LOOP TRUE
 
-111111111
-1       1
-a       1
-1       1
-1  c  W 1
-1       1
-b       1
-1       1
-111111111
+d_TYPE BILLBOARD
+d_STILL_1_SPRITE assets/textures/billboards/afonsomaria/aim-front.bmp
+d_STILL_8_SPRITE assets/textures/billboards/afonsomaria/aim-front-right.bmp
+d_STILL_7_SPRITE assets/textures/billboards/afonsomaria/aim-left.bmp
+d_STILL_6_SPRITE assets/textures/billboards/afonsomaria/aim-back-left.bmp
+d_STILL_5_SPRITE assets/textures/billboards/afonsomaria/aim-back.bmp
+d_STILL_4_SPRITE assets/textures/billboards/afonsomaria/aim-back-right.bmp
+d_STILL_3_SPRITE assets/textures/billboards/afonsomaria/aim-right.bmp
+d_STILL_2_SPRITE assets/textures/billboards/afonsomaria/aim-front-left.bmp
+
+e_TYPE BILLBOARD
+e_STILL_7_SPRITE assets/textures/billboards/pv/aim-front.bmp
+e_STILL_6_SPRITE assets/textures/billboards/pv/aim-front-right.bmp
+e_STILL_5_SPRITE assets/textures/billboards/pv/aim-left.bmp
+e_STILL_4_SPRITE assets/textures/billboards/pv/aim-back-left.bmp
+e_STILL_3_SPRITE assets/textures/billboards/pv/aim-back.bmp
+e_STILL_2_SPRITE assets/textures/billboards/pv/aim-back-right.bmp
+e_STILL_1_SPRITE assets/textures/billboards/pv/aim-right.bmp
+e_STILL_8_SPRITE assets/textures/billboards/pv/aim-front-left.bmp
+
+1111111111
+1  1d    1
+1  a     1
+1  1     1
+1  1 c  W1
+1  1     1
+1  b     1
+1  1e    1
+1111111111

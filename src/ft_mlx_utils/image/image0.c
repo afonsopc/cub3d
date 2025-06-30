@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:06 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/30 00:25:01 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:23:47 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static bool	load_image_addresses(t_ftm_image *image)
 t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
 {
 	t_ftm_image	*image;
+	SDL_Surface	*rgb_surface;
 
 	image = ft_calloc(1, sizeof(t_ftm_image));
 	if (!image)
@@ -44,6 +45,16 @@ t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
 	image->surface = SDL_LoadBMP(path);
 	if (!image->surface)
 		return (free(image), NULL);
+	if (image->surface->format->BitsPerPixel <= 8)
+	{
+		rgb_surface = SDL_ConvertSurfaceFormat(image->surface, 
+			SDL_PIXELFORMAT_RGBA8888, 0);
+		if (rgb_surface)
+		{
+			SDL_FreeSurface(image->surface);
+			image->surface = rgb_surface;
+		}
+	}
 	SDL_SetColorKey(image->surface, SDL_TRUE, SDL_MapRGB(image->surface->format, 255, 0, 255));
 	image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
 	if (!image->texture)
