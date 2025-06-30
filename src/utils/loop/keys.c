@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:21:37 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 00:01:16 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:06:09 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	key_hook(t_ftm_key_hook_values khv)
 	pthread_mutex_lock(&cub3d()->game_mutex);
 	if (game != cub3d()->game)
 		return (pthread_mutex_unlock(&cub3d()->game_mutex), (void)0);
-	printf("Key pressed: %d, down: %d\n", khv.key, khv.down);
 	call_entity_keys(game, khv);
 	if (khv.key == FTM_KEY_ESC)
 	{
