@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:52:09 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 00:40:10 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:45:28 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ftm_window_loop(t_ftm_window *window)
 
 void	ftm_window_wipe(t_ftm_window *window)
 {
-	mlx_clear_window(window->display, window->win);
+    SDL_SetRenderDrawColor(window->display, 0, 0, 0, 255);
+    SDL_RenderClear(window->display);
 }
 
 void	ftm_window_update(t_ftm_window *window)
