@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 20:43:54 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 02:38:23 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:43:04 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	render_players_game(t_game *game, t_ftm_window *window)
 			ftm_put_image_to_window_pitc(window, get_sprite_image(
 					game->background_sprite), (t_ftm_pitc_config){.coords = {0},
 				.crop = false, .resize = true, .size = window->size});
+			ftm_window_update(window);
 			ftm_free_image(game->players[i]->canvas);
 			game->players[i]->canvas = ftm_image_new(window,
 					player_canvas_data.size);

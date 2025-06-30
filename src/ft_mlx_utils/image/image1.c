@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:51:11 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 20:27:18 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:42:46 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ftm_put_image_to_window(t_ftm_window *window, t_ftm_image *image,
 	dst_rect.w = image->size.width;
 	dst_rect.h = image->size.height;
 	SDL_RenderCopy(window->display, image->texture, NULL, &dst_rect);
-	SDL_RenderPresent(window->display);
 }
 
 void	ftm_put_image_to_window_pitc(t_ftm_window *window, t_ftm_image *image,
