@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 16:47:31 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 23:11:25 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_MLX_UTILS_H
 
 // External Libs
-# include <mlx.h>
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/Xutil.h>
@@ -144,6 +143,7 @@ struct s_ftm_controller
 
 struct s_ftm_window
 {
+	bool				loaded_controller_hooks;
 	bool				running;
 	t_size				size;
 	void				*win;
@@ -269,6 +269,7 @@ t_ftm_window		*ftm_window_new_e(t_size size, char *title);
 void				ftm_init_window_e(t_ftm_window *window, t_size size,
 						char *title);
 void				ftm_window_loop(t_ftm_window *window);
+void				ftm_window_frame(t_ftm_window *window);
 void				ftm_window_wipe(t_ftm_window *window);
 void				ftm_window_update(t_ftm_window *window);
 
@@ -282,6 +283,7 @@ void				ftm_window_update_controllers_hooks(t_ftm_window *window);
 void				ftm_window_reload_controllers(t_ftm_window *window);
 void				ftm_window_mouse_warp(t_ftm_window *window,
 						t_coords coords);
+void				ftm_handle_hooks(t_ftm_window *window);
 
 unsigned int		*ftm_image_pixel(t_ftm_image *image, t_coords coords);
 unsigned int		ftm_remove_pixel_transparency(unsigned int value);

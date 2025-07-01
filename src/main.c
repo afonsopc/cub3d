@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:15:19 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/30 23:52:47 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 23:44:18 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,24 @@ static void	init_window(void)
 	cub3d()->window = window;
 }
 
+static void	delayed_init(void)
+{
+	init_window();
+	load_main_sprite();
+	// fta_init_e();
+}
+
+static void	frame_with_init(void)
+{
+	static int initialized = 0;
+	if (!initialized)
+	{
+		delayed_init();
+		initialized = 1;
+	}
+	ftm_window_frame(cub3d()->window);
+}
+
 int	main(int argc, char **argv)
 {
 	((void)argc, (void)argv);
@@ -46,8 +64,5 @@ int	main(int argc, char **argv)
 	cub3d()->new_map_path = argv[1];
 	if (!cub3d()->new_map_path)
 		cub3d()->new_map_path = DEFAULT_MAP_PATH;
-	init_window();
-	load_main_sprite();
-	fta_init_e();
-	ftm_window_loop(cub3d()->window);
+	emscripten_set_main_loop(frame_with_init, 0, 1);
 }

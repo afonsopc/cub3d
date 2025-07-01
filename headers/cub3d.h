@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/30 23:59:06 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 23:08:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define CUB3D_H
 
 # define PI 3.14159265359
-
-// MLX
-# include <mlx.h>
 
 // Internal Libs
 # include <ft_error.h>
@@ -26,6 +23,7 @@
 # include <ft_audio.h>
 
 // External Libs
+# include <emscripten.h>
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <stdbool.h>

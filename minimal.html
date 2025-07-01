@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>so_long</title>
+    <style>
+        /* Estilo para o corpo da página */
+        body { 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background: black; 
+            overflow: hidden; /* Impede barras de rolagem */
+        }
+
+        /* Estilo para o canvas */
+        canvas {
+            max-width: 100vw;  /* Máxima largura da tela */
+            max-height: 100vh; /* Máxima altura da tela */
+            width: 100%;       /* Largura ocupa 100% da tela */
+            height: 100%;      /* Altura ocupa 100% da tela */
+            object-fit: contain; /* Ajusta o canvas para caber na tela mantendo a proporção */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <script type='text/javascript'>
+        var Module = {
+            canvas: (function() { return document.getElementById('canvas'); })()
+        };
+    </script>
+    {{{ SCRIPT }}}
+</body>
+</html>

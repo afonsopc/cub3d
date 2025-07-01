@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:36:12 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 15:38:33 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 23:12:15 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_entity	*position_overlaps(t_list *entities, t_entity *entity,
 	t_entity	*curr_entity;
 
 	if (!entity->hard)
-		return (false);
+		return (NULL);
 	curr = entities;
 	while (curr)
 	{
