@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:45:35 by paude-so          #+#    #+#             */
-/*   Updated: 2025/07/01 23:47:58 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 00:27:35 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ void	render_walls(t_game *game, t_ftm_image *canvas, t_camera *camera)
 		trrd[i].game = game;
 		trrd[i].start = index_scaler * i;
 		trrd[i].end = index_scaler * (i + 1);
-		thread_render_rays(&trrd[i]);
+		game->camera_threads[i]->routine = thread_render_rays;
+		game->camera_threads[i]->data = &trrd[i];
+		ftt_thread_run(game->camera_threads[i]);
 	}
+	i = -1;
+	while (++i < CAMERA_THREADS)
+		ftt_thread_wait(game->camera_threads[i]);
 }

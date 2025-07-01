@@ -6,7 +6,7 @@
 #    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/07/01 23:44:17 by afpachec         ###   ########.fr        #
+#    Updated: 2025/07/02 00:58:45 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,47 +15,17 @@ CC = emcc
 CFLAGS = -Wall -Wextra -Werror -O3
 INCLUDES = -I headers
 LIBS = -L lib
-LDLIBS = -lSDL2 -lm -ldl -lpthread
+LDLIBS = -lm -ldl
 SRCS = $(shell find src -name "**.c")
 OBJ_DIR = obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-MAPS = $(wildcard maps/*.cub)
-UNAME_S = $(shell uname -s)
-RAND=$(shell echo $$RANDOM)
-FT_AUDIO_DIR = src/ft_audio
 
-check_flag = $(shell $(CC) $(1) -E -c /dev/null -o /dev/null 2>/dev/null && echo 1 || echo 0)
-ifeq ($(CC),emcc)
-ifeq ($(UNAME_S),Darwin)
-	LIBS += -L /opt/X11/lib
-	INCLUDES += -I /opt/X11/include
-endif
-	LDLIBS += -s USE_SDL=2 -s ASSERTIONS=1 -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=2
-	LDLIBS += --preload-file maps --preload-file assets --shell-file minimal.html
-	LDLIBS += -s INITIAL_MEMORY=134217728 -s STACK_SIZE=2MB
-else ifeq ($(UNAME_S),Darwin)
-	LIBS += -L /opt/X11/lib
-	INCLUDES += -I /opt/X11/include
-	LDLIBS += -framework OpenGL
-	LDLIBS += -framework AppKit
-	LDLIBS += -framework CoreAudio
-	LDLIBS += -framework AudioToolbox
-	LDLIBS += -framework CoreHaptics
-	LDLIBS += -framework CoreVideo
-	LDLIBS += -framework GameController
-	LDLIBS += -framework IOKit
-	LDLIBS += -framework ForceFeedback
-	LDLIBS += -framework CoreFoundation
-	LDLIBS += -framework Cocoa
-	LDLIBS += -framework Carbon 
-	LDLIBS += -framework Metal 
-else
-	ifeq ($(shell $(CC) --version | grep -i clang > /dev/null && echo clang),clang)
-    	CFLAGS += -Wno-unknown-warning-option
-	else
-    	CFLAGS += -Wno-stringop-overflow
-	endif
-endif
+CFLAGS += -pthread
+LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1 -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=2
+LDLIBS += --preload-file maps --preload-file assets --shell-file minimal.html
+LDLIBS += -s INITIAL_MEMORY=268435456 -s STACK_SIZE=2MB
+LDLIBS += -s ENVIRONMENT='web,worker'
+LDLIBS += -s EXPORT_ES6=1 -s MODULARIZE=1
 
 all: $(NAME)
 

@@ -1,8 +1,7 @@
-import http.server
-import socketserver
-from http.server import SimpleHTTPRequestHandler
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-class MyHTTPRequestHandler(SimpleHTTPRequestHandler):
+
+class CORSRequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
         self.send_header('Cross-Origin-Opener-Policy', 'same-origin')
@@ -13,9 +12,8 @@ class MyHTTPRequestHandler(SimpleHTTPRequestHandler):
             return 'application/wasm'
         return super().guess_type(path)
 
-PORT = 8001
-Handler = MyHTTPRequestHandler
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print(f"Server running at http://localhost:{PORT}/")
-    httpd.serve_forever()
+if __name__ == '__main__':
+    server = HTTPServer(('localhost', 8000), CORSRequestHandler)
+    print("Server running at http://localhost:8000/")
+    server.serve_forever()
