@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:48:02 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 20:57:12 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:40:41 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ void	ftm_put_image_to_canvas(t_ftm_image *canvas, t_ftm_image *image,
 {
 	SDL_Rect		src_rect;
 	SDL_Rect		dst_rect;
-	SDL_Renderer	*renderer;
 
-	if (!canvas || !image || !canvas->texture || !image->texture)
-		return ;
-	renderer = (SDL_Renderer *)canvas->display;
-	if (!renderer)
+	if (!canvas || !image || !canvas->surface || !image->surface)
 		return ;
 	if (pitc.crop)
 	{
@@ -49,17 +45,18 @@ void	ftm_put_image_to_canvas(t_ftm_image *canvas, t_ftm_image *image,
 	{
 		dst_rect.w = pitc.size.width;
 		dst_rect.h = pitc.size.height;
+		pthread_mutex_lock(&canvas->mutex);
+		SDL_BlitScaled(image->surface, &src_rect, canvas->surface, &dst_rect);
+		pthread_mutex_unlock(&canvas->mutex);
 	}
 	else
 	{
 		dst_rect.w = src_rect.w;
 		dst_rect.h = src_rect.h;
+		if (dst_rect.w <= 0 || dst_rect.h <= 0)
+			return ;
+		pthread_mutex_lock(&canvas->mutex);
+		SDL_BlitSurface(image->surface, &src_rect, canvas->surface, &dst_rect);
+		pthread_mutex_unlock(&canvas->mutex);
 	}
-	if (dst_rect.w <= 0 || dst_rect.h <= 0)
-		return ;
-	pthread_mutex_lock(&canvas->mutex);
-	SDL_SetRenderTarget(renderer, canvas->texture);
-	SDL_RenderCopy(renderer, image->texture, &src_rect, &dst_rect);
-	SDL_SetRenderTarget(renderer, NULL);
-	pthread_mutex_unlock(&canvas->mutex);
 }

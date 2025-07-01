@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:52:09 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 00:45:28 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:19:49 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void	ftm_window_wipe(t_ftm_window *window)
 
 void	ftm_window_update(t_ftm_window *window)
 {
+	if (!window || !window->display)
+		return ;
 	SDL_RenderPresent(window->display);
 }

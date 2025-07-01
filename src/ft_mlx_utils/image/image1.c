@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:51:11 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 00:42:46 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:35:46 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,22 @@ void	ftm_put_image_to_window(t_ftm_window *window, t_ftm_image *image,
 			t_coords coords)
 {
 	SDL_Rect dst_rect;
+	SDL_Texture *texture;
 
-	if (!image || !image->texture)
+	if (!image || !window || !image->surface || !window->display)
 		return ;
 	dst_rect.x = coords.x;
 	dst_rect.y = coords.y;
 	dst_rect.w = image->size.width;
 	dst_rect.h = image->size.height;
-	SDL_RenderCopy(window->display, image->texture, NULL, &dst_rect);
+	
+	texture = SDL_CreateTextureFromSurface(window->display, image->surface);
+	if (!texture)
+		return ;
+	
+	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+	SDL_RenderCopy(window->display, texture, NULL, &dst_rect);
+	SDL_DestroyTexture(texture);
 }
 
 void	ftm_put_image_to_window_pitc(t_ftm_window *window, t_ftm_image *image,

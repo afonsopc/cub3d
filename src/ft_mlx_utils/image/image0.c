@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:48:06 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/30 23:23:47 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:35:58 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ftm_free_image(void *image)
 	if (!image)
 		return ;
 	SDL_FreeSurface(((t_ftm_image *)image)->surface);
-	if (((t_ftm_image *)image)->texture)
-		SDL_DestroyTexture(((t_ftm_image *)image)->texture);
 	free(image);
 }
 
@@ -34,73 +32,54 @@ static bool	load_image_addresses(t_ftm_image *image)
 
 t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
 {
-	t_ftm_image	*image;
-	SDL_Surface	*rgb_surface;
+    t_ftm_image	*image;
+    SDL_Surface	*rgb_surface;
 
-	image = ft_calloc(1, sizeof(t_ftm_image));
-	if (!image)
-		return (NULL);
-	image->display = window->display;
-	image->path = path;
-	image->surface = SDL_LoadBMP(path);
-	if (!image->surface)
-		return (free(image), NULL);
-	if (image->surface->format->BitsPerPixel <= 8)
-	{
-		rgb_surface = SDL_ConvertSurfaceFormat(image->surface, 
-			SDL_PIXELFORMAT_RGBA8888, 0);
-		if (rgb_surface)
-		{
-			SDL_FreeSurface(image->surface);
-			image->surface = rgb_surface;
-		}
-	}
-	SDL_SetColorKey(image->surface, SDL_TRUE, SDL_MapRGB(image->surface->format, 255, 0, 255));
-	image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
-	if (!image->texture)
-		return (SDL_FreeSurface(image->surface), free(image), NULL);
-	SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
-	image->size.width = image->surface->w;
-	image->size.height = image->surface->h;
-	if (!load_image_addresses(image))
-		return (ftm_free_image(image), NULL);
-	pthread_mutex_init(&image->mutex, NULL);
-	return (image);
-}
-
-t_ftm_image	*ftm_image_new_multiple_choice(t_ftm_window *window, t_size size,
-	bool from_surface)
-{
-	t_ftm_image	*image;
-
-	image = ft_calloc(1, sizeof(t_ftm_image));
-	if (!image)
-		return (NULL);
-	image->display = window->display;
-	image->surface = SDL_CreateRGBSurface(0, size.width, size.height, 32,
-			0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if (!image->surface)
-		return (free(image), NULL);
-	SDL_SetColorKey(image->surface, SDL_TRUE, SDL_MapRGB(image->surface->format, 255, 0, 255));
-	if (from_surface)
-		image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
-	else
-		image->texture = SDL_CreateTexture(window->display, SDL_PIXELFORMAT_RGBA8888,
-				SDL_TEXTUREACCESS_TARGET, size.width, size.height);
-	if (!image->texture)
-		return (SDL_FreeSurface(image->surface), free(image), NULL);
-	SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
-	image->size.width = image->surface->w;
-	image->size.height = image->surface->h;
-	if (!load_image_addresses(image))
-		return (ftm_free_image(image), NULL);
-	pthread_mutex_init(&image->mutex, NULL);
-	return (image);
+	(void)window;
+    image = ft_calloc(1, sizeof(t_ftm_image));
+    if (!image)
+        return (NULL);
+    image->path = path;
+    image->surface = SDL_LoadBMP(path);
+    if (!image->surface)
+        return (free(image), NULL);
+    if (image->surface->format->BitsPerPixel <= 8)
+    {
+        rgb_surface = SDL_ConvertSurfaceFormat(image->surface, 
+            SDL_PIXELFORMAT_RGBA8888, 0);
+        if (rgb_surface)
+        {
+            SDL_FreeSurface(image->surface);
+            image->surface = rgb_surface;
+        }
+    }
+    SDL_SetColorKey(image->surface, SDL_TRUE, SDL_MapRGB(image->surface->format, 255, 0, 255));
+    image->size.width = image->surface->w;
+    image->size.height = image->surface->h;
+    if (!load_image_addresses(image))
+        return (ftm_free_image(image), NULL);
+    pthread_mutex_init(&image->mutex, NULL);
+    return (image);
 }
 
 t_ftm_image	*ftm_image_new(t_ftm_window *window, t_size size)
 {
-	return (ftm_image_new_multiple_choice(window, size, true));
+	t_ftm_image	*image;
+
+	(void)window;
+	image = ft_calloc(1, sizeof(t_ftm_image));
+	if (!image)
+		return (NULL);
+	image->path = NULL;
+	image->size = size;
+	image->surface = SDL_CreateRGBSurface(0, size.width, size.height,
+			32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if (!image->surface)
+		return (ftm_free_image(image), NULL);
+	if (!load_image_addresses(image))
+		return (ftm_free_image(image), NULL);
+	pthread_mutex_init(&image->mutex, NULL);
+	return (image);
 }
 
 t_list	*ftm_images_from_files(t_ftm_window *window, char **file_paths)

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 20:43:54 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 00:43:04 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:44:09 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void	render_players_game(t_game *game, t_ftm_window *window)
 	int						i;
 
 	i = -1;
+	ftm_put_image_to_window_pitc(window, get_sprite_image(
+			game->background_sprite), (t_ftm_pitc_config){.coords = {0},
+		.crop = false, .resize = true, .size = window->size});
 	while (++i < PLAYER_MAX)
 	{
 		if (!game->players[i] || !((t_entity *)game->players[i])->active)
@@ -73,9 +76,6 @@ void	render_players_game(t_game *game, t_ftm_window *window)
 		player_canvas_data = get_player_canvas_data(game, window->size, i);
 		if (canvas_changed(game->players[i], player_canvas_data))
 		{
-			ftm_put_image_to_window_pitc(window, get_sprite_image(
-					game->background_sprite), (t_ftm_pitc_config){.coords = {0},
-				.crop = false, .resize = true, .size = window->size});
 			ftm_window_update(window);
 			ftm_free_image(game->players[i]->canvas);
 			game->players[i]->canvas = ftm_image_new(window,
