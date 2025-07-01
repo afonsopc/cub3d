@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:49:29 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 14:49:40 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:47:16 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,9 @@ int	window_mouse_hook(int x, int y, void *window)
 	if (((t_ftm_window *)window)->mouse_hook)
 		((t_ftm_window *)window)->mouse_hook((t_coords){x, y, 0});
 	return (0);
+}
+
+void	ftm_window_mouse_warp(t_ftm_window *window, t_coords coords)
+{
+	SDL_WarpMouseInWindow(window->win, (int)coords.x / 2, (int)coords.y / 2);
 }

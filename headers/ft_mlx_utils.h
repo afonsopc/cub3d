@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 16:35:54 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:47:31 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,6 +280,8 @@ void				ftm_window_notify_fullscreen(t_ftm_window *window);
 
 void				ftm_window_update_controllers_hooks(t_ftm_window *window);
 void				ftm_window_reload_controllers(t_ftm_window *window);
+void				ftm_window_mouse_warp(t_ftm_window *window,
+						t_coords coords);
 
 unsigned int		*ftm_image_pixel(t_ftm_image *image, t_coords coords);
 unsigned int		ftm_remove_pixel_transparency(unsigned int value);
