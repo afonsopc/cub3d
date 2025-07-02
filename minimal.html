@@ -15,24 +15,40 @@
             background: black; 
             overflow: hidden; /* Impede barras de rolagem */
         }
-
-        /* Estilo para o canvas */
-        canvas {
-            max-width: 100vw;  /* Máxima largura da tela */
-            max-height: 100vh; /* Máxima altura da tela */
-            width: 100%;       /* Largura ocupa 100% da tela */
-            height: 100%;      /* Altura ocupa 100% da tela */
-            object-fit: contain; /* Ajusta o canvas para caber na tela mantendo a proporção */
-        }
     </style>
 </head>
 <body>
     <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     <script type='text/javascript'>
+        let gameStarted = false;
         var Module = {
-            canvas: (function() { return document.getElementById('canvas'); })()
+            canvas: (function() { return document.getElementById('canvas'); })(),
+            onRuntimeInitialized: function() {
+                console.log('Emscripten runtime initialized');
+                gameStarted = true;
+                strechCanvasToWindow();
+            }
         };
     </script>
     {{{ SCRIPT }}}
+    <script type='text/javascript'>
+        const gameWindowHeight = 480;
+        const gameWindowWidth = 640;
+        const canvas = document.getElementById('canvas');
+        const strechCanvasToWindow = () => {
+            if (!gameStarted) return;
+
+            const scaleX = window.innerWidth / gameWindowWidth;
+            const scaleY = window.innerHeight / gameWindowHeight;
+            canvas.style.scale = scaleX + ' ' + scaleY;
+            canvas.style.position = 'absolute';
+            canvas.style.left = (window.innerWidth - gameWindowWidth) / 2 + 'px';
+            canvas.style.top = (window.innerHeight - gameWindowHeight) / 2 + 'px';
+        };
+
+        window.addEventListener('resize', strechCanvasToWindow);
+        window.addEventListener('orientationchange', strechCanvasToWindow);
+        window.addEventListener('load', strechCanvasToWindow);
+    </script>
 </body>
 </html>
