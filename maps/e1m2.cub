@@ -222,6 +222,7 @@ STATS_HUD_CHEAT_SPRITE assets/wolf3d/textures/hud/stats/7-1.bmp
 
 e_TYPE CHARACTER
 e_MAX_HEALTH 100
+e_SCORE 100
 e_TARGETABLE TRUE
 e_STILL_8_SPRITE assets/wolf3d/textures/billboards/soldier/still-front.bmp
 e_STILL_7_SPRITE assets/wolf3d/textures/billboards/soldier/still-front-right.bmp
@@ -274,6 +275,7 @@ e_DROP_ITEMS TRUE
 
 d_TYPE CHARACTER
 d_MAX_HEALTH 1
+d_SCORE 10
 d_HARD FALSE
 d_TARGETABLE TRUE
 d_STILL_8_SPRITE assets/wolf3d/textures/billboards/dog/front1.bmp

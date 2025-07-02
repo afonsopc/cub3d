@@ -47,6 +47,7 @@
 
         var Module = {
             canvas: (function () { return document.getElementById('canvas'); })(),
+            preRun: [function() { if (navigator.getGamepads) { window.gamepadPollRate = 60 } }],
             onRuntimeInitialized: function () {
                 console.log('Emscripten runtime initialized');
                 gameStarted = true;

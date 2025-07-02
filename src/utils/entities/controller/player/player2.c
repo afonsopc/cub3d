@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:27:20 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 00:04:15 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:46:40 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,34 @@ t_player_keys	get_player_gamepad_keys(void)
 		.looking_right = {FTM_GAMEPAD_RSTICK, false, 0.0, 1.0,
 			true, {0.7, 0.0, 0}, {1.0, 1.0, 0}},
 		.action = {FTM_GAMEPAD_X, false, 0.0, 1.0, false, {0}, {0}},
-		.sprinting = {FTM_GAMEPAD_A, false, 0.0, 1.0, false, {0}, {0}},
+		.sprinting = {FTM_GAMEPAD_L2, true, 0.8, 1.0, false, {0}, {0}},
 		.move_inventory_index = {FTM_GAMEPAD_R1, false, 0.0, 1.0,
 			false, {0}, {0}},
 		.item_use = {FTM_GAMEPAD_R2, true, 0.8, 1.0, false, {0}, {0}},
-		.item_drop = {FTM_GAMEPAD_L2, true, 0.8, 1.0, false, {0}, {0}},
+		.item_drop = {FTM_GAMEPAD_B, false, 0.0, 1.0, false, {0}, {0}},
 		.activate = {FTM_GAMEPAD_MENU, false, 0.0, 1.0, false, {0}, {0}},
 	});
 }
 
 void	do_internal_keys(t_entity *entity, t_ftm_key_hook_values khv)
 {
+	int			pk;
 	t_character	*character;
 
+	pk = entity->controller.prev_key;
 	character = (t_character *)entity;
-	if (khv.key == FTM_KEY_I && khv.down)
+	if (!khv.down)
+		return ;
+	if (khv.key == FTM_KEY_I
+		|| (pk == FTM_GAMEPAD_UP && khv.key == FTM_GAMEPAD_DOWN))
 	{
-		character->cheating = true;
 		entity->invencible = !entity->invencible;
 		entity->health = entity->max_health;
 	}
-	if (khv.key == FTM_KEY_B && khv.down)
-	{
-		character->cheating = true;
+	if (khv.key == FTM_KEY_B
+		|| (pk == FTM_GAMEPAD_LEFT && khv.key == FTM_GAMEPAD_RIGHT))
 		entity->hard = !entity->hard;
-	}
+	character->cheating = !entity->hard || entity->invencible;
 }
 
 void	do_inv_keys(t_game *game, t_entity *entity, t_player_keys keys,

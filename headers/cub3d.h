@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/02 19:42:01 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:35:32 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ struct s_controller
 	t_time		last_seen_target;
 	t_coords	last_target_position;
 	t_entity	*prev_target;
+	int			prev_key;
 	double		prev_angle;
 	double		moving_to_angle;
 	double		time_accumulator;

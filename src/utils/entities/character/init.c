@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 15:15:50 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:50:16 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	init_type_things_and_type_and_that(t_game *game, t_character *character,
 	fill_3d_sprites_from_game(game, character->hit_sprite, identifier, "HIT");
 	character->ammo = ft_atoi(hashmap_get_with_identifier(game,
 				game->map->types, identifier, "AMMO"));
+	character->score = ft_atoi(hashmap_get_with_identifier(game,
+				game->map->types, identifier, "SCORE"));
 	character->_sprite = character->billboard.sprites;
 	character->death_sound = hashmap_get_with_identifier(game, game->sounds,
 			identifier, "DEATH");

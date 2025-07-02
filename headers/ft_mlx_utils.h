@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:46:27 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 23:11:25 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:58:40 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ struct s_ftm_controller
 
 struct s_ftm_window
 {
-	bool				loaded_controller_hooks;
 	bool				running;
 	t_size				size;
 	void				*win;

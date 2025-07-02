@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:52:09 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 23:45:35 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:27:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ void	ftm_window_frame(t_ftm_window *window)
 {
 	if (!window)
 		return ;
-	if (!window->loaded_controller_hooks)
-	{
-		ftm_window_update_controllers_hooks(window);
-		window->loaded_controller_hooks = true;
-	}
+	if (SDL_NumJoysticks() > (int)ft_list_size(window->controllers))
+		ftm_window_reload_controllers(window);
 	ftm_handle_hooks(window);
 	ftm_window_update(window);
 }

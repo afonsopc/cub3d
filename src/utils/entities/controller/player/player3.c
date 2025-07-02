@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:52:50 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 15:53:02 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:36:14 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	key(t_game *game, t_entity *entity, t_ftm_key_hook_values khv)
 			game, (t_player *)entity);
 	if (!entity->controller.keyboard_only && khv.controller
 		&& khv.controller->id == player_id)
-		return (do_keys(game, entity, get_player_gamepad_keys(), khv));
-	if (entity == (t_entity *)game->players[0])
+		do_keys(game, entity, get_player_gamepad_keys(), khv);
+	else if (entity == (t_entity *)game->players[0])
 		do_keys(game, entity, get_player_keyboard_keys(), khv);
+	entity->controller.prev_key = khv.key;
 }

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:31:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 22:45:46 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:51:03 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	character_shot(t_entity *shooted, t_character *shooter)
 	t_character	*character;
 
 	billboard_shot(shooted, shooter);
+	if (!shooted || !shooter)
+		return ;
 	character = (t_character *)shooted;
 	character->last_hit = ft_get_time();
 	if (character->dead)
@@ -86,5 +88,6 @@ void	character_shot(t_entity *shooted, t_character *shooter)
 		return (fta_play(character->hit_sound));
 	fta_play(character->death_sound);
 	reset_3d_sprites(character->death_sprite);
+	shooter->score += character->score;
 	character->dead = true;
 }
