@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:15:19 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 23:44:18 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:13:31 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	init_window(void)
 
 	window = ftm_window_new_e((t_size){W_WIDTH, W_HEIGHT}, W_TITLE);
 	fte_assert();
+	printf("Window created with size: %dx%d\n", W_WIDTH, W_HEIGHT);
 	window->loop_hook = loop;
 	window->key_hook = key_hook;
 	window->exit_hook = cub3d_exit;

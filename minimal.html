@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>so_long</title>
     <style>
-        body { 
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            background: black; 
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgb(1, 64, 64);
             overflow: hidden;
         }
-        canvas {
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: optimize-contrast;
-            image-rendering: -o-crisp-edges;
-            image-rendering: optimizeSpeed;
-            -ms-interpolation-mode: nearest-neighbor;
-        }
+
+        canvas { image-rendering: pixelated }
     </style>
 </head>
+
 <body>
     <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     <script type='text/javascript'>
@@ -37,8 +31,8 @@
             if (!gameStarted) return;
 
             console.log('Resizing canvas to fit window');
-            const windowWidth = Math.max(window.innerWidth || 640, 320);
-            const windowHeight = Math.max(window.innerHeight || 480, 240);
+            const windowWidth = Math.max(window.innerWidth || gameWindowWidth, gameWindowWidth / 2);
+            const windowHeight = Math.max(window.innerHeight || gameWindowHeight, gameWindowHeight / 2);
             const scaleX = Math.max(windowWidth / gameWindowWidth, 0.1);
             const scaleY = Math.max(windowHeight / gameWindowHeight, 0.1);
             const scale = Math.min(scaleX, scaleY);
@@ -52,8 +46,8 @@
         window.addEventListener('load', strechCanvasToWindow);
 
         var Module = {
-            canvas: (function() { return document.getElementById('canvas'); })(),
-            onRuntimeInitialized: function() {
+            canvas: (function () { return document.getElementById('canvas'); })(),
+            onRuntimeInitialized: function () {
                 console.log('Emscripten runtime initialized');
                 gameStarted = true;
                 strechCanvasToWindow();
@@ -62,4 +56,5 @@
     </script>
     {{{ SCRIPT }}}
 </body>
+
 </html>

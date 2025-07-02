@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/06/25 20:12:59 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:08:42 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,17 @@ static t_size	get_size(t_get_size_config gsc)
 	double		distance;
 	double		fov_factor;
 	double		fix_fisheye;
-	double		fov;
+	double		height_factor;
 
 	distance = ft_distance(gsc.camera->character->billboard.entity.coords,
 			gsc.bill_coords);
 	fix_fisheye = distance * ft_cos_degrees(gsc.relative_angle);
-	fov = gsc.camera->fov;
-	if (!fov)
-		fov = 1.0;
-	fov_factor = 73.5 / fov;
-	return ((t_size){(gsc.bill_image_size.width / distance)
-		* (gsc.canvas_size.height / 125) * fov_factor,
-		(gsc.bill_image_size.height / fix_fisheye)
-		* (gsc.canvas_size.height / 125)});
+	if (!gsc.camera->fov)
+		return ((t_size){0, 0});
+	fov_factor = 73.5 / gsc.camera->fov;
+	height_factor = (double)gsc.canvas_size.height / 150;
+	return ((t_size){(((double)gsc.bill_image_size.width / distance) * height_factor) * fov_factor,
+		((double)gsc.bill_image_size.height / fix_fisheye) * height_factor});
 }
 
 static double	get_screen_x(t_ftm_image *canvas, t_camera *camera,
