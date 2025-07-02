@@ -1,6 +1,5 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-
 class CORSRequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
@@ -12,8 +11,7 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
             return 'application/wasm'
         return super().guess_type(path)
 
-
 if __name__ == '__main__':
-    server = HTTPServer(('localhost', 8000), CORSRequestHandler)
-    print("Server running at http://localhost:8000/")
+    server = HTTPServer(('0.0.0.0', 3000), CORSRequestHandler)
+    print("Server running at http://0.0.0.0:3000/")
     server.serve_forever()
