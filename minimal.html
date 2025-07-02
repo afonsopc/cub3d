@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>so_long</title>
     <style>
-        /* Estilo para o corpo da página */
         body { 
             margin: 0; 
             display: flex; 
@@ -13,7 +12,17 @@
             align-items: center; 
             height: 100vh; 
             background: black; 
-            overflow: hidden; /* Impede barras de rolagem */
+            overflow: hidden;
+        }
+        canvas {
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+            image-rendering: -o-crisp-edges;
+            image-rendering: optimizeSpeed;
+            -ms-interpolation-mode: nearest-neighbor;
         }
     </style>
 </head>
@@ -21,6 +30,27 @@
     <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     <script type='text/javascript'>
         let gameStarted = false;
+        const gameWindowWidth = 640;
+        const gameWindowHeight = 480;
+        const canvas = document.getElementById('canvas');
+        const strechCanvasToWindow = () => {
+            if (!gameStarted) return;
+
+            console.log('Resizing canvas to fit window');
+            const windowWidth = Math.max(window.innerWidth || 640, 320);
+            const windowHeight = Math.max(window.innerHeight || 480, 240);
+            const scaleX = Math.max(windowWidth / gameWindowWidth, 0.1);
+            const scaleY = Math.max(windowHeight / gameWindowHeight, 0.1);
+            const scale = Math.min(scaleX, scaleY);
+            canvas.style.transform = `scale(${scale})`;
+            canvas.style.transformOrigin = 'center';
+            canvas.style.position = 'absolute';
+        };
+
+        window.addEventListener('resize', strechCanvasToWindow);
+        window.addEventListener('orientationchange', strechCanvasToWindow);
+        window.addEventListener('load', strechCanvasToWindow);
+
         var Module = {
             canvas: (function() { return document.getElementById('canvas'); })(),
             onRuntimeInitialized: function() {
@@ -31,24 +61,5 @@
         };
     </script>
     {{{ SCRIPT }}}
-    <script type='text/javascript'>
-        const gameWindowHeight = 480;
-        const gameWindowWidth = 640;
-        const canvas = document.getElementById('canvas');
-        const strechCanvasToWindow = () => {
-            if (!gameStarted) return;
-
-            const scaleX = window.innerWidth / gameWindowWidth;
-            const scaleY = window.innerHeight / gameWindowHeight;
-            canvas.style.scale = scaleX + ' ' + scaleY;
-            canvas.style.position = 'absolute';
-            canvas.style.left = (window.innerWidth - gameWindowWidth) / 2 + 'px';
-            canvas.style.top = (window.innerHeight - gameWindowHeight) / 2 + 'px';
-        };
-
-        window.addEventListener('resize', strechCanvasToWindow);
-        window.addEventListener('orientationchange', strechCanvasToWindow);
-        window.addEventListener('load', strechCanvasToWindow);
-    </script>
 </body>
 </html>
