@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 23:03:13 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/18 22:26:06 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:02:37 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	render_debug_str(t_game *game, t_ftm_image *canvas, char *str,
 	config = (t_ftm_text_config){
 		str,
 		(t_coords){coords.x + 10, coords.y + 10, 0},
-		16,
+		canvas->size.height * 0.032,
 		-5,
 		0xFFFFFFFF
 	};

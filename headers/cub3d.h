@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/02 00:46:03 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:44:02 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 // Window Config
 # define W_TITLE "cub3d"
-# define W_WIDTH 1024/2
-# define W_HEIGHT 768/2
+# define W_WIDTH 640
+# define W_HEIGHT 480
 
 // Default minimap size multipliers
 # define MINIMAP_WIDTH_MULTIPLIER 0.25

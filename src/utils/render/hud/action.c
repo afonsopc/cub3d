@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvcordeiro <pvcordeiro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 02:27:23 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/26 14:52:41 by pvcordeiro       ###   ########.fr       */
+/*   Updated: 2025/07/02 10:54:22 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	render_action(t_game *game, t_ftm_image *canvas, t_character *character)
 	text_config = (t_ftm_text_config){
 		.text = "Press ACTION to interact",
 		.coords = {0, 0, 0},
-		.height = canvas->size.height * 0.014,
+		.height = canvas->size.height * 0.03,
 		.spacing = 0,
 		.color = 0xFFDDDDDD
 	};
