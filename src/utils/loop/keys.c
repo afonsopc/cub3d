@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:21:37 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 00:06:09 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/03 11:17:24 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	hud_keys(t_game *game, t_ftm_key_hook_values khv)
 		game->hud.action_enabled = !game->hud.action_enabled;
 	if (khv.key == FTM_KEY_F6 && khv.down)
 		game->hud.enabled = !game->hud.enabled;
-	if (khv.key == FTM_KEY_9 && khv.down)
+	if (khv.key == FTM_KEY_0 && khv.down)
 		game->hud.minimap.zoom_level *= 1.2;
 	if (khv.key == FTM_KEY_8 && khv.down)
 		game->hud.minimap.zoom_level /= 1.2;

@@ -1,7 +1,0 @@
-services:
-  cub3d:
-    ports:
-      - "3000:3000"
-    build:
-      context: .
-      dockerfile: Dockerfile
