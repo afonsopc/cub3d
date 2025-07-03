@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    emcc.Makefile                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+         #
+#    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/07/03 17:10:46 by afpachec         ###   ########.fr        #
+#    Updated: 2025/07/03 21:59:01 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -O3 -D W_WIDTH=400 -D W_HEIGHT=300
 INCLUDES = -I headers
 LDLIBS = -lm -ldl
 SRCS = $(shell find src -name "**.c")
-OBJ_DIR = obj
+OBJ_DIR = web_obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 CFLAGS += -pthread

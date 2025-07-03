@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/02 23:35:32 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/03 21:37:28 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
 # include <ft_audio.h>
 
 // External Libs
-# include <emscripten.h>
+# ifdef __EMSCRIPTEN__
+#  include <emscripten.h>
+# endif
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <stdbool.h>
@@ -464,6 +466,7 @@ struct s_cub3d
 	t_ftm_image			*loading_image;
 	char				*new_map_path;
 	t_map				*curr_map;
+	bool				started_map_load;
 	t_ftm_window		*window;
 	pthread_mutex_t		game_mutex;
 	t_game				*game;

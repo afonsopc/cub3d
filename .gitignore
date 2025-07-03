@@ -9,4 +9,4 @@ assets/wolf3d
 headers/SDL2/
 lib/libSDL2.a
 ._miniaudio.h
-wasm_obj/
+web_obj/

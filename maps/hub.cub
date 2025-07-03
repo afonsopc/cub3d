@@ -172,8 +172,8 @@ W_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.bmp
 W_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.bmp
 W_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.bmp
 
-SO assets/textures/oms-wall.bmp
-NO assets/textures/pv-wall.bmp
+SO assets/wolf3d/textures/wood-wall.bmp
+NO assets/wolf3d/textures/wood-wall.bmp
 EA assets/wolf3d/textures/wood-wall-dark.bmp
 WE assets/wolf3d/textures/wood-wall-dark.bmp
 
@@ -1295,7 +1295,56 @@ e_STILL_2_SPRITE assets/textures/billboards/pv/aim-back-right.bmp
 e_STILL_1_SPRITE assets/textures/billboards/pv/aim-right.bmp
 e_STILL_8_SPRITE assets/textures/billboards/pv/aim-front-left.bmp
 
-1111111111
+f_TYPE DOOR
+f_TARGETABLE TRUE
+f_ANIMATION_DELAY 2.3
+f_CLOSEABLE FALSE
+f_DOOR_SPRITE assets/textures/oms-wall.bmp
+f_SIDES_SPRITE assets/wolf3d/textures/wood-wall-dark.bmp
+f_DIRECTION NORTH
+f_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+f_OPEN_SOUND_VOLUME 0.8
+
+g_TYPE ELEVATOR
+g_TARGETABLE TRUE
+g_MAP_PATH maps/e1m1_2.cub
+g_NO assets/textures/wolf3d.bmp
+g_SO assets/textures/wolf3d.bmp
+g_WE assets/textures/wolf3d.bmp
+g_EA assets/textures/wolf3d.bmp
+
+h_TYPE ELEVATOR
+h_TARGETABLE TRUE
+h_MAP_PATH maps/billions.cub
+h_NO assets/textures/billiosn-ust-smile.bmp
+h_SO assets/textures/billiosn-ust-smile.bmp
+h_WE assets/textures/billiosn-ust-smile.bmp
+h_EA assets/textures/billiosn-ust-smile.bmp
+
+i_TYPE ELEVATOR
+i_TARGETABLE TRUE
+i_MAP_PATH maps/sbj.cub
+i_NO assets/textures/oms.bmp
+i_SO assets/textures/oms.bmp
+i_WE assets/textures/oms.bmp
+i_EA assets/textures/oms.bmp
+
+j_TYPE WALL
+j_SO assets/textures/oms-wall.bmp
+j_NO assets/wolf3d/textures/wood-wall.bmp
+j_EA assets/wolf3d/textures/wood-wall-dark.bmp
+j_WE assets/wolf3d/textures/wood-wall-dark.bmp
+
+k_TYPE WALL
+k_SO assets/wolf3d/textures/wood-wall.bmp
+k_NO assets/textures/pv-wall.bmp
+k_EA assets/wolf3d/textures/wood-wall-dark.bmp
+k_WE assets/wolf3d/textures/wood-wall-dark.bmp
+
+11i1h1g111
+1        1
+1        1
+1  jjjjfjj
 1  1d    1
 1  a     1
 1  1     1
@@ -1303,4 +1352,4 @@ e_STILL_8_SPRITE assets/textures/billboards/pv/aim-front-left.bmp
 1  1     1
 1  b     1
 1  1e    1
-1111111111
+111kkkkkkk

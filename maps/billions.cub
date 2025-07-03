@@ -3,45 +3,26 @@ SO assets/textures/billiosn-ust-smile.bmp
 WE assets/textures/billiosn-ust-smile.bmp
 EA assets/textures/billiosn-ust-smile.bmp
 2_TYPE DOOR
+2_TARGETABLE TRUE
 2_DIRECTION NORTH
-2_DOOR_SPRITE assets/textures/billiosn-ust-smile.bmp
-2_SIDES assets/textures/billiosn-ust-smile.bmp
+2_DOOR_SPRITE assets/textures/placeholder.bmp
+2_SIDES_SPRITE assets/textures/loading.bmp
 6_TYPE DOOR
+6_TARGETABLE TRUE
 6_DIRECTION WEST
-6_DOOR_SPRITE assets/textures/billiosn-ust-smile.bmp
-6_SIDES assets/textures/billiosn-ust-smile.bmp
-3_TYPE WALL
-3_SO assets/textures/billiosn-ust-smile.bmp
-3_NO NULL
-3_WE NULL
-3_EA NULL
-s_TYPE WALL
-s_SO assets/textures/billiosn-ust-smile.bmp
-s_NO NULL
-s_WE assets/textures/billiosn-ust-smile.bmp
-s_EA assets/textures/billiosn-ust-smile.bmp
-p_TYPE WALL
-p_SO assets/textures/billiosn-ust-smile.bmp
-p_NO NULL
-p_WE NULL
-p_EA NULL
-9_TYPE WALL
-9_SO assets/textures/billiosn-ust-smile.bmp
-9_NO assets/textures/billiosn-ust-smile.bmp
-9_WE assets/textures/billiosn-ust-smile.bmp
-9_EA assets/textures/billiosn-ust-smile.bmp
-MOUSE TRUE
+6_DOOR_SPRITE assets/textures/placeholder.bmp
+6_SIDES_SPRITE assets/textures/billiosn-ust-smile.bmp
 BACKGROUND_SOUND assets/sounds/billiosmustsmile.mp3
 
 F 46,39,30
 C 67,63,1
 
-        11111111111111p1s11131111
+        1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
         1001000000000000060002001
 111111111011000001110000000000001
-100000000011000001110111192911111
+100000000011000001110111110111111
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001
