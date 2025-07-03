@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    emcc.Makefile                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/07/03 00:10:39 by afpachec         ###   ########.fr        #
+#    Updated: 2025/07/03 17:10:46 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = emcc
-CFLAGS = -Wall -Wextra -Werror -O3 -D W_WIDTH=640 -D W_HEIGHT=480
+CFLAGS = -Wall -Wextra -Werror -O3 -D W_WIDTH=400 -D W_HEIGHT=300
 INCLUDES = -I headers
 LDLIBS = -lm -ldl
 SRCS = $(shell find src -name "**.c")

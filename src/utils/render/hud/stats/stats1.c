@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stats1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 19:56:01 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 19:57:55 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:25:39 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	render_score_text(t_game *game, t_ftm_image *canvas,
 		.text = score_text,
 		.coords = text_pos,
 		.height = stats_size.width * 0.04,
-		.spacing = 4,
+		.spacing = stats_size.width * 0.008,
 		.color = 0xCFFFFFFF
 	});
 	free(score_text);
@@ -65,7 +65,7 @@ void	render_ammo_text(t_game *game, t_ftm_image *canvas,
 		.text = ammo_text,
 		.coords = text_pos,
 		.height = stats_size.width * 0.04,
-		.spacing = 4,
+		.spacing = stats_size.width * 0.008,
 		.color = 0xCFFFFFFF
 	});
 	free(ammo_text);
@@ -91,7 +91,7 @@ void	render_health_text(t_game *game, t_ftm_image *canvas,
 		.text = health_text,
 		.coords = text_pos,
 		.height = stats_size.width * 0.04,
-		.spacing = 4,
+		.spacing = stats_size.width * 0.008,
 		.color = 0xCFFFFFFF
 	});
 	free(health_text);

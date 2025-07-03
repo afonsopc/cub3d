@@ -12,6 +12,6 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         return super().guess_type(path)
 
 if __name__ == '__main__':
-    server = HTTPServer(('0.0.0.0', 3000), CORSRequestHandler)
-    print("Server running at http://0.0.0.0:3000/")
+    server = HTTPServer(('localhost', 3000), CORSRequestHandler)
+    print("Server running at http://localhost:3000/")
     server.serve_forever()

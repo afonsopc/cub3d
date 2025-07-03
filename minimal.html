@@ -36,7 +36,7 @@
             const scaleX = Math.max(windowWidth / gameWindowWidth, 0.1);
             const scaleY = Math.max(windowHeight / gameWindowHeight, 0.1);
             const scale = Math.min(scaleX, scaleY);
-            canvas.style.transform = `scale(${scale})`;
+            canvas.style.transform = `scale(${scale * 1.6})`;
             canvas.style.transformOrigin = 'center';
             canvas.style.position = 'absolute';
         };
@@ -51,7 +51,7 @@
             onRuntimeInitialized: function () {
                 console.log('Emscripten runtime initialized');
                 gameStarted = true;
-                strechCanvasToWindow();
+                setTimeout(strechCanvasToWindow, 1000);
             }
         };
     </script>
