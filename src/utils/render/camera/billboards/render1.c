@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 00:47:16 by paude-so          #+#    #+#             */
-/*   Updated: 2025/07/03 17:18:36 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/05 13:16:34 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_ftm_pitc_config	get_pitc_config(int i,
 		src_x_end = rbsc.image->size.width;
 	return ((t_ftm_pitc_config){
 		(t_coords){rbsc.screen_x - (rbsc.new_size.width / 2) + i,
-		((double)rbsc.canvas->size.height / 1.95) - (rbsc.new_size.height / 2), 0},
+		((double)rbsc.canvas->size.height / 1.95) - ((double)rbsc.new_size.height / 2.2), 0},
 		true, (t_coords){src_x_start, 0, 0},
 		(t_coords){src_x_end, rbsc.image->size.height, 0},
 		true, (t_size){1, rbsc.new_size.height}, NULL, NULL

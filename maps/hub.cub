@@ -1,5 +1,11 @@
 BACKGROUND_SPRITE assets/42lisboa/424242.bmp
 
+FRIENDLY_FIRE TRUE
+
+MAX_HEALTH 100
+1_INVENTORY m
+AMMO 100
+
 STILL_8_SPRITE assets/textures/billboards/afonsomaria/still-front.bmp
 STILL_7_SPRITE assets/textures/billboards/afonsomaria/still-front-right.bmp
 STILL_6_SPRITE assets/textures/billboards/afonsomaria/still-left.bmp
@@ -8,29 +14,29 @@ STILL_4_SPRITE assets/textures/billboards/afonsomaria/still-back.bmp
 STILL_3_SPRITE assets/textures/billboards/afonsomaria/still-back-right.bmp
 STILL_2_SPRITE assets/textures/billboards/afonsomaria/still-right.bmp
 STILL_1_SPRITE assets/textures/billboards/afonsomaria/still-front-left.bmp
-WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.bmp:assets/textures/billboards/afonsomaria/front2.bmp
-WALKING_8_SPRITE_UPDATE_DELAY 0.4
+WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.bmp:assets/textures/billboards/afonsomaria/still-front.bmp:assets/textures/billboards/afonsomaria/front2.bmp:assets/textures/billboards/afonsomaria/still-front.bmp
+WALKING_8_SPRITE_UPDATE_DELAY 0.2
 WALKING_8_SPRITE_LOOP TRUE
-WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.bmp:assets/textures/billboards/afonsomaria/front-right2.bmp
-WALKING_7_SPRITE_UPDATE_DELAY 0.4
+WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.bmp:assets/textures/billboards/afonsomaria/still-front-right.bmp:assets/textures/billboards/afonsomaria/front-right2.bmp:assets/textures/billboards/afonsomaria/still-front-right.bmp
+WALKING_7_SPRITE_UPDATE_DELAY 0.2
 WALKING_7_SPRITE_LOOP TRUE
-WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.bmp:assets/textures/billboards/afonsomaria/left2.bmp
-WALKING_6_SPRITE_UPDATE_DELAY 0.4
+WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.bmp:assets/textures/billboards/afonsomaria/still-left.bmp:assets/textures/billboards/afonsomaria/left2.bmp:assets/textures/billboards/afonsomaria/still-left.bmp
+WALKING_6_SPRITE_UPDATE_DELAY 0.2
 WALKING_6_SPRITE_LOOP TRUE
-WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.bmp:assets/textures/billboards/afonsomaria/back-left2.bmp
-WALKING_5_SPRITE_UPDATE_DELAY 0.4
+WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.bmp:assets/textures/billboards/afonsomaria/still-back-left.bmp:assets/textures/billboards/afonsomaria/back-left2.bmp:assets/textures/billboards/afonsomaria/still-back-left.bmp
+WALKING_5_SPRITE_UPDATE_DELAY 0.2
 WALKING_5_SPRITE_LOOP TRUE
-WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.bmp:assets/textures/billboards/afonsomaria/back2.bmp
-WALKING_4_SPRITE_UPDATE_DELAY 0.4
+WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.bmp:assets/textures/billboards/afonsomaria/still-back.bmp:assets/textures/billboards/afonsomaria/back2.bmp:assets/textures/billboards/afonsomaria/still-back.bmp
+WALKING_4_SPRITE_UPDATE_DELAY 0.2
 WALKING_4_SPRITE_LOOP TRUE
-WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.bmp:assets/textures/billboards/afonsomaria/back-right2.bmp
-WALKING_3_SPRITE_UPDATE_DELAY 0.4
+WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.bmp:assets/textures/billboards/afonsomaria/still-back-right.bmp:assets/textures/billboards/afonsomaria/back-right2.bmp:assets/textures/billboards/afonsomaria/still-back-right.bmp
+WALKING_3_SPRITE_UPDATE_DELAY 0.2
 WALKING_3_SPRITE_LOOP TRUE
-WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.bmp:assets/textures/billboards/afonsomaria/right2.bmp
-WALKING_2_SPRITE_UPDATE_DELAY 0.4
+WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.bmp:assets/textures/billboards/afonsomaria/still-right.bmp:assets/textures/billboards/afonsomaria/right2.bmp:assets/textures/billboards/afonsomaria/still-right.bmp
+WALKING_2_SPRITE_UPDATE_DELAY 0.2
 WALKING_2_SPRITE_LOOP TRUE
-WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.bmp:assets/textures/billboards/afonsomaria/front-left2.bmp
-WALKING_1_SPRITE_UPDATE_DELAY 0.4
+WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.bmp:assets/textures/billboards/afonsomaria/still-front-left.bmp:assets/textures/billboards/afonsomaria/front-left2.bmp:assets/textures/billboards/afonsomaria/still-front-left.bmp
+WALKING_1_SPRITE_UPDATE_DELAY 0.2
 WALKING_1_SPRITE_LOOP TRUE
 DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
 DEATH_SPRITE_UPDATE_DELAY 0.1
@@ -86,91 +92,91 @@ USING_K_3_SPRITE assets/textures/billboards/afonsomaria/sword-back-right.bmp
 USING_K_2_SPRITE assets/textures/billboards/afonsomaria/sword-right.bmp
 USING_K_1_SPRITE assets/textures/billboards/afonsomaria/sword-front-left.bmp
 
-W_STILL_8_SPRITE assets/textures/billboards/pv/still-front.bmp
-W_STILL_7_SPRITE assets/textures/billboards/pv/still-front-right.bmp
-W_STILL_6_SPRITE assets/textures/billboards/pv/still-left.bmp
-W_STILL_5_SPRITE assets/textures/billboards/pv/still-back-left.bmp
-W_STILL_4_SPRITE assets/textures/billboards/pv/still-back.bmp
-W_STILL_3_SPRITE assets/textures/billboards/pv/still-back-right.bmp
-W_STILL_2_SPRITE assets/textures/billboards/pv/still-right.bmp
-W_STILL_1_SPRITE assets/textures/billboards/pv/still-front-left.bmp
-W_WALKING_8_SPRITE assets/textures/billboards/pv/front1.bmp:assets/textures/billboards/pv/front2.bmp
-W_WALKING_8_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_8_SPRITE_LOOP TRUE
-W_WALKING_7_SPRITE assets/textures/billboards/pv/front-right1.bmp:assets/textures/billboards/pv/front-right2.bmp
-W_WALKING_7_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_7_SPRITE_LOOP TRUE
-W_WALKING_6_SPRITE assets/textures/billboards/pv/left1.bmp:assets/textures/billboards/pv/left2.bmp
-W_WALKING_6_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_6_SPRITE_LOOP TRUE
-W_WALKING_5_SPRITE assets/textures/billboards/pv/back-left1.bmp:assets/textures/billboards/pv/back-left2.bmp
-W_WALKING_5_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_5_SPRITE_LOOP TRUE
-W_WALKING_4_SPRITE assets/textures/billboards/pv/back1.bmp:assets/textures/billboards/pv/back2.bmp
-W_WALKING_4_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_4_SPRITE_LOOP TRUE
-W_WALKING_3_SPRITE assets/textures/billboards/pv/back-right1.bmp:assets/textures/billboards/pv/back-right2.bmp
-W_WALKING_3_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_3_SPRITE_LOOP TRUE
-W_WALKING_2_SPRITE assets/textures/billboards/pv/right1.bmp:assets/textures/billboards/pv/right2.bmp
-W_WALKING_2_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_2_SPRITE_LOOP TRUE
-W_WALKING_1_SPRITE assets/textures/billboards/pv/front-left1.bmp:assets/textures/billboards/pv/front-left2.bmp
-W_WALKING_1_SPRITE_UPDATE_DELAY 0.4
-W_WALKING_1_SPRITE_LOOP TRUE
-W_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
-W_DEATH_SPRITE_UPDATE_DELAY 0.1
-W_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
-W_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
-W_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
-W_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
-W_USING_P_8_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
-W_USING_P_7_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_6_SPRITE assets/textures/billboards/pv/shoot-left.bmp:assets/textures/billboards/pv/aim-left.bmp
-W_USING_P_6_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_5_SPRITE assets/textures/billboards/pv/shoot-back-left.bmp:assets/textures/billboards/pv/aim-back-left.bmp
-W_USING_P_5_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_4_SPRITE assets/textures/billboards/pv/shoot-back.bmp:assets/textures/billboards/pv/aim-back.bmp
-W_USING_P_4_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_3_SPRITE assets/textures/billboards/pv/shoot-back-right.bmp:assets/textures/billboards/pv/aim-back-right.bmp
-W_USING_P_3_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_2_SPRITE assets/textures/billboards/pv/shoot-right.bmp:assets/textures/billboards/pv/aim-right.bmp
-W_USING_P_2_SPRITE_UPDATE_DELAY 0.05
-W_USING_P_1_SPRITE assets/textures/billboards/pv/shoot-front-left.bmp:assets/textures/billboards/pv/aim-front-left.bmp
-W_USING_P_1_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
-W_USING_M_8_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_8_SPRITE_LOOP TRUE
-W_USING_M_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
-W_USING_M_7_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_7_SPRITE_LOOP TRUE
-W_USING_M_6_SPRITE assets/textures/billboards/pv/shoot-left.bmp:assets/textures/billboards/pv/aim-left.bmp
-W_USING_M_6_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_6_SPRITE_LOOP TRUE
-W_USING_M_5_SPRITE assets/textures/billboards/pv/shoot-back-left.bmp:assets/textures/billboards/pv/aim-back-left.bmp
-W_USING_M_5_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_5_SPRITE_LOOP TRUE
-W_USING_M_4_SPRITE assets/textures/billboards/pv/shoot-back.bmp:assets/textures/billboards/pv/aim-back.bmp
-W_USING_M_4_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_4_SPRITE_LOOP TRUE
-W_USING_M_3_SPRITE assets/textures/billboards/pv/shoot-back-right.bmp:assets/textures/billboards/pv/aim-back-right.bmp
-W_USING_M_3_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_3_SPRITE_LOOP TRUE
-W_USING_M_2_SPRITE assets/textures/billboards/pv/shoot-right.bmp:assets/textures/billboards/pv/aim-right.bmp
-W_USING_M_2_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_2_SPRITE_LOOP TRUE
-W_USING_M_1_SPRITE assets/textures/billboards/pv/shoot-front-left.bmp:assets/textures/billboards/pv/aim-front-left.bmp
-W_USING_M_1_SPRITE_UPDATE_DELAY 0.05
-W_USING_M_1_SPRITE_LOOP TRUE
-W_USING_K_8_SPRITE assets/textures/billboards/pv/sword-front.bmp
-W_USING_K_7_SPRITE assets/textures/billboards/pv/sword-front-right.bmp
-W_USING_K_6_SPRITE assets/textures/billboards/pv/sword-left.bmp
-W_USING_K_5_SPRITE assets/textures/billboards/pv/sword-back-left.bmp
-W_USING_K_4_SPRITE assets/textures/billboards/pv/sword-back.bmp
-W_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.bmp
-W_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.bmp
-W_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.bmp
+N_STILL_8_SPRITE assets/textures/billboards/pv/still-front.bmp
+N_STILL_7_SPRITE assets/textures/billboards/pv/still-front-right.bmp
+N_STILL_6_SPRITE assets/textures/billboards/pv/still-left.bmp
+N_STILL_5_SPRITE assets/textures/billboards/pv/still-back-left.bmp
+N_STILL_4_SPRITE assets/textures/billboards/pv/still-back.bmp
+N_STILL_3_SPRITE assets/textures/billboards/pv/still-back-right.bmp
+N_STILL_2_SPRITE assets/textures/billboards/pv/still-right.bmp
+N_STILL_1_SPRITE assets/textures/billboards/pv/still-front-left.bmp
+N_WALKING_8_SPRITE assets/textures/billboards/pv/front1.bmp:assets/textures/billboards/pv/front2.bmp
+N_WALKING_8_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_8_SPRITE_LOOP TRUE
+N_WALKING_7_SPRITE assets/textures/billboards/pv/front-right1.bmp:assets/textures/billboards/pv/front-right2.bmp
+N_WALKING_7_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_7_SPRITE_LOOP TRUE
+N_WALKING_6_SPRITE assets/textures/billboards/pv/left1.bmp:assets/textures/billboards/pv/left2.bmp
+N_WALKING_6_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_6_SPRITE_LOOP TRUE
+N_WALKING_5_SPRITE assets/textures/billboards/pv/back-left1.bmp:assets/textures/billboards/pv/back-left2.bmp
+N_WALKING_5_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_5_SPRITE_LOOP TRUE
+N_WALKING_4_SPRITE assets/textures/billboards/pv/back1.bmp:assets/textures/billboards/pv/back2.bmp
+N_WALKING_4_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_4_SPRITE_LOOP TRUE
+N_WALKING_3_SPRITE assets/textures/billboards/pv/back-right1.bmp:assets/textures/billboards/pv/back-right2.bmp
+N_WALKING_3_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_3_SPRITE_LOOP TRUE
+N_WALKING_2_SPRITE assets/textures/billboards/pv/right1.bmp:assets/textures/billboards/pv/right2.bmp
+N_WALKING_2_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_2_SPRITE_LOOP TRUE
+N_WALKING_1_SPRITE assets/textures/billboards/pv/front-left1.bmp:assets/textures/billboards/pv/front-left2.bmp
+N_WALKING_1_SPRITE_UPDATE_DELAY 0.4
+N_WALKING_1_SPRITE_LOOP TRUE
+N_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
+N_DEATH_SPRITE_UPDATE_DELAY 0.1
+N_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
+N_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
+N_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+N_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
+N_USING_P_8_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
+N_USING_P_7_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_6_SPRITE assets/textures/billboards/pv/shoot-left.bmp:assets/textures/billboards/pv/aim-left.bmp
+N_USING_P_6_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_5_SPRITE assets/textures/billboards/pv/shoot-back-left.bmp:assets/textures/billboards/pv/aim-back-left.bmp
+N_USING_P_5_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_4_SPRITE assets/textures/billboards/pv/shoot-back.bmp:assets/textures/billboards/pv/aim-back.bmp
+N_USING_P_4_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_3_SPRITE assets/textures/billboards/pv/shoot-back-right.bmp:assets/textures/billboards/pv/aim-back-right.bmp
+N_USING_P_3_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_2_SPRITE assets/textures/billboards/pv/shoot-right.bmp:assets/textures/billboards/pv/aim-right.bmp
+N_USING_P_2_SPRITE_UPDATE_DELAY 0.05
+N_USING_P_1_SPRITE assets/textures/billboards/pv/shoot-front-left.bmp:assets/textures/billboards/pv/aim-front-left.bmp
+N_USING_P_1_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
+N_USING_M_8_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_8_SPRITE_LOOP TRUE
+N_USING_M_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
+N_USING_M_7_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_7_SPRITE_LOOP TRUE
+N_USING_M_6_SPRITE assets/textures/billboards/pv/shoot-left.bmp:assets/textures/billboards/pv/aim-left.bmp
+N_USING_M_6_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_6_SPRITE_LOOP TRUE
+N_USING_M_5_SPRITE assets/textures/billboards/pv/shoot-back-left.bmp:assets/textures/billboards/pv/aim-back-left.bmp
+N_USING_M_5_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_5_SPRITE_LOOP TRUE
+N_USING_M_4_SPRITE assets/textures/billboards/pv/shoot-back.bmp:assets/textures/billboards/pv/aim-back.bmp
+N_USING_M_4_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_4_SPRITE_LOOP TRUE
+N_USING_M_3_SPRITE assets/textures/billboards/pv/shoot-back-right.bmp:assets/textures/billboards/pv/aim-back-right.bmp
+N_USING_M_3_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_3_SPRITE_LOOP TRUE
+N_USING_M_2_SPRITE assets/textures/billboards/pv/shoot-right.bmp:assets/textures/billboards/pv/aim-right.bmp
+N_USING_M_2_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_2_SPRITE_LOOP TRUE
+N_USING_M_1_SPRITE assets/textures/billboards/pv/shoot-front-left.bmp:assets/textures/billboards/pv/aim-front-left.bmp
+N_USING_M_1_SPRITE_UPDATE_DELAY 0.05
+N_USING_M_1_SPRITE_LOOP TRUE
+N_USING_K_8_SPRITE assets/textures/billboards/pv/sword-front.bmp
+N_USING_K_7_SPRITE assets/textures/billboards/pv/sword-front-right.bmp
+N_USING_K_6_SPRITE assets/textures/billboards/pv/sword-left.bmp
+N_USING_K_5_SPRITE assets/textures/billboards/pv/sword-back-left.bmp
+N_USING_K_4_SPRITE assets/textures/billboards/pv/sword-back.bmp
+N_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.bmp
+N_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.bmp
+N_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.bmp
 
 SO assets/wolf3d/textures/wood-wall.bmp
 NO assets/wolf3d/textures/wood-wall.bmp
@@ -1349,15 +1355,32 @@ l_SO assets/42lisboa/424242.bmp
 l_WE assets/42lisboa/424242.bmp
 l_EA assets/42lisboa/424242.bmp
 
+m_TYPE WEAPON
+m_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+m_DAMAGE 10
+m_AMMO_USAGE 1
+m_NAME Soldier's Weapon
+m_USE_SOUND assets/wolf3d/sounds/nazifire.mp3
+m_DESCRIPTION Weapon of the National Socialist soldier
+m_SINGLE_USE TRUE
+m_USE_DELAY 0.8
+m_SCREEN_SPRITE assets/wolf3d/textures/items/machinegun/screen/0.bmp
+m_SCREEN_USE_SPRITE assets/wolf3d/textures/items/machinegun/screen/2.bmp:assets/wolf3d/textures/items/machinegun/screen/3.bmp:assets/wolf3d/textures/items/machinegun/screen/0.bmp
+m_SCREEN_USE_SPRITE_UPDATE_DELAY 0.15
+m_ICON_SPRITE assets/wolf3d/textures/items/machinegun/icon.bmp
+
+n_TYPE BILLBOARD
+n_STILL_SPRITE assets/wolf3d/textures/billboards/table-and-chairs.bmp
+
 11i1h1g111
-1        1
+1n      n1
 l        1
 1  jjjjfjj
-1  1d    1
+1n 1d   n1
 1  a     1
-1  1     1
+1n 1     1
 1  1 c  W1
-1  1     1
-1  b     1
-1  1e    1
+1n 1  N W1
+1  b  N  1
+1n 1e   n1
 111kkkkkkk

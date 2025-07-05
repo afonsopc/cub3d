@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 23:10:00 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 16:58:07 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/05 13:14:00 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void	create_entity_e(t_game *game, t_ftm_window *window, char c,
 	entity->coords.y = position.height;
 	if (entity->billboard)
 	{
-		entity->coords.x += 0.5 - entity->size.width * 0.5;
-		entity->coords.y += 0.5 - entity->size.height * 0.5;
+		entity->coords.x += 0.5;
+		entity->coords.y += 0.5;
 	}
 	ft_list_add(&game->entities, entity, free_entity);
 	if (entity->type == ENTITY_PLAYER)
