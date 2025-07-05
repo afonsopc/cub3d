@@ -716,7 +716,7 @@ n_SO assets/wolf3d/textures/lever-down.bmp
 n_WE assets/wolf3d/textures/lever-down.bmp
 n_EA assets/wolf3d/textures/lever-down.bmp
 
-y_TYPE WALL
+y_TYPE ELEVATOR
 y_TARGETABLE TRUE
 y_MAP_PATH maps/e1m1_mega.cub
 y_NO assets/wolf3d/textures/lever-down.bmp

@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/03 21:37:28 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/05 12:57:20 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define PLAYER_WIDTH 0.23
 # define PLAYER_HEIGHT 0.23
 # define PLAYER_MAX 4
+# define PLAYER_DEAD_RESET_DELAY 2000
 
 // Billboard Config
 # define BILLBOARD_WIDTH 0.23
@@ -312,6 +313,7 @@ struct s_character
 	char		last_used_item_identifier;
 	int			ammo;
 	int			score;
+	t_time		died_at;
 	bool		was_already_dead;
 	bool		dead;
 };

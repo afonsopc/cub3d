@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:31:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/02 23:51:03 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/05 12:36:13 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	billions_must_die(t_game *game, t_character *character)
 		return ;
 	character->billboard.entity.hard = !character->dead;
 	character->billboard.entity.targetable = !character->dead;
+	character->died_at = ft_get_time();
 }
 
 void	character_frame(t_game *game, t_entity *entity, double delta_time)

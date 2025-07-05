@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:50:38 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/27 21:23:16 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/05 12:57:42 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	do_has_heard(t_game *game, t_character *character, t_player *player)
 
 void	hearment(t_game *game, t_character *character)
 {
-	t_player	*player;
+	t_character	*tcharacter;
+	t_character	*curr_char;
 	t_item		*item;
 	double		dist;
 	int			i;
@@ -82,18 +83,26 @@ void	hearment(t_game *game, t_character *character)
 	i = -1;
 	while (game->billboards[++i])
 	{
-		if (!game->billboards[i]
-			|| game->billboards[i]->type != ENTITY_PLAYER)
+		if (!game->billboards[i] || !game->billboards[i]->character)
 			continue ;
-		player = (t_player *)game->billboards[i];
-		item = player->character.inventory[player->character.inventory_index];
+		curr_char = (t_character *)game->billboards[i];
+		tcharacter = curr_char;
+		if (game->billboards[i]->type != ENTITY_PLAYER)
+		{
+			if (curr_char->target_entity
+				&& curr_char->target_entity->type == ENTITY_PLAYER)
+				return (do_has_heard(game, character,
+					(t_player *)curr_char->target_entity));
+			continue ;
+		}
+		item = tcharacter->inventory[tcharacter->inventory_index];
 		dist = ft_distance(character->billboard.entity.coords,
 				game->billboards[i]->coords);
 		if (!(game->billboards[i]->controller.sprinting
 				&& dist < SPRINT_HEARING_RANGE)
 			&& !(item && item->user && dist < SHOT_HEARING_RANGE))
 			continue ;
-		do_has_heard(game, character, player);
+		do_has_heard(game, character, (t_player *)tcharacter);
 		return ;
 	}
 }
