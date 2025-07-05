@@ -6,7 +6,7 @@
 #    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/07/03 21:59:01 by afpachec         ###   ########.fr        #
+#    Updated: 2025/07/05 11:34:38 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1 
 LDLIBS += --preload-file maps --preload-file assets/42lisboa --shell-file minimal.html
 LDLIBS += --preload-file assets/fonts --preload-file assets/sounds
 LDLIBS += --preload-file assets/textures --preload-file assets/wolf3d
+LDLIBS += --preload-file assets/pt/textures/dommiguelilow.bmp --preload-file assets/pt/textures/portugal.bmp
 LDLIBS += -s INITIAL_MEMORY=268435456 -s STACK_SIZE=2MB
 LDLIBS += -s ENVIRONMENT='web,worker'
 LDLIBS += -s EXPORT_ES6=1 -s MODULARIZE=1

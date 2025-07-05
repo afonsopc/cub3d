@@ -1,7 +1,7 @@
-BACKGROUND_SOUND assets/wolf3d/sounds/xfunkie.mp3
+BACKGROUND_SOUND assets/wolf3d/sounds/wonderin.mp3
 BACKGROUND_SOUND_VOLUME 0.7
 BACKGROUND_SOUND_LOOP TRUE
-BACKGROUND_SPRITE assets/wolf3d/textures/wood-wall-dark.bmp
+BACKGROUND_SPRITE assets/42lisboa/424242.bmp
 
 COLLISION_SOUND assets/wolf3d/sounds/hitwall.mp3
 COLLISION_SOUND_VOLUME 0.1
@@ -23,29 +23,29 @@ STILL_4_SPRITE assets/textures/billboards/afonsomaria/still-back.bmp
 STILL_3_SPRITE assets/textures/billboards/afonsomaria/still-back-right.bmp
 STILL_2_SPRITE assets/textures/billboards/afonsomaria/still-right.bmp
 STILL_1_SPRITE assets/textures/billboards/afonsomaria/still-front-left.bmp
-WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.bmp:assets/textures/billboards/afonsomaria/front2.bmp
-WALKING_8_SPRITE_UPDATE_DELAY 0.4
+WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.bmp:assets/textures/billboards/afonsomaria/still-front.bmp:assets/textures/billboards/afonsomaria/front2.bmp:assets/textures/billboards/afonsomaria/still-front.bmp
+WALKING_8_SPRITE_UPDATE_DELAY 0.2
 WALKING_8_SPRITE_LOOP TRUE
-WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.bmp:assets/textures/billboards/afonsomaria/front-right2.bmp
-WALKING_7_SPRITE_UPDATE_DELAY 0.4
+WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.bmp:assets/textures/billboards/afonsomaria/still-front-right.bmp:assets/textures/billboards/afonsomaria/front-right2.bmp:assets/textures/billboards/afonsomaria/still-front-right.bmp
+WALKING_7_SPRITE_UPDATE_DELAY 0.2
 WALKING_7_SPRITE_LOOP TRUE
-WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.bmp:assets/textures/billboards/afonsomaria/left2.bmp
-WALKING_6_SPRITE_UPDATE_DELAY 0.4
+WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.bmp:assets/textures/billboards/afonsomaria/still-left.bmp:assets/textures/billboards/afonsomaria/left2.bmp:assets/textures/billboards/afonsomaria/still-left.bmp
+WALKING_6_SPRITE_UPDATE_DELAY 0.2
 WALKING_6_SPRITE_LOOP TRUE
-WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.bmp:assets/textures/billboards/afonsomaria/back-left2.bmp
-WALKING_5_SPRITE_UPDATE_DELAY 0.4
+WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.bmp:assets/textures/billboards/afonsomaria/still-back-left.bmp:assets/textures/billboards/afonsomaria/back-left2.bmp:assets/textures/billboards/afonsomaria/still-back-left.bmp
+WALKING_5_SPRITE_UPDATE_DELAY 0.2
 WALKING_5_SPRITE_LOOP TRUE
-WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.bmp:assets/textures/billboards/afonsomaria/back2.bmp
-WALKING_4_SPRITE_UPDATE_DELAY 0.4
+WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.bmp:assets/textures/billboards/afonsomaria/still-back.bmp:assets/textures/billboards/afonsomaria/back2.bmp:assets/textures/billboards/afonsomaria/still-back.bmp
+WALKING_4_SPRITE_UPDATE_DELAY 0.2
 WALKING_4_SPRITE_LOOP TRUE
-WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.bmp:assets/textures/billboards/afonsomaria/back-right2.bmp
-WALKING_3_SPRITE_UPDATE_DELAY 0.4
+WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.bmp:assets/textures/billboards/afonsomaria/still-back-right.bmp:assets/textures/billboards/afonsomaria/back-right2.bmp:assets/textures/billboards/afonsomaria/still-back-right.bmp
+WALKING_3_SPRITE_UPDATE_DELAY 0.2
 WALKING_3_SPRITE_LOOP TRUE
-WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.bmp:assets/textures/billboards/afonsomaria/right2.bmp
-WALKING_2_SPRITE_UPDATE_DELAY 0.4
+WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.bmp:assets/textures/billboards/afonsomaria/still-right.bmp:assets/textures/billboards/afonsomaria/right2.bmp:assets/textures/billboards/afonsomaria/still-right.bmp
+WALKING_2_SPRITE_UPDATE_DELAY 0.2
 WALKING_2_SPRITE_LOOP TRUE
-WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.bmp:assets/textures/billboards/afonsomaria/front-left2.bmp
-WALKING_1_SPRITE_UPDATE_DELAY 0.4
+WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.bmp:assets/textures/billboards/afonsomaria/still-front-left.bmp:assets/textures/billboards/afonsomaria/front-left2.bmp:assets/textures/billboards/afonsomaria/still-front-left.bmp
+WALKING_1_SPRITE_UPDATE_DELAY 0.2
 WALKING_1_SPRITE_LOOP TRUE
 DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
 DEATH_SPRITE_UPDATE_DELAY 0.1
@@ -275,8 +275,8 @@ e_DROP_ITEMS TRUE
 
 d_TYPE CHARACTER
 d_MAX_HEALTH 1
+d_HARD TRUE
 d_SCORE 10
-d_HARD FALSE
 d_TARGETABLE TRUE
 d_STILL_8_SPRITE assets/wolf3d/textures/billboards/dog/front1.bmp
 d_STILL_7_SPRITE assets/wolf3d/textures/billboards/dog/front-right1.bmp
@@ -323,67 +323,58 @@ d_USING_C_1_SPRITE_UPDATE_DELAY 0.5
 d_USING_C_1_SPRITE_LOOP TRUE
 
 ._TYPE BILLBOARD
-._STILL_SPRITE assets/wolf3d/textures/billboards/blue-plant.bmp
+._STILL_SPRITE assets/42lisboa/pc-table-1.bmp
 
 ,_TYPE BILLBOARD
 ,_HARD FALSE
-,_STILL_SPRITE assets/wolf3d/textures/billboards/ceiling-light.bmp
+,_STILL_SPRITE assets/42lisboa/bookshelf.bmp
 
 /_TYPE BILLBOARD
 /_HARD FALSE
-/_STILL_SPRITE assets/wolf3d/textures/billboards/chandelier.bmp
+/_STILL_SPRITE assets/42lisboa/lounge-yellow-sofa-front.bmp
 
 =_TYPE BILLBOARD
-=_STILL_SPRITE assets/wolf3d/textures/billboards/brown-pot.bmp
+=_STILL_SPRITE assets/42lisboa/kitchen-table.bmp
 
 '_TYPE BILLBOARD
 '_TARGETABLE TRUE
-'_STILL_SPRITE assets/wolf3d/textures/billboards/barrel.bmp
+'_STILL_SPRITE assets/42lisboa/vending-machine-front.bmp
 
 ?_TYPE BILLBOARD
-?_STILL_SPRITE assets/wolf3d/textures/billboards/well.bmp
+?_STILL_SPRITE assets/42lisboa/tumo-table.bmp
 
 +_TYPE BILLBOARD
-+_STILL_SPRITE assets/wolf3d/textures/billboards/well-water.bmp
++_STILL_SPRITE assets/42lisboa/lounge-blue-sofa-front.bmp
 
 -_TYPE BILLBOARD
--_STILL_SPRITE assets/wolf3d/textures/billboards/table.bmp
+-_STILL_SPRITE assets/42lisboa/cluster-pcs-front.bmp
 
 |_TYPE BILLBOARD
-|_STILL_SPRITE assets/wolf3d/textures/billboards/bones.bmp
+|_STILL_SPRITE assets/42lisboa/piscine-guard-front.bmp
 
 "_TYPE BILLBOARD
-"_STILL_SPRITE assets/wolf3d/textures/billboards/skeleton-ground.bmp
+"_STILL_SPRITE assets/42lisboa/white-board-front.bmp
 
 \_TYPE BILLBOARD
-\_STILL_SPRITE assets/wolf3d/textures/billboards/armour.bmp
+\_STILL_SPRITE assets/42lisboa/bookshelf.bmp
 
 ~_TYPE BILLBOARD
-~_STILL_SPRITE assets/wolf3d/textures/billboards/table-and-chairs.bmp
+~_STILL_SPRITE assets/42lisboa/cluster-pcs-front.bmp
 
 !_TYPE BILLBOARD
-!_STILL_SPRITE assets/wolf3d/textures/billboards/blue-pot.bmp
+!_STILL_SPRITE assets/42lisboa/lounge-yellow-sofa-front.bmp
 
 @_TYPE BILLBOARD
-@_STILL_SPRITE assets/wolf3d/textures/billboards/lamp.bmp
+@_STILL_SPRITE assets/42lisboa/pc-table-1.bmp
 
 #_TYPE BILLBOARD
-#_STILL_SPRITE assets/wolf3d/textures/billboards/nazi-flag.bmp
+#_STILL_SPRITE assets/42lisboa/vending-machine-front.bmp
 
 $_TYPE BILLBOARD
-$_STILL_SPRITE assets/wolf3d/textures/billboards/gold-plant.bmp
+$_STILL_SPRITE assets/42lisboa/kitchen-table.bmp
 
 %_TYPE BILLBOARD
-%_STILL_SPRITE assets/wolf3d/textures/billboards/green-barrel.bmp
-
-^_TYPE BILLBOARD
-^_STILL_SPRITE assets/wolf3d/textures/billboards/pillar.bmp
-
-&_TYPE BILLBOARD
-&_STILL_SPRITE assets/wolf3d/textures/billboards/skeleton-hang.bmp
-
-<_TYPE BILLBOARD
-<_STILL_SPRITE assets/wolf3d/textures/billboards/dog-food.bmp
+%_STILL_SPRITE assets/42lisboa/tumo-table.bmp
 
 U_TYPE COLLECTIBLE
 U_HEALTH 10
@@ -585,53 +576,39 @@ M_ICON_SPRITE assets/wolf3d/textures/items/machinegun/icon.bmp
 v_TYPE DOOR
 v_TARGETABLE TRUE
 v_AUTO_CLOSE_DELAY 8000.0
-v_ANIMATION_DELAY 1
-v_DOOR_SPRITE assets/wolf3d/textures/door.bmp
-v_SIDES_SPRITE assets/wolf3d/textures/door-frame.bmp
+v_ANIMATION_DELAY 1.3
+v_DOOR_SPRITE assets/42lisboa/cluster2-door.bmp
 v_DIRECTION WEST
-v_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
+v_OPEN_SOUND assets/42lisboa/cluster2-door-open.mp3
 v_OPEN_SOUND_VOLUME 0.8
-v_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
+v_CLOSE_SOUND assets/42lisboa/cluster2-door-close.mp3
 v_CLOSE_SOUND_VOLUME 0.8
 
 h_TYPE DOOR
 h_TARGETABLE TRUE
 h_AUTO_CLOSE_DELAY 8000.0
-h_ANIMATION_DELAY 1
-h_DOOR_SPRITE assets/wolf3d/textures/door.bmp
-h_SIDES_SPRITE assets/wolf3d/textures/door-frame.bmp
+h_ANIMATION_DELAY 1.3
+h_DOOR_SPRITE assets/42lisboa/cluster2-door.bmp
 h_DIRECTION NORTH
-h_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
+h_OPEN_SOUND assets/42lisboa/cluster2-door-open.mp3
 h_OPEN_SOUND_VOLUME 0.8
-h_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
+h_CLOSE_SOUND assets/42lisboa/cluster2-door-close.mp3
 h_CLOSE_SOUND_VOLUME 0.8
 
 s_TYPE DOOR
 s_TARGETABLE TRUE
 s_ANIMATION_DELAY 2.3
 s_CLOSEABLE FALSE
-s_DOOR_SPRITE assets/wolf3d/textures/wood-wall-eagle-dark.bmp
-s_SIDES_SPRITE assets/wolf3d/textures/wood-wall.bmp
+s_DOOR_SPRITE assets/42lisboa/cluster2-wall.bmp
 s_DIRECTION WEST
 s_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
 s_OPEN_SOUND_VOLUME 0.8
-
-T_TYPE DOOR
-T_TARGETABLE TRUE
-T_ANIMATION_DELAY 2.3
-T_CLOSEABLE FALSE
-T_DOOR_SPRITE assets/wolf3d/textures/wood-wall-eagle.bmp
-T_SIDES_SPRITE assets/wolf3d/textures/wood-wall.bmp
-T_DIRECTION NORTH
-T_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
-T_OPEN_SOUND_VOLUME 0.8
 
 t_TYPE DOOR
 t_TARGETABLE TRUE
 t_ANIMATION_DELAY 2.3
 t_CLOSEABLE FALSE
-t_DOOR_SPRITE assets/wolf3d/textures/grey-wall-hitler.bmp
-t_SIDES_SPRITE assets/wolf3d/textures/grey-wall0.bmp
+t_DOOR_SPRITE assets/42lisboa/cluster2-wall.bmp
 t_DIRECTION NORTH
 t_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
 t_OPEN_SOUND_VOLUME 0.8
@@ -639,20 +616,18 @@ t_OPEN_SOUND_VOLUME 0.8
 u_TYPE DOOR
 u_TARGETABLE TRUE
 u_ANIMATION_DELAY 1
-u_DOOR_SPRITE assets/wolf3d/textures/electric-door-button-dark.bmp
-u_SIDES_SPRITE assets/wolf3d/textures/door-frame.bmp
+u_DOOR_SPRITE assets/42lisboa/cluster2-door.bmp
 u_DIRECTION WEST
-u_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
+u_OPEN_SOUND assets/42lisboa/cluster2-door-open.mp3
 u_OPEN_SOUND_VOLUME 0.8
-u_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
+u_CLOSE_SOUND assets/42lisboa/cluster2-door-close.mp3
 u_CLOSE_SOUND_VOLUME 0.8
 
 w_TYPE DOOR
 w_TARGETABLE TRUE
 w_ANIMATION_DELAY 2.3
 w_CLOSEABLE FALSE
-w_DOOR_SPRITE assets/wolf3d/textures/grey-wall0.bmp
-w_SIDES_SPRITE assets/wolf3d/textures/grey-wall0-dark.bmp
+w_DOOR_SPRITE assets/42lisboa/cluster2-wall.bmp
 w_DIRECTION NORTH
 w_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
 w_OPEN_SOUND_VOLUME 0.8
@@ -661,150 +636,144 @@ x_TYPE DOOR
 x_TARGETABLE TRUE
 x_ANIMATION_DELAY 2.3
 x_CLOSEABLE FALSE
-x_DOOR_SPRITE assets/wolf3d/textures/grey-wall0-dark.bmp
-x_SIDES_SPRITE assets/wolf3d/textures/grey-wall0.bmp
+x_DOOR_SPRITE assets/42lisboa/cluster2-wall.bmp
 x_DIRECTION WEST
 x_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
 x_OPEN_SOUND_VOLUME 0.8
 
 a_TYPE WALL
-a_NO assets/wolf3d/textures/blue-wall1.bmp
-a_SO assets/wolf3d/textures/blue-wall0.bmp
-a_WE assets/wolf3d/textures/blue-wall1-dark.bmp
-a_EA assets/wolf3d/textures/blue-wall0-dark.bmp
+a_NO assets/42lisboa/cluster2-wall.bmp
+a_SO assets/42lisboa/cluster2-left.bmp
+a_EA assets/42lisboa/cluster2-wall.bmp
+a_WE assets/42lisboa/cluster2-wall.bmp
 
 b_TYPE WALL
-b_NO assets/wolf3d/textures/blue-wall-cage.bmp
-b_SO assets/wolf3d/textures/blue-wall-cage.bmp
-b_WE assets/wolf3d/textures/blue-wall-cage-dark.bmp
-b_EA assets/wolf3d/textures/blue-wall-cage-dark.bmp
+b_NO assets/42lisboa/cluster2-wall.bmp
+b_SO assets/42lisboa/cluster2-right.bmp
+b_EA assets/42lisboa/cluster2-wall.bmp
+b_WE assets/42lisboa/cluster2-wall.bmp
 
 c_TYPE WALL
-c_NO assets/wolf3d/textures/blue-wall-cage-skull.bmp
-c_SO assets/wolf3d/textures/blue-wall-cage-skull.bmp
-c_WE assets/wolf3d/textures/blue-wall-cage-skull.bmp
-c_EA assets/wolf3d/textures/blue-wall-cage-skull.bmp
+c_NO assets/42lisboa/cluster2-wall.bmp
+c_SO assets/42lisboa/cluster2-wall.bmp
+c_EA assets/42lisboa/cluster2-wall.bmp
+c_WE assets/42lisboa/cluster2-wall.bmp
 
 f_TYPE WALL
-f_NO assets/wolf3d/textures/grey-wall1.bmp
-f_SO assets/wolf3d/textures/grey-wall0.bmp
-f_WE assets/wolf3d/textures/grey-wall1-dark.bmp
-f_EA assets/wolf3d/textures/grey-wall0-dark.bmp
+f_NO assets/42lisboa/cluster1-wall.bmp
+f_SO assets/42lisboa/cluster1-wall.bmp
+f_WE assets/42lisboa/cluster1-wall.bmp
+f_EA assets/42lisboa/cluster1-wall.bmp
 
 g_TYPE WALL
-g_NO assets/wolf3d/textures/eagle-arch.bmp
-g_SO assets/wolf3d/textures/eagle-arch.bmp
-g_WE assets/wolf3d/textures/eagle-arch-dark.bmp
-g_EA assets/wolf3d/textures/eagle-arch-dark.bmp
+g_NO assets/42lisboa/window.bmp
+g_SO assets/42lisboa/window.bmp
+g_WE assets/42lisboa/window.bmp
+g_EA assets/42lisboa/window.bmp
 
 k_TYPE WALL
-k_NO assets/wolf3d/textures/grey-wall-hitler.bmp
-k_SO assets/wolf3d/textures/grey-wall-hitler.bmp
-k_WE assets/wolf3d/textures/grey-wall-hitler-dark.bmp
-k_EA assets/wolf3d/textures/grey-wall-hitler-dark.bmp
+k_NO assets/42lisboa/cluster1-left.bmp
+k_SO assets/42lisboa/cluster2-wall.bmp
+k_EA assets/42lisboa/cluster2-wall-electric.bmp
+k_WE assets/42lisboa/cluster2-wall.bmp
 
 i_TYPE WALL
-i_NO assets/wolf3d/textures/grey-wall-nazi.bmp
-i_SO assets/wolf3d/textures/grey-wall-nazi.bmp
-i_WE assets/wolf3d/textures/grey-wall-nazi-dark.bmp
-i_EA assets/wolf3d/textures/grey-wall-nazi-dark.bmp
+i_NO assets/42lisboa/cluster1-world-left.bmp
+i_SO assets/42lisboa/cluster2-wall.bmp
+i_EA assets/42lisboa/cluster2-wall.bmp
+i_WE assets/42lisboa/cluster2-wall.bmp
 
 j_TYPE WALL
-j_NO assets/wolf3d/textures/wood-wall.bmp
-j_SO assets/wolf3d/textures/wood-wall.bmp
-j_WE assets/wolf3d/textures/wood-wall-dark.bmp
-j_EA assets/wolf3d/textures/wood-wall-dark.bmp
+j_NO assets/42lisboa/cluster2-wall.bmp
+j_SO assets/42lisboa/cluster2-wall.bmp
+j_WE assets/42lisboa/cluster2-wall.bmp
+j_EA assets/42lisboa/cluster2-wall.bmp
 
 l_TYPE WALL
-l_NO assets/wolf3d/textures/wood-wall-eagle.bmp
-l_SO assets/wolf3d/textures/wood-wall-eagle.bmp
-l_WE assets/wolf3d/textures/wood-wall-eagle-dark.bmp
-l_EA assets/wolf3d/textures/wood-wall-eagle-dark.bmp
+l_NO assets/42lisboa/cluster1-right.bmp
+l_SO assets/42lisboa/cluster2-wall.bmp
+l_EA assets/42lisboa/cluster2-wall.bmp
+l_WE assets/42lisboa/cluster2-wall.bmp
 
 m_TYPE WALL
-m_NO assets/wolf3d/textures/wood-wall-hitler.bmp
-m_SO assets/wolf3d/textures/wood-wall-hitler.bmp
-m_WE assets/wolf3d/textures/wood-wall-hitler-dark.bmp
-m_EA assets/wolf3d/textures/wood-wall-hitler-dark.bmp
+m_NO assets/42lisboa/cluster2-wall.bmp
+m_SO assets/42lisboa/cluster2-lockers.bmp
+m_EA assets/42lisboa/cluster2-wall.bmp
+m_WE assets/42lisboa/cluster2-wall.bmp
 
 n_TYPE ELEVATOR
 n_TARGETABLE TRUE
-n_MAP_PATH maps/hub.cub
-n_NO assets/wolf3d/textures/lever-down.bmp
-n_SO assets/wolf3d/textures/lever-down.bmp
-n_WE assets/wolf3d/textures/lever-down.bmp
-n_EA assets/wolf3d/textures/lever-down.bmp
+n_MAP_PATH maps/e1m2.cub
+n_NO assets/42lisboa/cluster1-wall.bmp
+n_SO assets/42lisboa/cluster1-wall.bmp
+n_WE assets/42lisboa/cluster1-wall.bmp
+n_EA assets/42lisboa/cluster1-wall.bmp
 
-p_TYPE WALL
-p_SO assets/wolf3d/textures/electric-door.bmp
-p_NO assets/wolf3d/textures/electric-door.bmp
-p_WE assets/wolf3d/textures/electric-door.bmp
-p_EA assets/wolf3d/textures/electric-door.bmp
+y_TYPE WALL
+y_TARGETABLE TRUE
+y_MAP_PATH maps/e1m1_mega.cub
+y_NO assets/42lisboa/masonry-room-2.bmp
+y_SO assets/42lisboa/masonry-room.bmp
+y_WE assets/42lisboa/cluster2-wall.bmp
+y_EA assets/42lisboa/cluster2-wall.bmp
 
-F 100, 100, 100
-C 50, 50, 50
+F 50,50,50
+C 140,140,140
 
-              jjmjjljjmjjljjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-              j!        *(!jjjjjjjjjjjjjjjjjjjjjj )  ))))) e;  j
-              l   e   e   *j                   ej -   )))    - j
-              j         e~)m ,   ,   ,   ,   ,  v            ) j
-              j   e   e   )j                   ej    - ** -    j
-              j!      e  (!j   jjjjjjjjjjjjjjjjjj  /        /  j
-              jjhjjljjmjjljj   jjjljjmjjljjmjjljj    -    -    j
-              j                                 j           e* j
-              j ,   ,    ,   ,   ,   ,   ,   ,  j - e* (     - j
-              j                                 j     ((( } ; )j
-              jjmjjjmjmjjljjmjjljjmjjljjmjj     mjjjjjjjjjjjjjjj
-              j;:; j$   e         j ( **  j     j?jjjjj j     jj
-              jjj] s   ,   ,   ,  j(@   @*j  ,  j , ;e,}j    :jj
-ffffiffffiffffj;:; j$      e    e l(( - * m     l ~   ~ j   %:jj
-fff : 2:: ;ffffjjljjmjjljjmjj     j)      j     j       j  %%%jj
-ff@;:    : @fff             j  ,  j e    )j e   j ,   , j   % jj
-f e      e   ff             l     m   -   l  ,  m ~   ~ j d   jj
-f            ff             j     j @   @ j     j       j     jj
-i         e  if             j     j e     j     j     e j     jj
-f            ff             mjjhjjjjljhjmjjjjhjjjjjjhjjjjjjhjjjj
-ffe        efff             j               . .                j
-fffkfhffhfkffff             j ,  ,  ,  ,  ,  , e,  ,  ,  ,  ,  j
-f   .    .   ff             j                        e         j
-f      d     ffjjjljjjjjjjjmjjjjjljjmjjljjmjjljjjjjljjmjjljj   j
-f d            j  e           j                 j      e       j
-i              v         e    v  ,     ,     ,  v  ,  ,  ,  ,  j
-f  ,      ,    j              j                 j $ $      $ $ j
-f     ff     ffjjjljjjjjjjjmjjjjjmjjjj   jTjjmjjjjjhjjjjjjjjhjjj
-f     ff     ffffffffffffffffffffffffj   j  jmjjlj   jjjjjj   jj
-i  ,  if d,                      faaaaahaj ;j   $    e $      .j
-f     ff                       , fa2 a e aj;l;$ )              m
-f     ff                    e    fa; a   aj;je   )          !**j
-f     ff     ffffffffffffffffffhffaaaa   aajm) )              *l
-i  ,  if  ,d f     e  fffffff]   fa;e  , \aaj$   $   e       $ j
-f     ff     v    e   fffgfff   :faaaa   aaal  e          e .  m
-f     ff     f  d     ffe-;ff'e::ffffa   ajjj !))         )    j
-f     ffffffffffffffffff ,;ffffffffffa   ajjjmjjljjmjjljjmjjljjj
-f  ,  f     ffffffffffff   ffffffffffaahaaffffffffffffffffffffff
-f     f  )  ff         ffhff &  &   ff   ff''d ))           ''ff
-f        e) ff &       f   f      " ff   ff'  )    '    :    :ff
-f        ,~eff         v   v      e%ff   ff:             :   )+f
-f  ,e       ff  e,     f , f    ,   ff , ff        }~~       ~ff
-f   d f   e ff     e   v   v       "ff   ff:      d         ):?f
-f     f     ff &e   &  f   f       e?f   fffffffhffffffffhffffff
-fffffhffffffff        ff   ff       ~f   ff % %  %  %%  %  % % f
-fff     fffffffffifffff.   .fffffkffff , ff                    f
-fff^    ff   f                       f   ff e               e  f
-fff  e  ff , v   ,   ,   ,   ,   ,d  v   gf                    f
-n u e,  ff   f                       f   ff -                - f
-fff     ff   ffffif             fkffff , ff        ::         ef
-fff^    ff       faaaaaaahaaaaaaa;;  f   ffffhffffffffffffffhfff
-fff   e ff    e ,fa|:  a   a    a;;  f   ff                    f
-ffffffffffffffffhfa    v , v "  a;   f   ff)-          -  -  - f
-aaaaaaaaaaaaaaa   a    a   a    a    i , if            e       f
-a?aaaa d  a ==a   aaaaaa   aaaaaa    f   fk @      /         @ i
-a= d~a   =a  =a , a    a   a    a    f   ff  e               e)f
-a    aaahaaahaa   a    v   v   |a    f   ff;-          -  -  -;f
-a             a   a"   a , a    a)(  f , ffe           e       f
-a             v   aaaaaa   aaaaaa*)( f   ffff   ff   ffgf   fgff
-a             a , a|   a   a    a**) f   ffkffhffffhffffffhfffff
-a    aaahaaahaa   a    v , v    afff f       . .  . .ff%     ?ff
-a d  a <  a   a N a    a   a   |aaf  v ,   ,   ,   , ff      fff
-a    a d  a d aapaaaaaaa   aaaaaaaffff               ff% e   ?ff
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffkffffffffffffffffffff
+                             jjjljjjjjljjj
+     ffffff                  j!         !j
+     f2;((f      fffffffiffffl  ~  ~  ~  ljjjj
+     f;;*(ff     f           j           j(()j
+     f;;** f     f ,    ,    v  e  /     v e(l
+     f;;*  f     f           j           j)))j
+     ffgfftffgff f   fffiffffm         e mjjjj
+     f ()$ $) ef f   f       j           j
+     i @   ( @ iff   fff     jjjljjhjjljjj
+     f  e      f   e   f         j e j
+     f#   ~ e  v   ,  ef         j   j
+     f  e      f       f         m , m
+fffffi*@     @ ifffgffff         j   j
+f }'ff**      ef                 j   j
+f , fffgffhffgff            jjjjjj   jjj
+f   f   f   f               j; se  ,  \j
+ffhff   i , i               j  jjj   jjj
+f   fffff   f               j;}j j   j
+f , f  :f   f               j]}j j   j
+f     ,;i , i               jjjj l , l
+f   f  )f e f                    j   j
+f   ffffffhfffff                fjlhljf               aaaaaaaaaa
+i , ife        f           ffffif.   .fiffff          a:    '''a
+f   ff .     . i           f.             .f          a     e 'a
+f   ff  ,   ,  f           g               gaaaaaaaaaaa        a
+f    f         f           f                a         a        a
+f    v         i           f e/    /    /   v  d      v        b
+f    f         f           f                a         a        a
+f   ff  ,   ,  f           g            e  gaaa    aaaa  -: -e a
+f   ff .     . i           f.             .f  aa  a   a        a
+f   ff      e  f           ffkfff     ffkfff   a  a   a      : a
+k , kfffffhfffff                faahaaf        a  aaaaaaa+aa?aaa
+f   f   f   f                    a   a         a  a     aaaaaa
+f   fffff   f                    a , a         a  a
+f   f  %f   f                    a   a         a  a aaaaaaaaa
+f    e, i , i                    a   a         a  aaa a a a aa
+f   f:  f   f                    a   a         a  ea      d  a
+f , fffff   f                    a , a         a   v   d     b
+f   fffff   fffffffffgfffff      a e a         a e a d    d =a
+f               f      eiff      a   a         aaaaaa a a a aa
+f     ,      ,  v    e  u n      a   a             aaaaaaaaaa
+f               f      eiff      a , a
+ffffffffffkffffffwfffgfffff      a   a
+        ffi  f  x }f        aaaaaaahaaaaaaa
+        y u  f  f ff        a|:  a   a    a
+        ffi     fff         a    v , v "  a
+          ffwffff           a E  a   a W  a
+           f  f             a    a   a    a
+           ff*f             aaaaaa   aaaaaa
+            fff             a    a   a    a
+                            a  E v , v :W|a
+                            a    a   a    a
+                            aaaaaa   aaaaaa
+                            a             a
+                            a  ,   ,   ,e;a
+                            ae     :      a
+                            abaabaacaabaaba

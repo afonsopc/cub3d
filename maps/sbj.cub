@@ -6,7 +6,7 @@ F 220,100,0
 C 225,30,0
 a_TYPE WALL
 a_NO assets/pt/textures/portugal.bmp
-a_SO assets/pt/textures/dommigueli.bmp
+a_SO assets/pt/textures/dommiguelilow.bmp
 a_WE assets/pt/textures/portugal.bmp
 a_EA assets/pt/textures/portugal.bmp
 BACKGROUND_SOUND assets/sounds/areyoumad.mp3

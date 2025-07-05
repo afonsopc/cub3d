@@ -716,6 +716,14 @@ n_SO assets/wolf3d/textures/lever-down.bmp
 n_WE assets/wolf3d/textures/lever-down.bmp
 n_EA assets/wolf3d/textures/lever-down.bmp
 
+y_TYPE WALL
+y_TARGETABLE TRUE
+y_MAP_PATH maps/e1m1_mega.cub
+y_NO assets/wolf3d/textures/lever-down.bmp
+y_SO assets/wolf3d/textures/lever-down.bmp
+y_WE assets/wolf3d/textures/lever-down.bmp
+y_EA assets/wolf3d/textures/lever-down.bmp
+
 F 100, 100, 100
 C 50, 50, 50
 
@@ -763,7 +771,7 @@ f     ,      ,  v    e  u n      a   a             aaaaaaaaaa
 f               f      eiff      a , a
 ffffffffffkffffffwfffgfffff      a   a
         ffi  f  x }f        aaaaaaahaaaaaaa
-        n u  f  f ff        a|:  a   a    a
+        y u  f  f ff        a|:  a   a    a
         ffi     fff         a    v , v "  a
           ffwffff           a E  a   a W  a
            f  f             a    a   a    a

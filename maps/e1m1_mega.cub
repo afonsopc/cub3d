@@ -1,4 +1,4 @@
-BACKGROUND_SOUND assets/wolf3d/sounds/getthem.mp3
+BACKGROUND_SOUND assets/wolf3d/sounds/copypro.mp3
 BACKGROUND_SOUND_VOLUME 0.7
 BACKGROUND_SOUND_LOOP TRUE
 BACKGROUND_SPRITE assets/wolf3d/textures/wood-wall-dark.bmp
@@ -710,7 +710,7 @@ m_EA assets/wolf3d/textures/wood-wall-hitler-dark.bmp
 
 n_TYPE ELEVATOR
 n_TARGETABLE TRUE
-n_MAP_PATH maps/e1m2.cub
+n_MAP_PATH maps/hub.cub
 n_NO assets/wolf3d/textures/lever-down.bmp
 n_SO assets/wolf3d/textures/lever-down.bmp
 n_WE assets/wolf3d/textures/lever-down.bmp
@@ -720,47 +720,47 @@ F 100, 100, 100
 C 50, 50, 50
 
                              jjjljjjjjljjj
-     ffffff                  j!         !j
-     f2;((f      fffffffiffffl  ~  ~  ~  ljjjj
-     f;;*(ff     f           j           j(()j
-     f;;** f     f ,    ,    v  e  /     v e(l
-     f;;*  f     f           j           j)))j
-     ffgfftffgff f   fffiffffm         e mjjjj
-     f ()$ $) ef f   f       j           j
-     i @   ( @ iff   fff     jjjljjhjjljjj
-     f  e      f   e   f         j e j
-     f#   ~ e  v   ,  ef         j   j
-     f  e      f       f         m , m
-fffffi*@     @ ifffgffff         j   j
-f }'ff**      ef                 j   j
-f , fffgffhffgff            jjjjjj   jjj
-f   f   f   f               j; se  ,  \j
+     ffffff                  j!  d  d   !j
+     f2;((f      fffffffiffffl  ~  ~  ~d ljjjj
+     f;;*(ff     f e  e  e   j   e  e    j(()j
+     f;;** f     f , d  , d  v  e  /   d vde(l
+     f;;*  f     f  e  e   e j d     d   j)))j
+     ffgfftffgff f   fffiffffm  e  e   e mjjjj
+     f ()$ $) ef fdddf       je  e   e   j
+     i @ d ( @ iff   fff     jjjljjhjjljjj
+     f  e d d  f   e d f         j e j
+     f# e ~ e  v e ,  ef         j   j
+     f  e  d  df d  e  f         m , m
+fffffi*@ e   @ ifffgffff         j   j
+f }'ff** d e def                 j   j
+fd,dfffgffhffgff            jjjjjj   jjj
+f e f   f   f               j; se  ,  \j
 ffhff   i , i               j  jjj   jjj
-f   fffff   f               j;}j j   j
+fde fffff   f               j;}j j   j
 f , f  :f   f               j]}j j   j
 f     ,;i , i               jjjj l , l
-f   f  )f e f                    j   j
+f edf  )f e f                    j   j
 f   ffffffhfffff                fjlhljf               aaaaaaaaaa
-i , ife        f           ffffif. d .fiffff          a:    '''a
-f   ff .     . i           f.          d  .f          a e   e 'a
-f   ff  ,   ,  f           g d e  e   e    gaaaaaaaaaaa  e   e a
-f    f         f           f      d   d     a         a  d     a
-f    v         i           f e/  e / e  /   v  d  e   v    e   b
-f    f         f           f d  d           a      d  a d   d  a
-f   ff  ,   ,  f           g   e   e  d e  gaaa e  aaaa  -: -e a
-f   ff .     . i           f.    d        .f  aa  a   a e  e   a
-f   ff      e  f           ffkfff  d  ffkfff   a da   a  d   : a
+i , ife d e  e f           ffffif. d .fiffff          a:    '''a
+fd  ff . ded . i           f.          d  .f          a e   e 'a
+f e ff  , e ,  f           g d e  e   e    gaaaaaaaaaaa  e   e a
+f    fe   e  e f           f      d   d     a         a  d     a
+f ed v e de e  i           f e/  e / e  /   v  d  e   v    e   b
+f    fd e  e d f           f d  d           a      d  a d   d  a
+f   ff  , d , df           g   e   e  d e  gaaa e  aaaa  -: -e a
+fde ff .  d  . i           f.    d        .f  aa  a   a e  e   a
+f   ff e e  e  f           ffkfff  d  ffkfff   a da   a  d   : a
 k , kfffffhfffff                faahaaf        a  aaaaaaa+aa?aaa
-f   f   f   f                    a   a         a  a     aaaaaa
-f   fffff   f                    a , a         a  a
-f   f  %f   f                    a e a         adea aaaaaaaaa
+f   f   f e f                    a   a         a  a     aaaaaa
+f edfffff   f                    a , a         a  a
+f   f  %f e f                    a e a         adea aaaaaaaaa
 f    e, i , i                    a   a         a  aaa a a a aa
-f   f:  f   f                    a   a         a  ea  e   d  a
+fde f:  f d f                    a   a         a  ea  e   d  a
 f , fffff   f                    a , a         a   v   d  e  b
-f   fffff   fffffffffgfffff      a e a         a e a d e  d =a
-f               f      eiff      a   a         aaaaaa a a a aa
-f     ,      ,  v    e  u n      a e a             aaaaaaaaaa
-f               f      eiff      a , a
+f   fffff e fffffffffgfffff      a e a         a e a d e  d =a
+f   d           f      eiff      a   a         aaaaaa a a a aa
+f e   , e  e ,  v    e  u n      a e a             aaaaaaaaaa
+f       d       f      eiff      a , a
 ffffffffffkffffffwfffgfffff      a   a
         ffi  f  x }f        aaaaaaahaaaaaaa
         n u  f  f ff        a|:  a   a    a

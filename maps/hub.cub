@@ -1307,7 +1307,7 @@ f_OPEN_SOUND_VOLUME 0.8
 
 g_TYPE ELEVATOR
 g_TARGETABLE TRUE
-g_MAP_PATH maps/e1m1_2.cub
+g_MAP_PATH maps/e1m1_mega.cub
 g_NO assets/textures/wolf3d.bmp
 g_SO assets/textures/wolf3d.bmp
 g_WE assets/textures/wolf3d.bmp
@@ -1341,9 +1341,17 @@ k_NO assets/textures/pv-wall.bmp
 k_EA assets/wolf3d/textures/wood-wall-dark.bmp
 k_WE assets/wolf3d/textures/wood-wall-dark.bmp
 
+l_TYPE ELEVATOR
+l_TARGETABLE TRUE
+l_MAP_PATH maps/e1m1_42.cub
+l_NO assets/42lisboa/424242.bmp
+l_SO assets/42lisboa/424242.bmp
+l_WE assets/42lisboa/424242.bmp
+l_EA assets/42lisboa/424242.bmp
+
 11i1h1g111
 1        1
-1        1
+l        1
 1  jjjjfjj
 1  1d    1
 1  a     1
