@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:14:52 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/05 12:57:20 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:29:04 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,6 +283,7 @@ struct s_camera
 struct s_billboard
 {
 	t_entity		entity;
+	bool			y_centered;
 	t_sprite		**sprites;
 };
 

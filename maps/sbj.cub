@@ -2,13 +2,95 @@ NO assets/pt/textures/portugal.bmp
 SO assets/pt/textures/portugal.bmp
 WE assets/pt/textures/portugal.bmp
 EA assets/pt/textures/portugal.bmp
-F 220,100,0
-C 225,30,0
+F 0,0,0
+C 0,0,0
 a_TYPE WALL
 a_NO assets/pt/textures/portugal.bmp
 a_SO assets/pt/textures/dommiguelilow.bmp
 a_WE assets/pt/textures/portugal.bmp
 a_EA assets/pt/textures/portugal.bmp
+b_TYPE WALL
+b_NO assets/pt/textures/portugal.bmp
+b_SO assets/42lisboa/wall-of-fame.bmp
+b_WE assets/pt/textures/portugal.bmp
+b_EA assets/pt/textures/portugal.bmp
+d_TYPE WALL
+d_NO assets/pt/textures/portugal.bmp
+d_SO assets/textures/oms-wall.bmp
+d_WE assets/pt/textures/portugal.bmp
+d_EA assets/pt/textures/portugal.bmp
+e_TYPE WALL
+e_NO assets/pt/textures/portugal.bmp
+e_SO assets/pt/textures/portugal.bmp
+e_WE assets/pt/textures/portugal.bmp
+e_EA assets/textures/billiosn-ust-smile.bmp
+f_TYPE WALL
+f_NO assets/pt/textures/portugal.bmp
+f_SO assets/pt/textures/portugal.bmp
+f_WE assets/pt/textures/portugal.bmp
+f_EA assets/42lisboa/424242.bmp
+g_TYPE WALL
+g_ULTRA_MEGA_TRANSPARENT TRUE
+g_NO assets/pt/textures/portugal.bmp
+g_SO assets/pt/textures/portugal.bmp
+g_WE assets/pt/textures/portugal.bmp
+g_EA assets/textures/billboards/afonsomaria/front1.bmp:assets/textures/billboards/afonsomaria/still-front.bmp:assets/textures/billboards/afonsomaria/front2.bmp:assets/textures/billboards/afonsomaria/still-front.bmp
+g_EA_SPRITE_UPDATE_DELAY 0.1
+g_EA_SPRITE_LOOP TRUE
+h_TYPE WALL
+h_NO assets/pt/textures/portugal.bmp
+h_SO assets/pt/textures/portugal.bmp
+h_WE assets/pt/textures/portugal.bmp
+h_EA assets/wolf3d/textures/billboards/table-and-chairs.bmp
+i_TYPE WALL
+i_NO assets/pt/textures/portugal.bmp
+i_SO assets/pt/textures/portugal.bmp
+i_WE assets/pt/textures/portugal.bmp
+i_EA assets/wolf3d/textures/purple-wall.bmp
+j_TYPE WALL
+j_NO assets/pt/textures/portugal.bmp
+j_SO assets/pt/textures/portugal.bmp
+j_WE assets/pt/textures/portugal.bmp
+j_EA assets/wolf3d/textures/red-wall.bmp
+k_TYPE WALL
+k_NO assets/pt/textures/portugal.bmp
+k_SO assets/pt/textures/portugal.bmp
+k_WE assets/pt/textures/portugal.bmp
+k_EA assets/textures/cashier.bmp
+l_TYPE WALL
+l_ULTRA_MEGA_TRANSPARENT TRUE
+l_NO assets/pt/textures/portugal.bmp
+l_SO assets/pt/textures/portugal.bmp
+l_WE assets/pt/textures/portugal.bmp
+l_EA assets/textures/billboards/pv/front1.bmp:assets/textures/billboards/pv/front2.bmp
+l_EA_SPRITE_UPDATE_DELAY 0.1
+l_EA_SPRITE_LOOP TRUE
+m_TYPE WALL
+m_NO assets/wolf3d/textures/billboards/soldier/still-front.bmp
+m_SO assets/pt/textures/portugal.bmp
+m_WE assets/pt/textures/portugal.bmp
+m_EA assets/pt/textures/portugal.bmp
+n_TYPE WALL
+n_NO assets/wolf3d/textures/eagle-wall.bmp
+n_SO assets/pt/textures/portugal.bmp
+n_WE assets/pt/textures/portugal.bmp
+n_EA assets/pt/textures/portugal.bmp
+o_TYPE WALL
+o_NO assets/textures/loading.bmp
+o_SO assets/textures/loading.bmp
+o_WE assets/textures/loading.bmp
+o_EA assets/textures/loading.bmp
+p_TYPE WALL
+p_NO assets/pt/textures/portugal.bmp
+p_SO assets/pt/textures/portugal.bmp
+p_WE assets/textures/placeholder.bmp
+p_EA assets/pt/textures/portugal.bmp
+q_TYPE WALL
+q_NO assets/pt/textures/portugal.bmp
+q_SO assets/pt/textures/portugal.bmp
+q_WE assets/textures/backrooms.bmp
+q_EA assets/pt/textures/portugal.bmp
+
 BACKGROUND_SOUND assets/sounds/areyoumad.mp3
 BACKGROUND_SOUND_VOLUME 0.1
 BACKGROUND_SOUND_LOOP TRUE
@@ -22,12 +104,12 @@ c_STILL_SPRITE_UPDATE_DELAY 0.02
         1011000001110000000000001
         1001000000000000000000001
 111111111011000001110000000000001
-10000000001100000111011111a111111
-11110111111111011100000010001
-11110111111111011101010010c01
-11000000110101011100000010001
-10000000000000001100000010001
-10000000000000001101010010001
-11000001110101011111011110N0111
-11110111 1110101 101111010001
-11111111 1111111 111111111111
+1000000000110000011101111dae11111
+111101111111110111000000fc0co
+111101111111110111010100g0c0o
+110000001101010111000000h000o
+100000000000000011000000i00co
+100000000000000011010100kc00o
+110000011101010111110111j0N0q11
+11110111 1110101 1011110l0c0p
+11111111 1111111 11111111mno1

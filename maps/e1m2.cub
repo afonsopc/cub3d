@@ -327,10 +327,12 @@ d_USING_C_1_SPRITE_LOOP TRUE
 
 ,_TYPE BILLBOARD
 ,_HARD FALSE
+,_Y_CENTERED TRUE
 ,_STILL_SPRITE assets/wolf3d/textures/billboards/ceiling-light.bmp
 
 /_TYPE BILLBOARD
 /_HARD FALSE
+/_Y_CENTERED TRUE
 /_STILL_SPRITE assets/wolf3d/textures/billboards/chandelier.bmp
 
 =_TYPE BILLBOARD

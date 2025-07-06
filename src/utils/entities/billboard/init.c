@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:50:48 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/25 15:12:39 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:34:26 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	init_billboard(t_game *game, t_ftm_window *window,
 	billboard->entity.billboard = true;
 	billboard->entity.size = (t_dsize){BILLBOARD_WIDTH, BILLBOARD_HEIGHT};
 	billboard->sprites = ft_calloc(360, sizeof(t_sprite *));
+	billboard->y_centered = ft_strequal(
+		hashmap_get_with_identifier(game, game->map->types, identifier,
+			"Y_CENTERED"), "TRUE");
 	fill_3d_sprites_from_game(game, billboard->sprites, identifier, "STILL");
 }
 
