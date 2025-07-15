@@ -12,20 +12,20 @@ The game can be run locally or played on the web through a port using SDL and Em
 1. Clone the repository:
 
 ```bash
-  git clone https://github.com/afonsopc/cub3d.git
-  cd cub3d
+git clone https://github.com/afonsopc/cub3d.git
+cd cub3d
 ```
 
 2. Build the project:
 
 ```bash
-  make
+make
 ```
 
 3. Run the game with a map:
 
 ```bash
-  ./cub3d {map}
+./cub3d {map}
 ```
 
 Replace `{map}` with the map file you want to load.
