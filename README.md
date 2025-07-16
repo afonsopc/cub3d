@@ -16,16 +16,8 @@ git clone https://github.com/afonsopc/cub3d.git
 cd cub3d
 ```
 
-2. Build the project:
+2. Run the game:
 
 ```bash
-make
+make dev
 ```
-
-3. Run the game with a map:
-
-```bash
-./cub3d {map}
-```
-
-Replace `{map}` with the map file you want to load.
