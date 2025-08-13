@@ -1,61 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>cub3d</title>
     <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: rgb(1, 64, 64);
-            overflow: hidden;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: rgb(1, 64, 64);
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        touch-action: none;
+      }
+
+      canvas {
+        image-rendering: pixelated;
+        position: absolute;
+        z-index: 1;
+      }
+
+      .controls-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .joystick {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: 3px solid rgba(255, 255, 255, 0.4);
+        pointer-events: auto;
+        opacity: 0.8;
+      }
+
+      .joystick-knob {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.1s ease;
+      }
+
+      .left-joystick {
+        bottom: 40px;
+        left: 40px;
+      }
+
+      .right-joystick {
+        bottom: 40px;
+        right: 40px;
+      }
+
+      .action-buttons {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        pointer-events: auto;
+      }
+
+      .action-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.8;
+        cursor: pointer;
+        transition: all 0.1s ease;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .action-btn small {
+        font-size: 8px;
+        margin-top: 2px;
+      }
+
+      .action-btn:active,
+      .action-btn.pressed {
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0.9);
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+
+    <div class="controls-overlay">
+      <div class="joystick left-joystick" id="leftJoystick">
+        <div class="joystick-knob"></div>
+      </div>
+      <div class="joystick right-joystick" id="rightJoystick">
+        <div class="joystick-knob"></div>
+      </div>
+      <div class="action-buttons">
+        <div class="action-btn" id="actionBtn">E<br /><small>USE</small></div>
+        <div class="action-btn" id="sprintBtn">
+          SPACE<br /><small>FIRE</small>
+        </div>
+        <div class="action-btn" id="useBtn">R<br /><small>ITEM</small></div>
+        <div class="action-btn" id="dropBtn">Q<br /><small>DROP</small></div>
+      </div>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const isMobile = urlParams.get("mobile") === "true";
+      if (!isMobile) {
+        document.querySelector(".controls-overlay").style.display = "none";
+      }
+      class VirtualJoystick {
+        constructor(element) {
+          this.element = element;
+          this.knob = element.querySelector(".joystick-knob");
+          this.active = false;
+          this.currentTouch = null;
+          this.center = { x: 0, y: 0 };
+          this.position = { x: 0, y: 0 };
+          this.maxDistance = 40;
+          this.setupEvents();
+          this.updateCenter();
         }
 
-        canvas { image-rendering: pixelated }
-    </style>
-</head>
+        updateCenter() {
+          const rect = this.element.getBoundingClientRect();
+          this.center = {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+          };
+        }
 
-<body>
-    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
-    <script type='text/javascript'>
-        let gameStarted = false;
-        const gameWindowWidth = 640;
-        const gameWindowHeight = 480;
-        const canvas = document.getElementById('canvas');
-        const strechCanvasToWindow = () => {
-            if (!gameStarted) return;
+        handleMove(clientPos) {
+          const dx = clientPos.x - this.center.x;
+          const dy = clientPos.y - this.center.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance <= this.maxDistance) {
+            this.position = {
+              x: dx / this.maxDistance,
+              y: dy / this.maxDistance,
+            };
+          } else {
+            const angle = Math.atan2(dy, dx);
+            this.position = {
+              x: Math.cos(angle),
+              y: Math.sin(angle),
+            };
+          }
+          this.knob.style.transform = `translate(-50%, -50%) translate(${
+            this.position.x * this.maxDistance
+          }px, ${this.position.y * this.maxDistance}px)`;
+          if (this.onMove) this.onMove(this.position.x, this.position.y);
+        }
 
-            console.log('Resizing canvas to fit window');
-            const windowWidth = Math.max(window.innerWidth || gameWindowWidth, gameWindowWidth / 2);
-            const windowHeight = Math.max(window.innerHeight || gameWindowHeight, gameWindowHeight / 2);
-            const scaleX = Math.max(windowWidth / gameWindowWidth, 0.1);
-            const scaleY = Math.max(windowHeight / gameWindowHeight, 0.1);
-            const scale = Math.min(scaleX, scaleY);
-            canvas.style.transform = `scale(${scale * 1.6})`;
-            canvas.style.transformOrigin = 'center';
-            canvas.style.position = 'absolute';
-        };
+        reset() {
+          this.active = false;
+          this.currentTouch = null;
+          this.position = { x: 0, y: 0 };
+          this.knob.style.transform = "translate(-50%, -50%)";
 
-        window.addEventListener('resize', strechCanvasToWindow);
-        window.addEventListener('orientationchange', strechCanvasToWindow);
-        window.addEventListener('load', strechCanvasToWindow);
+          if (this.onMove) {
+            this.onMove(0, 0);
+          }
+        }
 
-        var Module = {
-            canvas: (function () { return document.getElementById('canvas'); })(),
-            preRun: [function() { if (navigator.getGamepads) { window.gamepadPollRate = 60 } }],
-            onRuntimeInitialized: function () {
-                console.log('Emscripten runtime initialized');
-                gameStarted = true;
-                setTimeout(strechCanvasToWindow, 1000);
+        setupEvents() {
+          this.element.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.updateCenter();
+            this.currentTouch = e.touches[0].identifier;
+            this.active = true;
+            this.handleMove(e.touches[0]);
+          });
+
+          this.element.addEventListener("touchmove", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!this.active) return;
+
+            for (let touch of e.touches) {
+              if (touch.identifier !== this.currentTouch) continue;
+              this.handleMove(touch);
+              break;
             }
+          });
+
+          this.element.addEventListener("touchend", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            for (let touch of e.changedTouches) {
+              if (touch.identifier !== this.currentTouch) continue;
+              this.reset();
+              break;
+            }
+          });
+
+          this.element.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.updateCenter();
+            this.active = true;
+            this.handleMove(e);
+            const handleMouseMove = (e) => {
+              if (this.active) this.handleMove(e);
+            };
+            const handleMouseUp = () => {
+              this.reset();
+              document.removeEventListener("mousemove", handleMouseMove);
+              document.removeEventListener("mouseup", handleMouseUp);
+            };
+            document.addEventListener("mousemove", handleMouseMove);
+            document.addEventListener("mouseup", handleMouseUp);
+          });
+        }
+      }
+
+      const pressedKeys = new Set();
+      function simulateKeyEvent(key, isDown, coords = { x: 0.5, y: 0.5 }) {
+        const keyString = `key_${key}`;
+        if (isDown && pressedKeys.has(keyString)) return;
+        if (!isDown && !pressedKeys.has(keyString)) return;
+        if (isDown) pressedKeys.add(keyString);
+        else pressedKeys.delete(keyString);
+        const eventType = isDown ? "keydown" : "keyup";
+        const keyEvent = new KeyboardEvent(eventType, {
+          keyCode: key,
+          which: key,
+          code: getKeyCode(key),
+          key: getKeyName(key),
+          bubbles: true,
+          cancelable: true,
+        });
+        if (canvas) {
+          canvas.focus();
+          canvas.dispatchEvent(keyEvent);
+        }
+        document.dispatchEvent(keyEvent);
+      }
+      function getKeyName(keyCode) {
+        const keyMap = {
+          87: "w",
+          83: "s",
+          65: "a",
+          68: "d",
+          37: "ArrowLeft",
+          39: "ArrowRight",
+          69: "e",
+          32: " ",
+          81: "q",
+          82: "r",
+          16: "Shift",
+          27: "Escape",
         };
+        return keyMap[keyCode] || `Key${keyCode}`;
+      }
+      function getKeyCode(keyCode) {
+        const codeMap = {
+          87: "KeyW",
+          83: "KeyS",
+          65: "KeyA",
+          68: "KeyD",
+          37: "ArrowLeft",
+          39: "ArrowRight",
+          69: "KeyE",
+          32: "Space",
+          81: "KeyQ",
+          82: "KeyR",
+          16: "ShiftLeft",
+          27: "Escape",
+        };
+        return codeMap[keyCode] || `Key${keyCode}`;
+      }
+      function updateMovementKeys(x, y) {
+        const threshold = 0.3;
+        const newStates = {
+          walking_forward: y < -threshold,
+          walking_backward: y > threshold,
+          walking_left: x < -threshold,
+          walking_right: x > threshold,
+        };
+        const keyMap = {
+          walking_forward: 87,
+          walking_backward: 83,
+          walking_left: 65,
+          walking_right: 68,
+        };
+        Object.keys(newStates).forEach((action) => {
+          if (typeof updateMovementKeys.lastStates === "undefined") {
+            updateMovementKeys.lastStates = {};
+          }
+          if (updateMovementKeys.lastStates[action] !== newStates[action]) {
+            updateMovementKeys.lastStates[action] = newStates[action];
+            simulateKeyEvent(keyMap[action], newStates[action]);
+          }
+        });
+      }
+
+      function updateLookingKeys(x, y) {
+        const threshold = 0.3;
+        const newStates = {
+          looking_left: x < -threshold,
+          looking_right: x > threshold,
+        };
+        const keyMap = { looking_left: 37, looking_right: 39 };
+        Object.keys(newStates).forEach((action) => {
+          if (typeof updateLookingKeys.lastStates === "undefined") {
+            updateLookingKeys.lastStates = {};
+          }
+          if (updateLookingKeys.lastStates[action] !== newStates[action]) {
+            updateLookingKeys.lastStates[action] = newStates[action];
+            simulateKeyEvent(keyMap[action], newStates[action]);
+          }
+        });
+      }
+
+      const virtualKeys = {
+        fire: false,
+        action: false,
+        use: false,
+        drop: false,
+      };
+
+      function setupButtons() {
+        const buttons = [
+          { id: "sprintBtn", key: 32, action: "fire" },
+          { id: "actionBtn", key: 69, action: "action" },
+          { id: "useBtn", key: 82, action: "use" },
+          { id: "dropBtn", key: 81, action: "drop" },
+        ];
+
+        buttons.forEach(({ id, key, action }) => {
+          const button = document.getElementById(id);
+          if (!button) return;
+          const handlePress = (isPressed) => {
+            if (virtualKeys[action] !== isPressed) {
+              virtualKeys[action] = isPressed;
+              simulateKeyEvent(key, isPressed);
+              button.classList.toggle("pressed", isPressed);
+            }
+          };
+          button.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            handlePress(true);
+          });
+          button.addEventListener("touchend", (e) => {
+            e.preventDefault();
+            handlePress(false);
+          });
+          button.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            handlePress(true);
+          });
+          button.addEventListener("mouseup", (e) => {
+            e.preventDefault();
+            handlePress(false);
+          });
+        });
+      }
+
+      function initializeMobileControls() {
+        const leftJoystick = new VirtualJoystick(
+          document.getElementById("leftJoystick")
+        );
+        const rightJoystick = new VirtualJoystick(
+          document.getElementById("rightJoystick")
+        );
+        leftJoystick.onMove = updateMovementKeys;
+        rightJoystick.onMove = updateLookingKeys;
+        setupButtons();
+      }
+      document.addEventListener("DOMContentLoaded", initializeMobileControls);
+    </script>
+
+    <script type="text/javascript">
+      let gameStarted = false;
+      const gameWindowWidth = 640;
+      const gameWindowHeight = 480;
+      const canvas = document.getElementById("canvas");
+      const strechCanvasToWindow = () => {
+        if (!gameStarted) return;
+
+        console.log("Resizing canvas to fit window");
+        const windowWidth = Math.max(
+          window.innerWidth || gameWindowWidth,
+          gameWindowWidth / 2
+        );
+        const windowHeight = Math.max(
+          window.innerHeight || gameWindowHeight,
+          gameWindowHeight / 2
+        );
+        const scaleX = Math.max(windowWidth / gameWindowWidth, 0.1);
+        const scaleY = Math.max(windowHeight / gameWindowHeight, 0.1);
+        const scale = Math.min(scaleX, scaleY);
+        canvas.style.transform = `scale(${scale * 1.6})`;
+        canvas.style.transformOrigin = "center";
+        canvas.style.position = "absolute";
+      };
+
+      window.addEventListener("resize", strechCanvasToWindow);
+      window.addEventListener("orientationchange", strechCanvasToWindow);
+      window.addEventListener("load", strechCanvasToWindow);
+
+      var Module = {
+        canvas: (function () {
+          return document.getElementById("canvas");
+        })(),
+        preRun: [
+          function () {
+            if (navigator.getGamepads) {
+              window.gamepadPollRate = 60;
+            }
+          },
+        ],
+        onRuntimeInitialized: function () {
+          console.log("Emscripten runtime initialized");
+          gameStarted = true;
+          setTimeout(strechCanvasToWindow, 1000);
+        },
+      };
     </script>
     {{{ SCRIPT }}}
-</body>
-
+  </body>
 </html>
