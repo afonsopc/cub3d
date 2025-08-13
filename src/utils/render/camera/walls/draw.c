@@ -47,7 +47,7 @@ void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 	ray_size.height = canvas->size.height / (fmax(ray.distance, 0.1)
 			* ft_cos_degrees((ray.yaw
 					- camera->character->billboard.entity.coords.yaw)));
-	ray_size.height = fmin(ray_size.height, canvas->size.height * 3);
+	ray_size.height = fmin(ray_size.height, canvas->size.height * 1.5);
 	ftm_put_image_to_canvas(canvas, hit_entity_image,
 		get_pitc_config((t_get_pitc_config_config){i, &ray_size,
 			hit_entity_image, &ray, canvas}));
