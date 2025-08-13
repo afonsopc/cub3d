@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:58:13 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/28 23:52:03 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:02:21 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ftm_init_window_e(t_ftm_window *window, t_size size, char *title)
 	if (!window->win)
 		return (update_sdl_usage(-1), fte_set("%s", SDL_GetError()));
 	window->display = SDL_CreateRenderer(window->win, -1,
-			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			SDL_RENDERER_ACCELERATED);
 	if (!window->display)
 		return (SDL_DestroyWindow(window->win), update_sdl_usage(-1),
 			fte_set("%s", SDL_GetError()));

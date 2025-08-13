@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 23:22:31 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/28 23:34:57 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:02:19 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ bool	update_sdl_usage(int value)
 	if (!sdl_context()->usage_count && value > 0)
 	{
 		SDL_SetHint(SDL_HINT_NO_SIGNAL_HANDLERS, "1");
+		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "0");
+		SDL_SetHint(SDL_HINT_VIDEO_MAC_FULLSCREEN_SPACES, "0");
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
 			return (false);
 		SDL_GameControllerEventState(SDL_ENABLE);
