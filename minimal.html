@@ -30,6 +30,8 @@
         overflow: hidden;
         font-family: Arial, sans-serif;
         touch-action: none;
+        position: fixed;
+        width: 100%;
       }
 
       canvas {
@@ -57,6 +59,13 @@
         border: 3px solid rgba(255, 255, 255, 0.4);
         pointer-events: auto;
         opacity: 0.8;
+        transition: all 0.1s ease;
+      }
+
+      .joystick.active {
+        background: rgba(255, 255, 255, 0.4);
+        border-color: rgba(255, 255, 255, 0.7);
+        transform: scale(1.1);
       }
 
       .joystick-knob {
@@ -199,49 +208,64 @@
           this.currentTouch = null;
           this.position = { x: 0, y: 0 };
           this.knob.style.transform = "translate(-50%, -50%)";
-
-          if (this.onMove) {
-            this.onMove(0, 0);
-          }
+          this.element.classList.remove("active");
+          if (this.onMove) this.onMove(0, 0);
         }
 
         setupEvents() {
-          this.element.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.updateCenter();
-            this.currentTouch = e.touches[0].identifier;
-            this.active = true;
-            this.handleMove(e.touches[0]);
-          });
+          this.element.addEventListener(
+            "touchstart",
+            (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log("Joystick touchstart");
+              this.updateCenter();
+              this.currentTouch = e.touches[0].identifier;
+              this.active = true;
+              this.element.classList.add("active");
+              this.handleMove(e.touches[0]);
+            },
+            { passive: false }
+          );
 
-          this.element.addEventListener("touchmove", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+          const handleTouchMove = (e) => {
             if (!this.active) return;
-
+            e.preventDefault();
             for (let touch of e.touches) {
               if (touch.identifier !== this.currentTouch) continue;
               this.handleMove(touch);
               break;
             }
-          });
+          };
 
-          this.element.addEventListener("touchend", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+          const handleTouchEnd = (e) => {
+            if (!this.active) return;
             for (let touch of e.changedTouches) {
               if (touch.identifier !== this.currentTouch) continue;
               this.reset();
+              document.removeEventListener("touchmove", handleTouchMove);
+              document.removeEventListener("touchend", handleTouchEnd);
+              document.removeEventListener("touchcancel", handleTouchEnd);
               break;
             }
+          };
+
+          this.element.addEventListener("touchstart", (e) => {
+            document.addEventListener("touchmove", handleTouchMove, {
+              passive: false,
+            });
+            document.addEventListener("touchend", handleTouchEnd);
+            document.addEventListener("touchcancel", handleTouchEnd);
           });
 
           this.element.addEventListener("mousedown", (e) => {
+            if (this.active) return;
             e.preventDefault();
             e.stopPropagation();
+            console.log("Joystick mousedown");
             this.updateCenter();
             this.active = true;
+            this.element.classList.add("active");
             this.handleMove(e);
             const handleMouseMove = (e) => {
               if (this.active) this.handleMove(e);
@@ -374,42 +398,76 @@
         buttons.forEach(({ id, key, action }) => {
           const button = document.getElementById(id);
           if (!button) return;
-          const handlePress = (isPressed) => {
-            if (virtualKeys[action] !== isPressed) {
-              virtualKeys[action] = isPressed;
-              simulateKeyEvent(key, isPressed);
-              button.classList.toggle("pressed", isPressed);
+          let isPressed = false;
+          const handlePress = (shouldPress) => {
+            if (isPressed !== shouldPress) {
+              isPressed = shouldPress;
+              virtualKeys[action] = shouldPress;
+              simulateKeyEvent(key, shouldPress);
+              button.classList.toggle("pressed", shouldPress);
             }
           };
-          button.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            handlePress(true);
-          });
-          button.addEventListener("touchend", (e) => {
-            e.preventDefault();
-            handlePress(false);
-          });
+          button.addEventListener(
+            "touchstart",
+            (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handlePress(true);
+            },
+            { passive: false }
+          );
+          button.addEventListener(
+            "touchend",
+            (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handlePress(false);
+            },
+            { passive: false }
+          );
+          button.addEventListener(
+            "touchcancel",
+            (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handlePress(false);
+            },
+            { passive: false }
+          );
           button.addEventListener("mousedown", (e) => {
             e.preventDefault();
+            e.stopPropagation();
             handlePress(true);
           });
           button.addEventListener("mouseup", (e) => {
             e.preventDefault();
+            e.stopPropagation();
+            handlePress(false);
+          });
+          button.addEventListener("mouseleave", (e) => {
             handlePress(false);
           });
         });
       }
 
       function initializeMobileControls() {
+        console.log("Initializing mobile controls...");
         const leftJoystick = new VirtualJoystick(
           document.getElementById("leftJoystick")
         );
         const rightJoystick = new VirtualJoystick(
           document.getElementById("rightJoystick")
         );
-        leftJoystick.onMove = updateMovementKeys;
-        rightJoystick.onMove = updateLookingKeys;
+        leftJoystick.onMove = (x, y) => {
+          console.log("Left joystick:", x, y);
+          updateMovementKeys(x, y);
+        };
+        rightJoystick.onMove = (x, y) => {
+          console.log("Right joystick:", x, y);
+          updateLookingKeys(x, y);
+        };
         setupButtons();
+        console.log("Mobile controls initialized");
       }
       document.addEventListener("DOMContentLoaded", initializeMobileControls);
     </script>
