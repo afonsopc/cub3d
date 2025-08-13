@@ -182,8 +182,10 @@
         }
 
         handleMove(clientPos) {
-          const dx = clientPos.x - this.center.x;
-          const dy = clientPos.y - this.center.y;
+          const x = clientPos.clientX || clientPos.x;
+          const y = clientPos.clientY || clientPos.y;
+          const dx = x - this.center.x;
+          const dy = y - this.center.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance <= this.maxDistance) {
             this.position = {
