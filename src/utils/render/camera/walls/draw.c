@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:59:45 by afpachec          #+#    #+#             */
-/*   Updated: 2025/06/29 20:50:21 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:54:13 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 	ray_size.height = canvas->size.height / (fmax(ray.distance, 0.1)
 			* ft_cos_degrees((ray.yaw
 					- camera->character->billboard.entity.coords.yaw)));
-	ray_size.height = fmin(ray_size.height, canvas->size.height * 1.5);
+	ray_size.height = fmin(ray_size.height, canvas->size.height * 3);
 	ftm_put_image_to_canvas(canvas, hit_entity_image,
 		get_pitc_config((t_get_pitc_config_config){i, &ray_size,
 			hit_entity_image, &ray, canvas}));
