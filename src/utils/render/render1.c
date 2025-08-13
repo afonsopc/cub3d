@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 20:43:54 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/01 16:44:09 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:16 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,31 @@ static bool	canvas_changed(t_player *player, t_player_canvas_data pcd)
 		|| player->last_canvas_pos.y != pcd.coords.y);
 }
 
+static int	get_active_players(t_game *game)
+{
+	int	i;
+	int	active;
+
+	i = -1;
+	active = 0;
+	while (++i < PLAYER_MAX)
+		if (game->players[i] && ((t_entity *)game->players[i])->active)
+			++active;
+	return (active);
+}
+
 void	render_players_game(t_game *game, t_ftm_window *window)
 {
 	t_player_canvas_data	player_canvas_data;
 	int						i;
+	int						active_players;
 
 	i = -1;
-	ftm_put_image_to_window_pitc(window, get_sprite_image(
-			game->background_sprite), (t_ftm_pitc_config){.coords = {0},
-		.crop = false, .resize = true, .size = window->size});
+	active_players = get_active_players(game);
+	if (active_players > 1 && active_players != 4)
+		ftm_put_image_to_window_pitc(window, get_sprite_image(
+				game->background_sprite), (t_ftm_pitc_config){.coords = {0},
+			.crop = false, .resize = true, .size = window->size});
 	while (++i < PLAYER_MAX)
 	{
 		if (!game->players[i] || !((t_entity *)game->players[i])->active)
