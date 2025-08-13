@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:48:00 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/19 22:25:43 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:47:38 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 // External Libs
 # include <pthread.h>
+# ifdef __EMSCRIPTEN__
+#  include <emscripten.h>
+# endif
 
 // Internal Libs
 # include <ft_utils.h>

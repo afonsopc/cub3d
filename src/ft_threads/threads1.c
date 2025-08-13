@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afpachec <afpachec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 22:30:02 by afpachec          #+#    #+#             */
-/*   Updated: 2025/05/17 11:45:15 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:50:51 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ void	ftt_thread_wait(t_ftt_thread *thread)
 	if (!thread)
 		return ;
 	while (thread->running)
-		ft_sleep(1);
+	{
+		#ifdef __EMSCRIPTEN__
+			emscripten_sleep(0);
+		#else
+			ft_sleep(1);
+		#endif
+	}
 }
 
 void	ftt_clear_thread(t_ftt_thread *thread)

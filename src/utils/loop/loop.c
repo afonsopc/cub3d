@@ -6,7 +6,7 @@
 /*   By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:20:20 by afpachec          #+#    #+#             */
-/*   Updated: 2025/07/03 21:35:56 by afpachec         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:42:59 by afpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,9 @@ void	loop(void)
 	update_walls_matrix(cub3d()->game);
 	update_billboards_vec(cub3d()->game);
 	render_players_game(cub3d()->game, cub3d()->window);
-	process_fps_limit(cub3d()->game);
+	(void)process_fps_limit;
+	#ifndef __EMSCRIPTEN__
+		process_fps_limit(cub3d()->game);
+	#endif
 	pthread_mutex_unlock(&cub3d()->game_mutex);
 }

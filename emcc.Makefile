@@ -6,7 +6,7 @@
 #    By: afpachec <afpachec@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 17:16:21 by afpachec          #+#    #+#              #
-#    Updated: 2025/07/05 11:34:38 by afpachec         ###   ########.fr        #
+#    Updated: 2025/08/13 17:05:59 by afpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ OBJ_DIR = web_obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 CFLAGS += -pthread
-LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1 -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=2
+LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1
+LDLIBS += -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=2 -s ASYNCIFY=1
 LDLIBS += --preload-file maps --preload-file assets/42lisboa --shell-file minimal.html
 LDLIBS += --preload-file assets/fonts --preload-file assets/sounds
 LDLIBS += --preload-file assets/textures --preload-file assets/wolf3d
