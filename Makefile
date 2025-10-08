@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -O3 -g
 # CFLAGS = -Wall -Wextra -Werror -O3 -g -std=c99 -fsanitize=address -fno-omit-frame-pointer
 INCLUDES = -I headers
 LIBS = -L lib
-LDLIBS = -lmlx -lSDL2 -lX11 -lXext -lm -ldl -lpthread
+LDLIBS = -lmlx -lSDL2 -ldl -lpthread
 SRCS = $(shell find src -name "**.c")
 OBJ_DIR = obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -27,8 +27,6 @@ FT_AUDIO_DIR = src/ft_audio
 
 check_flag = $(shell $(CC) $(1) -E -c /dev/null -o /dev/null 2>/dev/null && echo 1 || echo 0)
 ifeq ($(UNAME_S),Darwin)
-	LIBS += -L /opt/X11/lib
-	INCLUDES += -I /opt/X11/include
 	LDLIBS += -framework OpenGL
 	LDLIBS += -framework AppKit
 	LDLIBS += -framework CoreAudio
@@ -131,8 +129,8 @@ lldb: $(NAME)
 
 update-wolf3d-assets:
 	@echo "\033[1;32mEncrypting \033[1;0m\"assets/wolf3d\"\033[1;32m into \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m.\033[0m"
-	@cd assets/wolf3d && zip --password "$$(curl -sSL accounts.omelhorsite.pt)" -qr assets.zip *
-	@cd assets/wolf3d && zip --password "$$(curl -sSL notifications.omelhorsite.pt)" -qr wolf3d-assets.zip assets.zip
+	@cd assets/wolf3d && zip --password "Deus quer, o homem sonha, a obra nasce." -qr assets.zip *
+	@cd assets/wolf3d && zip --password "You can't have happiness without pain, you need a little bit of rain to have a little bit of rainbow." -qr wolf3d-assets.zip assets.zip
 	@cd assets/wolf3d && rm -rf assets.zip
 	@rm -rf assets/wolf3d-assets.zip
 	@mv assets/wolf3d/wolf3d-assets.zip assets
@@ -140,9 +138,9 @@ update-wolf3d-assets:
 assets/wolf3d:
 	@echo "\033[1;32mDecrypting \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m into \033[1;0m\"assets/wolf3d\"\033[1;32m.\033[0m"
 	@rm -rf assets/wolf3d
-	@cd assets && unzip -q -o -P "$$(curl -sSL notifications.omelhorsite.pt)" wolf3d-assets.zip
+	@cd assets && unzip -q -o -P "You can't have happiness without pain, you need a little bit of rain to have a little bit of rainbow." wolf3d-assets.zip
 	@mkdir -p assets/wolf3d
-	@cd assets/wolf3d && unzip -q -o -P "$$(curl -sSL accounts.omelhorsite.pt)" ../assets.zip
+	@cd assets/wolf3d && unzip -q -o -P "Deus quer, o homem sonha, a obra nasce." ../assets.zip
 	@rm -f assets/assets.zip
 
 fonts:

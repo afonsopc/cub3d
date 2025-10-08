@@ -14,9 +14,6 @@
 # define FT_MLX_UTILS_H
 
 // External Libs
-# include <X11/X.h>
-# include <X11/Xlib.h>
-# include <X11/Xutil.h>
 # include <SDL2/SDL.h>
 
 // Internal Libs
@@ -189,40 +186,6 @@ struct s_ftm_rectangle
 	unsigned int	background_color;
 	unsigned int	border_color;
 	t_size			border_size;
-};
-
-struct s_win_list
-{
-	Window				window;
-	GC					gc;
-	struct s_win_list	*next;
-	int					(*mouse_hook)();
-	int					(*key_hook)();
-	int					(*expose_hook)();
-	void				*mouse_param;
-	void				*key_param;
-	void				*expose_param;
-};
-
-struct s_xvar
-{
-	Display		*display;
-	Window		root;
-	int			screen;
-	int			depth;
-	Visual		*visual;
-	Colormap	cmap;
-	int			private_cmap;
-	t_win_list	*win_list;
-	int			(*loop_hook)();
-	void		*loop_param;
-	int			use_xshm;
-	int			pshm_format;
-	int			do_flush;
-	int			decrgb[6];
-	Atom		wm_delete_window;
-	Atom		wm_protocols;
-	int			end_loop;
 };
 
 void				ftm_controller_init_e(t_ftm_controller *controller, int id);

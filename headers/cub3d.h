@@ -26,7 +26,6 @@
 # ifdef __EMSCRIPTEN__
 #  include <emscripten.h>
 # endif
-# include <X11/keysym.h>
 # include <stdio.h>
 # include <stdbool.h>
 # include <unistd.h>
