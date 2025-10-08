@@ -1,5 +1,5 @@
 BACKGROUND_SOUND assets/wolf3d/sounds/copypro.mp3
-BACKGROUND_SOUND_VOLUME 0.7
+BACKGROUND_SOUND_VOLUME 0.3
 BACKGROUND_SOUND_LOOP TRUE
 BACKGROUND_SPRITE assets/wolf3d/textures/wood-wall-dark.bmp
 
@@ -50,8 +50,7 @@ WALKING_1_SPRITE_LOOP TRUE
 DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
 DEATH_SPRITE_UPDATE_DELAY 0.1
 HIT_SPRITE assets/textures/billboards/afonsomaria/hit.bmp
-DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
-HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 USING_P_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.bmp:assets/textures/billboards/afonsomaria/aim-front.bmp
 USING_P_8_SPRITE_UPDATE_DELAY 0.05
 USING_P_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.bmp:assets/textures/billboards/afonsomaria/aim-front-right.bmp
@@ -136,8 +135,7 @@ W_WALKING_1_SPRITE_LOOP TRUE
 W_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
 W_DEATH_SPRITE_UPDATE_DELAY 0.1
 W_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
-W_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
-W_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+W_DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 W_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
 W_USING_P_8_SPRITE_UPDATE_DELAY 0.05
 W_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
@@ -259,8 +257,7 @@ e_WALKING_1_SPRITE_LOOP TRUE
 e_DEATH_SPRITE assets/wolf3d/textures/billboards/soldier/death1.bmp:assets/wolf3d/textures/billboards/soldier/death2.bmp:assets/wolf3d/textures/billboards/soldier/death3.bmp:assets/wolf3d/textures/billboards/soldier/death4.bmp:assets/wolf3d/textures/billboards/soldier/death5.bmp
 e_DEATH_SPRITE_UPDATE_DELAY 0.1
 e_HIT_SPRITE assets/wolf3d/textures/billboards/soldier/hit.bmp
-e_DEATH_SOUND assets/wolf3d/sounds/deathscream5.mp3
-e_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+e_DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 e_CONTROLLER ENEMY
 e_OPTIMAL_PROXIMITY 2
 e_0_INVENTORY H
@@ -432,6 +429,7 @@ Y_DAMAGE 10
 Y_AMMO_USAGE 1
 Y_NAME Soldier's Weapon
 Y_USE_SOUND assets/wolf3d/sounds/nazifire.mp3
+Y_USE_SOUND_VOLUME 0.5
 Y_DESCRIPTION Weapon of the National Socialist soldier
 Y_USE_DELAY 0.8
 Y_SCREEN_SPRITE assets/wolf3d/textures/items/machinegun/screen/0.bmp
@@ -446,6 +444,7 @@ C_AMMO_USAGE 0
 C_NAME Dog's Mouth
 C_RANGE 2.5
 C_USE_SOUND assets/wolf3d/sounds/dogbark.mp3
+C_USE_SOUND_VOLUME 0.5
 C_DESCRIPTION Weapon of the National Socialist soldier
 C_USE_DELAY 1.0
 C_SCREEN_SPRITE assets/wolf3d/textures/billboards/dog/right1.bmp
@@ -457,6 +456,7 @@ C_ICON_SPRITE assets/wolf3d/textures/billboards/dog/right1.bmp
 H_TYPE ITEM
 H_NAME Halt SIR
 H_USE_SOUND assets/wolf3d/sounds/halt.mp3
+H_USE_SOUND_VOLUME 0.4
 H_SINGLE_USE TRUE
 H_DESCRIPTION Halt SIR, you are not allowed to pass
 H_USE_DELAY 0.6
@@ -466,10 +466,12 @@ H_ICON_SPRITE assets/wolf3d/textures/billboards/soldier/still-front.bmp
 
 P_TYPE WEAPON
 P_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+P_CANT_USE_SOUND_VOLUME 0.7
 P_DAMAGE 34
 P_AMMO_USAGE 1
 P_NAME Pistol
 P_USE_SOUND assets/wolf3d/sounds/atkpistol.mp3
+P_USE_SOUND_VOLUME 0.5
 P_SINGLE_USE TRUE
 P_DESCRIPTION Normal pistol, good for close combat
 P_USE_DELAY 0.2
@@ -481,10 +483,12 @@ P_ICON_SPRITE assets/wolf3d/textures/items/pistol/icon.bmp
 
 G_TYPE WEAPON
 G_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+G_CANT_USE_SOUND_VOLUME 0.6
 G_DAMAGE 30
 G_AMMO_USAGE 1
 G_NAME Gatling
 G_USE_SOUND assets/wolf3d/sounds/atkgatling.mp3
+G_USE_SOUND_VOLUME 0.3
 G_GET_SOUND assets/wolf3d/sounds/getgatling.mp3
 G_DESCRIPTION Gatling gun, very powerful, but slow
 G_USE_DELAY 0.1
@@ -516,6 +520,7 @@ M_DAMAGE 25
 M_AMMO_USAGE 1
 M_NAME Machine Gun
 M_USE_SOUND assets/wolf3d/sounds/atkmachinegun.mp3
+M_USE_SOUND_VOLUME 0.3
 M_GET_SOUND assets/wolf3d/sounds/getmachine.mp3
 M_DESCRIPTION Machine gun, good for medium range combat
 M_USE_DELAY 0.1
@@ -583,9 +588,9 @@ v_DOOR_SPRITE assets/wolf3d/textures/door.bmp
 v_SIDES_SPRITE assets/wolf3d/textures/door-frame.bmp
 v_DIRECTION WEST
 v_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
-v_OPEN_SOUND_VOLUME 0.8
+v_OPEN_SOUND_VOLUME 0.4
 v_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
-v_CLOSE_SOUND_VOLUME 0.8
+v_CLOSE_SOUND_VOLUME 0.4
 
 h_TYPE DOOR
 h_TARGETABLE TRUE
@@ -595,9 +600,9 @@ h_DOOR_SPRITE assets/wolf3d/textures/door.bmp
 h_SIDES_SPRITE assets/wolf3d/textures/door-frame.bmp
 h_DIRECTION NORTH
 h_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
-h_OPEN_SOUND_VOLUME 0.8
+h_OPEN_SOUND_VOLUME 0.4
 h_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
-h_CLOSE_SOUND_VOLUME 0.8
+h_CLOSE_SOUND_VOLUME 0.4
 
 s_TYPE DOOR
 s_TARGETABLE TRUE
@@ -626,9 +631,9 @@ u_DOOR_SPRITE assets/wolf3d/textures/electric-door-button-dark.bmp
 u_SIDES_SPRITE assets/wolf3d/textures/door-frame.bmp
 u_DIRECTION WEST
 u_OPEN_SOUND assets/wolf3d/sounds/opendoor.mp3
-u_OPEN_SOUND_VOLUME 0.8
+u_OPEN_SOUND_VOLUME 0.4
 u_CLOSE_SOUND assets/wolf3d/sounds/closedoor.mp3
-u_CLOSE_SOUND_VOLUME 0.8
+u_CLOSE_SOUND_VOLUME 0.4
 
 w_TYPE DOOR
 w_TARGETABLE TRUE

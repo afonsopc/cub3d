@@ -35,8 +35,7 @@ WALKING_1_SPRITE_LOOP TRUE
 DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
 DEATH_SPRITE_UPDATE_DELAY 0.1
 HIT_SPRITE assets/textures/billboards/afonsomaria/hit.bmp
-DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
-HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 USING_P_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.bmp:assets/textures/billboards/afonsomaria/aim-front.bmp
 USING_P_8_SPRITE_UPDATE_DELAY 0.05
 USING_P_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.bmp:assets/textures/billboards/afonsomaria/aim-front-right.bmp
@@ -121,7 +120,7 @@ W_WALKING_1_SPRITE_LOOP TRUE
 W_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
 W_DEATH_SPRITE_UPDATE_DELAY 0.1
 W_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
-W_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
+W_DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 W_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
 W_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
 W_USING_P_8_SPRITE_UPDATE_DELAY 0.05

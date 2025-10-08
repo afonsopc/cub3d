@@ -50,8 +50,7 @@ WALKING_1_SPRITE_LOOP TRUE
 DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
 DEATH_SPRITE_UPDATE_DELAY 0.1
 HIT_SPRITE assets/textures/billboards/afonsomaria/hit.bmp
-DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
-HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 
 W_STILL_8_SPRITE assets/textures/billboards/pv/still-front.bmp
 W_STILL_7_SPRITE assets/textures/billboards/pv/still-front-right.bmp
@@ -88,8 +87,7 @@ W_WALKING_1_SPRITE_LOOP TRUE
 W_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
 W_DEATH_SPRITE_UPDATE_DELAY 0.1
 W_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
-W_DEATH_SOUND assets/wolf3d/sounds/deathscream4.mp3
-W_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+W_DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 
 STATS_HUD_FONT assets/fonts/wolf3d
 
@@ -163,8 +161,7 @@ e_WALKING_1_SPRITE_LOOP TRUE
 e_DEATH_SPRITE assets/wolf3d/textures/billboards/soldier/death1.bmp:assets/wolf3d/textures/billboards/soldier/death2.bmp:assets/wolf3d/textures/billboards/soldier/death3.bmp:assets/wolf3d/textures/billboards/soldier/death4.bmp:assets/wolf3d/textures/billboards/soldier/death5.bmp
 e_DEATH_SPRITE_UPDATE_DELAY 0.1
 e_HIT_SPRITE assets/wolf3d/textures/billboards/soldier/hit.bmp
-e_DEATH_SOUND assets/wolf3d/sounds/deathscream5.mp3
-e_HIT_SOUND assets/wolf3d/sounds/deathscream1.mp3
+e_DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
 e_CONTROLLER ENEMY
 e_OPTIMAL_PROXIMITY 2
 e_0_INVENTORY H

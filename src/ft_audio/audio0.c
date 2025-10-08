@@ -71,5 +71,38 @@ t_fta_audio	*fta_audio_new(const char *path)
 	if (result != MA_SUCCESS)
 		return (free(audio), NULL);
 	audio->length *= 1000;
+	audio->sounds = NULL;
+	audio->sounds_count = 0;
 	return (audio);
+}
+
+t_fta_audio	*fta_audio_new_multi(const char *paths)
+{
+	t_fta_audio	*audio;
+	char		**split_paths;
+	size_t		i;
+
+	if (!paths || !ft_strchr(paths, ':'))
+		return (fta_audio_new(paths));
+	split_paths = ft_split(paths, ":");
+	if (!split_paths)
+		return (NULL);
+	audio = ft_calloc(1, sizeof(t_fta_audio));
+	if (!audio)
+		return (ft_strvfree(split_paths), NULL);
+	audio->sounds_count = ft_strvlen(split_paths);
+	audio->sounds = ft_calloc(audio->sounds_count, sizeof(t_fta_audio *));
+	if (!audio->sounds)
+		return (ft_strvfree(split_paths), free(audio), NULL);
+	i = 0;
+	while (i < audio->sounds_count)
+	{
+		audio->sounds[i] = fta_audio_new(split_paths[i]);
+		if (!audio->sounds[i])
+			return (ft_strvfree(split_paths), fta_free_audio(audio), NULL);
+		i++;
+	}
+	audio->config = audio->sounds[0]->config;
+	audio->length = audio->sounds[0]->length;
+	return (ft_strvfree(split_paths), audio);
 }

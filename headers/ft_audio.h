@@ -33,6 +33,8 @@ typedef struct s_fta_audio
 	ma_sound			sound[FT_AUDIO_SOUND_INSTANCES];
 	t_fta_audio_config	config;
 	float				length;
+	struct s_fta_audio	**sounds;
+	size_t				sounds_count;
 }	t_fta_audio;
 
 typedef struct s_fta_engine
@@ -45,6 +47,7 @@ t_fta_engine	*fta_engine(void);
 void			fta_init_e(void);
 void			fta_destroy(void);
 t_fta_audio		*fta_audio_new(const char *path);
+t_fta_audio		*fta_audio_new_multi(const char *paths);
 void			fta_audio_config(t_fta_audio *audio, t_fta_audio_config config);
 void			fta_play(t_fta_audio *audio);
 void			fta_clear_audio(void *audio);

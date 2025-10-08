@@ -61,9 +61,9 @@ static void	init_sound(t_game *game, t_element *el)
 
 	if (!ft_str_endswith(el->key, "_SOUND"))
 		return ;
-	if (!ft_str_endswith(el->value, ".mp3"))
+	if (!ft_strchr(el->value, ':') && !ft_str_endswith(el->value, ".mp3"))
 		return (fte_set("invalid audio format"));
-	audio = fta_audio_new(el->value);
+	audio = fta_audio_new_multi(el->value);
 	if (!audio && fta_engine()->initialized)
 		return (fte_set("audio load"));
 	if (!audio)
