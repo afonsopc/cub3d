@@ -16,6 +16,7 @@ void	ftm_image_clear(t_ftm_image *image)
 {
 	ftm_draw_rectangle(image, (t_coords){0, 0, 0},
 		image->size, (t_ftm_rectangle){0, 0, (t_size){0, 0}});
+	image->texture_dirty = true;
 }
 
 char	*ftm_image_to_str(t_ftm_image *image)
@@ -30,35 +31,72 @@ void	ftm_put_image_to_window(t_ftm_window *window, t_ftm_image *image,
 			t_coords coords)
 {
 	SDL_Rect dst_rect;
-	SDL_Texture *texture;
 
 	if (!image || !window || !image->surface || !window->display)
 		return ;
+	if (!image->texture || image->texture_dirty)
+	{
+		if (image->texture)
+			SDL_DestroyTexture(image->texture);
+		image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
+		if (!image->texture)
+			return ;
+		SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
+		image->renderer = window->display;
+		image->texture_dirty = false;
+	}
 	dst_rect.x = coords.x;
 	dst_rect.y = coords.y;
 	dst_rect.w = image->size.width;
 	dst_rect.h = image->size.height;
 	
-	texture = SDL_CreateTextureFromSurface(window->display, image->surface);
-	if (!texture)
-		return ;
-	
-	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
-	SDL_RenderCopy(window->display, texture, NULL, &dst_rect);
-	SDL_DestroyTexture(texture);
+	SDL_RenderCopy(window->display, image->texture, NULL, &dst_rect);
 }
 
 void	ftm_put_image_to_window_pitc(t_ftm_window *window, t_ftm_image *image,
 			t_ftm_pitc_config pitc)
 {
-	t_ftm_image	*canvas;
+	SDL_Rect	src_rect;
+	SDL_Rect	dst_rect;
 
-	if (!image)
+	if (!image || !window || !window->display)
 		return ;
-	canvas = ftm_image_new(window, window->size);
-	if (!canvas)
-		return ;
-	ftm_put_image_to_canvas(canvas, image, pitc);
-	ftm_put_image_to_window(window, canvas, (t_coords){0, 0, 0});
-	ftm_free_image(canvas);
+	if (!image->texture || image->texture_dirty)
+	{
+		if (image->texture)
+			SDL_DestroyTexture(image->texture);
+		image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
+		if (!image->texture)
+			return ;
+		SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
+		image->renderer = window->display;
+		image->texture_dirty = false;
+	}
+	if (pitc.crop)
+	{
+		src_rect.x = (int)pitc.crop_start.x;
+		src_rect.y = (int)pitc.crop_start.y;
+		src_rect.w = (int)(pitc.crop_end.x - pitc.crop_start.x);
+		src_rect.h = (int)(pitc.crop_end.y - pitc.crop_start.y);
+	}
+	else
+	{
+		src_rect.x = 0;
+		src_rect.y = 0;
+		src_rect.w = image->size.width;
+		src_rect.h = image->size.height;
+	}
+	dst_rect.x = (int)pitc.coords.x;
+	dst_rect.y = (int)pitc.coords.y;
+	if (pitc.resize)
+	{
+		dst_rect.w = pitc.size.width;
+		dst_rect.h = pitc.size.height;
+	}
+	else
+	{
+		dst_rect.w = src_rect.w;
+		dst_rect.h = src_rect.h;
+	}
+	SDL_RenderCopy(window->display, image->texture, &src_rect, &dst_rect);
 }

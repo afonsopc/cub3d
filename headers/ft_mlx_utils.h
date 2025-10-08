@@ -107,6 +107,9 @@ struct s_sdl_context
 struct s_ftm_image
 {
     SDL_Surface		*surface;
+	SDL_Texture		*texture;
+	SDL_Renderer	*renderer;
+	bool			texture_dirty;
 	pthread_mutex_t	mutex;
 	char			*path;
 	void			*img_ptr;

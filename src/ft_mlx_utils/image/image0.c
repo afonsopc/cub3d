@@ -14,9 +14,16 @@
 
 void	ftm_free_image(void *image)
 {
+	t_ftm_image	*img;
+
 	if (!image)
 		return ;
-	SDL_FreeSurface(((t_ftm_image *)image)->surface);
+	img = (t_ftm_image *)image;
+	if (img->texture)
+		SDL_DestroyTexture(img->texture);
+	if (img->surface)
+		SDL_FreeSurface(img->surface);
+	pthread_mutex_destroy(&img->mutex);
 	free(image);
 }
 
@@ -59,6 +66,9 @@ t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
     if (!load_image_addresses(image))
         return (ftm_free_image(image), NULL);
     pthread_mutex_init(&image->mutex, NULL);
+    image->texture = NULL;
+    image->renderer = NULL;
+    image->texture_dirty = true;
     return (image);
 }
 
@@ -79,6 +89,9 @@ t_ftm_image	*ftm_image_new(t_ftm_window *window, t_size size)
 	if (!load_image_addresses(image))
 		return (ftm_free_image(image), NULL);
 	pthread_mutex_init(&image->mutex, NULL);
+	image->texture = NULL;
+	image->renderer = NULL;
+	image->texture_dirty = true;
 	return (image);
 }
 

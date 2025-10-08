@@ -34,6 +34,7 @@ void	ftm_draw_line(t_ftm_image *canvas, t_coords start, t_coords end,
 		xy.y += dxy.y;
 		i++;
 	}
+	canvas->texture_dirty = true;
 }
 
 void	ftm_draw_line_angle(t_ftm_image *canvas, t_coords start,
@@ -114,6 +115,7 @@ void	ftm_draw_rectangle(t_ftm_image *canvas, t_coords coords, t_size size,
 		}
 	}
 	pthread_mutex_unlock(&canvas->mutex);
+	canvas->texture_dirty = true;
 }
 
 void	ftm_draw_arrow(t_ftm_image *canvas, t_coords coords, t_size size,
@@ -141,4 +143,5 @@ void	ftm_draw_arrow(t_ftm_image *canvas, t_coords coords, t_size size,
 	end.y = coords.y + ft_sin_degrees(angle) * size.height / 2;
 	ftm_draw_line(canvas, end, head1, color);
 	ftm_draw_line(canvas, end, head2, color);
+	canvas->texture_dirty = true;
 }

@@ -59,4 +59,5 @@ void	ftm_put_image_to_canvas(t_ftm_image *canvas, t_ftm_image *image,
 		SDL_BlitSurface(image->surface, &src_rect, canvas->surface, &dst_rect);
 		pthread_mutex_unlock(&canvas->mutex);
 	}
+	canvas->texture_dirty = true;
 }
