@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -O3 -g
 # CFLAGS = -Wall -Wextra -Werror -O3 -g -std=c99 -fsanitize=address -fno-omit-frame-pointer
 INCLUDES = -I headers
 LIBS = -L lib
-LDLIBS = -lmlx -lSDL2 -ldl -lpthread
+LDLIBS = -lSDL2 -ldl -lpthread
 SRCS = $(shell find src -name "**.c")
 OBJ_DIR = obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -50,22 +50,9 @@ endif
 
 all: $(NAME)
 
-$(NAME): fonts assets/wolf3d lib/libSDL2.a lib/libmlx.a headers/miniaudio.h $(OBJS)
+$(NAME): fonts assets/wolf3d lib/libSDL2.a headers/miniaudio.h $(OBJS)
 	@echo "\033[1;32mCompiling \033[1;0m\"$(OBJS)\"\033[1;32m into \033[1;0m\"$(NAME)\"\033[1;32m.\033[0m"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(INCLUDES) $(LIBS) $(LDLIBS)
-
-lib/libmlx.a:
-	@echo "\033[1;32mCompiling \033[1;0m\"minilibx\"\033[1;32m.\033[0m"
-	@rm -rf lib/minilibx-linux
-	@tar -xzf lib/minilibx-linux.tgz -C lib
-ifeq ($(UNAME_S),Darwin)
-	@cp lib/libmlx_Darwin.a lib/libmlx.a
-else
-	@$(MAKE) -C lib/minilibx-linux
-	@cp lib/minilibx-linux/libmlx.a lib
-endif
-	@cp lib/minilibx-linux/mlx.h headers
-	@rm -rf lib/minilibx-linux
 
 headers/miniaudio.h:
 	@echo "\033[1;32mCompiling \033[1;0m\"miniaudio\"\033[1;32m.\033[0m"
@@ -105,8 +92,6 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
-	@rm -rf lib/libmlx.a
-	@rm -rf headers/mlx.h
 	@rm -rf headers/SDL2/
 	@rm -rf lib/libSDL2.a
 	@rm -rf headers/miniaudio.h
