@@ -33,13 +33,13 @@ You can play it here: [https://omelhorsite.pt/en/games/cub3d](https://omelhorsit
 
 ### Desktop Version (Linux/macOS)
 
-To compile the native version of the game, ensure you have the necessary dependencies (SDL2) and run:
+To compile the native version of the game run:
 
 ```bash
 make
 ```
 
-To run the game, provide a map as an argument:
+To run the game, you can provide a map as an argument or not and it will open hub.cub:
 
 ```bash
 ./cub3d [path/to/map.cub]
