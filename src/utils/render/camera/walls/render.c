@@ -57,36 +57,28 @@ static void	draw_ray(t_draw_ray_config drc)
 	draw_ray_line(drc.canvas, drc.camera, ray, drc.i);
 }
 
-static double	get_ray_yaw(t_draw_ray_config drc)
-{
-	double	half_rays;
-	double	dist_to_proj;
-	double	angle_ajustment;
-
-	half_rays = drc.camera->rays / 2;
-	dist_to_proj = half_rays / tan(ft_radians(drc.camera->fov) / 2);
-	angle_ajustment = ft_degrees(atan(((double)drc.i - half_rays)
-				/ dist_to_proj));
-	return (ft_normalize_angle(
-			drc.camera->character->billboard.entity.coords.yaw
-			+ angle_ajustment));
-}
-
 static void	thread_render_rays(void *data)
 {
 	t_thread_render_rays_data	*trrd;
 	t_draw_ray_config			drc;
 	unsigned int				i;
+	double						half_rays;
+	double						dist_to_proj;
+	double						base_yaw;
 
 	trrd = data;
 	i = trrd->start;
 	drc = (t_draw_ray_config){trrd->canvas, trrd->camera, trrd->game,
 		trrd->camera->character->billboard.entity.coords,
 		(t_entity *)trrd->camera->character, true, 0, 0, 0};
+	half_rays = trrd->camera->rays / 2.0;
+	dist_to_proj = half_rays / tan(ft_radians(trrd->camera->fov) / 2);
+	base_yaw = trrd->camera->character->billboard.entity.coords.yaw;
 	while (i < trrd->end)
 	{
 		drc.i = i++;
-		drc.yaw = get_ray_yaw(drc);
+		drc.yaw = ft_normalize_angle(base_yaw
+				+ ft_degrees(atan(((double)drc.i - half_rays) / dist_to_proj)));
 		drc.camera->ray_distances[drc.i] = -1;
 		draw_ray(drc);
 	}

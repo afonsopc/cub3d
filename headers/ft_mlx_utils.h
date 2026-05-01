@@ -175,6 +175,15 @@ struct s_ftm_pitc_config
 	unsigned	(*pixel_modifier)(void *data, unsigned pixel);
 };
 
+typedef struct s_ftm_blit_column_args
+{
+	int	dst_x;
+	int	dst_y;
+	int	dst_w;
+	int	dst_h;
+	int	src_col;
+}	t_ftm_blit_column_args;
+
 struct s_ftm_text_config
 {
 	char			*text;
@@ -208,6 +217,8 @@ t_list				*ftm_images_from_files(t_ftm_window *window,
 void				ftm_image_clear(t_ftm_image *image);
 void				ftm_put_image_to_canvas(t_ftm_image *canvas,
 						t_ftm_image *image, t_ftm_pitc_config pitc);
+void				ftm_blit_column_fast(t_ftm_image *canvas,
+						t_ftm_image *image, t_ftm_blit_column_args a);
 
 char				*ftm_image_to_str(t_ftm_image *image);
 void				ftm_put_image_to_window(t_ftm_window *window,

@@ -60,6 +60,9 @@ void	clear_character(void *data)
 	if (!data)
 		return ;
 	character = (t_character *)data;
+	free(character->ray_distances_buf);
+	character->ray_distances_buf = NULL;
+	character->ray_distances_buf_cap = 0;
 	free_entity(character->drop);
 	free_inventory_items(character);
 	free_3d_sprite(character->hit_sprite);

@@ -16,11 +16,18 @@ void	render_camera(t_game *game, t_ftm_image *canvas, t_character *character)
 {
 	t_camera	camera;
 
-	camera = (t_camera){character, character->fov, character->rays,
-		ft_calloc(character->rays, sizeof(double))};
-	if (!camera.ray_distances)
+	if (character->ray_distances_buf_cap < character->rays)
+	{
+		free(character->ray_distances_buf);
+		character->ray_distances_buf = ft_calloc(character->rays,
+				sizeof(double));
+		character->ray_distances_buf_cap = character->rays
+			* (character->ray_distances_buf != NULL);
+	}
+	if (!character->ray_distances_buf)
 		return ;
+	camera = (t_camera){character, character->fov, character->rays,
+		character->ray_distances_buf};
 	render_walls(game, canvas, &camera);
 	render_billboards(game, canvas, &camera);
-	free(camera.ray_distances);
 }

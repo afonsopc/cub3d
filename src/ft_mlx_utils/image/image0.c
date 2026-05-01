@@ -50,10 +50,10 @@ t_ftm_image	*ftm_image_from_file(t_ftm_window *window, char *path)
     image->surface = SDL_LoadBMP(path);
     if (!image->surface)
         return (free(image), NULL);
-    if (image->surface->format->BitsPerPixel <= 8)
+    if (image->surface->format->format != SDL_PIXELFORMAT_ARGB8888)
     {
-        rgb_surface = SDL_ConvertSurfaceFormat(image->surface, 
-            SDL_PIXELFORMAT_RGBA8888, 0);
+        rgb_surface = SDL_ConvertSurfaceFormat(image->surface,
+            SDL_PIXELFORMAT_ARGB8888, 0);
         if (rgb_surface)
         {
             SDL_FreeSurface(image->surface);
@@ -82,8 +82,8 @@ t_ftm_image	*ftm_image_new(t_ftm_window *window, t_size size)
 		return (NULL);
 	image->path = NULL;
 	image->size = size;
-	image->surface = SDL_CreateRGBSurface(0, size.width, size.height,
-			32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	image->surface = SDL_CreateRGBSurfaceWithFormat(0, size.width, size.height,
+			32, SDL_PIXELFORMAT_ARGB8888);
 	if (!image->surface)
 		return (ftm_free_image(image), NULL);
 	if (!load_image_addresses(image))

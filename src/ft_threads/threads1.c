@@ -16,22 +16,26 @@ void	ftt_thread_wait(t_ftt_thread *thread)
 {
 	if (!thread)
 		return ;
+	pthread_mutex_lock(&thread->done_mutex);
 	while (thread->running)
-	{
-		#ifdef __EMSCRIPTEN__
-			emscripten_sleep(0);
-		#else
-			ft_sleep(1);
-		#endif
-	}
+		pthread_cond_wait(&thread->done_cond, &thread->done_mutex);
+	pthread_mutex_unlock(&thread->done_mutex);
 }
 
 void	ftt_clear_thread(t_ftt_thread *thread)
 {
 	if (!thread)
 		return ;
+	pthread_mutex_lock(&thread->start_mutex);
 	thread->active = false;
+	thread->running = false;
+	pthread_cond_signal(&thread->start_cond);
+	pthread_mutex_unlock(&thread->start_mutex);
 	pthread_join(thread->thread, NULL);
+	pthread_mutex_destroy(&thread->start_mutex);
+	pthread_cond_destroy(&thread->start_cond);
+	pthread_mutex_destroy(&thread->done_mutex);
+	pthread_cond_destroy(&thread->done_cond);
 	ft_bzero(thread, sizeof(t_ftt_thread));
 }
 

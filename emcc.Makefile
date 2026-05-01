@@ -12,16 +12,17 @@
 
 NAME = cub3d
 CC = emcc
-CFLAGS = -Wall -Wextra -Werror -O3 -D W_WIDTH=400 -D W_HEIGHT=300
+CFLAGS = -Wall -Wextra -Werror -O3 -DNDEBUG -ffast-math -fno-math-errno -flto
+CFLAGS += -D W_WIDTH=640 -D W_HEIGHT=480
 INCLUDES = -I headers
-LDLIBS = -lm -ldl
+LDLIBS = -lm
 SRCS = $(shell find src -name "**.c")
 OBJ_DIR = web_obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-CFLAGS += -pthread
+CFLAGS += -pthread -msimd128 -s USE_SDL=2 -s USE_PTHREADS=1
+LDLIBS += -O3 -flto
 LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1
-LDLIBS += -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=2 -s ASYNCIFY=1
 LDLIBS += --preload-file maps --preload-file assets/42lisboa --shell-file minimal.html
 LDLIBS += --preload-file assets/fonts --preload-file assets/sounds
 LDLIBS += --preload-file assets/textures --preload-file assets/wolf3d
@@ -40,6 +41,11 @@ headers/miniaudio.h:
 	@echo "\033[1;32mCompiling \033[1;0m\"miniaudio\"\033[1;32m.\033[0m"
 	@rm -rf headers/miniaudio.h
 	@tar -xzf lib/miniaudio.tar.gz -C headers
+
+$(OBJ_DIR)/src/ft_audio/ma.o: src/ft_audio/ma.c
+	@echo "\033[1;32mCompiling \033[1;0m\"$<\"\033[1;32m into \033[1;0m\"$@\"\033[1;32m.\033[0m"
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDES) -Wno-error=deprecated-pragma -Wno-error=unused-parameter -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.c
 	@echo "\033[1;32mCompiling \033[1;0m\"$<\"\033[1;32m into \033[1;0m\"$@\"\033[1;32m.\033[0m"

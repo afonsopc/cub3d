@@ -12,32 +12,13 @@
 
 #include "walls.h"
 
-static t_ftm_pitc_config	get_pitc_config(t_get_pitc_config_config gpcc)
-{
-	double	x_of_hit;
-
-	x_of_hit = gpcc.ray->hit_x;
-	if (gpcc.ray->hit_direction == NORTH || gpcc.ray->hit_direction == EAST)
-		x_of_hit = 1.0 - gpcc.ray->hit_x;
-	return ((t_ftm_pitc_config){
-		(t_coords){gpcc.i * gpcc.ray_size->width,
-		(gpcc.canvas->size.height - gpcc.ray_size->height) / 2, 0},
-		true,
-		(t_coords){(int)(x_of_hit * gpcc.image->size.width), 0, 0},
-		(t_coords){(int)(x_of_hit * gpcc.image->size.width) + 1,
-		gpcc.image->size.height, 0},
-		true,
-		*gpcc.ray_size,
-		NULL,
-		NULL
-	});
-}
-
 void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 	int i)
 {
 	t_size					ray_size;
 	t_ftm_image				*hit_entity_image;
+	double					x_of_hit;
+	t_ftm_blit_column_args	args;
 
 	ray_size.width = canvas->size.width / camera->rays;
 	hit_entity_image = get_sprite_image(get_entity_sprite(ray.hit,
@@ -48,7 +29,13 @@ void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 			* ft_cos_degrees((ray.yaw
 					- camera->character->billboard.entity.coords.yaw)));
 	ray_size.height = fmin(ray_size.height, canvas->size.height * 3);
-	ftm_put_image_to_canvas(canvas, hit_entity_image,
-		get_pitc_config((t_get_pitc_config_config){i, &ray_size,
-			hit_entity_image, &ray, canvas}));
+	x_of_hit = ray.hit_x;
+	if (ray.hit_direction == NORTH || ray.hit_direction == EAST)
+		x_of_hit = 1.0 - ray.hit_x;
+	args.dst_x = i * ray_size.width;
+	args.dst_y = (canvas->size.height - ray_size.height) / 2;
+	args.dst_w = ray_size.width;
+	args.dst_h = ray_size.height;
+	args.src_col = (int)(x_of_hit * hit_entity_image->size.width);
+	ftm_blit_column_fast(canvas, hit_entity_image, args);
 }

@@ -27,6 +27,30 @@ char	*ftm_image_to_str(t_ftm_image *image)
 			image->path, image->size.width, image->size.height));
 }
 
+static void	ensure_texture(t_ftm_window *window, t_ftm_image *image)
+{
+	if (!image->texture || image->renderer != window->display)
+	{
+		if (image->texture)
+			SDL_DestroyTexture(image->texture);
+		image->texture = SDL_CreateTexture(window->display,
+				image->surface->format->format,
+				SDL_TEXTUREACCESS_STREAMING,
+				image->size.width, image->size.height);
+		if (!image->texture)
+			return ;
+		SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
+		image->renderer = window->display;
+		image->texture_dirty = true;
+	}
+	if (image->texture_dirty)
+	{
+		SDL_UpdateTexture(image->texture, NULL,
+			image->surface->pixels, image->surface->pitch);
+		image->texture_dirty = false;
+	}
+}
+
 void	ftm_put_image_to_window(t_ftm_window *window, t_ftm_image *image,
 			t_coords coords)
 {
@@ -34,22 +58,13 @@ void	ftm_put_image_to_window(t_ftm_window *window, t_ftm_image *image,
 
 	if (!image || !window || !image->surface || !window->display)
 		return ;
-	if (!image->texture || image->texture_dirty)
-	{
-		if (image->texture)
-			SDL_DestroyTexture(image->texture);
-		image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
-		if (!image->texture)
-			return ;
-		SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
-		image->renderer = window->display;
-		image->texture_dirty = false;
-	}
+	ensure_texture(window, image);
+	if (!image->texture)
+		return ;
 	dst_rect.x = coords.x;
 	dst_rect.y = coords.y;
 	dst_rect.w = image->size.width;
 	dst_rect.h = image->size.height;
-	
 	SDL_RenderCopy(window->display, image->texture, NULL, &dst_rect);
 }
 
@@ -61,17 +76,9 @@ void	ftm_put_image_to_window_pitc(t_ftm_window *window, t_ftm_image *image,
 
 	if (!image || !window || !window->display)
 		return ;
-	if (!image->texture || image->texture_dirty)
-	{
-		if (image->texture)
-			SDL_DestroyTexture(image->texture);
-		image->texture = SDL_CreateTextureFromSurface(window->display, image->surface);
-		if (!image->texture)
-			return ;
-		SDL_SetTextureBlendMode(image->texture, SDL_BLENDMODE_BLEND);
-		image->renderer = window->display;
-		image->texture_dirty = false;
-	}
+	ensure_texture(window, image);
+	if (!image->texture)
+		return ;
 	if (pitc.crop)
 	{
 		src_rect.x = (int)pitc.crop_start.x;

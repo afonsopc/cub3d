@@ -84,7 +84,11 @@ static void	load_new_map(bool *playing_bg_music)
 void	loop(void)
 {
 	static bool		playing_bg_music;
+	static bool		in_loop;
 
+	if (in_loop)
+		return ;
+	in_loop = true;
 	if (cub3d()->new_map_path)
 	{
 		if (!cub3d()->started_map_load)
@@ -94,10 +98,15 @@ void	loop(void)
 		else
 			load_new_map(&playing_bg_music);
 		cub3d()->started_map_load = !cub3d()->started_map_load;
+		in_loop = false;
 		return ;
 	}
 	if (!cub3d()->game)
-		return (ft_sleep(100));
+	{
+		ft_sleep(100);
+		in_loop = false;
+		return ;
+	}
 	if (!playing_bg_music)
 		fta_play(cub3d()->game->background_sound);
 	playing_bg_music = true;
@@ -112,4 +121,5 @@ void	loop(void)
 		process_fps_limit(cub3d()->game);
 	#endif
 	pthread_mutex_unlock(&cub3d()->game_mutex);
+	in_loop = false;
 }

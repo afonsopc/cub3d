@@ -289,6 +289,8 @@ struct s_billboard
 struct s_character
 {
 	t_billboard	billboard;
+	double		*ray_distances_buf;
+	int			ray_distances_buf_cap;
 	t_sprite	**using_sprite;
 	t_sprite	**death_sprite;
 	t_sprite	**hit_sprite;

@@ -24,11 +24,15 @@
 
 typedef struct s_ftt_thread
 {
-	pthread_t	thread;
-	bool		running;
-	bool		active;
-	void		(*routine)(void *);
-	void		*data;
+	pthread_t		thread;
+	pthread_mutex_t	start_mutex;
+	pthread_cond_t	start_cond;
+	pthread_mutex_t	done_mutex;
+	pthread_cond_t	done_cond;
+	bool			running;
+	bool			active;
+	void			(*routine)(void *);
+	void			*data;
 }	t_ftt_thread;
 
 void			ftt_thread_init(t_ftt_thread *thread);

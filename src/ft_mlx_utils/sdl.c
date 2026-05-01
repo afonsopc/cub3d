@@ -25,6 +25,7 @@ bool	update_sdl_usage(int value)
 	{
 		SDL_SetHint(SDL_HINT_NO_SIGNAL_HANDLERS, "1");
 		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "0");
+		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 		SDL_SetHint(SDL_HINT_VIDEO_MAC_FULLSCREEN_SPACES, "0");
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
 			return (false);

@@ -476,25 +476,20 @@
 
     <script type="text/javascript">
       let gameStarted = false;
-      const gameWindowWidth = 640;
-      const gameWindowHeight = 480;
       const canvas = document.getElementById("canvas");
       const strechCanvasToWindow = () => {
         if (!gameStarted) return;
 
         console.log("Resizing canvas to fit window");
-        const windowWidth = Math.max(
-          window.innerWidth || gameWindowWidth,
-          gameWindowWidth / 2
+        const canvasWidth = canvas.width || 640;
+        const canvasHeight = canvas.height || 480;
+        const windowWidth = window.innerWidth || canvasWidth;
+        const windowHeight = window.innerHeight || canvasHeight;
+        const scale = Math.min(
+          windowWidth / canvasWidth,
+          windowHeight / canvasHeight
         );
-        const windowHeight = Math.max(
-          window.innerHeight || gameWindowHeight,
-          gameWindowHeight / 2
-        );
-        const scaleX = Math.max(windowWidth / gameWindowWidth, 0.1);
-        const scaleY = Math.max(windowHeight / gameWindowHeight, 0.1);
-        const scale = Math.min(scaleX, scaleY);
-        canvas.style.transform = `scale(${scale * 1.6})`;
+        canvas.style.transform = `scale(${scale})`;
         canvas.style.transformOrigin = "center";
         canvas.style.position = "absolute";
       };
