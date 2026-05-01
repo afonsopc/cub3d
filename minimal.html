@@ -135,7 +135,7 @@
   </head>
 
   <body>
-    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
 
     <div class="controls-overlay">
       <div class="joystick left-joystick" id="leftJoystick">
@@ -215,28 +215,13 @@
         }
 
         setupEvents() {
-          this.element.addEventListener(
-            "touchstart",
-            (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              console.log("Joystick touchstart");
-              this.updateCenter();
-              this.currentTouch = e.touches[0].identifier;
-              this.active = true;
-              this.element.classList.add("active");
-              this.handleMove(e.touches[0]);
-            },
-            { passive: false }
-          );
-
           const handleTouchMove = (e) => {
             if (!this.active) return;
-            e.preventDefault();
-            for (let touch of e.touches) {
+            for (let touch of e.changedTouches) {
               if (touch.identifier !== this.currentTouch) continue;
+              e.preventDefault();
               this.handleMove(touch);
-              break;
+              return;
             }
           };
 
@@ -245,20 +230,30 @@
             for (let touch of e.changedTouches) {
               if (touch.identifier !== this.currentTouch) continue;
               this.reset();
-              document.removeEventListener("touchmove", handleTouchMove);
-              document.removeEventListener("touchend", handleTouchEnd);
-              document.removeEventListener("touchcancel", handleTouchEnd);
-              break;
+              return;
             }
           };
 
-          this.element.addEventListener("touchstart", (e) => {
-            document.addEventListener("touchmove", handleTouchMove, {
-              passive: false,
-            });
-            document.addEventListener("touchend", handleTouchEnd);
-            document.addEventListener("touchcancel", handleTouchEnd);
+          document.addEventListener("touchmove", handleTouchMove, {
+            passive: false,
           });
+          document.addEventListener("touchend", handleTouchEnd);
+          document.addEventListener("touchcancel", handleTouchEnd);
+
+          this.element.addEventListener(
+            "touchstart",
+            (e) => {
+              if (this.active) return;
+              e.preventDefault();
+              e.stopPropagation();
+              this.updateCenter();
+              this.currentTouch = e.changedTouches[0].identifier;
+              this.active = true;
+              this.element.classList.add("active");
+              this.handleMove(e.changedTouches[0]);
+            },
+            { passive: false }
+          );
 
           this.element.addEventListener("mousedown", (e) => {
             if (this.active) return;
@@ -498,6 +493,43 @@
       window.addEventListener("orientationchange", strechCanvasToWindow);
       window.addEventListener("load", strechCanvasToWindow);
 
+      canvas.addEventListener("click", () => canvas.focus());
+      canvas.addEventListener("touchstart", () => canvas.focus());
+      window.addEventListener("load", () => {
+        try {
+          canvas.focus();
+        } catch (_) {}
+      });
+
+      // Safari quirk: arrow key events fire on the canvas but don't reliably
+      // reach SDL's keydown listener. Re-dispatch them ourselves.
+      const arrowKeyMap = {
+        ArrowLeft: 37,
+        ArrowRight: 39,
+        ArrowUp: 38,
+        ArrowDown: 40,
+      };
+      window.addEventListener(
+        "keydown",
+        (e) => {
+          const code = arrowKeyMap[e.code];
+          if (!code || e.__forwarded) return;
+          e.preventDefault();
+          simulateKeyEvent(code, true);
+        },
+        { capture: true }
+      );
+      window.addEventListener(
+        "keyup",
+        (e) => {
+          const code = arrowKeyMap[e.code];
+          if (!code || e.__forwarded) return;
+          e.preventDefault();
+          simulateKeyEvent(code, false);
+        },
+        { capture: true }
+      );
+
       var Module = {
         canvas: (function () {
           return document.getElementById("canvas");
@@ -513,6 +545,9 @@
           console.log("Emscripten runtime initialized");
           gameStarted = true;
           setTimeout(strechCanvasToWindow, 1000);
+          try {
+            canvas.focus();
+          } catch (_) {}
         },
       };
     </script>

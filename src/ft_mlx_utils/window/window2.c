@@ -29,7 +29,12 @@ void	ftm_handle_hooks(t_ftm_window *window)
 		else if (event.type == SDL_MOUSEBUTTONUP)
 			window_mouse_up_hook(event.button.button, event.button.x, event.button.y, window);
 		else if (event.type == SDL_MOUSEMOTION)
-			window_mouse_hook(event.motion.x, event.motion.y, window);
+		{
+			if (((t_ftm_window *)window)->using_mouse)
+				window_mouse_hook(event.motion.xrel, event.motion.yrel, window);
+			else
+				window_mouse_hook(event.motion.x, event.motion.y, window);
+		}
 		else
 			ft_list_foreach(window->controllers, (void *)ftm_controller_event_handler,
 				&event);

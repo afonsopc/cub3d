@@ -27,6 +27,9 @@ bool	update_sdl_usage(int value)
 		SDL_SetHint(SDL_HINT_RENDER_VSYNC, "0");
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 		SDL_SetHint(SDL_HINT_VIDEO_MAC_FULLSCREEN_SPACES, "0");
+		#ifdef __EMSCRIPTEN__
+			SDL_SetHint(SDL_HINT_EMSCRIPTEN_KEYBOARD_ELEMENT, "#canvas");
+		#endif
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
 			return (false);
 		SDL_GameControllerEventState(SDL_ENABLE);

@@ -29,9 +29,7 @@ void	mouse_hook(t_coords coords)
 		pthread_mutex_unlock(&cub3d()->game_mutex);
 		return ;
 	}
-	ftm_window_mouse_warp(window,
-		(t_coords){window->size.width / 2, window->size.height / 2, 0});
-	movement = coords.x - (window->size.width / 2);
+	movement = coords.x;
 	if (fabs(movement) < 10)
 		movement = movement * (0.5 + (fabs(movement) / 20.0));
 	player = cub3d()->game->players[0];

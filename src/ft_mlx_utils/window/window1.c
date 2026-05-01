@@ -22,9 +22,15 @@ int	window_loop_hook(void *data)
 	{
 		previous_using_mouse = window->using_mouse;
 		if (previous_using_mouse)
+		{
+			SDL_SetRelativeMouseMode(SDL_TRUE);
 			SDL_ShowCursor(SDL_DISABLE);
+		}
 		else
+		{
+			SDL_SetRelativeMouseMode(SDL_FALSE);
 			SDL_ShowCursor(SDL_ENABLE);
+		}
 	}
 	if (window->loop_hook)
 		window->loop_hook();

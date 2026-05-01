@@ -13,7 +13,7 @@
 NAME = cub3d
 CC = emcc
 CFLAGS = -Wall -Wextra -Werror -O3 -DNDEBUG -ffast-math -fno-math-errno -flto
-CFLAGS += -D W_WIDTH=640 -D W_HEIGHT=480
+CFLAGS += -D W_WIDTH=1024 -D W_HEIGHT=768
 INCLUDES = -I headers
 LDLIBS = -lm
 SRCS = $(shell find src -name "**.c")
