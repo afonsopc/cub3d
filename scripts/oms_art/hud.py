@@ -163,23 +163,31 @@ def hud_bar(state, look, dead=False, cheat=False):
     img[0:2] = NAVY_L
     img[2] = NAVY_L * 0.8
     img[H - 2 :] = NAVY_D
-    panels = [(8, 83, ""), (86, 198, "PONTOS"), (202, 262, "FORÇA"), (332, 404, "VIDA"), (408, 478, "BALAS"), (482, 632, "")]
+    # grelha: margem 6, intervalos de 4, todas as caixas de y 6 a 74.
+    # Os números são desenhados pelo jogo a meio da barra (y ~ 40-66).
+    panels = [(6, 80, ""), (84, 196, "PONTOS"), (200, 260, "FORÇA"), (264, 330, None),
+              (334, 406, "VIDA"), (410, 480, "BALAS"), (484, 634, "")]
+    LABEL_Y = 12
     for x0, x1, label in panels:
-        img = bevel_box(img, x0, 6, x1, 75)
+        img = bevel_box(img, x0, 6, x1, 74)
         if label:
-            img = centered(img, label, (x0 + x1) / 2, 11, 2 if text_width(label, 2) < x1 - x0 - 6 else 1, GOLD, shadow=(10, 10, 20))
-    # emblema do jogador: cravo e a data
-    c = scale(grid(CRAVO_SMALL, CRAVO_C), 4)
-    paste(img, c, 26, 10)
-    img = centered(img, "25·IV", 45, 61, 2, (236, 230, 210), shadow=(10, 10, 20))
-    # quatro lâmpadas de força
-    for i, x in enumerate(range(210, 256, 12)):
+            img = centered(img, label, (x0 + x1) / 2, LABEL_Y, 2, GOLD, shadow=(10, 10, 20))
+    # emblema do jogador: cravo e a data, centrados com margem
+    c = scale(grid(CRAVO_SMALL, CRAVO_C), 3)  # 30x36
+    cx = (6 + 80) // 2
+    top = 6 + (68 - (36 + 5 + 10)) // 2
+    paste(img, c, cx - 15, top)
+    img = centered(img, "25·IV", cx, top + 41, 2, (236, 230, 210), shadow=(10, 10, 20))
+    # quatro lâmpadas de força, centradas como grupo
+    bw, gap = 8, 5
+    x = (200 + 260) // 2 - (4 * bw + 3 * gap) // 2
+    for i in range(4):
         on = i < max(1, 4 - state // 2) and not dead
-        img[20:48, x : x + 8] = (230, 40, 40) if on else (70, 26, 30)
-        img[20, x : x + 8] = (255, 170, 150) if on else (90, 50, 50)
-        img[47, x : x + 8] = (110, 10, 14)
+        xx = x + i * (bw + gap)
+        img[30:66, xx : xx + bw] = (230, 40, 40) if on else (70, 26, 30)
+        img[30, xx : xx + bw] = (255, 170, 150) if on else (90, 50, 50)
+        img[65, xx : xx + bw] = (110, 10, 14)
     # cara (32x32 -> 64x64), por trás um fundo próprio
-    img = bevel_box(img, 264, 6, 330, 75)
     f = scale(face(state, look, dead, cheat), 2)
     img[8:72, 265:329] = NAVY_D * 1.6
     paste(img, f, 265, 8)

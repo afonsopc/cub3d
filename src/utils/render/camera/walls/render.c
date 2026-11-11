@@ -28,6 +28,29 @@ static t_coords	get_coords(t_raycast *ray)
 	return (coords);
 }
 
+static void	draw_ray(t_draw_ray_config drc);
+
+/* door cell: draw the panel on the mid-line, or look through the gap */
+static void	draw_door_ray(t_draw_ray_config drc, t_raycast ray, t_coords c)
+{
+	t_raycast	panel;
+
+	if (door_panel_hit(&ray, c, &panel))
+	{
+		panel.distance += drc.previous_distance;
+		if (drc.add_distance
+			&& panel.distance > drc.camera->ray_distances[drc.i])
+			drc.camera->ray_distances[drc.i] = panel.distance;
+		draw_door_line(drc.canvas, drc.camera, panel, drc.i);
+		return ;
+	}
+	ray.distance += drc.previous_distance;
+	drc.coords = get_coords(&ray);
+	drc.ignored_entity = ray.hit;
+	drc.previous_distance = ray.distance;
+	draw_ray(drc);
+}
+
 static void	draw_ray(t_draw_ray_config drc)
 {
 	t_raycast	ray;
@@ -40,6 +63,8 @@ static void	draw_ray(t_draw_ray_config drc)
 			drc.ignored_entity});
 	if (!ray.hit)
 		return ;
+	if (door_is_panel(ray.hit))
+		return (draw_door_ray(drc, ray, c));
 	ray.distance += drc.previous_distance;
 	if (drc.add_distance && ray.distance > drc.camera->ray_distances[drc.i])
 		drc.camera->ray_distances[drc.i] = ray.distance;

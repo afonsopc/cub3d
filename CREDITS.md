@@ -21,7 +21,7 @@ Mocidade Portuguesa appears only as wall decoration.
 | `assets/oms3d/textures/billboards/legiao/`, `.../gnr/` | enemies: Legião Portuguesa militiaman (green shirt, helmet, submachine gun) and GNR guard (grey uniform, peaked cap, rifle); same frames as `sentinel/` | same |
 | `assets/oms3d/textures/billboards/hound/` | guard dog | same |
 | `assets/oms3d/textures/billboards/*.bmp` | props and pickups: wine barrel, oil drum, typewriter, police files, seized books, chains, armillary-sphere monument, flag, azulejo pot and vase, lamps, tables, well; red carnation (`gem`), clandestine *Avante!* newspapers (`trophy`), suitcase of escudos (`treasure`), bread and sardines (`food`), first-aid box (`medkit`), ammo box | `decor.py` (voxels, and pixels written by hand) |
-| `assets/oms3d/textures/items/{blaster,rifle,cannon,blade}/` | first-person weapons and HUD icons: Walther-style pistol, FBP m/948-style submachine gun, belt-fed machine gun, knife | `decor.py` |
+| `assets/oms3d/textures/items/{blaster,rifle,cannon,blade}/` | first-person weapons (hand-drawn pixels, seen from behind, barrel into the screen) and HUD icons: Walther-style pistol, FBP m/948-style submachine gun, belt-fed machine gun, knife | `fpweapons.py` (in-hand frames), `decor.py` (icons) |
 | `assets/oms3d/textures/hud/stats/` | status bar with the face of a 1970s resistance fighter (moustache, sideburns) who gets bloodier as health drops (7 states × 3 looks, dead, god mode with a carnation) | `hud.py` (face drawn by hand in text) |
 | `assets/fonts/hud/` | status bar digits and `%` | `hud.py` |
 | `assets/textures/missao.bmp` | hub poster for the campaign ("Operação Cravo") | `hud.py` |

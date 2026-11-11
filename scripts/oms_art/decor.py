@@ -33,7 +33,8 @@ LAMP = (255, 236, 160)
 PAPER = (222, 212, 180)
 BRASS = (196, 150, 60)
 
-EMISSIVE = (LAMP, (255, 236, 120), (255, 150, 40))
+EMISSIVE = (LAMP, (255, 236, 120), (255, 150, 40),
+            (240, 196, 40), (40, 26, 8), (200, 22, 24), (240, 238, 230), (20, 50, 170))
 
 
 # ------------------------------------------------------------------ voxels
@@ -233,24 +234,53 @@ def lamp():
     return m
 
 
+# cores das armas: sem sombreado (ver EMISSIVE), para se lerem bem
+ARMS_Y = (240, 196, 40)
+ARMS_K = (40, 26, 8)
+ARMS_R = (200, 22, 24)
+ARMS_W = (240, 238, 230)
+ARMS_B = (20, 50, 170)
+
+FLAG_ARMS = [
+    # 20 colunas x 20 linhas (de cima para baixo); g/r = pano, Y = esfera,
+    # k = contorno escuro, R = bordadura, W = branco, B = quina azul
+    "ggggggggrrrrrrrrrrrr",
+    "ggggggggrrrrrrrrrrrr",
+    "ggggggkkkkkkrrrrrrrr",
+    "ggggkkYYYYYYkkrrrrrr",
+    "gggkYYkkkkkkYYkrrrrr",
+    "ggkYkkRRRRRRkkYkrrrr",
+    "ggkYkRRYRYRYRkYkrrrr",
+    "gkYYYRWWWBWWRYYYkrrr",
+    "gkYkYRWWWWWWRYkYkrrr",
+    "gkYkYYWBWBWBRYkYkrrr",
+    "gkYYYRWWWWWWRYYYkrrr",
+    "gkYkkRWWWBWWRkkYkrrr",
+    "ggkYkRYWWWWYRkYkrrrr",
+    "ggkYkkRRWWRRkkYkrrrr",
+    "gggkYYkkRRkkYYkrrrrr",
+    "ggggkkYYYYYYkkrrrrrr",
+    "ggggggkkkkkkrrrrrrrr",
+    "ggggggggrrrrrrrrrrrr",
+    "ggggggggrrrrrrrrrrrr",
+    "ggggggggrrrrrrrrrrrr",
+]
+
+
 def flag():
-    """Bandeira verde e vermelha num mastro, com a esfera armilar."""
+    """Bandeira verde e vermelha num mastro, com as armas (esfera armilar
+    com contorno escuro e escudo branco de bordadura vermelha e quinas)."""
     m = Model()
     cyl_z(m, 0, 0, 3.5, 0, 2, STONE_D)
     cyl_z(m, 0, 0, 0.6, 2, 50, (90, 70, 40))
     ellipsoid(m, 0, 0, 50.5, 1.2, 1.2, 1.2, GOLD)
+    cols = {"g": GREEN, "r": RED, "Y": ARMS_Y, "k": ARMS_K, "R": ARMS_R,
+            "W": ARMS_W, "B": ARMS_B}
     for x in range(0, 20):
         wave = math.sin(x * 0.45) * 1.2
         for z in range(28, 48):
-            c = GREEN if x < 8 else RED
-            m.put(x + 1, wave, z, c)
-    cx, cz = 8, 38
-    for i in range(60):
-        a = 2 * math.pi * i / 60
-        m.put(cx + 1 + math.cos(a) * 4, math.sin(8 * 0.45) * 1.2 - 0.6, cz + math.sin(a) * 4, GOLD)
-    for z in range(36, 41):
-        for x in range(7, 11):
-            m.put(x + 1, -0.8, z, WHITE if 7 < x < 10 and 36 < z < 40 else RED)
+            ch = FLAG_ARMS[47 - z][x]
+            m.put(x + 1, wave, z, cols[ch])
     return m
 
 

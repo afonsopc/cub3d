@@ -25,6 +25,7 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 from vox import render  # noqa: E402
 import characters as ch  # noqa: E402
 import decor as dc  # noqa: E402
+import fpweapons as fw  # noqa: E402
 import hud as hd  # noqa: E402
 import palette  # noqa: E402
 import walls as wl  # noqa: E402
@@ -147,16 +148,12 @@ def weapons():
             "cannon": (dc.mg, (104, 30), True)}
     for name, (fn, icon, two) in guns.items():
         g = fn()
-        frames = [dict(), dict(lift=1.5), dict(recoil=2, flash=True, lift=1.5), dict(recoil=1, lift=1), dict(lift=0.5)]
-        for i, kw in enumerate(frames):
-            m = dc.hand_model(g, two=two, **kw)
-            r = sprite(m, yaw=192, pitch=62, px=1.0, anchor=(33, 56), emissive=E, ground_shadow=False)
-            save(r, f"items/{name}/screen/{i}.bmp")
+        for i, fr in enumerate(fw.gun_frames(name)):
+            save(fr, f"items/{name}/screen/{i}.bmp")
         side = render(g, yaw=90, pitch=0, px=1.5, anchor=(32, 32), emissive=E, ground_shadow=False, size=(64, 64))
         save(fit(x2(side), icon), f"items/{name}/icon.bmp")
-    for i in range(5):
-        r = sprite(dc.knife_swing(i), yaw=195, pitch=40, px=1.2, anchor=(33, 61), emissive=E, ground_shadow=False)
-        save(r, f"items/blade/screen/{i}.bmp")
+    for i, fr in enumerate(fw.knife_frames()):
+        save(fr, f"items/blade/screen/{i}.bmp")
     side = render(dc.knife(), yaw=90, pitch=0, px=1.5, anchor=(32, 50), emissive=E, ground_shadow=False, size=(64, 64))
     save(fit(x2(side), (74, 94)), "items/blade/icon.bmp")
 

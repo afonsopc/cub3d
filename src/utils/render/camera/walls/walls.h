@@ -54,5 +54,10 @@ typedef struct s_get_pitc_config_config
 
 void	draw_ray_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
 			int i);
+void	draw_door_line(t_ftm_image *canvas, t_camera *camera, t_raycast ray,
+			int i);
+bool	door_is_panel(t_entity *entity);
+double	door_open_amount(t_door *door);
+bool	door_panel_hit(t_raycast *ray, t_coords start, t_raycast *out);
 
 #endif

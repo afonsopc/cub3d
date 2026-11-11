@@ -331,6 +331,82 @@ def shield_pt(img, cx, cy, w=7, h=8):
     return img
 
 
+FLAG_GREEN = (0, 102, 0)
+FLAG_RED = (255, 0, 0)
+ARMS_GOLD = (240, 196, 40)
+ARMS_GOLD_D = (170, 120, 10)
+QUINA = (20, 50, 170)
+
+
+def pt_arms(img, cx, cy, R):
+    """Armas da bandeira nacional, legíveis: esfera armilar amarela (anel,
+    faixa do horizonte e faixa diagonal) e por cima o escudo branco com
+    bordadura vermelha, 7 castelos amarelos e 5 quinas azuis em cruz."""
+    img = np.asarray(img, float)
+    H, W = img.shape[:2]
+
+    def put(x, y, c):
+        xi, yi = int(math.floor(x)), int(math.floor(y))
+        if 0 <= xi < W and 0 <= yi < H:
+            img[yi, xi] = c
+
+    def ellipse_line(rx, ry, rot, col, off=0.0):
+        n = int(R * 30)
+        for i in range(n):
+            a = 2 * math.pi * i / n
+            ex, ey = math.cos(a) * rx, math.sin(a) * ry + off
+            x = ex * math.cos(rot) - ey * math.sin(rot)
+            y = ex * math.sin(rot) + ey * math.cos(rot)
+            put(cx + x, cy + y, col)
+
+    t = max(1, int(round(R / 7)))
+    for k in range(t + 1):  # anel exterior (com aresta escura por dentro)
+        ellipse_line(R - k, R - k, 0, ARMS_GOLD if k < t else ARMS_GOLD_D)
+    ellipse_line(R - 0.5, R * 0.2, 0, ARMS_GOLD)  # horizonte
+    rot = math.radians(-30)
+    ellipse_line(R - 0.5, R * 0.18, rot, ARMS_GOLD, -R * 0.08)  # faixa diagonal
+    if R >= 10:
+        ellipse_line(R - 0.5, R * 0.18, rot, ARMS_GOLD, R * 0.14)
+    # escudo
+    w = max(3, int(round(R * 0.6)))
+    h = max(4, int(round(R * 0.72)))
+    b = max(1, int(round(R / 7)))
+    x0, x1 = int(cx) - w, int(cx) + w
+    y0, y1 = int(cy) - h + 1, int(cy) + h
+    ym = y0 + (y1 - y0) // 2
+
+    def inside(x, y, m):
+        if x < x0 + m or x > x1 - m or y < y0 + m or y > y1 - m:
+            return False
+        if y > ym:
+            rx = (x1 - x0) / 2 - m + 0.5
+            ry = (y1 - m) - ym + 0.5
+            return ((x - (x0 + x1) / 2) / rx) ** 2 + ((y - ym) / ry) ** 2 <= 1
+        return True
+
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            if inside(x, y, 0):
+                put(x, y, WHITE if inside(x, y, b) else FLAG_RED)
+    # 7 castelos amarelos na bordadura (3 em cima, 2 de cada lado)
+    yb = y0 + (y1 - y0) * 0.62
+    for px, py in ((x0, y0), (int(cx) - b // 2 - (0 if b > 1 else 0), y0), (x1 - b + 1, y0),
+                   (x0, int((y0 + yb) / 2)), (x1 - b + 1, int((y0 + yb) / 2)),
+                   (x0 + (1 if R > 8 else 0), int(yb)), (x1 - b + 1 - (1 if R > 8 else 0), int(yb))):
+        for dy in range(b):
+            for dx in range(b):
+                put(px + dx, py + dy, ARMS_GOLD)
+    # 5 quinas azuis em cruz
+    q = max(1, int(round(R / 7)))
+    sp = q + 1
+    qx, qy = int(cx) - q // 2, int(cy) - q // 2 + (1 if R >= 10 else 0)
+    for ox, oy in ((0, 0), (0, -sp), (0, sp), (-sp, 0), (sp, 0)):
+        for dy in range(q):
+            for dx in range(q):
+                put(qx + ox + dx, qy + oy + dy, QUINA)
+    return img
+
+
 def frame(img, x0, y0, x1, y1, col=GOLD, dark=GOLD_D):
     img[y0:y1, x0:x1] = dark
     img[y0 + 1 : y1 - 1, x0 + 1 : x1 - 1] = col
@@ -408,6 +484,38 @@ def rod(img, x0, x1, y):
     return img
 
 
+def arms_outline(img, cx, cy, r):
+    """Contorno escuro à volta da esfera armilar, para se destacar do pano."""
+    n = int(r * 14)
+    for i in range(n):
+        a = 2 * math.pi * i / n
+        for rr in (r + 1, r + 1.6):
+            x, y = int(round(cx + math.cos(a) * rr)), int(round(cy + math.sin(a) * rr))
+            if 0 <= y < img.shape[0] and 0 <= x < img.shape[1]:
+                img[y, x] = (40, 26, 8)
+    return img
+
+
+def shield_clear(img, cx, cy, w=4, h=9):
+    """Escudo legível: branco com bordadura vermelha, contorno escuro e 5
+    quinas azuis em cruz (o topo em cy)."""
+    for y in range(-1, h + 1):
+        half = w + 1 if y < h - 3 else w + 1 - (y - (h - 3)) * 2
+        for x in range(-half, half + 1):
+            img[cy + y, cx + x] = (30, 20, 16)  # contorno
+    for y in range(h):
+        half = w if y < h - 3 else w - (y - (h - 3)) * 2
+        for x in range(-half, half + 1):
+            border = abs(x) >= half or y == 0 or y >= h - 1
+            img[cy + y, cx + x] = RED if border else WHITE
+    m = cy + h // 2 - 1
+    for dx, dy in ((0, -2), (-2, 0), (0, 0), (2, 0), (0, 2)):
+        img[m + dy, cx + dx] = QUINA
+    for dx, dy in ((-w, 0), (0, 0), (w, 0), (-w, 3), (w, 3)):  # castelos
+        img[cy + dy, cx + dx] = ARMS_GOLD
+    return img
+
+
 def flag_banner(img, x0, x1, y0, y1):
     """Estandarte vertical verde e vermelho com a esfera armilar e a Cruz de
     Cristo, franja dourada em baixo."""
@@ -426,9 +534,10 @@ def flag_banner(img, x0, x1, y0, y1):
     img[y0:y1, x0] = rgb(GREEN_D)
     img[y0:y1, x1 - 1] = rgb(RED_D)
     cx = (x0 + x1) / 2
-    img = cross_of_christ(img, cx, y0 + 7, 5)
-    img = armillary(img, cx, split + 1, 8)
-    img = shield_pt(img, int(cx), split - 2, 3, 6)
+    img = cross_of_christ(img, cx, y0 + 5, 4)
+    img = arms_outline(img, cx, split + 2, 10)
+    img = armillary(img, cx, split + 2, 10, col=ARMS_GOLD)
+    img = shield_clear(img, int(cx), split - 2, 4, 9)
     return img
 
 
