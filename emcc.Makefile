@@ -20,12 +20,21 @@ SRCS = $(shell find src -name "**.c")
 OBJ_DIR = web_obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-CFLAGS += -pthread -msimd128 -s USE_SDL=2 -s USE_PTHREADS=1
-LDLIBS += -O3 -flto
-LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1
+# THREADS=1 needs SharedArrayBuffer (cross-origin isolated page). The default
+# build is single-threaded so it also runs where that is not available (the
+# O Melhor Site iOS/Android app, any plain static host).
+THREADS ?= 0
+CFLAGS += -msimd128 -s USE_SDL=2
+LDLIBS += -O3 -flto -s USE_SDL=2 -s ASSERTIONS=1
+ifeq ($(THREADS),1)
+CFLAGS += -pthread -s USE_PTHREADS=1
+LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5
+else
+LDLIBS += -s ALLOW_MEMORY_GROWTH=0
+endif
 LDLIBS += --preload-file maps --preload-file assets/42lisboa --shell-file minimal.html
 LDLIBS += --preload-file assets/fonts --preload-file assets/sounds
-LDLIBS += --preload-file assets/textures --preload-file assets/wolf3d
+LDLIBS += --preload-file assets/textures --preload-file assets/oms3d
 LDLIBS += --preload-file assets/pt/textures/dommiguelilow.bmp --preload-file assets/pt/textures/portugal.bmp
 LDLIBS += -s INITIAL_MEMORY=268435456 -s STACK_SIZE=2MB
 LDLIBS += -s ENVIRONMENT='web,worker'

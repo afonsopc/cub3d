@@ -3,9 +3,9 @@ SO assets/textures/cashier.bmp
 WE assets/pt/textures/pt3.bmp
 EA assets/textures/oms.bmp
 2_TYPE DOOR
-2_OPEN_SOUND assets/wolf3d/sounds/halt.mp3
+2_OPEN_SOUND assets/oms3d/sounds/alert.mp3
 2_CLOSE_SOUND_LOOP TRUE
-2_CLOSE_SOUND assets/wolf3d/sounds/halt.mp3
+2_CLOSE_SOUND assets/oms3d/sounds/alert.mp3
 2_DIRECTION NORTH
 2_DOOR_SPRITE assets/pt/textures/salazar.bmp
 2_SIDES assets/pt/textures/salazar.bmp

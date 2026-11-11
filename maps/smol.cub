@@ -1,7 +1,7 @@
-NO assets/wolf3d/textures/grey-wall0.bmp
-SO assets/wolf3d/textures/purple-wall.bmp
-WE assets/wolf3d/textures/red-wall.bmp
-EA assets/wolf3d/textures/wood-wall.bmp
+NO assets/oms3d/textures/stone0.bmp
+SO assets/oms3d/textures/cave.bmp
+WE assets/oms3d/textures/brick.bmp
+EA assets/oms3d/textures/wood.bmp
 
 F 50,50,50
 C 225,30,0

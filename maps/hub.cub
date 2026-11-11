@@ -41,7 +41,7 @@ WALKING_1_SPRITE_LOOP TRUE
 DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
 DEATH_SPRITE_UPDATE_DELAY 0.1
 HIT_SPRITE assets/textures/billboards/afonsomaria/hit.bmp
-DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
+DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
 USING_P_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.bmp:assets/textures/billboards/afonsomaria/aim-front.bmp
 USING_P_8_SPRITE_UPDATE_DELAY 0.05
 USING_P_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.bmp:assets/textures/billboards/afonsomaria/aim-front-right.bmp
@@ -126,7 +126,7 @@ N_WALKING_1_SPRITE_LOOP TRUE
 N_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
 N_DEATH_SPRITE_UPDATE_DELAY 0.1
 N_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
-N_DEATH_SOUND assets/wolf3d/sounds/deathscream1.mp3:assets/wolf3d/sounds/deathscream2.mp3:assets/wolf3d/sounds/deathscream4.mp3:assets/wolf3d/sounds/deathscream5.mp3:assets/wolf3d/sounds/deathscream6.mp3:assets/wolf3d/sounds/deathscream7.mp3:assets/wolf3d/sounds/deathscream8.mp3:assets/wolf3d/sounds/deathscream9.mp3
+N_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
 N_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
 N_USING_P_8_SPRITE_UPDATE_DELAY 0.05
 N_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
@@ -176,21 +176,21 @@ N_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.bmp
 N_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.bmp
 N_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.bmp
 
-SO assets/wolf3d/textures/wood-wall.bmp
-NO assets/wolf3d/textures/wood-wall.bmp
-EA assets/wolf3d/textures/wood-wall-dark.bmp
-WE assets/wolf3d/textures/wood-wall-dark.bmp
+SO assets/oms3d/textures/wood.bmp
+NO assets/oms3d/textures/wood.bmp
+EA assets/oms3d/textures/wood-dark.bmp
+WE assets/oms3d/textures/wood-dark.bmp
 
 F 76,56,40
 C 50, 50, 50
 
 a_TYPE ELEVATOR
 a_TARGETABLE TRUE
-a_MAP_PATH maps/e1m1.cub
-a_NO assets/textures/wolf3d.bmp
-a_SO assets/textures/wolf3d.bmp
-a_WE assets/textures/wolf3d.bmp
-a_EA assets/textures/wolf3d.bmp
+a_MAP_PATH maps/missao1.cub
+a_NO assets/textures/missao.bmp
+a_SO assets/textures/missao.bmp
+a_WE assets/textures/missao.bmp
+a_EA assets/textures/missao.bmp
 
 b_TYPE ELEVATOR
 b_TARGETABLE TRUE
@@ -1304,18 +1304,18 @@ f_TARGETABLE TRUE
 f_ANIMATION_DELAY 2.3
 f_CLOSEABLE FALSE
 f_DOOR_SPRITE assets/textures/oms-wall.bmp
-f_SIDES_SPRITE assets/wolf3d/textures/wood-wall-dark.bmp
+f_SIDES_SPRITE assets/oms3d/textures/wood-dark.bmp
 f_DIRECTION NORTH
-f_OPEN_SOUND assets/wolf3d/sounds/pushwall.mp3
+f_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
 f_OPEN_SOUND_VOLUME 0.8
 
 g_TYPE ELEVATOR
 g_TARGETABLE TRUE
-g_MAP_PATH maps/e1m1_mega.cub
-g_NO assets/textures/wolf3d.bmp
-g_SO assets/textures/wolf3d.bmp
-g_WE assets/textures/wolf3d.bmp
-g_EA assets/textures/wolf3d.bmp
+g_MAP_PATH maps/missao1_mega.cub
+g_NO assets/textures/missao.bmp
+g_SO assets/textures/missao.bmp
+g_WE assets/textures/missao.bmp
+g_EA assets/textures/missao.bmp
 
 h_TYPE ELEVATOR
 h_TARGETABLE TRUE
@@ -1335,40 +1335,40 @@ i_EA assets/textures/oms.bmp
 
 j_TYPE WALL
 j_SO assets/textures/oms-wall.bmp
-j_NO assets/wolf3d/textures/wood-wall.bmp
-j_EA assets/wolf3d/textures/wood-wall-dark.bmp
-j_WE assets/wolf3d/textures/wood-wall-dark.bmp
+j_NO assets/oms3d/textures/wood.bmp
+j_EA assets/oms3d/textures/wood-dark.bmp
+j_WE assets/oms3d/textures/wood-dark.bmp
 
 k_TYPE WALL
-k_SO assets/wolf3d/textures/wood-wall.bmp
+k_SO assets/oms3d/textures/wood.bmp
 k_NO assets/textures/pv-wall.bmp
-k_EA assets/wolf3d/textures/wood-wall-dark.bmp
-k_WE assets/wolf3d/textures/wood-wall-dark.bmp
+k_EA assets/oms3d/textures/wood-dark.bmp
+k_WE assets/oms3d/textures/wood-dark.bmp
 
 l_TYPE ELEVATOR
 l_TARGETABLE TRUE
-l_MAP_PATH maps/e1m1_42.cub
+l_MAP_PATH maps/missao1_42.cub
 l_NO assets/42lisboa/424242.bmp
 l_SO assets/42lisboa/424242.bmp
 l_WE assets/42lisboa/424242.bmp
 l_EA assets/42lisboa/424242.bmp
 
 m_TYPE WEAPON
-m_CANT_USE_SOUND assets/wolf3d/sounds/noammo.mp3
+m_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 m_DAMAGE 10
 m_AMMO_USAGE 1
 m_NAME Soldier's Weapon
-m_USE_SOUND assets/wolf3d/sounds/nazifire.mp3
+m_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 m_DESCRIPTION Weapon of the National Socialist soldier
 m_SINGLE_USE TRUE
 m_USE_DELAY 0.8
-m_SCREEN_SPRITE assets/wolf3d/textures/items/machinegun/screen/0.bmp
-m_SCREEN_USE_SPRITE assets/wolf3d/textures/items/machinegun/screen/2.bmp:assets/wolf3d/textures/items/machinegun/screen/3.bmp:assets/wolf3d/textures/items/machinegun/screen/0.bmp
+m_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
+m_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp:assets/oms3d/textures/items/rifle/screen/0.bmp
 m_SCREEN_USE_SPRITE_UPDATE_DELAY 0.15
-m_ICON_SPRITE assets/wolf3d/textures/items/machinegun/icon.bmp
+m_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
 
 n_TYPE BILLBOARD
-n_STILL_SPRITE assets/wolf3d/textures/billboards/table-and-chairs.bmp
+n_STILL_SPRITE assets/oms3d/textures/billboards/table-chairs.bmp
 
 11i1h1g111
 1n      n1

@@ -50,7 +50,7 @@ endif
 
 all: $(NAME)
 
-$(NAME): fonts assets/wolf3d lib/libSDL2.a headers/miniaudio.h $(OBJS)
+$(NAME): fonts lib/libSDL2.a headers/miniaudio.h $(OBJS)
 	@echo "\033[1;32mCompiling \033[1;0m\"$(OBJS)\"\033[1;32m into \033[1;0m\"$(NAME)\"\033[1;32m.\033[0m"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(INCLUDES) $(LIBS) $(LDLIBS)
 
@@ -112,21 +112,11 @@ val: $(NAME)
 lldb: $(NAME)
 	@lldb -o "run" ./$(NAME) maps/hub.cub
 
-update-wolf3d-assets:
-	@echo "\033[1;32mEncrypting \033[1;0m\"assets/wolf3d\"\033[1;32m into \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m.\033[0m"
-	@cd assets/wolf3d && zip --password "Deus quer, o homem sonha, a obra nasce." -qr assets.zip *
-	@cd assets/wolf3d && zip --password "You can't have happiness without pain, you need a little bit of rain to have a little bit of rainbow." -qr wolf3d-assets.zip assets.zip
-	@cd assets/wolf3d && rm -rf assets.zip
-	@rm -rf assets/wolf3d-assets.zip
-	@mv assets/wolf3d/wolf3d-assets.zip assets
-
-assets/wolf3d:
-	@echo "\033[1;32mDecrypting \033[1;0m\"assets/wolf3d-assets.zip\"\033[1;32m into \033[1;0m\"assets/wolf3d\"\033[1;32m.\033[0m"
-	@rm -rf assets/wolf3d
-	@cd assets && unzip -q -o -P "You can't have happiness without pain, you need a little bit of rain to have a little bit of rainbow." wolf3d-assets.zip
-	@mkdir -p assets/wolf3d
-	@cd assets/wolf3d && unzip -q -o -P "Deus quer, o homem sonha, a obra nasce." ../assets.zip
-	@rm -f assets/assets.zip
+# Arte e sons originais (assets/oms3d, fonts/hud, cartazes): gerados por
+# script. Precisa de python3 com numpy e pillow, e do lame.
+assets:
+	@python3 scripts/oms_art/gen.py
+	@python3 scripts/oms_art/sounds.py
 
 fonts:
 	@bash scripts/fonts.sh
@@ -135,4 +125,4 @@ errors:
 	@bash -c "python3 <(git show error-msgs-script:gen_error_msgs.py)"
 	@bash -c "python3 <(git show error-msgs-script:check_error_signals.py) src"
 
-.PHONY: all re clean fclean run val errors
+.PHONY: all re clean fclean run val errors assets
