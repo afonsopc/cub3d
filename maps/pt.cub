@@ -1,5 +1,5 @@
 NO assets/pt/textures/pt1.bmp
-SO assets/textures/cashier.bmp
+SO assets/pt/textures/portugal.bmp
 WE assets/pt/textures/pt3.bmp
 EA assets/textures/oms.bmp
 2_TYPE DOOR
@@ -29,7 +29,7 @@ p_NO NULL
 p_WE NULL
 p_EA NULL
 9_TYPE WALL
-9_SO assets/textures/billiosn-ust-smile.bmp
+9_SO assets/pt/textures/portugal.bmp
 9_NO assets/pt/textures/portugal.bmp
 9_WE assets/pt/textures/portugal.bmp
 9_EA assets/pt/textures/portugal.bmp

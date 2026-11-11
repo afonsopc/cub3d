@@ -276,66 +276,66 @@ $_STILL_SPRITE assets/42lisboa/kitchen-table.bmp
 
 U_TYPE COLLECTIBLE
 U_HEALTH 10
-U_NAME FOOD
+U_NAME Pao e sardinhas
 U_SINGLE_USE TRUE
 U_USE_SOUND assets/oms3d/sounds/heal1.mp3
-U_DESCRIPTION The Greatest Food ever for real
+U_DESCRIPTION Pao com sardinhas, mata a fome
 U_ICON_SPRITE assets/oms3d/textures/billboards/food.bmp
 
 Z_TYPE COLLECTIBLE
 Z_AMMO 10
-Z_NAME Ammo
+Z_NAME Municoes
 Z_SINGLE_USE TRUE
 Z_USE_SOUND assets/oms3d/sounds/get-ammo.mp3
-Z_DESCRIPTION Ammo, needed for weapons
+Z_DESCRIPTION Municoes para as armas
 Z_ICON_SPRITE assets/oms3d/textures/billboards/ammo.bmp
 
 o_TYPE COLLECTIBLE
 o_SCORE 500
-o_NAME Chalice
+o_NAME Jornal Avante!
 o_SINGLE_USE TRUE
 o_USE_SOUND assets/oms3d/sounds/pickup2.mp3
-o_DESCRIPTION Point giver Chalice
+o_DESCRIPTION Jornal clandestino, passa de mao em mao
 o_ICON_SPRITE assets/oms3d/textures/billboards/trophy.bmp
 
 z_TYPE COLLECTIBLE
 z_SCORE 100
-z_NAME Holy Cross
+z_NAME Cravo
 z_SINGLE_USE TRUE
 z_USE_SOUND assets/oms3d/sounds/pickup1.mp3
-z_DESCRIPTION God himself
+z_DESCRIPTION Um cravo vermelho
 z_ICON_SPRITE assets/oms3d/textures/billboards/gem.bmp
 
 7_TYPE COLLECTIBLE
 7_SCORE 1000
-7_NAME MEGA Holy Treasure
+7_NAME Mala de escudos
 7_SINGLE_USE TRUE
 7_USE_SOUND assets/oms3d/sounds/pickup3.mp3
-7_DESCRIPTION God himself
+7_DESCRIPTION Dinheiro apreendido pela policia
 7_ICON_SPRITE assets/oms3d/textures/billboards/treasure.bmp
 
 I_TYPE COLLECTIBLE
 I_HEALTH 25
-I_NAME Medic Kit
+I_NAME Primeiros socorros
 I_SINGLE_USE TRUE
 I_USE_SOUND assets/oms3d/sounds/heal2.mp3
-I_DESCRIPTION Heal yourself bro
+I_DESCRIPTION Estojo de primeiros socorros
 I_ICON_SPRITE assets/oms3d/textures/billboards/medkit.bmp
 
 H_TYPE ITEM
-H_NAME Halt SIR
+H_NAME Alto!
 H_USE_SOUND assets/oms3d/sounds/alert.mp3
 H_SINGLE_USE TRUE
-H_DESCRIPTION Halt SIR, you are not allowed to pass
+H_DESCRIPTION Alto! Ninguem passa
 H_USE_DELAY 0.6
 H_SCREEN_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 H_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/sentinel/halt.bmp
 H_ICON_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 
 Y_TYPE ITEM
-Y_NAME still
+Y_NAME Pistola do agente
 Y_SINGLE_USE TRUE
-Y_DESCRIPTION still
+Y_DESCRIPTION Arma do agente da policia politica
 Y_USE_DELAY 0.6
 Y_SCREEN_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 Y_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
@@ -535,63 +535,224 @@ y_SO assets/42lisboa/masonry-room.bmp
 y_WE assets/42lisboa/cluster2-wall.bmp
 y_EA assets/42lisboa/cluster2-wall.bmp
 
+L_TYPE CHARACTER
+L_MAX_HEALTH 150
+L_SCORE 200
+L_TARGETABLE TRUE
+L_STILL_8_SPRITE assets/oms3d/textures/billboards/legiao/still-front.bmp
+L_STILL_7_SPRITE assets/oms3d/textures/billboards/legiao/still-front-right.bmp
+L_STILL_6_SPRITE assets/oms3d/textures/billboards/legiao/still-left.bmp
+L_STILL_5_SPRITE assets/oms3d/textures/billboards/legiao/still-back-left.bmp
+L_STILL_4_SPRITE assets/oms3d/textures/billboards/legiao/still-back.bmp
+L_STILL_3_SPRITE assets/oms3d/textures/billboards/legiao/still-back-right.bmp
+L_STILL_2_SPRITE assets/oms3d/textures/billboards/legiao/still-right.bmp
+L_STILL_1_SPRITE assets/oms3d/textures/billboards/legiao/still-front-left.bmp
+L_WALKING_8_SPRITE assets/oms3d/textures/billboards/legiao/front1.bmp:assets/oms3d/textures/billboards/legiao/front2.bmp:assets/oms3d/textures/billboards/legiao/front3.bmp:assets/oms3d/textures/billboards/legiao/front4.bmp
+L_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_8_SPRITE_LOOP TRUE
+L_WALKING_7_SPRITE assets/oms3d/textures/billboards/legiao/front-right1.bmp:assets/oms3d/textures/billboards/legiao/front-right2.bmp:assets/oms3d/textures/billboards/legiao/front-right3.bmp:assets/oms3d/textures/billboards/legiao/front-right4.bmp
+L_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_7_SPRITE_LOOP TRUE
+L_WALKING_6_SPRITE assets/oms3d/textures/billboards/legiao/left1.bmp:assets/oms3d/textures/billboards/legiao/left2.bmp:assets/oms3d/textures/billboards/legiao/left3.bmp:assets/oms3d/textures/billboards/legiao/left4.bmp
+L_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_6_SPRITE_LOOP TRUE
+L_WALKING_5_SPRITE assets/oms3d/textures/billboards/legiao/back-left1.bmp:assets/oms3d/textures/billboards/legiao/back-left2.bmp:assets/oms3d/textures/billboards/legiao/back-left3.bmp:assets/oms3d/textures/billboards/legiao/back-left4.bmp
+L_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_5_SPRITE_LOOP TRUE
+L_WALKING_4_SPRITE assets/oms3d/textures/billboards/legiao/back1.bmp:assets/oms3d/textures/billboards/legiao/back2.bmp:assets/oms3d/textures/billboards/legiao/back3.bmp:assets/oms3d/textures/billboards/legiao/back4.bmp
+L_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_4_SPRITE_LOOP TRUE
+L_WALKING_3_SPRITE assets/oms3d/textures/billboards/legiao/back-right1.bmp:assets/oms3d/textures/billboards/legiao/back-right2.bmp:assets/oms3d/textures/billboards/legiao/back-right3.bmp:assets/oms3d/textures/billboards/legiao/back-right4.bmp
+L_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_3_SPRITE_LOOP TRUE
+L_WALKING_2_SPRITE assets/oms3d/textures/billboards/legiao/right1.bmp:assets/oms3d/textures/billboards/legiao/right2.bmp:assets/oms3d/textures/billboards/legiao/right3.bmp:assets/oms3d/textures/billboards/legiao/right4.bmp
+L_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_2_SPRITE_LOOP TRUE
+L_WALKING_1_SPRITE assets/oms3d/textures/billboards/legiao/front-left1.bmp:assets/oms3d/textures/billboards/legiao/front-left2.bmp:assets/oms3d/textures/billboards/legiao/front-left3.bmp:assets/oms3d/textures/billboards/legiao/front-left4.bmp
+L_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_1_SPRITE_LOOP TRUE
+L_DEATH_SPRITE assets/oms3d/textures/billboards/legiao/death1.bmp:assets/oms3d/textures/billboards/legiao/death2.bmp:assets/oms3d/textures/billboards/legiao/death3.bmp:assets/oms3d/textures/billboards/legiao/death4.bmp:assets/oms3d/textures/billboards/legiao/death5.bmp
+L_DEATH_SPRITE_UPDATE_DELAY 0.1
+L_HIT_SPRITE assets/oms3d/textures/billboards/legiao/hit.bmp
+L_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+L_CONTROLLER ENEMY
+L_OPTIMAL_PROXIMITY 3
+L_0_INVENTORY H
+L_1_INVENTORY Y
+L_USING_H_1_SPRITE assets/oms3d/textures/billboards/legiao/halt.bmp
+L_AMMO 2147483647
+L_DROP ;
+L_DROP_ITEMS TRUE
+
+R_TYPE CHARACTER
+R_MAX_HEALTH 120
+R_SCORE 150
+R_TARGETABLE TRUE
+R_STILL_8_SPRITE assets/oms3d/textures/billboards/gnr/still-front.bmp
+R_STILL_7_SPRITE assets/oms3d/textures/billboards/gnr/still-front-right.bmp
+R_STILL_6_SPRITE assets/oms3d/textures/billboards/gnr/still-left.bmp
+R_STILL_5_SPRITE assets/oms3d/textures/billboards/gnr/still-back-left.bmp
+R_STILL_4_SPRITE assets/oms3d/textures/billboards/gnr/still-back.bmp
+R_STILL_3_SPRITE assets/oms3d/textures/billboards/gnr/still-back-right.bmp
+R_STILL_2_SPRITE assets/oms3d/textures/billboards/gnr/still-right.bmp
+R_STILL_1_SPRITE assets/oms3d/textures/billboards/gnr/still-front-left.bmp
+R_WALKING_8_SPRITE assets/oms3d/textures/billboards/gnr/front1.bmp:assets/oms3d/textures/billboards/gnr/front2.bmp:assets/oms3d/textures/billboards/gnr/front3.bmp:assets/oms3d/textures/billboards/gnr/front4.bmp
+R_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_8_SPRITE_LOOP TRUE
+R_WALKING_7_SPRITE assets/oms3d/textures/billboards/gnr/front-right1.bmp:assets/oms3d/textures/billboards/gnr/front-right2.bmp:assets/oms3d/textures/billboards/gnr/front-right3.bmp:assets/oms3d/textures/billboards/gnr/front-right4.bmp
+R_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_7_SPRITE_LOOP TRUE
+R_WALKING_6_SPRITE assets/oms3d/textures/billboards/gnr/left1.bmp:assets/oms3d/textures/billboards/gnr/left2.bmp:assets/oms3d/textures/billboards/gnr/left3.bmp:assets/oms3d/textures/billboards/gnr/left4.bmp
+R_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_6_SPRITE_LOOP TRUE
+R_WALKING_5_SPRITE assets/oms3d/textures/billboards/gnr/back-left1.bmp:assets/oms3d/textures/billboards/gnr/back-left2.bmp:assets/oms3d/textures/billboards/gnr/back-left3.bmp:assets/oms3d/textures/billboards/gnr/back-left4.bmp
+R_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_5_SPRITE_LOOP TRUE
+R_WALKING_4_SPRITE assets/oms3d/textures/billboards/gnr/back1.bmp:assets/oms3d/textures/billboards/gnr/back2.bmp:assets/oms3d/textures/billboards/gnr/back3.bmp:assets/oms3d/textures/billboards/gnr/back4.bmp
+R_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_4_SPRITE_LOOP TRUE
+R_WALKING_3_SPRITE assets/oms3d/textures/billboards/gnr/back-right1.bmp:assets/oms3d/textures/billboards/gnr/back-right2.bmp:assets/oms3d/textures/billboards/gnr/back-right3.bmp:assets/oms3d/textures/billboards/gnr/back-right4.bmp
+R_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_3_SPRITE_LOOP TRUE
+R_WALKING_2_SPRITE assets/oms3d/textures/billboards/gnr/right1.bmp:assets/oms3d/textures/billboards/gnr/right2.bmp:assets/oms3d/textures/billboards/gnr/right3.bmp:assets/oms3d/textures/billboards/gnr/right4.bmp
+R_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_2_SPRITE_LOOP TRUE
+R_WALKING_1_SPRITE assets/oms3d/textures/billboards/gnr/front-left1.bmp:assets/oms3d/textures/billboards/gnr/front-left2.bmp:assets/oms3d/textures/billboards/gnr/front-left3.bmp:assets/oms3d/textures/billboards/gnr/front-left4.bmp
+R_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_1_SPRITE_LOOP TRUE
+R_DEATH_SPRITE assets/oms3d/textures/billboards/gnr/death1.bmp:assets/oms3d/textures/billboards/gnr/death2.bmp:assets/oms3d/textures/billboards/gnr/death3.bmp:assets/oms3d/textures/billboards/gnr/death4.bmp:assets/oms3d/textures/billboards/gnr/death5.bmp
+R_DEATH_SPRITE_UPDATE_DELAY 0.1
+R_HIT_SPRITE assets/oms3d/textures/billboards/gnr/hit.bmp
+R_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+R_CONTROLLER ENEMY
+R_OPTIMAL_PROXIMITY 2.5
+R_0_INVENTORY H
+R_1_INVENTORY Y
+R_USING_H_1_SPRITE assets/oms3d/textures/billboards/gnr/halt.bmp
+R_AMMO 2147483647
+R_DROP ;
+R_DROP_ITEMS TRUE
+
+q_TYPE WALL
+q_NO assets/42lisboa/cluster1-world-left.bmp
+q_SO assets/42lisboa/cluster1-world-left.bmp
+q_WE assets/42lisboa/cluster1-world-left.bmp
+q_EA assets/42lisboa/cluster1-world-left.bmp
+
+r_TYPE WALL
+r_NO assets/42lisboa/cluster1-right.bmp
+r_SO assets/42lisboa/cluster1-right.bmp
+r_WE assets/42lisboa/cluster1-right.bmp
+r_EA assets/42lisboa/cluster1-right.bmp
+
+A_TYPE WALL
+A_NO assets/42lisboa/cluster1-left.bmp
+A_SO assets/42lisboa/cluster1-left.bmp
+A_WE assets/42lisboa/cluster1-left.bmp
+A_EA assets/42lisboa/cluster1-left.bmp
+
+B_TYPE WALL
+B_NO assets/42lisboa/window.bmp
+B_SO assets/42lisboa/window.bmp
+B_WE assets/42lisboa/window.bmp
+B_EA assets/42lisboa/window.bmp
+
+F_TYPE WALL
+F_NO assets/42lisboa/cluster2-wall.bmp
+F_SO assets/42lisboa/cluster2-wall.bmp
+F_WE assets/42lisboa/cluster2-wall.bmp
+F_EA assets/42lisboa/cluster2-wall.bmp
+
+O_TYPE WALL
+O_NO assets/42lisboa/masonry-room.bmp
+O_SO assets/42lisboa/masonry-room.bmp
+O_WE assets/42lisboa/masonry-room.bmp
+O_EA assets/42lisboa/masonry-room.bmp
+
+J_TYPE WALL
+J_NO assets/42lisboa/wall-of-fame.bmp
+J_SO assets/42lisboa/wall-of-fame.bmp
+J_WE assets/42lisboa/wall-of-fame.bmp
+J_EA assets/42lisboa/wall-of-fame.bmp
+
+p_TYPE WALL
+p_NO assets/42lisboa/cluster2-door.bmp
+p_SO assets/42lisboa/cluster2-door.bmp
+p_WE assets/42lisboa/cluster2-door.bmp
+p_EA assets/42lisboa/cluster2-door.bmp
+
+^_TYPE BILLBOARD
+^_STILL_SPRITE assets/42lisboa/bookshelf.bmp
+
+&_TYPE BILLBOARD
+&_STILL_SPRITE assets/42lisboa/white-board-front.bmp
+
+<_TYPE BILLBOARD
+<_STILL_SPRITE assets/42lisboa/pc-table-1.bmp
+
+T_TYPE DOOR
+T_TARGETABLE TRUE
+T_ANIMATION_DELAY 2.3
+T_CLOSEABLE FALSE
+T_DOOR_SPRITE assets/42lisboa/cluster2-wall.bmp
+T_SIDES_SPRITE assets/42lisboa/cluster2-wall.bmp
+T_DIRECTION NORTH
+T_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
+T_OPEN_SOUND_VOLUME 0.8
+
 F 50,50,50
 C 140,140,140
 
-                             jjjljjjjjljjj
-     ffffff                  j!         !j
-     f2;((f      fffffffiffffl  ~  ~  ~  ljjjj
-     f;;*(ff     f           j           j(()j
-     f;;** f     f ,    ,    v  e  /     v e(l
-     f;;*  f     f           j           j)))j
-     ffgfftffgff f   fffiffffm         e mjjjj
-     f ()$ $) ef f   f       j           j
-     i @   ( @ iff   fff     jjjljjhjjljjj
-     f  e      f   e   f         j e j
-     f#   ~ e  v   ,  ef         j   j
-     f  e      f       f         m , m
-fffffi*@     @ ifffgffff         j   j
-f }'ff**      ef                 j   j
-f , fffgffhffgff            jjjjjj   jjj
-f   f   f   f               j; se  ,  \j
-ffhff   i , i               j  jjj   jjj
-f   fffff   f               j;}j j   j
-f , f  :f   f               j]}j j   j
-f     ,;i , i               jjjj l , l
-f   f  )f e f                    j   j
-f   ffffffhfffff                fjlhljf               aaaaaaaaaa
-i , ife        f           ffffif.   .fiffff          a:    '''a
-f   ff .     . i           f.             .f          a     e 'a
-f   ff  ,   ,  f           g               gaaaaaaaaaaa        a
-f    f         f           f                a         a        a
-f    v         i           f e/    /    /   v  d      v        b
-f    f         f           f                a         a        a
-f   ff  ,   ,  f           g            e  gaaa    aaaa  -: -e a
-f   ff .     . i           f.             .f  aa  a   a        a
-f   ff      e  f           ffkfff     ffkfff   a  a   a      : a
-k , kfffffhfffff                faahaaf        a  aaaaaaa+aa?aaa
-f   f   f   f                    a   a         a  a     aaaaaa
-f   fffff   f                    a , a         a  a
-f   f  %f   f                    a   a         a  a aaaaaaaaa
-f    e, i , i                    a   a         a  aaa a a a aa
-f   f:  f   f                    a   a         a  ea      d  a
-f , fffff   f                    a , a         a   v   d     b
-f   fffff   fffffffffgfffff      a e a         a e a d    d =a
-f               f      eiff      a   a         aaaaaa a a a aa
-f     ,      ,  v    e  u n      a   a             aaaaaaaaaa
-f               f      eiff      a , a
-ffffffffffkffffffwfffgfffff      a   a
-        ffi  f  x }f        aaaaaaahaaaaaaa
-        y u  f  f ff        a|:  a   a    a
-        ffi     fff         a    v , v "  a
-          ffwffff           a E  a   a W  a
-           f  f             a    a   a    a
-           ff*f             aaaaaa   aaaaaa
-            fff             a    a   a    a
-                            a  E v , v :W|a
-                            a    a   a    a
-                            aaaaaa   aaaaaa
-                            a             a
-                            a  ,   ,   ,e;a
-                            ae     :      a
-                            abaabaacaabaaba
+fffffffkffffffaaaaaaBaaaaaaaaBaaaaaaaaBaaaaaafffiffffkffffiffff
+f             a                             a#               #f
+f " "       * a .        =       =        . B        @        f
+f             B                             a   R    ~    R   f
+f "           a     e             d         a                 i
+f             a                         R   a                 f
+f             a       !      +      !       v    /       /    f
+f     )))     x                             a                 i
+r             a   d                         a;      e       e f
+f             a         e             e     a                }f
+f      ,      B                             B           fffffff
+f             a .    ;   =       =   :    . a          df     p
+f         ( ( a                             q     R     f     p
+f             aaaaaaaaBaaaaahaaaaaaBaaaaaaaaa           u  ,  n
+f | |         ffffffffffffff ffffffffffffffff $       $ f     p
+f             ffffffffffffff ffffffffffffffff           f     p
+FFFFFFFFFFjjjjjjAjjjjjjjjjjj jjjjjjjjjjjmjjjjjjfffJfffffkffffff
+F   F     j          $j           j$         $j     f        "f
+F = b  ,  j <  <  <   j ~       ~ j           j * * f     < < f
+F   v     j           j           j         " s     r         f
+F & b     j           j           j     ~     j ((( f  -      r
+F   F     j     ,     j     ,     j           j    )f         f
+FFFFF   e r           m           l     /     jffffff         f
+F   F     j   -    -  j        d  j           j       ,     e f
+F & c     j           j   e       j           l               f
+F   v     j           j           j  R     R  j  |  |  |  |   f
+F : b  ,  j e       ; j           j}          j  |  |  |  |   f
+F   F     j           j!         !j           j  |  |  |  |   f
+FFFFF     jjjjjjhjjjjjjjjAjjhjjAjjjjjAjjhjjAjjj               r
+F   F d   j            e                      j       e   e   f
+F   b     v   ,     ,     ,   d ,     ,     , v               f
+F ( v     j                         e         j       ,      )f
+F   b     fffrfffffrffffffifffifffhfffifffiffff  |  |  |  |   f
+F   F     f  y     ''%f!                     !f  |  |  |  |   f
+FFFFFFFhFFf           f                       f  |  |  |  |   r
+F   F    ]f           f  e                 e  f               f
+F}  c  ,  f           k                       k   e          Rf
+F   b     f}         *f    ^             ^    f;              f
+F & v  -  fffffftffffff                       ffffffffhffffffff
+F   b     f@          f                       f              %F
+F & bR   ef           f       /       /       f        =      F
+F   F     f        R  r ;                     f               F
+fffffifffff    e      f           \         : f   d           F
+f#       #f           f      e          d     f               F
+f         f           f                       f               F
+f  E   W  f     -     v       /       /       v       ,       q
+f         f           f                       f         d     F
+i    ,    v           f    ^             ^    f  =            F
+f         f           f                       f               F
+f  E   W  f           q           e           f     d         F
+f         f        e  i                       i             d F
+f         f:         ;f!                     !f%             :F
+fffffJfffffffqfffffqfffffffkfffiffJffifffkfffffFFFFFFFFFFFFFFFF

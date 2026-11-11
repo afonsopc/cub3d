@@ -33,7 +33,7 @@ else
 LDLIBS += -s ALLOW_MEMORY_GROWTH=0
 endif
 LDLIBS += --preload-file maps --preload-file assets/42lisboa --shell-file minimal.html
-LDLIBS += --preload-file assets/fonts --preload-file assets/sounds
+LDLIBS += --preload-file assets/fonts
 LDLIBS += --preload-file assets/textures --preload-file assets/oms3d
 LDLIBS += --preload-file assets/pt/textures/dommiguelilow.bmp --preload-file assets/pt/textures/portugal.bmp
 LDLIBS += -s INITIAL_MEMORY=268435456 -s STACK_SIZE=2MB

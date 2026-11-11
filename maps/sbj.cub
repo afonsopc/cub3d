@@ -23,7 +23,7 @@ e_TYPE WALL
 e_NO assets/pt/textures/portugal.bmp
 e_SO assets/pt/textures/portugal.bmp
 e_WE assets/pt/textures/portugal.bmp
-e_EA assets/textures/billiosn-ust-smile.bmp
+e_EA assets/oms3d/textures/stone-censura.bmp
 f_TYPE WALL
 f_NO assets/pt/textures/portugal.bmp
 f_SO assets/pt/textures/portugal.bmp
@@ -56,7 +56,7 @@ k_TYPE WALL
 k_NO assets/pt/textures/portugal.bmp
 k_SO assets/pt/textures/portugal.bmp
 k_WE assets/pt/textures/portugal.bmp
-k_EA assets/textures/cashier.bmp
+k_EA assets/oms3d/textures/stone-censura.bmp
 l_TYPE WALL
 l_ULTRA_MEGA_TRANSPARENT TRUE
 l_NO assets/pt/textures/portugal.bmp
@@ -91,7 +91,7 @@ q_SO assets/pt/textures/portugal.bmp
 q_WE assets/textures/backrooms.bmp
 q_EA assets/pt/textures/portugal.bmp
 
-BACKGROUND_SOUND assets/sounds/areyoumad.mp3
+BACKGROUND_SOUND assets/oms3d/sounds/music-2.mp3
 BACKGROUND_SOUND_VOLUME 0.1
 BACKGROUND_SOUND_LOOP TRUE
 c_TYPE BILLBOARD

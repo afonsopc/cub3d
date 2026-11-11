@@ -13,7 +13,7 @@ The project explores mathematical concepts of raycasting to simulate a three-dim
 The project features two main maps:
 
 *   🏫 **42 Lisboa:** A 3D version of the [42 Lisboa](https://www.42lisboa.com) campus that you can explore.
-*   🕹️ **Missão:** A complete *first-person shooter* against patrol robots (Sentinelas) and robot hounds, with weapons, collectibles, elevators, two floors and a secret bonus floor.
+*   🕹️ **Missão:** A complete *first-person shooter* in the early-90s VGA style, set in Portugal's Estado Novo: a resistance fighter in the spirit of the 25th of April raids the political police headquarters and a fortress prison, against political police agents, Legião Portuguesa militiamen, GNR guards and guard dogs, with carnations, clandestine *Avante!* newspapers, two floors and a secret bonus floor.
 
 ### Web Version
 

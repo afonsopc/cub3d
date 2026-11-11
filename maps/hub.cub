@@ -1317,14 +1317,6 @@ g_SO assets/textures/missao.bmp
 g_WE assets/textures/missao.bmp
 g_EA assets/textures/missao.bmp
 
-h_TYPE ELEVATOR
-h_TARGETABLE TRUE
-h_MAP_PATH maps/billions.cub
-h_NO assets/textures/billiosn-ust-smile.bmp
-h_SO assets/textures/billiosn-ust-smile.bmp
-h_WE assets/textures/billiosn-ust-smile.bmp
-h_EA assets/textures/billiosn-ust-smile.bmp
-
 i_TYPE ELEVATOR
 i_TARGETABLE TRUE
 i_MAP_PATH maps/sbj.cub
@@ -1357,9 +1349,9 @@ m_TYPE WEAPON
 m_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 m_DAMAGE 10
 m_AMMO_USAGE 1
-m_NAME Soldier's Weapon
+m_NAME Pistola do agente
 m_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
-m_DESCRIPTION Weapon of the National Socialist soldier
+m_DESCRIPTION Arma do agente da policia politica
 m_SINGLE_USE TRUE
 m_USE_DELAY 0.8
 m_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
@@ -1370,7 +1362,7 @@ m_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
 n_TYPE BILLBOARD
 n_STILL_SPRITE assets/oms3d/textures/billboards/table-chairs.bmp
 
-11i1h1g111
+11i111g111
 1n      n1
 l        1
 1  jjjjfjj

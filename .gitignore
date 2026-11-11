@@ -9,4 +9,6 @@ assets/wolf3d
 headers/SDL2/
 lib/libSDL2.a
 ._miniaudio.h
-web_obj/__pycache__/
+web_obj
+__pycache__/
+

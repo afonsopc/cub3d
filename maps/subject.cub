@@ -1,4 +1,4 @@
-NO assets/textures/cashier.bmp
+NO assets/oms3d/textures/stone-censura.bmp
 SO assets/oms3d/textures/hud/stats/1-0.bmp:assets/oms3d/textures/hud/stats/1-1.bmp:assets/oms3d/textures/hud/stats/1-2.bmp
 SO_UPDATE_DELAY 1
 SO_LOOP TRUE
@@ -31,8 +31,8 @@ p_NO NULL
 p_WE NULL
 p_EA NULL
 9_TYPE WALL
-9_SO assets/textures/cashier.bmp
-9_NO assets/textures/cashier.bmp
+9_SO assets/oms3d/textures/stone-censura.bmp
+9_NO assets/oms3d/textures/stone-censura.bmp
 9_WE assets/oms3d/textures/door-frame.bmp
 9_EA assets/oms3d/textures/door-frame.bmp
 MOUSE FALSE

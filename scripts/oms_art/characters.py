@@ -1,48 +1,70 @@
-# Personagens originais (voxels): a Sentinela (robô de patrulha, substitui o
-# soldado) e o Cão-Robô (substitui o cão). Nada aqui vem de outro jogo.
+# Personagens do tema Estado Novo, em voxels de baixa resolução (para o
+# aspeto de píxeis grossos dos jogos VGA): o agente da polícia política
+# (gabardina e chapéu), o legionário (camisa verde e capacete), o guarda da
+# GNR (farda cinzenta e boné) e o cão de guarda. Só adultos. Tudo original.
+import math
+
 from vox import Model, box, chain, cyl_x, cyl_y, cyl_z, ellipsoid, rot_x, rot_y, rot_z, transformed
 
-ARMOR = (212, 206, 188)
-ARMOR_D = (164, 158, 144)
-ACCENT = (230, 118, 40)
-JOINT = (66, 70, 82)
-METAL = (118, 126, 140)
-DARK = (40, 42, 50)
-VISOR = (70, 232, 244)
-CORE = (120, 246, 255)
-RED = (255, 64, 56)
-GUN = (58, 62, 72)
+SKIN = (206, 150, 112)
+SKIN_D = (164, 110, 80)
+EYE = (24, 18, 16)
+HAIR = (40, 30, 24)
+BLOOD = (150, 10, 12)
+BLOOD_D = (96, 4, 8)
 FLASH_Y = (255, 236, 120)
 FLASH_O = (255, 150, 40)
-SPARK = (255, 220, 90)
+GUN = (44, 44, 48)
+GUN_L = (96, 96, 104)
+STOCK = (110, 66, 34)
+WHITE = (236, 232, 220)
 
-EMISSIVE = (VISOR, CORE, RED, FLASH_Y, FLASH_O, SPARK)
+EMISSIVE = (FLASH_Y, FLASH_O)
+
+PIDE = dict(
+    name="pide", coat=(150, 128, 90), coat_d=(112, 94, 64), shirt=(220, 216, 200), tie=(70, 30, 30),
+    trousers=(52, 50, 50), shoes=(30, 24, 20), hat="fedora", hat_c=(70, 62, 52), band=(30, 26, 22),
+    gun="pistol", belt=(60, 44, 30), moustache=True, boots=False,
+)
+LEGIAO = dict(
+    name="legiao", coat=None, shirt=(64, 100, 52), shirt_d=(44, 72, 38), tie=None,
+    trousers=(58, 62, 44), shoes=(28, 22, 18), hat="helmet", hat_c=(84, 92, 64), band=None,
+    gun="smg", belt=(70, 50, 28), strap=True, moustache=False, boots=True,
+)
+GNR = dict(
+    name="gnr", coat=None, shirt=(104, 108, 110), shirt_d=(78, 82, 86), tie=None,
+    trousers=(80, 84, 88), shoes=(20, 18, 18), hat="cap", hat_c=(64, 68, 74), band=(150, 24, 28),
+    gun="rifle", belt=(26, 22, 20), strap=True, moustache=True, boots=True,
+)
 
 
-def _rounded(x0, x1, y0, y1, z0, z1, r=1.5):
-    """Caixa com as arestas verticais cortadas (para não parecer um tijolo)."""
+def _gun(m, kind, xf, flash=False):
+    """Arma na mão direita (lado -x), cano para -y a partir da mão (z~15)."""
+    hx = -7.0
+    if kind == "pistol":
+        box(m, hx - 0.8, hx + 0.8, -4.5, 0.5, 14.5, 16.5, GUN, xf=xf)
+        box(m, hx - 0.6, hx + 0.6, -0.5, 1.0, 12.5, 15, GUN_L, xf=xf)
+        tip = -5.5
+    elif kind == "smg":
+        box(m, hx - 0.9, hx + 0.9, -9, 3, 14.5, 16.5, GUN, xf=xf)
+        box(m, hx - 0.5, hx + 0.5, -12, -9, 15, 16, GUN_L, xf=xf)
+        box(m, hx - 0.6, hx + 0.6, -5, -3, 11, 14.5, GUN, xf=xf)  # carregador
+        box(m, hx - 0.8, hx + 0.8, 3, 7, 14, 16, STOCK, xf=xf)
+        tip = -13
+    else:
+        box(m, hx - 0.9, hx + 0.9, -6, 7, 14, 16.5, STOCK, xf=xf)
+        box(m, hx - 0.5, hx + 0.5, -16, -6, 15, 16.2, GUN, xf=xf)
+        box(m, hx - 0.6, hx + 0.6, -2, 1, 16.5, 17.2, GUN_L, xf=xf)
+        tip = -17
+    if flash:
+        ellipsoid(m, hx, tip - 2, 15.5, 2.6, 1.6, 2.6, FLASH_O, xf=xf)
+        ellipsoid(m, hx, tip - 3, 15.5, 1.5, 1.2, 1.5, FLASH_Y, xf=xf)
 
-    def inside(x, y, z):
-        dx = max(x0 + r - x, 0, x - (x1 - r))
-        dy = max(y0 + r - y, 0, y - (y1 - r))
-        return dx * dx + dy * dy <= r * r
 
-    return inside
-
-
-def _rbox(m, x0, x1, y0, y1, z0, z1, color, r=1.5, xf=None):
-    from vox import _fill
-
-    _fill(m, (x0, x1), (y0, y1), (z0, z1), _rounded(x0, x1, y0, y1, z0, z1, r), color, xf)
-
-
-def sentinel(leg=0.0, arm=0.0, bob=0.0, pose="still", flash=False, dim=False):
-    """leg/arm: ângulos de balanço ao andar (graus). pose: still, aim, shoot,
-    halt, hit."""
+def human(sp, leg=0.0, arm=0.0, bob=0.0, pose="still", flash=False, blood=0):
+    """Figura humana adulta (~50 voxels de altura), a olhar para -y.
+    pose: still, walk, aim, shoot, halt, hit."""
     m = Model()
-    vis = (40, 70, 80) if dim else VISOR
-    core = (50, 80, 90) if dim else CORE
-    up = (0, 0, bob)
 
     def lift(f=None):
         def g(p):
@@ -52,185 +74,217 @@ def sentinel(leg=0.0, arm=0.0, bob=0.0, pose="still", flash=False, dim=False):
 
         return g
 
-    # pernas (pivô na anca)
+    tro = sp["trousers"]
+    # pernas
     for side, sw in ((-1, leg), (1, -leg)):
-        cx = side * 4.0
-        hip = (cx, 0, 19)
-        knee_bend = max(0.0, -sw) * 0.6
-        f_thigh = lift(rot_x(hip, sw))
-        box(m, cx - 1.5, cx + 1.5, -1.5, 1.5, 12, 19, JOINT, xf=f_thigh)
-        knee = (cx, 0, 12)
-        f_shin = lift(chain(rot_x(knee, knee_bend), rot_x(hip, sw)))
-        _rbox(m, cx - 2.2, cx + 2.2, -2.0, 2.0, 2.5, 12, ARMOR, r=1.0, xf=f_shin)
-        box(m, cx - 2.0, cx + 2.0, -2.6, -2.0, 9, 12.5, ACCENT, xf=f_shin)  # joelheira
-        box(m, cx - 2.6, cx + 2.6, -4.5, 2.2, 0, 2.5, DARK, xf=f_shin)  # pé
-        box(m, cx - 2.6, cx + 2.6, -4.6, -3.8, 0.5, 2.0, ACCENT, xf=f_shin)
-    f = lift()
-    # bacia e tronco
-    _rbox(m, -6, 6, -2.8, 2.8, 18, 21.5, JOINT, r=1.2, xf=f)
-    _rbox(m, -7.5, 7.5, -4.2, 4.2, 21.5, 34, ARMOR, r=2.5, xf=f)
-    _rbox(m, -6.5, 6.5, -4.4, 4.4, 21.5, 23, ARMOR_D, r=2.2, xf=f)  # cinto
-    box(m, -7.6, 7.6, -4.0, 4.0, 30, 31, ACCENT, xf=f)  # faixa
-    cyl_y(m, 0, 27.5, 2.2, -4.8, -3.5, DARK, xf=f)
-    cyl_y(m, 0, 27.5, 1.4, -5.0, -4.6, core, xf=f)  # núcleo
-    # mochila
-    _rbox(m, -5, 5, 3.5, 7, 23, 33, METAL, r=1.2, xf=f)
-    for z in (25, 27.5, 30):
-        box(m, -3.5, 3.5, 6.9, 7.2, z, z + 0.6, DARK, xf=f)
-    # pescoço e cabeça
-    cyl_z(m, 0, 0, 2.0, 33.5, 36, JOINT, xf=f)
-    _rbox(m, -4.8, 4.8, -4.2, 4.2, 36, 44, ARMOR, r=2.2, xf=f)
-    box(m, -4.9, 4.9, -3.2, 3.2, 43.5, 44.5, ARMOR_D, xf=f)
-    box(m, -3.8, 3.8, -4.6, -4.0, 39, 41, vis, xf=f)  # viseira
-    box(m, -4.9, -4.4, -2, 2, 38, 42, ACCENT, xf=f)  # orelhas
-    box(m, 4.4, 4.9, -2, 2, 38, 42, ACCENT, xf=f)
-    cyl_z(m, 3, 2, 0.5, 44, 48, METAL, xf=f)  # antena
-    box(m, 2.5, 3.5, 1.5, 2.5, 48, 49, RED, xf=f)
-    # ombros
-    for side in (-1, 1):
-        ellipsoid(m, side * 9.2, 0, 32, 3.0, 3.2, 2.6, ACCENT, xf=f)
-    # braços: o direito (lado -x no ecrã quando olha para nós) leva a arma
-    for side in (-1, 1):
-        sh = (side * 9.5, 0, 31)
-        if side == -1:
-            if pose in ("aim", "shoot"):
-                a = -80
-            elif pose == "halt":
-                a = -15
-            elif pose == "hit":
-                a = 25
-            else:
-                a = -25 + arm * 0.4
+        cx = side * 2.3
+        hip = (cx, 0, 22)
+        knee = (cx, 0, 11)
+        bend = max(0.0, -sw) * 0.7
+        f_th = lift(rot_x(hip, sw))
+        f_sh = lift(chain(rot_x(knee, bend), rot_x(hip, sw)))
+        box(m, cx - 1.8, cx + 1.8, -1.8, 1.8, 11, 22, tro, xf=f_th)
+        if sp.get("boots"):
+            box(m, cx - 1.9, cx + 1.9, -1.9, 1.9, 2, 11, tro, xf=f_sh)
+            box(m, cx - 2.0, cx + 2.0, -2.0, 2.0, 1.5, 9, sp["shoes"], xf=f_sh)
         else:
-            if pose == "halt":
-                a = -160
-            elif pose in ("aim", "shoot"):
-                a = -70
-            elif pose == "hit":
-                a = 30
-            else:
-                a = -arm
-        fa = lift(rot_x(sh, a))
-        box(m, side * 9.5 - 1.3, side * 9.5 + 1.3, -1.3, 1.3, 24, 30, JOINT, xf=fa)
-        _rbox(m, side * 9.5 - 2.0, side * 9.5 + 2.0, -2.0, 2.0, 17, 24.5, ARMOR, r=0.9, xf=fa)
-        box(m, side * 9.5 - 1.6, side * 9.5 + 1.6, -1.6, 1.6, 15, 17, DARK, xf=fa)  # mão
-        if side == -1:
-            # arma: cano para a frente a partir da mão
-            box(m, -11.2, -7.8, -9.5, 1.5, 14, 17, GUN, xf=fa)
-            box(m, -10.4, -8.6, -12, -9.5, 14.6, 16.4, METAL, xf=fa)
-            box(m, -10.0, -9.0, -12.4, -12, 15, 16, VISOR if not dim else DARK, xf=fa)
-            if pose in ("aim", "shoot") and side == -1:
-                if pose == "aim":
-                    # mira a apontar para nós a partir de um braço erguido
-                    pass
-        if side == 1 and pose == "halt":
-            box(m, 8.0, 11.0, -1.0, 1.0, 13, 15.5, DARK, xf=fa)  # palma aberta
-    if pose == "aim":
-        # a mira olha para quem vê: viseira mais forte e cano à frente do peito
-        box(m, -3.8, 3.8, -4.6, -4.0, 39, 41, RED, xf=f)
-    if flash:
-        # clarão de disparo à frente do cano (no ecrã: à frente do peito)
-        ellipsoid(m, -6, -16, 26, 3.5, 1.5, 3.5, FLASH_O, xf=f)
-        ellipsoid(m, -6, -17.5, 26, 2.0, 1.2, 2.0, FLASH_Y, xf=f)
-    return m
-
-
-def sentinel_hit():
-    m = sentinel(pose="hit")
-    m = transformed(m, rot_x((0, 0, 0), 8))
-    from vox import ellipsoid as el
-
-    for x, z in ((-5, 30), (4, 36), (7, 25)):
-        el(m, x, -6, z, 0.8, 0.8, 0.8, SPARK)
-    return m
-
-
-def sentinel_death(stage):
-    """5 fases: faíscas, inclina, cai, no chão, desfeito."""
-    from vox import ellipsoid as el
-
-    dim = stage >= 3
-    base = sentinel(pose="hit" if stage < 3 else "still", dim=dim)
-    angle = (12, 35, 62, 86, 90)[stage - 1]
-    m = transformed(base, rot_y((8, 0, 0), -angle))
-    if stage == 1:
-        for x, z in ((-4, 38), (5, 30), (0, 26), (6, 40)):
-            el(m, x, -6, z, 0.9, 0.9, 0.9, SPARK)
-    if stage >= 2:
-        for x, z in ((-14, 12), (-6, 22)):
-            el(m, x, -6, z, 0.8, 0.8, 0.8, SPARK) if stage == 2 else None
-    if stage >= 4:
-        # peças soltas e fumo no chão
-        for x, y in ((-20, -3), (-16, 4), (14, 2)):
-            box(m, x - 1, x + 1, y - 1, y + 1, 0, 1.5, METAL)
-    if stage == 5:
-        m = transformed(m, lambda p: (p[0], p[1], p[2] * 0.7))
-        box(m, -26, -22, -2, 2, 0, 2, ARMOR_D)  # cabeça solta
-    return m
-
-
-# ---------------------------------------------------------------- Cão-Robô
-
-HB = (96, 104, 120)  # corpo
-HB_D = (64, 70, 84)
-HY = (236, 180, 52)  # amarelo de aviso
-
-
-def hound(phase=0.0, jaw=0.0, dim=False, gait=1.0):
-    """Quadrúpede: comprido ao longo de y (frente = -y). phase em [0,1)."""
-    import math
-
-    m = Model()
-    eye = (60, 30, 30) if dim else RED
-    bob = abs(math.sin(phase * 2 * math.pi)) * 0.8 * gait
-    lift = lambda f=None: (lambda p: (lambda q: (q[0], q[1], q[2] + bob))(f(p) if f else p))
-    # patas: pares diagonais em fase
-    legs = [(-4, -9, 0.0), (4, 9, 0.0), (4, -9, 0.5), (-4, 9, 0.5)]
-    for x, y, off in legs:
-        a = math.sin((phase + off) * 2 * math.pi) * 30 * gait
-        hip = (x, y, 13)
-        fl = lift(rot_x(hip, a))
-        box(m, x - 1.4, x + 1.4, y - 1.4, y + 1.4, 6, 13, HB_D, xf=fl)
-        knee = (x, y, 6)
-        fk = lift(chain(rot_x(knee, -abs(a) * 0.5), rot_x(hip, a)))
-        box(m, x - 1.2, x + 1.2, y - 1.2, y + 1.2, 1.5, 6.5, JOINT, xf=fk)
-        box(m, x - 1.6, x + 1.6, y - 2.6, y + 1.4, 0, 1.6, DARK, xf=fk)
+            box(m, cx - 1.8, cx + 1.8, -1.8, 1.8, 2, 11, tro, xf=f_sh)
+        box(m, cx - 1.9, cx + 1.9, -4.2, 1.8, 0, 2, sp["shoes"], xf=f_sh)
     f = lift()
-    _rbox(m, -5.5, 5.5, -11, 11, 11, 18, HB, r=2.0, xf=f)
-    box(m, -5.6, 5.6, -3, 3, 17.6, 18.4, HY, xf=f)  # faixa de aviso no dorso
-    for yy in (-8, -4, 0, 4, 8):
-        box(m, -5.7, 5.7, yy, yy + 1.2, 12.5, 13.2, HB_D, xf=f)
-    # cauda (antena)
-    fz = lift(rot_x((0, 11, 17), 35))
-    cyl_y(m, 0, 17, 0.6, 11, 17, METAL, xf=fz)
-    box(m, -0.8, 0.8, 16.5, 18, 16.3, 17.7, RED if not dim else DARK, xf=fz)
+    shirt = sp["shirt"]
+    shirt_d = sp.get("shirt_d", shirt)
+    # tronco
+    box(m, -6.0, 6.0, -3.0, 3.0, 21, 38, shirt, xf=f)
+    if sp.get("coat"):
+        coat, coat_d = sp["coat"], sp["coat_d"]
+        box(m, -6.2, 6.2, -3.3, 3.3, 21, 38, coat, xf=f)
+        # aba da gabardina (fica parada, as pernas aparecem por baixo)
+        for z in range(12, 22):
+            w = 6.2 + (22 - z) * 0.08
+            box(m, -w, w, -3.4, 3.4, z, z + 1, coat if z % 6 else coat_d, xf=f)
+        box(m, -6.3, 6.3, -3.5, 3.5, 25, 26.5, sp["belt"], xf=f)  # cinto
+        box(m, -0.8, 0.8, -3.7, -3.4, 25, 26.5, (170, 150, 90), xf=f)
+        # lapelas abertas, camisa e gravata
+        box(m, -2.0, 2.0, -3.5, -3.2, 30, 38, sp["shirt"], xf=f)
+        box(m, -0.6, 0.6, -3.7, -3.4, 29, 37.5, sp["tie"], xf=f)
+        box(m, -3.2, -2.0, -3.7, -3.3, 31, 38, coat_d, xf=f)
+        box(m, 2.0, 3.2, -3.7, -3.3, 31, 38, coat_d, xf=f)
+        for z in (23, 28, 33):
+            box(m, -1.6, -1.0, -3.6, -3.3, z, z + 0.6, (40, 34, 26), xf=f)
+    else:
+        box(m, -5.8, 5.8, -3.0, 3.0, 21, 23.5, sp["belt"], xf=f)
+        box(m, -0.9, 0.9, -3.2, -2.9, 21.5, 23.2, (190, 160, 70), xf=f)  # fivela
+        box(m, -5.7, 5.7, -2.9, 2.9, 34, 38, shirt_d, xf=f)  # ombros
+        for x in (-3.0, 3.0):
+            box(m, x - 1.2, x + 1.2, -3.2, -2.9, 29, 32, shirt_d, xf=f)  # bolsos
+        if sp.get("strap"):
+            # correia a tiracolo
+            for i in range(14):
+                z = 37 - i
+                x = -4.5 + i * 0.68
+                box(m, x - 0.6, x + 0.6, -3.3, 3.3, z, z + 1, sp["belt"], xf=f)
+        box(m, -1.6, 1.6, -3.2, -2.8, 36.5, 38, shirt_d, xf=f)  # gola
     # pescoço e cabeça
-    box(m, -2.5, 2.5, -14, -10, 15, 20, HB_D, xf=f)
-    _rbox(m, -4, 4, -19, -12, 18, 24, HB, r=1.6, xf=f)
-    box(m, -4.1, 4.1, -15, -14, 18, 24, HY, xf=f)
-    # focinho com maxila
-    _rbox(m, -2.8, 2.8, -23, -18, 19.5, 22.5, HB, r=0.8, xf=f)
-    fj = lift(rot_x((0, -18, 19.5), jaw))
-    box(m, -2.6, 2.6, -22.5, -18, 17.5, 19.3, HB_D, xf=fj)
-    if jaw < -5:
-        box(m, -2.2, 2.2, -22.4, -21.8, 19.3, 20.0, (230, 230, 230), xf=f)  # dentes
-    # olhos e orelhas
-    box(m, -3.2, -1.6, -19.6, -19.0, 21.5, 23, eye, xf=f)
-    box(m, 1.6, 3.2, -19.6, -19.0, 21.5, 23, eye, xf=f)
-    for s in (-1, 1):
-        box(m, s * 3 - 0.8, s * 3 + 0.8, -15, -13.4, 24, 27, HB_D, xf=f)
+    box(m, -1.5, 1.5, -1.5, 1.5, 38, 40, SKIN_D, xf=f)
+    box(m, -3.5, 3.5, -3.3, 3.3, 39.5, 48, SKIN, xf=f)
+    box(m, -3.6, 3.6, -1.0, 3.4, 44, 48, HAIR, xf=f)  # cabelo dos lados/trás
+    box(m, -3.8, -3.4, -1.2, 1.0, 42.5, 45, SKIN_D, xf=f)  # orelhas
+    box(m, 3.4, 3.8, -1.2, 1.0, 42.5, 45, SKIN_D, xf=f)
+    box(m, -2.2, -1.2, -3.5, -3.3, 44, 45, EYE, xf=f)  # olhos
+    box(m, 1.2, 2.2, -3.5, -3.3, 44, 45, EYE, xf=f)
+    box(m, -0.5, 0.5, -3.9, -3.3, 42.5, 44.5, SKIN_D, xf=f)  # nariz
+    if sp.get("moustache"):
+        box(m, -1.8, 1.8, -3.6, -3.3, 41.4, 42.3, HAIR, xf=f)
+    else:
+        box(m, -1.2, 1.2, -3.5, -3.3, 41.2, 41.8, (140, 80, 64), xf=f)
+    hat, hc = sp["hat"], sp["hat_c"]
+    if hat == "fedora":
+        cyl_z(m, 0, 0, 5.8, 47.5, 48.5, hc, xf=f)
+        cyl_z(m, 0, 0, 3.9, 48.5, 52, hc, xf=f)
+        cyl_z(m, 0, 0, 4.0, 48.5, 49.7, sp["band"], xf=f)
+        box(m, -0.8, 0.8, -4.0, 4.0, 51.5, 52.3, hc, xf=f)  # vinco
+    elif hat == "helmet":
+        ellipsoid(m, 0, 0, 47.5, 4.9, 4.9, 4.8, hc, xf=f)
+        cyl_z(m, 0, 0, 5.3, 46, 47, sp.get("shirt_d", hc), xf=f)
+        box(m, -3.0, 3.0, -3.6, -3.3, 45, 45.6, EYE, xf=f)  # sombra da pala
+    else:  # boné de pala
+        cyl_z(m, 0, 0, 3.9, 47.5, 49.5, hc, xf=f)
+        cyl_z(m, 0, 0, 4.0, 47.5, 48.3, sp["band"], xf=f)
+        box(m, -4.1, 4.1, -4.2, 0.6, 49.5, 51, hc, xf=f)
+        box(m, -3.0, 3.0, -5.6, -3.3, 47.5, 48.1, (16, 16, 18), xf=f)  # pala
+        box(m, -0.6, 0.6, -4.1, -3.9, 48.4, 49.2, (220, 190, 80), xf=f)  # emblema
+    # braços (lado -x leva a arma)
+    two_hand = sp["gun"] in ("rifle", "smg")
+    for side in (-1, 1):
+        sh = (side * 6.6, 0, 36.5)
+        if pose in ("aim", "shoot"):
+            a = -85 if side == -1 or two_hand else -10
+        elif pose == "halt":
+            # "Alto!": braço esticado para o lado, mão aberta (não é
+            # nenhuma saudação de braço erguido)
+            a = -15 if side == -1 else 0
+        elif pose == "hit":
+            a = 30
+        elif two_hand:
+            a = -45 if side == -1 else -55
+        else:
+            a = (-20 + arm * 0.4) if side == -1 else -arm
+        turn = 0
+        if pose in ("aim", "shoot") and (side == -1 or two_hand):
+            turn = 24 * -side
+        fa = lift(chain(rot_x(sh, a), rot_z(sh, turn)))
+        if pose == "halt" and side == 1:
+            fa = lift(chain(rot_x(sh, -20), rot_y(sh, -78)))
+        sleeve = sp["coat"] if sp.get("coat") else shirt
+        box(m, side * 6.6 - 1.4, side * 6.6 + 1.4, -1.4, 1.4, 24, 37.5, sleeve, xf=fa)
+        box(m, side * 6.6 - 1.0, side * 6.6 + 1.0, -1.0, 1.0, 21.5, 24, SKIN, xf=fa)  # mão
+        if side == 1 and two_hand and pose not in ("halt", "hit"):
+            pass
+    gun_arm = -85 if pose in ("aim", "shoot") else (30 if pose == "hit" else (-45 if two_hand else (-20 + arm * 0.4)))
+    if pose == "halt":
+        gun_arm = -15
+    gturn = 24 if pose in ("aim", "shoot") else 0
+    fg = lift(chain(rot_x((-6.6, 0, 36.5), gun_arm), rot_z((-6.6, 0, 36.5), gturn)))
+    # a arma sai da mão (z ~ 22.5 do braço), no referencial do braço
+    gm = Model()
+    _gun(gm, sp["gun"], None, flash=flash)
+    for (x, y, z), c in gm.v.items():
+        p = fg((x + 0.4, y, z + 7.5))
+        m.put(*p, c)
+    if blood:
+        import random
+
+        r = random.Random(blood)
+        for _ in range(3 + blood * 2):
+            x, z = r.uniform(-4, 4), r.uniform(24, 36)
+            box(m, x - 0.7, x + 0.7, -3.9, -3.4, z - 0.7, z + 0.7, BLOOD, xf=f)
     return m
 
 
-def hound_death(stage):
-    from vox import ellipsoid as el
-
-    base = hound(phase=0.0, jaw=-15 if stage == 1 else 0, dim=stage >= 2, gait=0.3)
-    ang = (25, 70, 90)[stage - 1]
-    m = transformed(base, rot_y((6, 0, 0), -ang))
-    if stage == 3:
-        m = transformed(m, lambda p: (p[0], p[1], p[2] * 0.75))
+def human_death(sp, stage):
+    """5 fases: atingido, joelhos a ceder, a cair, no chão, imóvel em sangue."""
+    base = human(sp, pose="hit", blood=stage + 1)
     if stage == 1:
-        for x, z in ((-3, 22), (4, 16), (0, 26)):
-            el(m, x, -12, z, 0.8, 0.8, 0.8, SPARK)
+        m = transformed(base, rot_x((0, 0, 0), 10))
+        return m
+    angle = (0, 0, 28, 62, 86, 90)[stage]
+    # cai para o lado (como nos jogos da época), pivô no pé
+    squash = (1, 1, 0.82, 0.7, 0.62, 0.62)[stage]
+    m = transformed(base, lambda p: (p[0], p[1], p[2] * squash))
+    m = transformed(m, rot_y((5, 0, 0), -angle))
+    if stage >= 4:
+        r = 7 if stage == 4 else 10
+        for x in range(-r - 18, r - 14):
+            for y in range(-r // 2, r // 2 + 1):
+                if ((x + 16) / r) ** 2 + (y / (r / 2)) ** 2 <= 1:
+                    m.put(x, y, 0, BLOOD if (x + y) % 5 else BLOOD_D)
+    return m
+
+
+# ---------------------------------------------------------------- cão de guarda
+
+FUR = (150, 104, 56)
+FUR_D = (96, 64, 34)
+SADDLE = (40, 30, 24)
+NOSE = (20, 16, 14)
+TONGUE = (200, 80, 80)
+TEETH = (236, 232, 220)
+
+
+def dog(phase=0.0, jaw=0.0, gait=1.0, blood=0):
+    m = Model()
+    bob = abs(math.sin(phase * 2 * math.pi)) * 0.8 * gait
+
+    def lift(f=None):
+        return lambda p: (lambda q: (q[0], q[1], q[2] + bob))(f(p) if f else p)
+
+    legs = [(-3.0, -7, 0.0), (3.0, 7, 0.0), (3.0, -7, 0.5), (-3.0, 7, 0.5)]
+    for x, y, off in legs:
+        a = math.sin((phase + off) * 2 * math.pi) * 32 * gait
+        hip = (x, y, 11)
+        fl = lift(rot_x(hip, a))
+        box(m, x - 1.2, x + 1.2, y - 1.3, y + 1.3, 5, 12, FUR, xf=fl)
+        knee = (x, y, 5)
+        fk = lift(chain(rot_x(knee, -abs(a) * 0.5), rot_x(hip, a)))
+        box(m, x - 0.9, x + 0.9, y - 0.9, y + 0.9, 1, 5.5, FUR, xf=fk)
+        box(m, x - 1.1, x + 1.1, y - 2.0, y + 1.0, 0, 1.2, FUR_D, xf=fk)
+    f = lift()
+    ellipsoid(m, 0, 0, 13, 4.3, 9.5, 3.8, FUR, xf=f)
+    ellipsoid(m, 0, 1, 15.3, 4.0, 6.5, 1.9, SADDLE, xf=f)  # sela preta do dorso
+    ellipsoid(m, 0, -7, 13.5, 4.0, 3.4, 4.0, FUR, xf=f)  # peito
+    # cauda
+    fz = lift(rot_x((0, 9, 14), 50))
+    cyl_y(m, 0, 14, 1.0, 9, 17, FUR_D, xf=fz)
+    # pescoço e cabeça
+    box(m, -2.0, 2.0, -11, -7, 14, 19, FUR, xf=f)
+    box(m, -3.0, 3.0, -14, -9.5, 17, 22, FUR, xf=f)
+    box(m, -3.1, 3.1, -11, -9.5, 20, 22, SADDLE, xf=f)
+    box(m, -1.6, 1.6, -17.5, -13.5, 18, 20.4, FUR_D, xf=f)  # focinho
+    box(m, -0.8, 0.8, -17.9, -17.2, 19.4, 20.6, NOSE, xf=f)
+    fj = lift(rot_x((0, -13.5, 18), jaw))
+    box(m, -1.4, 1.4, -17, -13.5, 16.8, 18, FUR_D, xf=fj)
+    if jaw < -5:
+        box(m, -1.2, 1.2, -16.8, -16.4, 17.9, 18.6, TEETH, xf=f)
+        box(m, -0.8, 0.8, -16.0, -14.0, 17.2, 17.8, TONGUE, xf=fj)
+    box(m, -2.2, -1.2, -14.2, -13.9, 20.5, 21.3, (220, 160, 40), xf=f)  # olhos
+    box(m, 1.2, 2.2, -14.2, -13.9, 20.5, 21.3, (220, 160, 40), xf=f)
+    for s in (-1, 1):  # orelhas em bico
+        for i in range(4):
+            w = 1.0 - i * 0.22
+            box(m, s * 1.8 - w, s * 1.8 + w, -11.5, -10.5, 22 + i, 23 + i, SADDLE, xf=f)
+    if blood:
+        box(m, -3.7, -3.4, -3, 1, 12, 15, BLOOD, xf=f)
+    return m
+
+
+def dog_death(stage):
+    base = dog(phase=0.0, jaw=-15 if stage == 1 else 0, gait=0.3, blood=1)
+    ang = (25, 70, 90)[stage - 1]
+    m = transformed(base, rot_y((4, 0, 0), -ang))
+    if stage == 3:
+        m = transformed(m, lambda p: (p[0], p[1], p[2] * 0.8))
+        for x in range(-14, -2):
+            for y in range(-6, 7):
+                if ((x + 8) / 6) ** 2 + (y / 6) ** 2 <= 1:
+                    m.put(x, y, 0, BLOOD)
     return m
