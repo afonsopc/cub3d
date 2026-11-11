@@ -31,6 +31,27 @@ bool	door_is_transparent_at(t_entity *entity, t_direction direction, double x)
 	return ((x * image->size.width) < max_x_for_transparency);
 }
 
+/* someone (player or enemy, alive) stands in the door cell */
+static bool	door_occupied(t_game *game, t_entity *door)
+{
+	t_entity	*e;
+	int			i;
+
+	if (!game || !game->billboards)
+		return (false);
+	i = -1;
+	while (game->billboards[++i])
+	{
+		e = game->billboards[i];
+		if (!e->character || ((t_character *)e)->dead || !e->active)
+			continue ;
+		if ((int)e->coords.x == (int)door->coords.x
+			&& (int)e->coords.y == (int)door->coords.y)
+			return (true);
+	}
+	return (false);
+}
+
 void	door_frame(t_game *game, t_entity *entity, double delta_time)
 {
 	t_door		*door;
@@ -45,6 +66,8 @@ void	door_frame(t_game *game, t_entity *entity, double delta_time)
 		!= door->last_animation_index)
 		fta_play(door->close_sound);
 	door->last_animation_index = door->opening_sprite->index;
+	if (door->opened && door_occupied(game, entity))
+		door->last_opened_at = ft_get_time();
 	if (door->auto_close_delay && ft_get_time() - door->last_opened_at
 		>= door->auto_close_delay
 		&& door->wall.entity.action && door->opened)
@@ -74,8 +97,10 @@ void	door_action(t_entity *entity, t_character *actioner)
 {
 	t_door	*door;
 
-	wall_action(entity, actioner);
 	door = (t_door *)entity;
+	if (door->opened && door_occupied(cub3d()->game, entity))
+		return ;
+	wall_action(entity, actioner);
 	door->opened = !door->opened;
 	door->opening_sprite->reversed = !door->opened;
 	door->opening_sprite->running = true;

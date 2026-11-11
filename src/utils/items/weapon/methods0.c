@@ -27,6 +27,8 @@ void	weapon_use(t_item *item, t_drop *drop)
 	item->user->ammo -= weapon->ammo_usage;
 	if (!item->user)
 		return ;
+	if (weapon->range <= 0 || weapon->range > 3)
+		ai_noise(cub3d()->game, item->user);
 	target_entity = item->user->target_entity;
 	if (target_entity && target_entity->shot
 		&& (!weapon->range

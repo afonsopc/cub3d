@@ -1,0 +1,940 @@
+BACKGROUND_SOUND assets/oms3d/sounds/music-1.mp3
+BACKGROUND_SOUND_VOLUME 0.3
+BACKGROUND_SOUND_LOOP TRUE
+BACKGROUND_SPRITE assets/oms3d/textures/wood-dark.bmp
+
+COLLISION_SOUND assets/oms3d/sounds/bump.mp3
+COLLISION_SOUND_VOLUME 0.1
+
+MAX_HEALTH 100000
+
+0_INVENTORY P
+1_INVENTORY K
+DROP_ITEMS TRUE
+AMMO 99
+
+FRIENDLY_FIRE FALSE
+
+STILL_8_SPRITE assets/textures/billboards/afonsomaria/still-front.bmp
+STILL_7_SPRITE assets/textures/billboards/afonsomaria/still-front-right.bmp
+STILL_6_SPRITE assets/textures/billboards/afonsomaria/still-left.bmp
+STILL_5_SPRITE assets/textures/billboards/afonsomaria/still-back-left.bmp
+STILL_4_SPRITE assets/textures/billboards/afonsomaria/still-back.bmp
+STILL_3_SPRITE assets/textures/billboards/afonsomaria/still-back-right.bmp
+STILL_2_SPRITE assets/textures/billboards/afonsomaria/still-right.bmp
+STILL_1_SPRITE assets/textures/billboards/afonsomaria/still-front-left.bmp
+WALKING_8_SPRITE assets/textures/billboards/afonsomaria/front1.bmp:assets/textures/billboards/afonsomaria/still-front.bmp:assets/textures/billboards/afonsomaria/front2.bmp:assets/textures/billboards/afonsomaria/still-front.bmp
+WALKING_8_SPRITE_UPDATE_DELAY 0.2
+WALKING_8_SPRITE_LOOP TRUE
+WALKING_7_SPRITE assets/textures/billboards/afonsomaria/front-right1.bmp:assets/textures/billboards/afonsomaria/still-front-right.bmp:assets/textures/billboards/afonsomaria/front-right2.bmp:assets/textures/billboards/afonsomaria/still-front-right.bmp
+WALKING_7_SPRITE_UPDATE_DELAY 0.2
+WALKING_7_SPRITE_LOOP TRUE
+WALKING_6_SPRITE assets/textures/billboards/afonsomaria/left1.bmp:assets/textures/billboards/afonsomaria/still-left.bmp:assets/textures/billboards/afonsomaria/left2.bmp:assets/textures/billboards/afonsomaria/still-left.bmp
+WALKING_6_SPRITE_UPDATE_DELAY 0.2
+WALKING_6_SPRITE_LOOP TRUE
+WALKING_5_SPRITE assets/textures/billboards/afonsomaria/back-left1.bmp:assets/textures/billboards/afonsomaria/still-back-left.bmp:assets/textures/billboards/afonsomaria/back-left2.bmp:assets/textures/billboards/afonsomaria/still-back-left.bmp
+WALKING_5_SPRITE_UPDATE_DELAY 0.2
+WALKING_5_SPRITE_LOOP TRUE
+WALKING_4_SPRITE assets/textures/billboards/afonsomaria/back1.bmp:assets/textures/billboards/afonsomaria/still-back.bmp:assets/textures/billboards/afonsomaria/back2.bmp:assets/textures/billboards/afonsomaria/still-back.bmp
+WALKING_4_SPRITE_UPDATE_DELAY 0.2
+WALKING_4_SPRITE_LOOP TRUE
+WALKING_3_SPRITE assets/textures/billboards/afonsomaria/back-right1.bmp:assets/textures/billboards/afonsomaria/still-back-right.bmp:assets/textures/billboards/afonsomaria/back-right2.bmp:assets/textures/billboards/afonsomaria/still-back-right.bmp
+WALKING_3_SPRITE_UPDATE_DELAY 0.2
+WALKING_3_SPRITE_LOOP TRUE
+WALKING_2_SPRITE assets/textures/billboards/afonsomaria/right1.bmp:assets/textures/billboards/afonsomaria/still-right.bmp:assets/textures/billboards/afonsomaria/right2.bmp:assets/textures/billboards/afonsomaria/still-right.bmp
+WALKING_2_SPRITE_UPDATE_DELAY 0.2
+WALKING_2_SPRITE_LOOP TRUE
+WALKING_1_SPRITE assets/textures/billboards/afonsomaria/front-left1.bmp:assets/textures/billboards/afonsomaria/still-front-left.bmp:assets/textures/billboards/afonsomaria/front-left2.bmp:assets/textures/billboards/afonsomaria/still-front-left.bmp
+WALKING_1_SPRITE_UPDATE_DELAY 0.2
+WALKING_1_SPRITE_LOOP TRUE
+DEATH_SPRITE assets/textures/billboards/afonsomaria/dead.bmp
+DEATH_SPRITE_UPDATE_DELAY 0.1
+HIT_SPRITE assets/textures/billboards/afonsomaria/hit.bmp
+DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+USING_P_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.bmp:assets/textures/billboards/afonsomaria/aim-front.bmp
+USING_P_8_SPRITE_UPDATE_DELAY 0.05
+USING_P_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.bmp:assets/textures/billboards/afonsomaria/aim-front-right.bmp
+USING_P_7_SPRITE_UPDATE_DELAY 0.05
+USING_P_6_SPRITE assets/textures/billboards/afonsomaria/shoot-left.bmp:assets/textures/billboards/afonsomaria/aim-left.bmp
+USING_P_6_SPRITE_UPDATE_DELAY 0.05
+USING_P_5_SPRITE assets/textures/billboards/afonsomaria/shoot-back-left.bmp:assets/textures/billboards/afonsomaria/aim-back-left.bmp
+USING_P_5_SPRITE_UPDATE_DELAY 0.05
+USING_P_4_SPRITE assets/textures/billboards/afonsomaria/shoot-back.bmp:assets/textures/billboards/afonsomaria/aim-back.bmp
+USING_P_4_SPRITE_UPDATE_DELAY 0.05
+USING_P_3_SPRITE assets/textures/billboards/afonsomaria/shoot-back-right.bmp:assets/textures/billboards/afonsomaria/aim-back-right.bmp
+USING_P_3_SPRITE_UPDATE_DELAY 0.05
+USING_P_2_SPRITE assets/textures/billboards/afonsomaria/shoot-right.bmp:assets/textures/billboards/afonsomaria/aim-right.bmp
+USING_P_2_SPRITE_UPDATE_DELAY 0.05
+USING_P_1_SPRITE assets/textures/billboards/afonsomaria/shoot-front-left.bmp:assets/textures/billboards/afonsomaria/aim-front-left.bmp
+USING_P_1_SPRITE_UPDATE_DELAY 0.05
+USING_M_8_SPRITE assets/textures/billboards/afonsomaria/shoot-front.bmp:assets/textures/billboards/afonsomaria/aim-front.bmp
+USING_M_8_SPRITE_UPDATE_DELAY 0.05
+USING_M_8_SPRITE_LOOP TRUE
+USING_M_7_SPRITE assets/textures/billboards/afonsomaria/shoot-front-right.bmp:assets/textures/billboards/afonsomaria/aim-front-right.bmp
+USING_M_7_SPRITE_UPDATE_DELAY 0.05
+USING_M_7_SPRITE_LOOP TRUE
+USING_M_6_SPRITE assets/textures/billboards/afonsomaria/shoot-left.bmp:assets/textures/billboards/afonsomaria/aim-left.bmp
+USING_M_6_SPRITE_UPDATE_DELAY 0.05
+USING_M_6_SPRITE_LOOP TRUE
+USING_M_5_SPRITE assets/textures/billboards/afonsomaria/shoot-back-left.bmp:assets/textures/billboards/afonsomaria/aim-back-left.bmp
+USING_M_5_SPRITE_UPDATE_DELAY 0.05
+USING_M_5_SPRITE_LOOP TRUE
+USING_M_4_SPRITE assets/textures/billboards/afonsomaria/shoot-back.bmp:assets/textures/billboards/afonsomaria/aim-back.bmp
+USING_M_4_SPRITE_UPDATE_DELAY 0.05
+USING_M_4_SPRITE_LOOP TRUE
+USING_M_3_SPRITE assets/textures/billboards/afonsomaria/shoot-back-right.bmp:assets/textures/billboards/afonsomaria/aim-back-right.bmp
+USING_M_3_SPRITE_UPDATE_DELAY 0.05
+USING_M_3_SPRITE_LOOP TRUE
+USING_M_2_SPRITE assets/textures/billboards/afonsomaria/shoot-right.bmp:assets/textures/billboards/afonsomaria/aim-right.bmp
+USING_M_2_SPRITE_UPDATE_DELAY 0.05
+USING_M_2_SPRITE_LOOP TRUE
+USING_M_1_SPRITE assets/textures/billboards/afonsomaria/shoot-front-left.bmp:assets/textures/billboards/afonsomaria/aim-front-left.bmp
+USING_M_1_SPRITE_UPDATE_DELAY 0.05
+USING_M_1_SPRITE_LOOP TRUE
+USING_K_8_SPRITE assets/textures/billboards/afonsomaria/sword-front.bmp
+USING_K_7_SPRITE assets/textures/billboards/afonsomaria/sword-front-right.bmp
+USING_K_6_SPRITE assets/textures/billboards/afonsomaria/sword-left.bmp
+USING_K_5_SPRITE assets/textures/billboards/afonsomaria/sword-back-left.bmp
+USING_K_4_SPRITE assets/textures/billboards/afonsomaria/sword-back.bmp
+USING_K_3_SPRITE assets/textures/billboards/afonsomaria/sword-back-right.bmp
+USING_K_2_SPRITE assets/textures/billboards/afonsomaria/sword-right.bmp
+USING_K_1_SPRITE assets/textures/billboards/afonsomaria/sword-front-left.bmp
+
+W_STILL_8_SPRITE assets/textures/billboards/pv/still-front.bmp
+W_STILL_7_SPRITE assets/textures/billboards/pv/still-front-right.bmp
+W_STILL_6_SPRITE assets/textures/billboards/pv/still-left.bmp
+W_STILL_5_SPRITE assets/textures/billboards/pv/still-back-left.bmp
+W_STILL_4_SPRITE assets/textures/billboards/pv/still-back.bmp
+W_STILL_3_SPRITE assets/textures/billboards/pv/still-back-right.bmp
+W_STILL_2_SPRITE assets/textures/billboards/pv/still-right.bmp
+W_STILL_1_SPRITE assets/textures/billboards/pv/still-front-left.bmp
+W_WALKING_8_SPRITE assets/textures/billboards/pv/front1.bmp:assets/textures/billboards/pv/front2.bmp
+W_WALKING_8_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_8_SPRITE_LOOP TRUE
+W_WALKING_7_SPRITE assets/textures/billboards/pv/front-right1.bmp:assets/textures/billboards/pv/front-right2.bmp
+W_WALKING_7_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_7_SPRITE_LOOP TRUE
+W_WALKING_6_SPRITE assets/textures/billboards/pv/left1.bmp:assets/textures/billboards/pv/left2.bmp
+W_WALKING_6_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_6_SPRITE_LOOP TRUE
+W_WALKING_5_SPRITE assets/textures/billboards/pv/back-left1.bmp:assets/textures/billboards/pv/back-left2.bmp
+W_WALKING_5_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_5_SPRITE_LOOP TRUE
+W_WALKING_4_SPRITE assets/textures/billboards/pv/back1.bmp:assets/textures/billboards/pv/back2.bmp
+W_WALKING_4_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_4_SPRITE_LOOP TRUE
+W_WALKING_3_SPRITE assets/textures/billboards/pv/back-right1.bmp:assets/textures/billboards/pv/back-right2.bmp
+W_WALKING_3_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_3_SPRITE_LOOP TRUE
+W_WALKING_2_SPRITE assets/textures/billboards/pv/right1.bmp:assets/textures/billboards/pv/right2.bmp
+W_WALKING_2_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_2_SPRITE_LOOP TRUE
+W_WALKING_1_SPRITE assets/textures/billboards/pv/front-left1.bmp:assets/textures/billboards/pv/front-left2.bmp
+W_WALKING_1_SPRITE_UPDATE_DELAY 0.4
+W_WALKING_1_SPRITE_LOOP TRUE
+W_DEATH_SPRITE assets/textures/billboards/pv/dead.bmp
+W_DEATH_SPRITE_UPDATE_DELAY 0.1
+W_HIT_SPRITE assets/textures/billboards/pv/hit.bmp
+W_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+W_USING_P_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
+W_USING_P_8_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
+W_USING_P_7_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_6_SPRITE assets/textures/billboards/pv/shoot-left.bmp:assets/textures/billboards/pv/aim-left.bmp
+W_USING_P_6_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_5_SPRITE assets/textures/billboards/pv/shoot-back-left.bmp:assets/textures/billboards/pv/aim-back-left.bmp
+W_USING_P_5_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_4_SPRITE assets/textures/billboards/pv/shoot-back.bmp:assets/textures/billboards/pv/aim-back.bmp
+W_USING_P_4_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_3_SPRITE assets/textures/billboards/pv/shoot-back-right.bmp:assets/textures/billboards/pv/aim-back-right.bmp
+W_USING_P_3_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_2_SPRITE assets/textures/billboards/pv/shoot-right.bmp:assets/textures/billboards/pv/aim-right.bmp
+W_USING_P_2_SPRITE_UPDATE_DELAY 0.05
+W_USING_P_1_SPRITE assets/textures/billboards/pv/shoot-front-left.bmp:assets/textures/billboards/pv/aim-front-left.bmp
+W_USING_P_1_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_8_SPRITE assets/textures/billboards/pv/shoot-front.bmp:assets/textures/billboards/pv/aim-front.bmp
+W_USING_M_8_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_8_SPRITE_LOOP TRUE
+W_USING_M_7_SPRITE assets/textures/billboards/pv/shoot-front-right.bmp:assets/textures/billboards/pv/aim-front-right.bmp
+W_USING_M_7_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_7_SPRITE_LOOP TRUE
+W_USING_M_6_SPRITE assets/textures/billboards/pv/shoot-left.bmp:assets/textures/billboards/pv/aim-left.bmp
+W_USING_M_6_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_6_SPRITE_LOOP TRUE
+W_USING_M_5_SPRITE assets/textures/billboards/pv/shoot-back-left.bmp:assets/textures/billboards/pv/aim-back-left.bmp
+W_USING_M_5_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_5_SPRITE_LOOP TRUE
+W_USING_M_4_SPRITE assets/textures/billboards/pv/shoot-back.bmp:assets/textures/billboards/pv/aim-back.bmp
+W_USING_M_4_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_4_SPRITE_LOOP TRUE
+W_USING_M_3_SPRITE assets/textures/billboards/pv/shoot-back-right.bmp:assets/textures/billboards/pv/aim-back-right.bmp
+W_USING_M_3_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_3_SPRITE_LOOP TRUE
+W_USING_M_2_SPRITE assets/textures/billboards/pv/shoot-right.bmp:assets/textures/billboards/pv/aim-right.bmp
+W_USING_M_2_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_2_SPRITE_LOOP TRUE
+W_USING_M_1_SPRITE assets/textures/billboards/pv/shoot-front-left.bmp:assets/textures/billboards/pv/aim-front-left.bmp
+W_USING_M_1_SPRITE_UPDATE_DELAY 0.05
+W_USING_M_1_SPRITE_LOOP TRUE
+W_USING_K_8_SPRITE assets/textures/billboards/pv/sword-front.bmp
+W_USING_K_7_SPRITE assets/textures/billboards/pv/sword-front-right.bmp
+W_USING_K_6_SPRITE assets/textures/billboards/pv/sword-left.bmp
+W_USING_K_5_SPRITE assets/textures/billboards/pv/sword-back-left.bmp
+W_USING_K_4_SPRITE assets/textures/billboards/pv/sword-back.bmp
+W_USING_K_3_SPRITE assets/textures/billboards/pv/sword-back-right.bmp
+W_USING_K_2_SPRITE assets/textures/billboards/pv/sword-right.bmp
+W_USING_K_1_SPRITE assets/textures/billboards/pv/sword-front-left.bmp
+
+STATS_HUD_FONT assets/fonts/hud
+
+STATS_HUD_1_SPRITE assets/oms3d/textures/hud/stats/0-0.bmp:assets/oms3d/textures/hud/stats/0-1.bmp:assets/oms3d/textures/hud/stats/0-2.bmp
+STATS_HUD_1_SPRITE_LOOP TRUE
+STATS_HUD_1_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_2_SPRITE assets/oms3d/textures/hud/stats/1-0.bmp:assets/oms3d/textures/hud/stats/1-1.bmp:assets/oms3d/textures/hud/stats/1-2.bmp
+STATS_HUD_2_SPRITE_LOOP TRUE
+STATS_HUD_2_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_3_SPRITE assets/oms3d/textures/hud/stats/2-0.bmp:assets/oms3d/textures/hud/stats/2-1.bmp:assets/oms3d/textures/hud/stats/2-2.bmp
+STATS_HUD_3_SPRITE_LOOP TRUE
+STATS_HUD_3_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_4_SPRITE assets/oms3d/textures/hud/stats/3-0.bmp:assets/oms3d/textures/hud/stats/3-1.bmp:assets/oms3d/textures/hud/stats/3-2.bmp
+STATS_HUD_4_SPRITE_LOOP TRUE
+STATS_HUD_4_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_5_SPRITE assets/oms3d/textures/hud/stats/4-0.bmp:assets/oms3d/textures/hud/stats/4-1.bmp:assets/oms3d/textures/hud/stats/4-2.bmp
+STATS_HUD_5_SPRITE_LOOP TRUE
+STATS_HUD_5_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_6_SPRITE assets/oms3d/textures/hud/stats/5-0.bmp:assets/oms3d/textures/hud/stats/5-1.bmp:assets/oms3d/textures/hud/stats/5-2.bmp
+STATS_HUD_6_SPRITE_LOOP TRUE
+STATS_HUD_6_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_7_SPRITE assets/oms3d/textures/hud/stats/6-0.bmp:assets/oms3d/textures/hud/stats/6-1.bmp:assets/oms3d/textures/hud/stats/6-2.bmp
+STATS_HUD_7_SPRITE_LOOP TRUE
+STATS_HUD_7_SPRITE_UPDATE_DELAY 1.2
+
+STATS_HUD_DEAD_SPRITE assets/oms3d/textures/hud/stats/7-0.bmp
+STATS_HUD_CHEAT_SPRITE assets/oms3d/textures/hud/stats/7-1.bmp
+
+e_TYPE CHARACTER
+e_MAX_HEALTH 100000
+e_SCORE 100
+e_TARGETABLE TRUE
+e_STILL_8_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
+e_STILL_7_SPRITE assets/oms3d/textures/billboards/sentinel/still-front-right.bmp
+e_STILL_6_SPRITE assets/oms3d/textures/billboards/sentinel/still-left.bmp
+e_STILL_5_SPRITE assets/oms3d/textures/billboards/sentinel/still-back-left.bmp
+e_STILL_4_SPRITE assets/oms3d/textures/billboards/sentinel/still-back.bmp
+e_STILL_3_SPRITE assets/oms3d/textures/billboards/sentinel/still-back-right.bmp
+e_STILL_2_SPRITE assets/oms3d/textures/billboards/sentinel/still-right.bmp
+e_STILL_1_SPRITE assets/oms3d/textures/billboards/sentinel/still-front-left.bmp
+e_WALKING_8_SPRITE assets/oms3d/textures/billboards/sentinel/front1.bmp:assets/oms3d/textures/billboards/sentinel/front2.bmp:assets/oms3d/textures/billboards/sentinel/front3.bmp:assets/oms3d/textures/billboards/sentinel/front4.bmp
+e_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_8_SPRITE_LOOP TRUE
+e_WALKING_7_SPRITE assets/oms3d/textures/billboards/sentinel/front-right1.bmp:assets/oms3d/textures/billboards/sentinel/front-right2.bmp:assets/oms3d/textures/billboards/sentinel/front-right3.bmp:assets/oms3d/textures/billboards/sentinel/front-right4.bmp
+e_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_7_SPRITE_LOOP TRUE
+e_WALKING_6_SPRITE assets/oms3d/textures/billboards/sentinel/left1.bmp:assets/oms3d/textures/billboards/sentinel/left2.bmp:assets/oms3d/textures/billboards/sentinel/left3.bmp:assets/oms3d/textures/billboards/sentinel/left4.bmp
+e_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_6_SPRITE_LOOP TRUE
+e_WALKING_5_SPRITE assets/oms3d/textures/billboards/sentinel/back-left1.bmp:assets/oms3d/textures/billboards/sentinel/back-left2.bmp:assets/oms3d/textures/billboards/sentinel/back-left3.bmp:assets/oms3d/textures/billboards/sentinel/back-left4.bmp
+e_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_5_SPRITE_LOOP TRUE
+e_WALKING_4_SPRITE assets/oms3d/textures/billboards/sentinel/back1.bmp:assets/oms3d/textures/billboards/sentinel/back2.bmp:assets/oms3d/textures/billboards/sentinel/back3.bmp:assets/oms3d/textures/billboards/sentinel/back4.bmp
+e_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_4_SPRITE_LOOP TRUE
+e_WALKING_3_SPRITE assets/oms3d/textures/billboards/sentinel/back-right1.bmp:assets/oms3d/textures/billboards/sentinel/back-right2.bmp:assets/oms3d/textures/billboards/sentinel/back-right3.bmp:assets/oms3d/textures/billboards/sentinel/back-right4.bmp
+e_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_3_SPRITE_LOOP TRUE
+e_WALKING_2_SPRITE assets/oms3d/textures/billboards/sentinel/right1.bmp:assets/oms3d/textures/billboards/sentinel/right2.bmp:assets/oms3d/textures/billboards/sentinel/right3.bmp:assets/oms3d/textures/billboards/sentinel/right4.bmp
+e_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_2_SPRITE_LOOP TRUE
+e_WALKING_1_SPRITE assets/oms3d/textures/billboards/sentinel/front-left1.bmp:assets/oms3d/textures/billboards/sentinel/front-left2.bmp:assets/oms3d/textures/billboards/sentinel/front-left3.bmp:assets/oms3d/textures/billboards/sentinel/front-left4.bmp
+e_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+e_WALKING_1_SPRITE_LOOP TRUE
+e_DEATH_SPRITE assets/oms3d/textures/billboards/sentinel/death1.bmp:assets/oms3d/textures/billboards/sentinel/death2.bmp:assets/oms3d/textures/billboards/sentinel/death3.bmp:assets/oms3d/textures/billboards/sentinel/death4.bmp:assets/oms3d/textures/billboards/sentinel/death5.bmp
+e_DEATH_SPRITE_UPDATE_DELAY 0.1
+e_HIT_SPRITE assets/oms3d/textures/billboards/sentinel/hit.bmp
+e_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+e_CONTROLLER ENEMY
+e_OPTIMAL_PROXIMITY 2
+e_0_INVENTORY H
+e_1_INVENTORY Y
+e_USING_Y_1_SPRITE assets/oms3d/textures/billboards/sentinel/shoot.bmp:assets/oms3d/textures/billboards/sentinel/aim.bmp
+e_USING_Y_1_SPRITE_UPDATE_DELAY 0.5
+e_USING_Y_1_SPRITE_LOOP TRUE
+e_USING_H_1_SPRITE assets/oms3d/textures/billboards/sentinel/halt.bmp
+e_AMMO 2147483647
+e_DROP ;
+e_DROP_ITEMS TRUE
+
+d_TYPE CHARACTER
+d_MAX_HEALTH 1
+d_HARD TRUE
+d_SCORE 10
+d_TARGETABLE TRUE
+d_STILL_8_SPRITE assets/oms3d/textures/billboards/hound/front1.bmp
+d_STILL_7_SPRITE assets/oms3d/textures/billboards/hound/front-right1.bmp
+d_STILL_6_SPRITE assets/oms3d/textures/billboards/hound/left1.bmp
+d_STILL_5_SPRITE assets/oms3d/textures/billboards/hound/back-left1.bmp
+d_STILL_4_SPRITE assets/oms3d/textures/billboards/hound/back1.bmp
+d_STILL_3_SPRITE assets/oms3d/textures/billboards/hound/back-right1.bmp
+d_STILL_2_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp
+d_STILL_1_SPRITE assets/oms3d/textures/billboards/hound/front-left1.bmp
+d_WALKING_8_SPRITE assets/oms3d/textures/billboards/hound/front1.bmp:assets/oms3d/textures/billboards/hound/front2.bmp:assets/oms3d/textures/billboards/hound/front3.bmp:assets/oms3d/textures/billboards/hound/front4.bmp
+d_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_8_SPRITE_LOOP TRUE
+d_WALKING_7_SPRITE assets/oms3d/textures/billboards/hound/front-right1.bmp:assets/oms3d/textures/billboards/hound/front-right2.bmp:assets/oms3d/textures/billboards/hound/front-right3.bmp:assets/oms3d/textures/billboards/hound/front-right4.bmp
+d_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_7_SPRITE_LOOP TRUE
+d_WALKING_6_SPRITE assets/oms3d/textures/billboards/hound/left1.bmp:assets/oms3d/textures/billboards/hound/left2.bmp:assets/oms3d/textures/billboards/hound/left3.bmp:assets/oms3d/textures/billboards/hound/left4.bmp
+d_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_6_SPRITE_LOOP TRUE
+d_WALKING_5_SPRITE assets/oms3d/textures/billboards/hound/back-left1.bmp:assets/oms3d/textures/billboards/hound/back-left2.bmp:assets/oms3d/textures/billboards/hound/back-left3.bmp:assets/oms3d/textures/billboards/hound/back-left4.bmp
+d_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_5_SPRITE_LOOP TRUE
+d_WALKING_4_SPRITE assets/oms3d/textures/billboards/hound/back1.bmp:assets/oms3d/textures/billboards/hound/back2.bmp:assets/oms3d/textures/billboards/hound/back3.bmp:assets/oms3d/textures/billboards/hound/back4.bmp
+d_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_4_SPRITE_LOOP TRUE
+d_WALKING_3_SPRITE assets/oms3d/textures/billboards/hound/back-right1.bmp:assets/oms3d/textures/billboards/hound/back-right2.bmp:assets/oms3d/textures/billboards/hound/back-right3.bmp:assets/oms3d/textures/billboards/hound/back-right4.bmp
+d_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_3_SPRITE_LOOP TRUE
+d_WALKING_2_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp:assets/oms3d/textures/billboards/hound/right2.bmp:assets/oms3d/textures/billboards/hound/right3.bmp:assets/oms3d/textures/billboards/hound/right4.bmp
+d_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_2_SPRITE_LOOP TRUE
+d_WALKING_1_SPRITE assets/oms3d/textures/billboards/hound/front-left1.bmp:assets/oms3d/textures/billboards/hound/front-left2.bmp:assets/oms3d/textures/billboards/hound/front-left3.bmp:assets/oms3d/textures/billboards/hound/front-left4.bmp
+d_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+d_WALKING_1_SPRITE_LOOP TRUE
+d_DEATH_SPRITE assets/oms3d/textures/billboards/hound/death1.bmp:assets/oms3d/textures/billboards/hound/death2.bmp:assets/oms3d/textures/billboards/hound/death3.bmp
+d_DEATH_SPRITE_UPDATE_DELAY 0.1
+d_HIT_SPRITE assets/oms3d/textures/billboards/hound/hit.bmp
+d_DEATH_SOUND assets/oms3d/sounds/hound-down.mp3
+d_HIT_SOUND assets/oms3d/sounds/hound-bark.mp3
+d_CONTROLLER ENEMY
+d_OPTIMAL_PROXIMITY 0.1
+d_0_INVENTORY C
+d_USING_C_1_SPRITE assets/oms3d/textures/billboards/hound/bite1.bmp:assets/oms3d/textures/billboards/hound/bite2.bmp:assets/oms3d/textures/billboards/hound/bite3.bmp
+d_USING_C_1_SPRITE_UPDATE_DELAY 0.5
+d_USING_C_1_SPRITE_LOOP TRUE
+
+._TYPE BILLBOARD
+._STILL_SPRITE assets/oms3d/textures/billboards/plant-blue.bmp
+
+,_TYPE BILLBOARD
+,_HARD FALSE
+,_Y_CENTERED TRUE
+,_STILL_SPRITE assets/oms3d/textures/billboards/ceiling-light.bmp
+
+/_TYPE BILLBOARD
+/_HARD FALSE
+/_Y_CENTERED TRUE
+/_STILL_SPRITE assets/oms3d/textures/billboards/chandelier.bmp
+
+=_TYPE BILLBOARD
+=_STILL_SPRITE assets/oms3d/textures/billboards/pot-clay.bmp
+
+'_TYPE BILLBOARD
+'_TARGETABLE TRUE
+'_STILL_SPRITE assets/oms3d/textures/billboards/barrel.bmp
+
+?_TYPE BILLBOARD
+?_STILL_SPRITE assets/oms3d/textures/billboards/well.bmp
+
++_TYPE BILLBOARD
++_STILL_SPRITE assets/oms3d/textures/billboards/well-water.bmp
+
+-_TYPE BILLBOARD
+-_STILL_SPRITE assets/oms3d/textures/billboards/table.bmp
+
+|_TYPE BILLBOARD
+|_STILL_SPRITE assets/oms3d/textures/billboards/scrap.bmp
+
+"_TYPE BILLBOARD
+"_STILL_SPRITE assets/oms3d/textures/billboards/broken-robot.bmp
+
+\_TYPE BILLBOARD
+\_STILL_SPRITE assets/oms3d/textures/billboards/statue.bmp
+
+~_TYPE BILLBOARD
+~_STILL_SPRITE assets/oms3d/textures/billboards/table-chairs.bmp
+
+!_TYPE BILLBOARD
+!_STILL_SPRITE assets/oms3d/textures/billboards/vase-blue.bmp
+
+@_TYPE BILLBOARD
+@_STILL_SPRITE assets/oms3d/textures/billboards/lamp.bmp
+
+#_TYPE BILLBOARD
+#_STILL_SPRITE assets/oms3d/textures/billboards/banner.bmp
+
+$_TYPE BILLBOARD
+$_STILL_SPRITE assets/oms3d/textures/billboards/plant-gold.bmp
+
+%_TYPE BILLBOARD
+%_STILL_SPRITE assets/oms3d/textures/billboards/barrel-toxic.bmp
+
+U_TYPE COLLECTIBLE
+U_HEALTH 10
+U_NAME Pao e sardinhas
+U_SINGLE_USE TRUE
+U_USE_SOUND assets/oms3d/sounds/heal1.mp3
+U_DESCRIPTION Pao com sardinhas, mata a fome
+U_ICON_SPRITE assets/oms3d/textures/billboards/food.bmp
+
+Z_TYPE COLLECTIBLE
+Z_AMMO 10
+Z_NAME Municoes
+Z_SINGLE_USE TRUE
+Z_USE_SOUND assets/oms3d/sounds/get-ammo.mp3
+Z_DESCRIPTION Municoes para as armas
+Z_ICON_SPRITE assets/oms3d/textures/billboards/ammo.bmp
+
+o_TYPE COLLECTIBLE
+o_SCORE 500
+o_NAME Jornal Avante!
+o_SINGLE_USE TRUE
+o_USE_SOUND assets/oms3d/sounds/pickup2.mp3
+o_DESCRIPTION Jornal clandestino, passa de mao em mao
+o_ICON_SPRITE assets/oms3d/textures/billboards/trophy.bmp
+
+z_TYPE COLLECTIBLE
+z_SCORE 100
+z_NAME Cravo
+z_SINGLE_USE TRUE
+z_USE_SOUND assets/oms3d/sounds/pickup1.mp3
+z_DESCRIPTION Um cravo vermelho
+z_ICON_SPRITE assets/oms3d/textures/billboards/gem.bmp
+
+7_TYPE COLLECTIBLE
+7_SCORE 1000
+7_NAME Mala de escudos
+7_SINGLE_USE TRUE
+7_USE_SOUND assets/oms3d/sounds/pickup3.mp3
+7_DESCRIPTION Dinheiro apreendido pela policia
+7_ICON_SPRITE assets/oms3d/textures/billboards/treasure.bmp
+
+I_TYPE COLLECTIBLE
+I_HEALTH 25
+I_NAME Primeiros socorros
+I_SINGLE_USE TRUE
+I_USE_SOUND assets/oms3d/sounds/heal2.mp3
+I_DESCRIPTION Estojo de primeiros socorros
+I_ICON_SPRITE assets/oms3d/textures/billboards/medkit.bmp
+
+Y_TYPE WEAPON
+Y_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+Y_DAMAGE 10
+Y_AMMO_USAGE 1
+Y_NAME Pistola do agente
+Y_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
+Y_USE_SOUND_VOLUME 0.5
+Y_DESCRIPTION Arma do agente da policia politica
+Y_USE_DELAY 0.8
+Y_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
+Y_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
+Y_SCREEN_USE_SPRITE_UPDATE_DELAY 0.4
+Y_SCREEN_USE_SPRITE_LOOP TRUE
+Y_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
+
+C_TYPE WEAPON
+C_DAMAGE 3
+C_AMMO_USAGE 0
+C_NAME Dentes do cao
+C_RANGE 2.5
+C_USE_SOUND assets/oms3d/sounds/hound-bark.mp3
+C_USE_SOUND_VOLUME 0.5
+C_DESCRIPTION Mordedura do cao de guarda
+C_USE_DELAY 1.0
+C_SCREEN_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp
+C_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp:assets/oms3d/textures/billboards/hound/right2.bmp:assets/oms3d/textures/billboards/hound/right3.bmp
+C_SCREEN_USE_SPRITE_UPDATE_DELAY 0.5
+C_SCREEN_USE_SPRITE_LOOP TRUE
+C_ICON_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp
+
+H_TYPE ITEM
+H_NAME Alto!
+H_USE_SOUND assets/oms3d/sounds/alert.mp3
+H_USE_SOUND_VOLUME 0.4
+H_SINGLE_USE TRUE
+H_DESCRIPTION Alto! Ninguem passa
+H_USE_DELAY 0.6
+H_SCREEN_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
+H_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/sentinel/halt.bmp
+H_ICON_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
+
+P_TYPE WEAPON
+P_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+P_CANT_USE_SOUND_VOLUME 0.7
+P_DAMAGE 34
+P_AMMO_USAGE 1
+P_NAME Pistola Walther
+P_USE_SOUND assets/oms3d/sounds/pistol.mp3
+P_USE_SOUND_VOLUME 0.5
+P_SINGLE_USE TRUE
+P_DESCRIPTION Pistola semiautomatica, boa a curta distancia
+P_USE_DELAY 0.2
+P_SCREEN_SPRITE assets/oms3d/textures/items/blaster/screen/0.bmp
+P_SCREEN_USE_SPRITE assets/oms3d/textures/items/blaster/screen/1.bmp:assets/oms3d/textures/items/blaster/screen/2.bmp:assets/oms3d/textures/items/blaster/screen/3.bmp:assets/oms3d/textures/items/blaster/screen/4.bmp
+P_SCREEN_USE_SPRITE_UPDATE_DELAY 0.1
+P_SCREEN_USE_SPRITE_LOOP TRUE
+P_ICON_SPRITE assets/oms3d/textures/items/blaster/icon.bmp
+
+G_TYPE WEAPON
+G_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+G_CANT_USE_SOUND_VOLUME 0.6
+G_DAMAGE 30
+G_AMMO_USAGE 1
+G_NAME Metralhadora
+G_USE_SOUND assets/oms3d/sounds/cannon.mp3
+G_USE_SOUND_VOLUME 0.3
+G_GET_SOUND assets/oms3d/sounds/get-cannon.mp3
+G_DESCRIPTION Metralhadora de fita, muito potente mas gasta muito
+G_USE_DELAY 0.1
+G_SCREEN_SPRITE assets/oms3d/textures/items/cannon/screen/0.bmp
+G_SCREEN_USE_SPRITE assets/oms3d/textures/items/cannon/screen/2.bmp:assets/oms3d/textures/items/cannon/screen/3.bmp
+G_SCREEN_USE_SPRITE_UPDATE_DELAY 0.1
+G_SCREEN_USE_SPRITE_LOOP TRUE
+G_ICON_SPRITE assets/oms3d/textures/items/cannon/icon.bmp
+
+K_TYPE WEAPON
+K_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+K_DAMAGE 25
+K_AMMO_USAGE 0
+K_NAME Faca
+K_RANGE 1
+K_USE_SOUND assets/oms3d/sounds/blade.mp3
+K_SINGLE_USE TRUE
+K_DESCRIPTION Faca, para combate corpo a corpo
+K_USE_DELAY 0.1
+K_SCREEN_SPRITE assets/oms3d/textures/items/blade/screen/0.bmp
+K_SCREEN_USE_SPRITE assets/oms3d/textures/items/blade/screen/1.bmp:assets/oms3d/textures/items/blade/screen/2.bmp:assets/oms3d/textures/items/blade/screen/3.bmp:assets/oms3d/textures/items/blade/screen/4.bmp
+K_SCREEN_USE_SPRITE_UPDATE_DELAY 0.05
+K_SCREEN_USE_SPRITE_LOOP TRUE
+K_ICON_SPRITE assets/oms3d/textures/items/blade/icon.bmp
+
+M_TYPE WEAPON
+M_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+M_DAMAGE 25
+M_AMMO_USAGE 1
+M_NAME FBP m/948
+M_USE_SOUND assets/oms3d/sounds/rifle.mp3
+M_USE_SOUND_VOLUME 0.3
+M_GET_SOUND assets/oms3d/sounds/get-rifle.mp3
+M_DESCRIPTION Pistola-metralhadora portuguesa, boa a media distancia
+M_USE_DELAY 0.1
+M_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
+M_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
+M_SCREEN_USE_SPRITE_UPDATE_DELAY 0.05
+M_SCREEN_USE_SPRITE_LOOP TRUE
+M_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
+
+:_TYPE DROP
+:_ITEM U
+:_AUTO_USE TRUE
+:_HARD FALSE
+
+{_TYPE DROP
+{_ITEM P
+{_AUTO_PICKUP TRUE
+{_HARD FALSE
+
+}_TYPE DROP
+}_ITEM I
+}_AUTO_USE TRUE
+}_HARD FALSE
+
+(_TYPE DROP
+(_ITEM z
+(_AUTO_USE TRUE
+(_HARD FALSE
+
+)_TYPE DROP
+)_ITEM o
+)_AUTO_USE TRUE
+)_HARD FALSE
+
+*_TYPE DROP
+*_ITEM 7
+*_AUTO_USE TRUE
+*_HARD FALSE
+
+[_TYPE DROP
+[_ITEM K
+[_AUTO_PICKUP TRUE
+[_HARD FALSE
+
+]_TYPE DROP
+]_ITEM M
+]_AUTO_PICKUP TRUE
+]_HARD FALSE
+
+2_TYPE DROP
+2_ITEM G
+2_AUTO_PICKUP TRUE
+2_HARD FALSE
+
+;_TYPE DROP
+;_ITEM Z
+;_AUTO_USE TRUE
+;_HARD FALSE
+
+v_TYPE DOOR
+v_TARGETABLE TRUE
+v_AUTO_CLOSE_DELAY 8000.0
+v_ANIMATION_DELAY 1
+v_DOOR_SPRITE assets/oms3d/textures/door.bmp
+v_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+v_DIRECTION WEST
+v_OPEN_SOUND assets/oms3d/sounds/door-open.mp3
+v_OPEN_SOUND_VOLUME 0.4
+v_CLOSE_SOUND assets/oms3d/sounds/door-close.mp3
+v_CLOSE_SOUND_VOLUME 0.4
+
+h_TYPE DOOR
+h_TARGETABLE TRUE
+h_AUTO_CLOSE_DELAY 8000.0
+h_ANIMATION_DELAY 1
+h_DOOR_SPRITE assets/oms3d/textures/door.bmp
+h_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+h_DIRECTION NORTH
+h_OPEN_SOUND assets/oms3d/sounds/door-open.mp3
+h_OPEN_SOUND_VOLUME 0.4
+h_CLOSE_SOUND assets/oms3d/sounds/door-close.mp3
+h_CLOSE_SOUND_VOLUME 0.4
+
+s_TYPE DOOR
+s_TARGETABLE TRUE
+s_ANIMATION_DELAY 2.3
+s_CLOSEABLE FALSE
+s_DOOR_SPRITE assets/oms3d/textures/wood-emblem-dark.bmp
+s_SIDES_SPRITE assets/oms3d/textures/wood.bmp
+s_DIRECTION WEST
+s_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
+s_OPEN_SOUND_VOLUME 0.8
+
+t_TYPE DOOR
+t_TARGETABLE TRUE
+t_ANIMATION_DELAY 2.3
+t_CLOSEABLE FALSE
+t_DOOR_SPRITE assets/oms3d/textures/stone-painting.bmp
+t_SIDES_SPRITE assets/oms3d/textures/stone0.bmp
+t_DIRECTION NORTH
+t_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
+t_OPEN_SOUND_VOLUME 0.8
+
+u_TYPE DOOR
+u_TARGETABLE TRUE
+u_ANIMATION_DELAY 1
+u_DOOR_SPRITE assets/oms3d/textures/lift-panel-dark.bmp
+u_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+u_DIRECTION WEST
+u_OPEN_SOUND assets/oms3d/sounds/door-open.mp3
+u_OPEN_SOUND_VOLUME 0.4
+u_CLOSE_SOUND assets/oms3d/sounds/door-close.mp3
+u_CLOSE_SOUND_VOLUME 0.4
+
+w_TYPE DOOR
+w_TARGETABLE TRUE
+w_ANIMATION_DELAY 2.3
+w_CLOSEABLE FALSE
+w_DOOR_SPRITE assets/oms3d/textures/stone0.bmp
+w_SIDES_SPRITE assets/oms3d/textures/stone0-dark.bmp
+w_DIRECTION NORTH
+w_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
+w_OPEN_SOUND_VOLUME 0.8
+
+x_TYPE DOOR
+x_TARGETABLE TRUE
+x_ANIMATION_DELAY 2.3
+x_CLOSEABLE FALSE
+x_DOOR_SPRITE assets/oms3d/textures/stone0-dark.bmp
+x_SIDES_SPRITE assets/oms3d/textures/stone0.bmp
+x_DIRECTION WEST
+x_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
+x_OPEN_SOUND_VOLUME 0.8
+
+a_TYPE WALL
+a_NO assets/oms3d/textures/blue1.bmp
+a_SO assets/oms3d/textures/blue0.bmp
+a_WE assets/oms3d/textures/blue1-dark.bmp
+a_EA assets/oms3d/textures/blue0-dark.bmp
+
+b_TYPE WALL
+b_NO assets/oms3d/textures/blue-cell.bmp
+b_SO assets/oms3d/textures/blue-cell.bmp
+b_WE assets/oms3d/textures/blue-cell-dark.bmp
+b_EA assets/oms3d/textures/blue-cell-dark.bmp
+
+c_TYPE WALL
+c_NO assets/oms3d/textures/blue-cell-robot.bmp
+c_SO assets/oms3d/textures/blue-cell-robot.bmp
+c_WE assets/oms3d/textures/blue-cell-robot.bmp
+c_EA assets/oms3d/textures/blue-cell-robot.bmp
+
+f_TYPE WALL
+f_NO assets/oms3d/textures/stone1.bmp
+f_SO assets/oms3d/textures/stone0.bmp
+f_WE assets/oms3d/textures/stone1-dark.bmp
+f_EA assets/oms3d/textures/stone0-dark.bmp
+
+g_TYPE WALL
+g_NO assets/oms3d/textures/stone-arch.bmp
+g_SO assets/oms3d/textures/stone-arch.bmp
+g_WE assets/oms3d/textures/stone-arch-dark.bmp
+g_EA assets/oms3d/textures/stone-arch-dark.bmp
+
+k_TYPE WALL
+k_NO assets/oms3d/textures/stone-painting.bmp
+k_SO assets/oms3d/textures/stone-painting.bmp
+k_WE assets/oms3d/textures/stone-painting-dark.bmp
+k_EA assets/oms3d/textures/stone-painting-dark.bmp
+
+i_TYPE WALL
+i_NO assets/oms3d/textures/stone-banner.bmp
+i_SO assets/oms3d/textures/stone-banner.bmp
+i_WE assets/oms3d/textures/stone-banner-dark.bmp
+i_EA assets/oms3d/textures/stone-banner-dark.bmp
+
+j_TYPE WALL
+j_NO assets/oms3d/textures/wood.bmp
+j_SO assets/oms3d/textures/wood.bmp
+j_WE assets/oms3d/textures/wood-dark.bmp
+j_EA assets/oms3d/textures/wood-dark.bmp
+
+l_TYPE WALL
+l_NO assets/oms3d/textures/wood-emblem.bmp
+l_SO assets/oms3d/textures/wood-emblem.bmp
+l_WE assets/oms3d/textures/wood-emblem-dark.bmp
+l_EA assets/oms3d/textures/wood-emblem-dark.bmp
+
+m_TYPE WALL
+m_NO assets/oms3d/textures/wood-painting.bmp
+m_SO assets/oms3d/textures/wood-painting.bmp
+m_WE assets/oms3d/textures/wood-painting-dark.bmp
+m_EA assets/oms3d/textures/wood-painting-dark.bmp
+
+n_TYPE ELEVATOR
+n_TARGETABLE TRUE
+n_MAP_PATH maps/missao2.cub
+n_NO assets/oms3d/textures/lever-down.bmp
+n_SO assets/oms3d/textures/lever-down.bmp
+n_WE assets/oms3d/textures/lever-down.bmp
+n_EA assets/oms3d/textures/lever-down.bmp
+
+y_TYPE ELEVATOR
+y_TARGETABLE TRUE
+y_MAP_PATH maps/missao1_mega.cub
+y_NO assets/oms3d/textures/lever-down.bmp
+y_SO assets/oms3d/textures/lever-down.bmp
+y_WE assets/oms3d/textures/lever-down.bmp
+y_EA assets/oms3d/textures/lever-down.bmp
+
+L_TYPE CHARACTER
+L_MAX_HEALTH 150
+L_SCORE 200
+L_TARGETABLE TRUE
+L_STILL_8_SPRITE assets/oms3d/textures/billboards/legiao/still-front.bmp
+L_STILL_7_SPRITE assets/oms3d/textures/billboards/legiao/still-front-right.bmp
+L_STILL_6_SPRITE assets/oms3d/textures/billboards/legiao/still-left.bmp
+L_STILL_5_SPRITE assets/oms3d/textures/billboards/legiao/still-back-left.bmp
+L_STILL_4_SPRITE assets/oms3d/textures/billboards/legiao/still-back.bmp
+L_STILL_3_SPRITE assets/oms3d/textures/billboards/legiao/still-back-right.bmp
+L_STILL_2_SPRITE assets/oms3d/textures/billboards/legiao/still-right.bmp
+L_STILL_1_SPRITE assets/oms3d/textures/billboards/legiao/still-front-left.bmp
+L_WALKING_8_SPRITE assets/oms3d/textures/billboards/legiao/front1.bmp:assets/oms3d/textures/billboards/legiao/front2.bmp:assets/oms3d/textures/billboards/legiao/front3.bmp:assets/oms3d/textures/billboards/legiao/front4.bmp
+L_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_8_SPRITE_LOOP TRUE
+L_WALKING_7_SPRITE assets/oms3d/textures/billboards/legiao/front-right1.bmp:assets/oms3d/textures/billboards/legiao/front-right2.bmp:assets/oms3d/textures/billboards/legiao/front-right3.bmp:assets/oms3d/textures/billboards/legiao/front-right4.bmp
+L_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_7_SPRITE_LOOP TRUE
+L_WALKING_6_SPRITE assets/oms3d/textures/billboards/legiao/left1.bmp:assets/oms3d/textures/billboards/legiao/left2.bmp:assets/oms3d/textures/billboards/legiao/left3.bmp:assets/oms3d/textures/billboards/legiao/left4.bmp
+L_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_6_SPRITE_LOOP TRUE
+L_WALKING_5_SPRITE assets/oms3d/textures/billboards/legiao/back-left1.bmp:assets/oms3d/textures/billboards/legiao/back-left2.bmp:assets/oms3d/textures/billboards/legiao/back-left3.bmp:assets/oms3d/textures/billboards/legiao/back-left4.bmp
+L_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_5_SPRITE_LOOP TRUE
+L_WALKING_4_SPRITE assets/oms3d/textures/billboards/legiao/back1.bmp:assets/oms3d/textures/billboards/legiao/back2.bmp:assets/oms3d/textures/billboards/legiao/back3.bmp:assets/oms3d/textures/billboards/legiao/back4.bmp
+L_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_4_SPRITE_LOOP TRUE
+L_WALKING_3_SPRITE assets/oms3d/textures/billboards/legiao/back-right1.bmp:assets/oms3d/textures/billboards/legiao/back-right2.bmp:assets/oms3d/textures/billboards/legiao/back-right3.bmp:assets/oms3d/textures/billboards/legiao/back-right4.bmp
+L_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_3_SPRITE_LOOP TRUE
+L_WALKING_2_SPRITE assets/oms3d/textures/billboards/legiao/right1.bmp:assets/oms3d/textures/billboards/legiao/right2.bmp:assets/oms3d/textures/billboards/legiao/right3.bmp:assets/oms3d/textures/billboards/legiao/right4.bmp
+L_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_2_SPRITE_LOOP TRUE
+L_WALKING_1_SPRITE assets/oms3d/textures/billboards/legiao/front-left1.bmp:assets/oms3d/textures/billboards/legiao/front-left2.bmp:assets/oms3d/textures/billboards/legiao/front-left3.bmp:assets/oms3d/textures/billboards/legiao/front-left4.bmp
+L_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+L_WALKING_1_SPRITE_LOOP TRUE
+L_DEATH_SPRITE assets/oms3d/textures/billboards/legiao/death1.bmp:assets/oms3d/textures/billboards/legiao/death2.bmp:assets/oms3d/textures/billboards/legiao/death3.bmp:assets/oms3d/textures/billboards/legiao/death4.bmp:assets/oms3d/textures/billboards/legiao/death5.bmp
+L_DEATH_SPRITE_UPDATE_DELAY 0.1
+L_HIT_SPRITE assets/oms3d/textures/billboards/legiao/hit.bmp
+L_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+L_CONTROLLER ENEMY
+L_OPTIMAL_PROXIMITY 3
+L_0_INVENTORY H
+L_1_INVENTORY Q
+L_USING_Q_1_SPRITE assets/oms3d/textures/billboards/legiao/shoot.bmp:assets/oms3d/textures/billboards/legiao/aim.bmp
+L_USING_Q_1_SPRITE_UPDATE_DELAY 0.5
+L_USING_Q_1_SPRITE_LOOP TRUE
+L_USING_H_1_SPRITE assets/oms3d/textures/billboards/legiao/halt.bmp
+L_AMMO 2147483647
+L_DROP ;
+L_DROP_ITEMS TRUE
+
+R_TYPE CHARACTER
+R_MAX_HEALTH 120
+R_SCORE 150
+R_TARGETABLE TRUE
+R_STILL_8_SPRITE assets/oms3d/textures/billboards/gnr/still-front.bmp
+R_STILL_7_SPRITE assets/oms3d/textures/billboards/gnr/still-front-right.bmp
+R_STILL_6_SPRITE assets/oms3d/textures/billboards/gnr/still-left.bmp
+R_STILL_5_SPRITE assets/oms3d/textures/billboards/gnr/still-back-left.bmp
+R_STILL_4_SPRITE assets/oms3d/textures/billboards/gnr/still-back.bmp
+R_STILL_3_SPRITE assets/oms3d/textures/billboards/gnr/still-back-right.bmp
+R_STILL_2_SPRITE assets/oms3d/textures/billboards/gnr/still-right.bmp
+R_STILL_1_SPRITE assets/oms3d/textures/billboards/gnr/still-front-left.bmp
+R_WALKING_8_SPRITE assets/oms3d/textures/billboards/gnr/front1.bmp:assets/oms3d/textures/billboards/gnr/front2.bmp:assets/oms3d/textures/billboards/gnr/front3.bmp:assets/oms3d/textures/billboards/gnr/front4.bmp
+R_WALKING_8_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_8_SPRITE_LOOP TRUE
+R_WALKING_7_SPRITE assets/oms3d/textures/billboards/gnr/front-right1.bmp:assets/oms3d/textures/billboards/gnr/front-right2.bmp:assets/oms3d/textures/billboards/gnr/front-right3.bmp:assets/oms3d/textures/billboards/gnr/front-right4.bmp
+R_WALKING_7_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_7_SPRITE_LOOP TRUE
+R_WALKING_6_SPRITE assets/oms3d/textures/billboards/gnr/left1.bmp:assets/oms3d/textures/billboards/gnr/left2.bmp:assets/oms3d/textures/billboards/gnr/left3.bmp:assets/oms3d/textures/billboards/gnr/left4.bmp
+R_WALKING_6_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_6_SPRITE_LOOP TRUE
+R_WALKING_5_SPRITE assets/oms3d/textures/billboards/gnr/back-left1.bmp:assets/oms3d/textures/billboards/gnr/back-left2.bmp:assets/oms3d/textures/billboards/gnr/back-left3.bmp:assets/oms3d/textures/billboards/gnr/back-left4.bmp
+R_WALKING_5_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_5_SPRITE_LOOP TRUE
+R_WALKING_4_SPRITE assets/oms3d/textures/billboards/gnr/back1.bmp:assets/oms3d/textures/billboards/gnr/back2.bmp:assets/oms3d/textures/billboards/gnr/back3.bmp:assets/oms3d/textures/billboards/gnr/back4.bmp
+R_WALKING_4_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_4_SPRITE_LOOP TRUE
+R_WALKING_3_SPRITE assets/oms3d/textures/billboards/gnr/back-right1.bmp:assets/oms3d/textures/billboards/gnr/back-right2.bmp:assets/oms3d/textures/billboards/gnr/back-right3.bmp:assets/oms3d/textures/billboards/gnr/back-right4.bmp
+R_WALKING_3_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_3_SPRITE_LOOP TRUE
+R_WALKING_2_SPRITE assets/oms3d/textures/billboards/gnr/right1.bmp:assets/oms3d/textures/billboards/gnr/right2.bmp:assets/oms3d/textures/billboards/gnr/right3.bmp:assets/oms3d/textures/billboards/gnr/right4.bmp
+R_WALKING_2_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_2_SPRITE_LOOP TRUE
+R_WALKING_1_SPRITE assets/oms3d/textures/billboards/gnr/front-left1.bmp:assets/oms3d/textures/billboards/gnr/front-left2.bmp:assets/oms3d/textures/billboards/gnr/front-left3.bmp:assets/oms3d/textures/billboards/gnr/front-left4.bmp
+R_WALKING_1_SPRITE_UPDATE_DELAY 0.2
+R_WALKING_1_SPRITE_LOOP TRUE
+R_DEATH_SPRITE assets/oms3d/textures/billboards/gnr/death1.bmp:assets/oms3d/textures/billboards/gnr/death2.bmp:assets/oms3d/textures/billboards/gnr/death3.bmp:assets/oms3d/textures/billboards/gnr/death4.bmp:assets/oms3d/textures/billboards/gnr/death5.bmp
+R_DEATH_SPRITE_UPDATE_DELAY 0.1
+R_HIT_SPRITE assets/oms3d/textures/billboards/gnr/hit.bmp
+R_DEATH_SOUND assets/oms3d/sounds/robot-down1.mp3:assets/oms3d/sounds/robot-down2.mp3:assets/oms3d/sounds/robot-down3.mp3:assets/oms3d/sounds/robot-down4.mp3:assets/oms3d/sounds/robot-down5.mp3:assets/oms3d/sounds/robot-down6.mp3:assets/oms3d/sounds/robot-down7.mp3:assets/oms3d/sounds/robot-down8.mp3
+R_CONTROLLER ENEMY
+R_OPTIMAL_PROXIMITY 2.5
+R_0_INVENTORY H
+R_1_INVENTORY X
+R_USING_X_1_SPRITE assets/oms3d/textures/billboards/gnr/shoot.bmp:assets/oms3d/textures/billboards/gnr/aim.bmp
+R_USING_X_1_SPRITE_UPDATE_DELAY 0.5
+R_USING_X_1_SPRITE_LOOP TRUE
+R_USING_H_1_SPRITE assets/oms3d/textures/billboards/gnr/halt.bmp
+R_AMMO 2147483647
+R_DROP ;
+R_DROP_ITEMS TRUE
+
+Q_TYPE WEAPON
+Q_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+Q_DAMAGE 7
+Q_AMMO_USAGE 1
+Q_NAME FBP da Legiao
+Q_USE_SOUND assets/oms3d/sounds/rifle.mp3
+Q_USE_SOUND_VOLUME 0.4
+Q_DESCRIPTION Pistola-metralhadora do legionario
+Q_USE_DELAY 0.35
+Q_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
+Q_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
+Q_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
+
+X_TYPE WEAPON
+X_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
+X_DAMAGE 15
+X_AMMO_USAGE 1
+X_NAME Espingarda da GNR
+X_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
+X_USE_SOUND_VOLUME 0.5
+X_DESCRIPTION Espingarda do guarda republicano
+X_USE_DELAY 1.1
+X_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
+X_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
+X_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
+
+q_TYPE WALL
+q_NO assets/oms3d/textures/stone-poster.bmp
+q_SO assets/oms3d/textures/stone-poster.bmp
+q_WE assets/oms3d/textures/stone-poster-dark.bmp
+q_EA assets/oms3d/textures/stone-poster-dark.bmp
+
+r_TYPE WALL
+r_NO assets/oms3d/textures/stone-censura.bmp
+r_SO assets/oms3d/textures/stone-censura.bmp
+r_WE assets/oms3d/textures/stone-censura-dark.bmp
+r_EA assets/oms3d/textures/stone-censura-dark.bmp
+
+A_TYPE WALL
+A_NO assets/oms3d/textures/wood-mocidade.bmp
+A_SO assets/oms3d/textures/wood-mocidade.bmp
+A_WE assets/oms3d/textures/wood-mocidade-dark.bmp
+A_EA assets/oms3d/textures/wood-mocidade-dark.bmp
+
+B_TYPE WALL
+B_NO assets/oms3d/textures/azulejo-panel.bmp
+B_SO assets/oms3d/textures/azulejo-panel.bmp
+B_WE assets/oms3d/textures/azulejo-panel-dark.bmp
+B_EA assets/oms3d/textures/azulejo-panel-dark.bmp
+
+F_TYPE WALL
+F_NO assets/oms3d/textures/brick.bmp
+F_SO assets/oms3d/textures/brick.bmp
+F_WE assets/oms3d/textures/brick-dark.bmp
+F_EA assets/oms3d/textures/brick-dark.bmp
+
+O_TYPE WALL
+O_NO assets/oms3d/textures/cave.bmp
+O_SO assets/oms3d/textures/cave.bmp
+O_WE assets/oms3d/textures/cave-dark.bmp
+O_EA assets/oms3d/textures/cave-dark.bmp
+
+J_TYPE WALL
+J_NO assets/oms3d/textures/stone-plaque.bmp
+J_SO assets/oms3d/textures/stone-plaque.bmp
+J_WE assets/oms3d/textures/stone-plaque-dark.bmp
+J_EA assets/oms3d/textures/stone-plaque-dark.bmp
+
+p_TYPE WALL
+p_NO assets/oms3d/textures/lift-door.bmp
+p_SO assets/oms3d/textures/lift-door.bmp
+p_WE assets/oms3d/textures/lift-door.bmp
+p_EA assets/oms3d/textures/lift-door.bmp
+
+^_TYPE BILLBOARD
+^_STILL_SPRITE assets/oms3d/textures/billboards/pillar.bmp
+
+&_TYPE BILLBOARD
+&_HARD FALSE
+&_Y_CENTERED TRUE
+&_STILL_SPRITE assets/oms3d/textures/billboards/cables.bmp
+
+<_TYPE BILLBOARD
+<_STILL_SPRITE assets/oms3d/textures/billboards/battery.bmp
+
+T_TYPE DOOR
+T_TARGETABLE TRUE
+T_ANIMATION_DELAY 2.3
+T_CLOSEABLE FALSE
+T_DOOR_SPRITE assets/oms3d/textures/wood-emblem.bmp
+T_SIDES_SPRITE assets/oms3d/textures/wood.bmp
+T_DIRECTION NORTH
+T_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
+T_OPEN_SOUND_VOLUME 0.8
+
+F 100, 100, 100
+C 50, 50, 50
+
+fffffffffffffffff
+f    f    f     f
+f  N      v  e  f
+f    f  e f     f
+fffffffffffffffff

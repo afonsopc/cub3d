@@ -204,8 +204,38 @@ enum e_entity_type
 	ENTITY_ELEVATOR
 };
 
+// Estado do cérebro dos inimigos (ver controller/enemy/ai_tuning.h)
+typedef struct s_brain
+{
+	int			state;
+	t_time		state_at;
+	t_coords	home;
+	bool		home_set;
+	t_coords	goal;
+	bool		knows_target;
+	bool		sees;
+	bool		wants_move;
+	bool		blocked;
+	int			next_x;
+	int			next_y;
+	bool		has_path;
+	t_time		path_at;
+	t_time		react_at;
+	t_time		seen_at;
+	t_time		arrived_at;
+	t_time		next_strafe;
+	t_time		strafe_until;
+	int			strafe_dir;
+	t_coords	stuck_pos;
+	t_time		stuck_at;
+	bool		halted;
+	int			last_health;
+	int			id;
+}	t_brain;
+
 struct s_controller
 {
+	t_brain		brain;
 	void		(*key)(t_game *game, t_entity *entity, t_ftm_key_hook_values);
 	void		(*frame)(t_game *game, t_entity *entity, double delta_time);
 	t_time		last_shot;
@@ -475,6 +505,9 @@ struct s_cub3d
 	pthread_mutex_t		game_mutex;
 	t_game				*game;
 };
+
+// enemy AI: a gunshot noise spreads through open space (brain2.c)
+void				ai_noise(t_game *game, t_character *shooter);
 
 // cub3d
 t_cub3d				*cub3d(void);

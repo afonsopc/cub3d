@@ -489,7 +489,6 @@ DECOR = {
     "plant-gold": (lambda: plant(BRASS, (80, 150, 60), (50, 110, 40), 34), {}),
     "barrel-toxic": (drum, {}),
     "lamp": (lamp, {}),
-    "banner": (flag, {}),
     "pillar": (pillar, {}),
     "broken-robot": (books, {}),
     "cables": (chains, {"hang": True}),

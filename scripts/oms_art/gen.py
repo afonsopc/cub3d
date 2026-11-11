@@ -126,6 +126,9 @@ def decor_items():
         save(r, f"billboards/{name}.bmp")
     for name, fn in dc.PIXEL.items():
         save(x2(fn()), f"billboards/{name}.bmp")
+    import flags
+
+    save(flags.pole_flag(), "billboards/banner.bmp")  # já a 128x128
 
 
 def fit(rgba, size):

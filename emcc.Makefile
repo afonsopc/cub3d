@@ -14,6 +14,7 @@ NAME = cub3d
 CC = emcc
 CFLAGS = -Wall -Wextra -Werror -O3 -DNDEBUG -ffast-math -fno-math-errno -flto
 CFLAGS += -D W_WIDTH=1024 -D W_HEIGHT=768
+CFLAGS += $(EXTRA_CFLAGS)
 INCLUDES = -I headers
 LDLIBS = -lm
 SRCS = $(shell find src -name "**.c")
@@ -39,6 +40,7 @@ LDLIBS += --preload-file assets/pt/textures/dommiguelilow.bmp --preload-file ass
 LDLIBS += -s INITIAL_MEMORY=268435456 -s STACK_SIZE=2MB
 LDLIBS += -s ENVIRONMENT='web,worker'
 LDLIBS += -s EXPORT_ES6=1 -s MODULARIZE=1
+LDLIBS += $(EXTRA_LDLIBS)
 
 all: $(NAME)
 

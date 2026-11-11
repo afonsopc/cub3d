@@ -48,14 +48,64 @@ t_entity	*position_overlaps(t_list *entities, t_entity *entity,
 	return (NULL);
 }
 
+static bool	boxes_touch(t_entity *a, t_coords at, t_entity *b)
+{
+	return (at.x + a->size.width >= b->coords.x
+		&& at.x - a->size.width <= b->coords.x + b->size.width
+		&& at.y + a->size.height >= b->coords.y
+		&& at.y - a->size.height <= b->coords.y + b->size.height);
+}
+
+static double	center_dist(t_coords at, t_entity *b)
+{
+	t_coords	c;
+
+	c = b->coords;
+	if (!b->character)
+	{
+		c.x += b->size.width / 2.0;
+		c.y += b->size.height / 2.0;
+	}
+	return (ft_distance(at, c));
+}
+
+/*
+** A move is blocked by any hard entity it would touch, except when the
+** mover already touches it and the move takes it further away: so two
+** guards bumping in a doorway, or a guard pushed against a wall, can always
+** move apart instead of locking up for good.
+*/
+static bool	can_move_to(t_list *entities, t_entity *entity, t_coords to)
+{
+	t_list		*curr;
+	t_entity	*o;
+
+	if (!entity->hard)
+		return (true);
+	curr = entities;
+	while (curr)
+	{
+		o = curr->data;
+		curr = curr->next;
+		if (o == entity || !o->hard || !o->active || !boxes_touch(entity, to, o))
+			continue ;
+		if (boxes_touch(entity, entity->coords, o)
+			&& center_dist(to, o) > center_dist(entity->coords, o))
+			continue ;
+		if (entity->type == ENTITY_PLAYER)
+			fta_play(entity->collision_sound);
+		return (false);
+	}
+	return (true);
+}
+
 void	move_player_x(t_list *entities, t_entity *entity, double angle,
 	double velocity)
 {
 	double	new_x;
 
 	new_x = entity->coords.x + velocity * ft_cos_degrees(angle);
-	if (!position_overlaps(entities, entity, (t_coords){new_x, entity->coords.y,
-			0}))
+	if (can_move_to(entities, entity, (t_coords){new_x, entity->coords.y, 0}))
 		entity->coords.x = new_x;
 }
 
@@ -65,7 +115,6 @@ void	move_player_y(t_list *entities, t_entity *entity, double angle,
 	double	new_y;
 
 	new_y = entity->coords.y + velocity * ft_sin_degrees(angle);
-	if (!position_overlaps(entities, entity, (t_coords){entity->coords.x,
-			new_y, 0}))
+	if (can_move_to(entities, entity, (t_coords){entity->coords.x, new_y, 0}))
 		entity->coords.y = new_y;
 }

@@ -804,7 +804,9 @@ def walls():
     w["stone0"] = stone(1)
     w["stone1"] = stone(2, rows=(8, 13, 10, 12, 9, 12))
     w["stone-painting"] = portrait(stone(3), 17, 11)
-    w["stone-banner"] = flag_banner(stone(4), 19, 45, 7, 49)
+    import flags
+
+    w["stone-banner"] = flags.wall_banner(stone(4))  # 128x128, para as armas se lerem
     w["stone-plaque"] = trilogia_plaque(stone(5))
     w["stone-arch"] = arch(stone(6))
     w["stone-poster"] = poster_licao(stone(7))
