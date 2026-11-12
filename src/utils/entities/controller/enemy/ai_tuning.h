@@ -28,17 +28,17 @@
 # define AI_LOSE_SIGHT_MS 2500
 
 /* reaction before the first shot: base + per cell of distance + random */
-# define AI_REACTION_MS 350
+# define AI_REACTION_MS 450
 # define AI_REACTION_PER_CELL_MS 35
 # define AI_REACTION_RANDOM_MS 250
 
 /* ranged attack */
 # define AI_ATTACK_RANGE 11.0
-# define AI_ACCURACY_BASE 0.80
-# define AI_ACCURACY_PER_CELL 0.045
-# define AI_ACCURACY_MOVING_PENALTY 0.25
+# define AI_ACCURACY_BASE 0.62
+# define AI_ACCURACY_PER_CELL 0.05
+# define AI_ACCURACY_MOVING_PENALTY 0.30
 # define AI_ACCURACY_MIN 0.10
-# define AI_MELEE_ACCURACY 0.85
+# define AI_MELEE_ACCURACY 0.75
 
 /* strafing while shooting */
 # define AI_STRAFE_EVERY_MIN_MS 1600

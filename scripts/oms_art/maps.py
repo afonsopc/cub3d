@@ -18,7 +18,11 @@
 #            F tijolo   O rocha   p porta de elevador (parede)
 #   portas   v (passa-se de este para oeste)   h (de norte para sul)
 #            u porta da saída   s t w x T paredes falsas (segredos)
-#   alavancas n saída   y segredo para a missao1_mega
+#            D porta trancada (arsenal / paiol: precisa da chave)
+#            V portão de grade (abre-se com a alavanca >)
+#   alavancas n saída (precisa dos documentos / cargas)   > portão
+#            y segredo para a missao1_mega
+#   puzzles  3 chave (arsenal / paiol)   4 planos do Forte / cargas
 #   inimigos e atirador invasor   R comissário   L soldado de capacete   d cão
 #   jogador  E W (missao1, 4 lugares)   N (missao2)
 #   largados : ração   ; munições   } socorros   ( medalha   ) cruz de guerra
@@ -73,9 +77,9 @@ class Plan:
 
     def put(self, x, y, c):
         cur = self.g[y][x]
-        if c in "ny":
+        if c in "ny>":
             pass
-        elif c in WALLISH or c in "vhustwxT":
+        elif c in WALLISH or c in "vhustwxTDV":
             if cur not in WALLISH and c not in WALLISH:
                 raise ValueError(f"{c!r} at {x},{y} must go on a wall (is {cur!r})")
         elif cur != "0":
@@ -85,6 +89,18 @@ class Plan:
     def puts(self, pts, c):
         for x, y in pts:
             self.g[y][x] = c
+
+    def seal(self):
+        """Fecha com pedra todo o vazio encostado a chão (nichos, cantos)."""
+        for y in range(self.h):
+            for x in range(self.w):
+                if self.g[y][x] != " ":
+                    continue
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)):
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < self.w and 0 <= ny < self.h and self.g[ny][nx] not in WALLISH | {" "} | set("vhustwxTDVny>"):
+                        self.g[y][x] = "f"
+                        break
 
     def text(self):
         rows = []
@@ -100,435 +116,336 @@ WALLISH = set("fgkiJqraBbcjlmAFOp1")
 
 
 def missao1():
-    """Defesa do Quartel-General. Os invasores já entraram: parte-se da
-    entrada (sudoeste), recupera-se a portaria, o átrio, o corredor dos
-    gabinetes, o pátio de azulejos e o gabinete do comando, onde fica a
-    saída para o forte."""
-    P = Plan(63, 55)
-    # rua / entrada (início)
-    P.room(0, 44, 10, 54, "f")
-    # portaria
-    P.room(10, 40, 22, 54, "f")
-    # arrecadação (segredo com a alavanca da missao1_mega)
-    P.room(10, 34, 22, 40, "f")
-    # átrio
-    P.room(22, 34, 46, 54, "f")
-    # corredor dos gabinetes
-    P.room(10, 30, 46, 34, "j")
-    # gabinetes
-    P.room(10, 18, 22, 30, "j")
-    P.room(22, 18, 34, 30, "j")
-    P.room(34, 18, 46, 30, "j")
-    # arquivo e cofre
-    P.room(46, 18, 62, 40, "f")
-    P.room(46, 18, 52, 24, "f")
-    # canil
-    P.room(46, 40, 62, 54, "F")
-    # celas e sala de interrogatório
-    P.room(0, 18, 10, 44, "F")
-    # material apreendido (segredo)
-    P.room(0, 2, 14, 18, "f")
-    # pátio de azulejos (com maciço entre o pátio e os gabinetes)
-    P.room(14, 2, 44, 15, "a", force=True)
-    P.solid(14, 16, 44, 17, "f")
-    P.floor(28, 16, 28, 17)
-    # gabinete do director e sala da saída
-    P.room(44, 2, 62, 18, "f")
-    P.room(56, 12, 62, 18, "f")
+    """Defesa do Quartel-General. Os invasores já entraram: parte-se da rua
+    (sul) para a portaria e o corredor dos gabinetes. Cadeia de objetivos:
+    a chave do arsenal está com o oficial de dia (fundo do corredor, a
+    leste); o arsenal (porta da fechadura dourada, no átrio) tem a FBP e a
+    alavanca que abre o portão do pátio; no gabinete do comando, depois do
+    pátio, estão os planos do Forte, sem os quais a alavanca da saída não
+    funciona. Salas pequenas, esquinas e portas para as emboscadas."""
+    P = Plan(44, 38)
+    P.room(15, 13, 27, 23, "f")  # átrio (marco: esfera armilar e 4 colunas)
+    P.room(15, 3, 27, 13, "a")  # pátio dos azulejos (marco: o poço)
+    P.room(18, 32, 24, 37, "f")  # rua / entrada (início)
+    P.room(16, 26, 26, 32, "f")  # portaria
+    P.room(10, 26, 16, 32, "f")  # arrecadação (segredo, alavanca do bónus)
+    P.room(6, 23, 37, 26, "j")  # corredor dos gabinetes
+    P.room(0, 22, 6, 29, "j")  # sala de espera
+    P.room(37, 20, 43, 28, "j")  # gabinete do oficial de dia (chave)
+    P.room(27, 14, 35, 22, "f")  # arsenal (porta trancada, alavanca)
+    P.room(35, 14, 40, 19, "f")  # cofre (segredo)
+    P.room(5, 12, 15, 21, "F")  # celas
+    P.room(8, 4, 15, 11, "f")  # material apreendido (segredo)
+    P.room(27, 2, 36, 10, "j")  # gabinete do comando (planos)
+    P.room(36, 4, 42, 10, "f")  # sala da saída
 
-    # --- celas: parede interior com grades, 4 celas e interrogatório
-    for y in range(19, 44):
-        P.put(4, y, "F")
-    for y in (24, 30, 36):
-        for x in range(1, 4):
-            P.put(x, y, "F")
-    for x in range(4, 10):
-        P.put(x, 36, "F")
-    for y in (20, 22, 26, 28, 32, 34, 38, 39, 41, 42):
-        P.put(4, y, "b")
-    P.put(4, 26, "c")
-    P.put(4, 38, "c")
-    P.puts([(4, 21), (4, 27), (4, 33), (4, 40)], "v")
-    P.put(7, 36, "h")
-    P.put(10, 32, "v")  # para o corredor
+    # corredor: porta a meio e dois nichos
+    P.put(28, 25, "j")
+    P.put(28, 24, "j")
+    P.put(28, 24, "v")
+    P.floor(12, 23, 12, 23)
+    P.floor(33, 23, 33, 23)
+    # celas: grade com duas portas e parede entre as celas
+    for x in range(6, 15):
+        P.put(x, 16, "b")
+    P.puts([(10, 16), (10, 13), (10, 14), (10, 15)], "F")
+    P.puts([(8, 16), (12, 16)], "h")
 
-    # --- portas principais
-    P.put(10, 49, "v")  # rua -> portaria
-    P.put(22, 47, "v")  # portaria -> átrio
-    P.put(34, 34, "h")  # átrio -> corredor
-    P.put(46, 47, "v")  # átrio -> canil
-    P.put(54, 40, "h")  # canil -> arquivo
-    P.put(46, 32, "v")  # corredor -> arquivo
-    P.puts([(16, 30), (28, 30), (40, 30)], "h")  # gabinetes
-    P.floor(28, 18, 28, 18)  # gabinete do meio -> passagem para o pátio
-    P.put(28, 15, "h")  # passagem -> pátio
-    P.puts([(27, 16), (27, 17), (29, 16), (29, 17)], "f")
-    P.put(44, 8, "v")  # pátio -> gabinete do director
-    P.put(56, 15, "u")  # porta da saída
-    P.put(62, 15, "n")  # alavanca da saída
-    P.puts([(62, 13), (62, 14), (62, 16), (62, 17)], "p")
+    # --- portas
+    P.put(21, 32, "h")  # rua -> portaria
+    P.put(21, 26, "h")  # portaria -> corredor
+    P.put(6, 24, "v")  # corredor -> sala de espera
+    P.put(37, 24, "v")  # corredor -> oficial de dia
+    P.put(21, 23, "h")  # corredor -> átrio
+    P.put(15, 18, "v")  # átrio -> celas
+    P.put(27, 18, "D")  # átrio -> arsenal (trancada: chave do arsenal)
+    P.put(21, 13, "V")  # átrio -> pátio (portão: alavanca do arsenal)
+    P.put(27, 6, "v")  # pátio -> comando
+    P.put(36, 7, "u")  # comando -> saída
+    P.put(42, 7, "n")  # alavanca da saída (precisa dos planos)
+    P.puts([(42, 5), (42, 6), (42, 8), (42, 9)], "p")
+    P.put(31, 14, ">")  # alavanca do portão, no arsenal
     # segredos
-    P.put(16, 40, "t")  # retrato falso na portaria -> arrecadação
-    P.put(13, 35, "y")  # alavanca secreta
-    P.put(46, 21, "s")  # emblema falso no gabinete do director-adjunto -> cofre
-    P.put(14, 9, "x")  # pedra falsa no pátio -> material apreendido
+    P.put(16, 29, "x")  # pedra solta na portaria -> arrecadação
+    P.put(10, 29, "y")  # alavanca secreta (nível bónus)
+    P.put(35, 16, "x")  # pedra solta no arsenal -> cofre
+    P.put(15, 8, "x")  # pedra solta no pátio -> material apreendido
 
     # --- decoração das paredes
-    # rua
-    P.puts([(5, 44), (0, 49)], "i")
-    P.put(5, 54, "J")
-    # portaria
-    P.puts([(13, 54), (19, 54)], "q")
-    P.put(22, 43, "r")
-    P.put(22, 51, "q")
-    # átrio
-    P.puts([(26, 34), (30, 34), (38, 34), (42, 34)], "i")
-    P.puts([(27, 54), (41, 54)], "k")
-    P.puts([(31, 54), (37, 54)], "i")
-    P.put(34, 54, "J")
-    P.puts([(22, 38), (46, 38)], "k")
-    P.puts([(46, 52), (22, 52)], "i")
-    # corredor
-    P.puts([(13, 34), (19, 34)], "r")
-    P.puts([(25, 30), (31, 30), (37, 30), (43, 30)], "A")
-    P.puts([(26, 34), (42, 34)], "i")
-    # gabinetes
-    P.put(16, 18, "A")
-    P.put(10, 24, "r")
-    P.put(22, 24, "m")
-    P.put(34, 24, "l")
-    P.put(40, 18, "m")
-    P.put(46, 26, "l")
-    # arquivo
-    P.puts([(62, 22), (62, 30), (62, 36)], "r")
-    P.put(56, 18, "k")
-    P.put(52, 21, "r")
-    # canil
-    P.put(62, 47, "q")
-    # pátio
-    P.puts([(20, 2), (29, 2), (38, 2)], "B")
-    P.puts([(14, 5), (14, 12), (44, 12), (44, 4)], "B")
-    P.puts([(22, 15), (35, 15)], "B")
-    # material apreendido
-    P.put(7, 2, "k")
-    P.put(0, 10, "r")
-    # gabinete do director
-    P.put(53, 2, "k")
-    P.puts([(48, 2), (58, 2)], "i")
-    P.puts([(62, 6), (62, 9)], "i")
-    P.put(44, 14, "q")
-    P.put(50, 18, "J")
+    P.puts([(18, 34), (24, 34)], "i")
+    P.put(21, 37, "J")
+    P.puts([(18, 26), (24, 26)], "q")
+    P.put(26, 29, "r")
+    P.puts([(16, 27), (16, 31)], "k")
+    P.puts([(9, 23), (15, 23), (25, 23), (31, 23), (35, 23)], "A")
+    P.puts([(10, 26), (14, 26), (30, 26), (34, 26)], "m")
+    P.put(0, 25, "l")
+    P.put(43, 24, "l")
+    P.put(40, 20, "m")
+    P.puts([(18, 13), (24, 13)], "B")
+    P.puts([(15, 15), (27, 15), (15, 21), (27, 21)], "i")
+    P.puts([(18, 23), (24, 23)], "k")
+    P.puts([(29, 22), (33, 22), (35, 20)], "c")
+    P.put(27, 20, "r")
+    P.puts([(5, 14), (5, 18)], "r")
+    P.puts([(18, 3), (24, 3), (15, 5), (15, 11), (27, 11)], "B")
+    P.put(21, 3, "q")
+    P.put(31, 2, "k")
+    P.puts([(29, 2), (34, 2)], "i")
+    P.put(31, 10, "l")
+    P.put(39, 4, "J")
+    P.put(11, 4, "k")
 
     # --- jogadores (o primeiro é o local)
-    P.puts([(3, 47), (3, 51)], "E")
-    P.puts([(7, 47), (7, 51)], "W")
+    P.puts([(21, 35), (19, 36), (23, 36), (21, 36)], "N")
 
     # --- objetos, itens e inimigos
     items = {
         # rua
-        ",": [(5, 49)], "#": [(1, 45), (9, 45)],
+        "#": [(19, 33), (23, 33)], ",": [(21, 34)],
         # portaria
-        "R": [(19, 43)], "e": [(19, 52), (15, 44)],
-        "-": [(16, 47)], "@": [(11, 41)], ";": [(21, 53)], ":": [(11, 53)],
-        # arrecadação
-        "*": [(21, 39)], "}": [(11, 39)], "%": [(21, 35)], "'": [(19, 35), (20, 35)],
-        # átrio
-        "\\": [(34, 44)], "^": [(27, 39), (41, 39), (27, 49), (41, 49)],
-        "/": [(30, 42), (38, 42), (30, 47), (38, 47)],
-        "!": [(23, 35), (45, 35), (23, 53), (45, 53)],
+        "-": [(19, 28)], "@": [(17, 27)], ";": [(25, 31)], ":": [(25, 27)],
+        "e": [(24, 28), (17, 30)],
+        # arrecadação (segredo)
+        "*": [(12, 28), (14, 30)], "}": [(11, 31)], "'": [(11, 27)],
     }
     for c, pts in items.items():
         P.puts(pts, c)
-    P.puts([(25, 37), (43, 37), (34, 51), (29, 45)], "e")
-    P.puts([(40, 45)], "d")
-    P.puts([(24, 43)], ";")
-    P.puts([(44, 44)], ":")
     # corredor
-    P.puts([(14, 32), (20, 32), (26, 32), (32, 32), (38, 32), (44, 32)], ",")
-    P.puts([(23, 31), (36, 33)], "e")
-    P.put(30, 32, "d")
-    # gabinete 1 (secretaria): máquinas de escrever
-    P.puts([(12, 20), (15, 20), (18, 20)], "<")
-    P.puts([(14, 25), (19, 25)], "-")
-    P.puts([(16, 23)], ",")
-    P.puts([(12, 28)], "e")
-    P.puts([(21, 19)], "$")
-    P.puts([(20, 28)], ";")
-    # gabinete 2 (sala de espera)
-    P.puts([(24, 20), (32, 20)], "~")
-    P.puts([(26, 26)], "e")
-    P.puts([(31, 25)], "d")
-    P.puts([(23, 29), (33, 29)], "!")
-    P.puts([(28, 23)], ",")
-    # gabinete 3 (director-adjunto)
-    P.puts([(40, 22)], "~")
-    P.puts([(40, 24)], "/")
-    P.puts([(35, 19), (45, 19)], "$")
-    P.puts([(37, 27), (43, 27)], "R")
-    P.puts([(44, 21)], "\"")
-    P.puts([(35, 28)], "}")
+    P.puts([(10, 24), (17, 25), (24, 24), (32, 24)], ",")
+    P.put(12, 23, "d")
+    P.put(8, 25, "e")
+    P.put(33, 23, ":")
+    # sala de espera
+    P.put(3, 25, "~")
+    P.puts([(1, 23), (5, 23)], "!")
+    P.put(1, 28, "$")
+    P.put(4, 27, "e")
+    P.put(2, 27, "(")
+    P.put(5, 28, ";")
+    # oficial de dia: a chave do arsenal na secretária
+    P.put(40, 22, "-")
+    P.put(39, 21, "<")
+    P.put(42, 21, "@")
+    P.put(38, 21, "$")
+    P.put(41, 21, "3")
+    P.puts([(41, 25)], "R")
+    P.put(38, 27, "e")
+    P.put(42, 27, ":")
+    # átrio
+    P.puts([(18, 16), (24, 16), (18, 20), (24, 20)], "^")
+    P.put(21, 18, "\\")
+    P.puts([(21, 16), (21, 20)], "/")
+    P.puts([(16, 14), (26, 14), (16, 22), (26, 22)], "!")
+    P.puts([(25, 15), (17, 21)], "e")
+    P.put(23, 19, "d")
+    P.put(16, 17, ";")
+    P.put(26, 21, ":")
+    # arsenal
+    P.put(31, 19, "]")
+    P.puts([(29, 21), (33, 21)], ";")
+    P.put(34, 21, "%")
+    P.put(29, 16, '"')
+    P.put(33, 17, "e")
     # cofre
-    P.puts([(48, 20), (50, 20)], "*")
-    P.puts([(48, 22), (49, 22), (50, 22)], "(")
-    P.puts([(51, 23)], ")")
-    # arquivo: estantes de processos em filas
-    for x in (49, 52, 55, 58):
-        P.puts([(x, y) for y in (27, 28, 29, 34, 35, 36)], "|")
-    P.puts([(58, 20), (60, 20)], "<")
-    P.puts([(55, 22)], "-")
-    P.puts([(54, 31), (58, 31), (50, 38), (60, 25)], "e")
-    P.puts([(61, 38)], "R")
-    P.puts([(54, 25), (54, 33)], ",")
-    P.puts([(61, 19)], "\"")
-    P.puts([(47, 39)], ";")
-    P.puts([(61, 33)], ")")
-    # canil
-    P.puts([(50, 44), (56, 48), (60, 52), (52, 51)], "d")
-    P.puts([(61, 41), (47, 53)], "%")
-    P.puts([(55, 42), (49, 49)], "=")
-    P.puts([(54, 47)], ",")
-    P.puts([(61, 53)], ":")
+    P.puts([(37, 15), (39, 17)], "*")
+    P.puts([(36, 18), (38, 18)], "(")
+    P.put(39, 15, ")")
     # celas
-    P.puts([(2, 20)], "=")
-    P.puts([(2, 22)], "&")
-    P.puts([(2, 28)], ":")
-    P.puts([(2, 26)], "&")
-    P.puts([(2, 33)], "(")
-    P.puts([(2, 40), (2, 42)], "&")
-    P.puts([(1, 38)], "}")
-    P.puts([(7, 20), (7, 28)], ",")
-    P.puts([(8, 24)], "e")
-    P.puts([(6, 31)], "d")
-    # sala de interrogatório
-    P.puts([(7, 40)], "-")
-    P.puts([(7, 38)], ",")
-    P.puts([(5, 42)], "R")
-    P.puts([(9, 42)], "e")
-    P.puts([(9, 37)], "]")
-    # material apreendido
-    P.puts([(2, 4), (4, 4), (2, 6)], "\"")
-    P.puts([(6, 9), (7, 9), (8, 9)], ")")
-    P.puts([(10, 14), (12, 14)], "(")
-    P.puts([(12, 4)], "*")
-    P.puts([(7, 12)], ",")
-    P.puts([(2, 16), (4, 16)], "|")
+    P.put(6, 13, "}")
+    P.put(9, 13, "=")
+    P.put(7, 14, "&")
+    P.put(14, 13, ";")
+    P.put(11, 13, ")")
+    P.put(13, 19, "e")
+    P.put(7, 18, "d")
+    P.put(10, 18, ",")
+    P.put(6, 20, "-")
     # pátio
-    P.puts([(29, 8)], "+")
-    P.puts([(16, 4), (42, 4), (16, 13), (42, 13)], ".")
-    P.puts([(22, 8), (36, 8)], "!")
-    P.puts([(25, 4), (33, 4), (25, 13), (33, 13)], "=")
-    P.puts([(20, 6), (38, 11), (24, 11)], "e")
-    P.puts([(34, 6), (18, 10)], "d")
-    P.puts([(40, 7)], "R")
-    P.puts([(21, 13)], ";")
-    P.puts([(37, 13)], ":")
-    # gabinete do director
-    P.puts([(53, 5)], "~")
-    P.puts([(53, 4)], "@")
-    P.puts([(49, 8), (57, 8)], "/")
-    P.puts([(45, 3), (61, 3)], "#")
-    P.puts([(46, 16), (54, 16)], "$")
-    P.puts([(48, 5), (58, 5), (50, 14)], "R")
-    P.puts([(52, 10), (60, 10)], "e")
-    P.puts([(55, 13)], "d")
-    P.puts([(45, 10)], ";")
-    P.puts([(61, 11)], "}")
+    P.put(21, 8, "+")
+    P.puts([(17, 5), (25, 5), (17, 11), (25, 11)], ".")
+    P.puts([(19, 4), (23, 4)], "=")
+    P.puts([(18, 8), (25, 7)], "e")
+    P.put(23, 11, "d")
+    P.put(16, 4, ";")
+    P.put(26, 12, ":")
+    # material apreendido
+    P.puts([(10, 6), (13, 9)], "*")
+    P.put(11, 8, ")")
+    P.put(9, 10, '"')
+    P.put(14, 5, "|")
+    P.put(12, 10, "}")
+    # gabinete do comando: os planos na secretária do Major
+    P.put(32, 4, "~")
+    P.put(32, 6, "4")
+    P.put(29, 3, "@")
+    P.puts([(28, 3), (35, 3)], "#")
+    P.puts([(28, 9), (35, 9)], "$")
+    P.put(34, 5, "R")
+    P.put(30, 8, "e")
+    P.put(31, 9, ":")
     # sala da saída
-    P.puts([(59, 15)], ",")
+    P.put(39, 7, ",")
+    P.seal()
     return P
 
 
 def missao2():
-    """Defesa do Forte. Chega-se de elevador (sul) e retoma-se a portaria,
-    o pátio, o corpo da guarda, a caserna e a capela; os invasores entram
-    pela gruta do mar, onde fica a saída."""
-    P = Plan(64, 60)
-    P.room(26, 52, 38, 59, "f")  # elevador (início)
-    P.room(20, 44, 44, 52, "f")  # portaria do forte
-    P.room(20, 20, 44, 44, "f")  # pátio
-    P.room(20, 4, 44, 20, "f")  # capela
-    P.room(26, 0, 38, 4, "f")  # sacristia (segredo)
-    P.room(44, 0, 63, 20, "j")  # caserna
-    P.room(44, 20, 63, 34, "F")  # corpo da guarda
-    P.room(44, 34, 63, 52, "f")  # refeitório e arrecadação
-    P.room(0, 30, 20, 52, "F")  # pavilhão prisional
-    # gruta do mar: rocha maciça com uma passagem escavada
-    P.solid(0, 0, 19, 29, "O")
+    """Defesa do Forte. Chega-se de elevador (sul) à portaria. Cadeia de
+    objetivos: o portão do pátio só abre pela alavanca do corpo da guarda
+    (leste); a chave do paiol está na caserna (oeste do pátio); o paiol (a
+    porta vermelha, a leste do pátio) guarda a G3 e as cargas de demolição,
+    e tem a saída para a gruta do mar, onde se fecha a porta do mar."""
+    P = Plan(46, 42)
+    P.room(16, 17, 28, 29, "f")  # pátio (marco: a bandeira)
+    P.room(19, 35, 25, 41, "f")  # elevador (início)
+    P.room(17, 29, 27, 35, "f")  # portaria do forte
+    P.room(27, 28, 35, 36, "F")  # corpo da guarda (alavanca do portão)
+    P.room(8, 28, 17, 36, "F")  # pavilhão prisional
+    P.room(11, 36, 17, 41, "F")  # isolamento (segredo)
+    P.room(6, 16, 16, 26, "j")  # caserna (chave do paiol)
+    P.room(17, 7, 27, 17, "f")  # capela
+    P.room(19, 2, 25, 7, "f")  # sacristia (segredo)
+    P.room(28, 19, 36, 27, "F")  # paiol (porta trancada, cargas)
+    # gruta do mar: rocha maciça com galerias escavadas
+    P.solid(29, 0, 45, 18, "O")
     for x0, y0, x1, y1 in (
-        (14, 10, 19, 14),  # entrada (vem da capela)
-        (9, 8, 13, 16),  # túnel
-        (3, 2, 10, 7),  # gruta alta
-        (2, 8, 5, 18),  # poço
-        (2, 19, 12, 21),  # passagem de baixo
-        (11, 19, 17, 27),  # gruta funda
-        (3, 24, 8, 28),  # porta do mar (saída)
-        (10, 26, 10, 26),
+        (32, 15, 32, 18),  # túnel do paiol
+        (30, 9, 36, 14),  # gruta de cima
+        (37, 12, 39, 13),  # passagem
+        (40, 4, 44, 14),  # gruta funda
+        (40, 2, 41, 3),  # subida
+        (34, 1, 38, 3),  # porta do mar
     ):
         P.floor(x0, y0, x1, y1)
-    P.solid(6, 4, 7, 5, "O")  # pedra no meio da gruta alta
-    P.solid(14, 23, 15, 24, "O")
+    P.solid(33, 11, 33, 12, "O")  # rocha no meio da gruta de cima
+    P.solid(42, 8, 42, 9, "O")
 
-    # pavilhão prisional: celas a oeste, corredor, isolamento
-    for y in range(31, 52):
-        P.put(6, y, "F")
-    for y in (36, 41, 46):
-        for x in range(1, 6):
-            P.put(x, y, "F")
-    for y in (32, 34, 37, 39, 42, 44, 47, 48, 50, 51):
-        P.put(6, y, "b")
-    P.puts([(6, 44), (6, 50)], "c")
-    P.puts([(6, 33), (6, 38), (6, 43), (6, 49)], "v")
-    # isolamento ("segredo") a nordeste do pavilhão, atrás de parede falsa
-    for x in range(14, 20):
-        P.put(x, 36, "F")
-    for y in range(31, 36):
-        P.put(14, y, "F")
-    P.put(14, 33, "x")
+    # pavilhão prisional: grade com duas celas
+    for y, c in zip(range(29, 36), "bvbFbvb"):
+        P.put(12, y, "F")
+        P.put(12, y, c)
+    P.puts([(9, 32), (10, 32), (11, 32)], "F")
 
     # --- portas
-    P.put(32, 52, "h")  # elevador -> portaria
-    P.put(32, 44, "h")  # portaria -> pátio
-    P.put(20, 48, "v")  # portaria -> pavilhão
-    P.put(44, 48, "v")  # portaria -> refeitório
-    P.put(44, 26, "v")  # pátio -> corpo da guarda
-    P.put(54, 34, "h")  # corpo da guarda -> refeitório
-    P.put(54, 20, "h")  # corpo da guarda -> caserna
-    P.put(44, 10, "v")  # caserna -> capela
-    P.put(20, 12, "v")  # capela -> gruta
-    P.put(32, 20, "w")  # segredo: pátio -> capela
-    P.put(32, 4, "t")  # segredo: capela -> sacristia
-    # saída: porta e alavanca na porta do mar
-    P.put(9, 26, "u")
-    P.put(2, 26, "n")
-    # elevador: parede do fundo é a porta do elevador
-    P.puts([(x, 59) for x in range(27, 38)], "p")
+    P.put(22, 35, "h")  # elevador -> portaria
+    P.put(22, 29, "V")  # portaria -> pátio (portão: alavanca da guarda)
+    P.put(27, 32, "v")  # portaria -> corpo da guarda
+    P.put(17, 32, "v")  # portaria -> pavilhão prisional
+    P.put(35, 32, ">")  # alavanca do portão
+    P.put(22, 17, "h")  # pátio -> capela
+    P.put(16, 22, "v")  # pátio -> caserna
+    P.put(28, 23, "D")  # pátio -> paiol (trancada: chave do paiol)
+    P.put(32, 19, "h")  # paiol -> gruta
+    P.put(39, 2, "u")  # porta do mar
+    P.put(33, 2, "n")  # alavanca da saída (precisa das cargas)
+    P.puts([(33, 1), (33, 3)], "p")
+    P.puts([(x, 41) for x in range(20, 25)], "p")  # porta do elevador
+    # segredos
+    P.put(22, 7, "t")  # quadro falso na capela -> sacristia
+    P.put(14, 36, "t")  # quadro falso no pavilhão -> isolamento
 
     # --- decoração das paredes
-    P.puts([(24, 4), (40, 4)], "i")
-    P.put(28, 4, "J")
-    P.put(36, 4, "J")
-    P.puts([(20, 7), (44, 16)], "q")
-    P.puts([(20, 17), (44, 6)], "i")
-    P.puts([(24, 20), (40, 20)], "k")
-    P.puts([(26, 20), (38, 20)], "i")
-    P.puts([(20, 25), (20, 39), (44, 31), (44, 39)], "i")
-    P.puts([(26, 44), (38, 44)], "q")
-    P.puts([(20, 51), (44, 45)], "r")
-    P.puts([(24, 52), (40, 52)], "J")
-    P.put(32, 0, "k")
-    P.puts([(50, 0), (57, 0)], "A")
-    P.puts([(63, 5), (63, 14)], "q")
-    P.put(53, 20, "l")
-    P.puts([(63, 24), (63, 30)], "r")
-    P.put(48, 34, "q")
-    P.puts([(63, 40), (63, 47)], "i")
-    P.puts([(10, 52), (16, 52)], "r")
-    P.put(10, 30, "q")
-    P.put(19, 36, "k")
+    P.puts([(19, 35), (25, 35)], "J")
+    P.puts([(20, 29), (24, 29)], "i")
+    P.puts([(17, 30), (27, 34)], "q")
+    P.put(35, 29, "r")
+    P.put(31, 28, "l")
+    P.puts([(31, 36), (27, 30)], "q")
+    P.puts([(16, 19), (16, 26), (28, 18), (28, 28)], "i")
+    P.puts([(19, 17), (25, 17)], "k")
+    P.puts([(20, 7), (24, 7)], "i")
+    P.puts([(17, 10), (27, 10), (17, 14), (27, 14)], "J")
+    P.put(8, 31, "r")
+    P.puts([(9, 16), (13, 16)], "A")
+    P.put(6, 21, "m")
+    P.put(36, 23, "c")
+    P.puts([(30, 27), (34, 27)], "c")
+    P.put(22, 2, "k")
 
     # --- jogador
-    P.put(32, 57, "N")
+    P.put(22, 39, "N")
 
-    # --- objetos, itens e inimigos
     def many(c, pts):
         P.puts(pts, c)
 
     # elevador
-    many(",", [(32, 55)])
-    many(":", [(28, 54)])
+    many(",", [(22, 37)])
+    many(":", [(20, 40)])
     # portaria
-    many("-", [(32, 48)])
-    many("@", [(29, 48)])
-    many("#", [(21, 45), (43, 45)])
-    many(",", [(26, 48), (38, 48)])
-    many("R", [(24, 46), (40, 46), (35, 50)])
-    many("e", [(28, 50)])
-    many(";", [(42, 51)])
-    # pátio
-    many("^", [(26, 26), (38, 26), (26, 38), (38, 38)])
-    many("\\", [(32, 32)])
-    many("?", [(23, 23)])
-    many("'", [(41, 22), (42, 22), (42, 23)])
-    many("%", [(22, 42), (23, 42)])
-    many("L", [(28, 30), (36, 34)])
-    many("R", [(40, 41), (24, 33)])
-    many("d", [(32, 24), (30, 40)])
-    many(",", [(32, 28), (32, 36), (26, 32), (38, 32)])
-    many(":", [(42, 42)])
-    many(";", [(22, 30)])
-    # corpo da guarda
-    many("~", [(50, 24), (57, 24)])
-    many("-", [(54, 29)])
-    many("@", [(62, 21)])
-    many("R", [(47, 22), (60, 23), (49, 31), (59, 31)])
-    many("e", [(54, 26)])
-    many(",", [(50, 27), (58, 27)])
-    many("}", [(62, 33)])
-    many(";", [(45, 33)])
-    # caserna
-    for x in (47, 51, 55, 59):
-        many("~", [(x, 4)])
-        many("-", [(x, 15)])
-    many("#", [(45, 1), (62, 1)])
-    many("%", [(62, 9), (62, 10)])
-    many("'", [(45, 18)])
-    many("L", [(48, 8), (56, 7), (60, 12), (50, 12), (54, 17)])
-    many("d", [(58, 16)])
-    many(",", [(49, 10), (57, 10)])
-    many("]", [(46, 9)])
-    many(";", [(61, 18)])
-    # capela
-    many("^", [(25, 8), (25, 12), (25, 16), (39, 8), (39, 12), (39, 16)])
-    many("/", [(32, 9), (32, 15)])
-    many("!", [(30, 5), (34, 5)])
-    many("#", [(28, 6), (36, 6)])
-    many("L", [(30, 11), (36, 14), (22, 6)])
-    many("e", [(42, 18)])
-    many(")", [(32, 7)])
-    # sacristia
-    many("*", [(29, 2), (35, 2)])
-    many("(", [(31, 1), (32, 1), (33, 1)])
-    many(")", [(27, 3)])
-    many("}", [(37, 3)])
-    # refeitório e arrecadação
-    for y in (38, 42, 46):
-        many("~", [(49, y), (55, y)])
-    many("'", [(62, 35), (62, 36), (61, 35)])
-    many("%", [(62, 51)])
-    many("2", [(61, 50)])
-    many(":", [(52, 40), (58, 44)])
-    many("}", [(45, 51)])
-    many(";", [(60, 37), (46, 36)])
-    many("L", [(52, 49), (59, 41)])
-    many("R", [(46, 44)])
-    many("e", [(57, 48)])
-    many(",", [(52, 44), (58, 38)])
+    many("-", [(19, 30)])
+    many("@", [(18, 30)])
+    many("#", [(18, 34), (26, 34)])
+    many("e", [(25, 31)])
+    many("R", [(19, 33)])
+    many(";", [(26, 30)])
+    # corpo da guarda: a FBP e a alavanca
+    many("~", [(30, 30), (31, 34)])
+    many("]", [(29, 34)])
+    many("L", [(32, 30)])
+    many("e", [(29, 35)])
+    many(":", [(34, 35)])
+    many(",", [(31, 32)])
     # pavilhão prisional
-    many("&", [(2, 32), (2, 38), (2, 43), (4, 48)])
-    many("=", [(4, 34), (4, 39)])
-    many(":", [(2, 34)])
-    many("(", [(2, 44)])
-    many("}", [(2, 50)])
-    many(",", [(10, 33), (10, 39), (10, 45), (10, 50)])
-    many("-", [(16, 44)])
-    many("@", [(18, 43)])
-    many("e", [(9, 36), (17, 48)])
-    many("R", [(12, 41)])
-    many("d", [(8, 46)])
-    many(";", [(19, 51)])
+    many("d", [(15, 30)])
+    many("e", [(14, 34)])
+    many("}", [(9, 29)])
+    many("&", [(10, 30)])
+    many(";", [(9, 35)])
+    many("(", [(11, 33)])
+    many(",", [(15, 32)])
     # isolamento
-    many("*", [(17, 32)])
-    many(")", [(18, 34)])
-    many("|", [(16, 34)])
-    many("&", [(15, 31)])
+    many("*", [(13, 38), (15, 39)])
+    many(")", [(16, 37)])
+    many("}", [(12, 40)])
+    # pátio: sacos de areia como abrigo, a bandeira ao meio
+    many("#", [(22, 23)])
+    many('"', [(19, 21), (25, 21), (19, 26), (25, 26)])
+    many("e", [(18, 19), (26, 27)])
+    many("L", [(26, 19)])
+    many("d", [(20, 25)])
+    many(";", [(17, 28)])
+    many(":", [(27, 18)])
+    # caserna: camaratas e a chave no cacifo do oficial
+    many("-", [(8, 19), (8, 23), (12, 19), (12, 23)])
+    many("3", [(14, 17)])
+    many("L", [(13, 22)])
+    many("e", [(9, 21)])
+    many(";", [(7, 17)])
+    many(":", [(15, 25)])
+    many("'", [(7, 25)])
+    # capela
+    many("^", [(19, 10), (25, 10), (19, 14), (25, 14)])
+    many("/", [(22, 10), (22, 14)])
+    many("!", [(20, 8), (24, 8)])
+    many("#", [(18, 8), (26, 8)])
+    many(")", [(21, 9)])
+    many("e", [(20, 12)])
+    many("L", [(25, 12)])
+    many(":", [(26, 16)])
+    many(";", [(18, 16)])
+    # sacristia
+    many("*", [(21, 3), (23, 3)])
+    many("(", [(20, 5), (24, 5)])
+    many("}", [(22, 4)])
+    # paiol: a G3 e as cargas de demolição
+    many("2", [(30, 21)])
+    many("4", [(34, 25)])
+    many("%", [(35, 20), (35, 26)])
+    many("'", [(29, 26), (30, 26)])
+    many("L", [(34, 21)])
+    many(";", [(33, 26)])
+    many(",", [(32, 23)])
     # gruta
-    many("d", [(6, 4), (11, 13)])
-    many("L", [(4, 14), (15, 25)])
-    many("e", [(9, 20)])
-    many("(", [(4, 7), (12, 25)])
-    many(":", [(2, 17)])
-    many(";", [(16, 21)])
-    many("=", [(17, 11)])
+    many("d", [(35, 10)])
+    many(":", [(31, 13)])
+    many("e", [(43, 10)])
+    many("L", [(41, 5)])
+    many(";", [(44, 13)])
+    many("}", [(44, 5)])
+    many("e", [(36, 1)])
+    many("=", [(30, 9)])
+    P.seal()
     return P
 
 
@@ -593,13 +510,13 @@ ENEMY_WEAPONS = {
     "Q": [
         "Q_TYPE WEAPON",
         f"Q_CANT_USE_SOUND {S}/empty.mp3",
-        "Q_DAMAGE 7",
+        "Q_DAMAGE 5",
         "Q_AMMO_USAGE 1",
         "Q_NAME Pistola-metralhadora do invasor",
         f"Q_USE_SOUND {S}/rifle.mp3",
         "Q_USE_SOUND_VOLUME 0.4",
         "Q_DESCRIPTION Pistola-metralhadora de tambor do soldado invasor",
-        "Q_USE_DELAY 0.35",
+        "Q_USE_DELAY 0.45",
         f"Q_SCREEN_SPRITE {T}/items/rifle/screen/0.bmp",
         f"Q_SCREEN_USE_SPRITE {T}/items/rifle/screen/2.bmp:{T}/items/rifle/screen/3.bmp",
         f"Q_ICON_SPRITE {T}/items/rifle/icon.bmp",
@@ -607,13 +524,13 @@ ENEMY_WEAPONS = {
     "X": [
         "X_TYPE WEAPON",
         f"X_CANT_USE_SOUND {S}/empty.mp3",
-        "X_DAMAGE 15",
+        "X_DAMAGE 11",
         "X_AMMO_USAGE 1",
         "X_NAME Pistola do comissario",
         f"X_USE_SOUND {S}/sentinel-fire.mp3",
         "X_USE_SOUND_VOLUME 0.5",
         "X_DESCRIPTION Pistola do comissario invasor",
-        "X_USE_DELAY 1.1",
+        "X_USE_DELAY 1.25",
         f"X_SCREEN_SPRITE {T}/items/rifle/screen/0.bmp",
         f"X_SCREEN_USE_SPRITE {T}/items/rifle/screen/2.bmp:{T}/items/rifle/screen/3.bmp",
         f"X_ICON_SPRITE {T}/items/rifle/icon.bmp",
@@ -636,11 +553,69 @@ STRINGS = {
     "M": ("FBP m/948", "Pistola-metralhadora portuguesa, boa a media distancia"),
 }
 
-NEW_IDS = "LRQXqrABFOJp^&<T"
+NEW_IDS = "LRQXqrABFOJp^&<T3456DV>"
+# chaves que este script acrescenta a definições escritas à mão
+EXTRA_KEYS = ("n_KEY ", "n_LOCKED_TEXT ", "n_ON_SPRITE ", "y_ON_SPRITE ", "LOCKED_SOUND", "LEVER_SOUND")
+# dificuldade (mais vida nos itens, menos dano do inimigo, mais balas)
+OVERRIDES = {"Y_DAMAGE": "7", "Y_USE_DELAY": "0.9", "U_HEALTH": "15", "I_HEALTH": "30", "Z_AMMO": "12"}
+MIN_AMMO = 24
+
+# puzzles de cada nível: (chave, documento, porta trancada, textos)
+PUZZLES = {
+    "1": {
+        "key": ("Chave do arsenal", "key-arsenal"),
+        "doc": ("Planos de defesa do Forte", "docs"),
+        "door": "door-arsenal",
+        "door_text": "Trancada. Falta a chave do arsenal.",
+        "gate_text": "O portão abre pela alavanca do arsenal.",
+        "exit_text": "Ainda não tem os planos do Forte.",
+    },
+    "2": {
+        "key": ("Chave do paiol", "key-paiol"),
+        "doc": ("Cargas de demolição", "charges"),
+        "door": "door-paiol",
+        "door_text": "Trancado. Falta a chave do paiol.",
+        "gate_text": "O portão abre pela alavanca da guarda.",
+        "exit_text": "Sem as cargas não fecha a porta do mar.",
+    },
+}
 
 
-def defs_for(variant, e_lines):
+def puzzle_defs(level):
+    z = PUZZLES[level]
     out = []
+    for drop, item, (name, art) in (("3", "5", z["key"]), ("4", "6", z["doc"])):
+        out += [
+            f"{drop}_TYPE DROP", f"{drop}_ITEM {item}", f"{drop}_AUTO_USE TRUE", f"{drop}_HARD FALSE", "",
+            f"{item}_TYPE COLLECTIBLE", f"{item}_NAME {name}", f"{item}_DESCRIPTION {name}",
+            f"{item}_SINGLE_USE TRUE", f"{item}_GIVES {item}",
+            f"{item}_USE_SOUND {S}/key.mp3", f"{item}_USE_SOUND_VOLUME 0.6",
+            f"{item}_ICON_SPRITE {T}/billboards/{art}.bmp",
+            f"{item}_ICON_USE_SPRITE {T}/hud/keys/{art}.bmp", "",
+        ]
+    out += [
+        "D_TYPE DOOR", "D_TARGETABLE TRUE", "D_AUTO_CLOSE_DELAY 8000.0", "D_ANIMATION_DELAY 1",
+        f"D_DOOR_SPRITE {T}/{z['door']}.bmp", f"D_SIDES_SPRITE {T}/door-frame.bmp", "D_DIRECTION WEST",
+        f"D_OPEN_SOUND {S}/door-open.mp3", "D_OPEN_SOUND_VOLUME 0.4",
+        f"D_CLOSE_SOUND {S}/door-close.mp3", "D_CLOSE_SOUND_VOLUME 0.4",
+        "D_KEY 5", f"D_LOCKED_TEXT {z['door_text']}", "",
+        "V_TYPE DOOR", "V_TARGETABLE TRUE", "V_ANIMATION_DELAY 2", "V_CLOSEABLE FALSE",
+        f"V_DOOR_SPRITE {T}/gate.bmp", f"V_SIDES_SPRITE {T}/door-frame.bmp", "V_DIRECTION NORTH",
+        f"V_OPEN_SOUND {S}/gate.mp3", "V_OPEN_SOUND_VOLUME 0.7",
+        "V_KEY >", "V_KEY_OPENS TRUE", f"V_LOCKED_TEXT {z['gate_text']}", "",
+        ">_TYPE ELEVATOR", ">_TARGETABLE TRUE", ">_GIVES >",
+    ] + [f">_{d} {T}/lever-gate-down.bmp" for d in ("NO", "SO", "WE", "EA")] + [
+        f">_ON_SPRITE {T}/lever-gate-up.bmp", "",
+        "n_KEY 6", f"n_LOCKED_TEXT {z['exit_text']}", f"n_ON_SPRITE {T}/lever-up.bmp",
+        f"y_ON_SPRITE {T}/lever-up.bmp",
+        f"LOCKED_SOUND {S}/locked.mp3", "LOCKED_SOUND_VOLUME 0.6",
+        f"LEVER_SOUND {S}/lever.mp3", "LEVER_SOUND_VOLUME 0.7", "",
+    ]
+    return out
+
+
+def defs_for(variant, e_lines, level):
+    out = puzzle_defs(level)
     if variant == "42":
         # na variante 42 os inimigos não disparam (a arma deles é um item
         # "still"); os novos fazem o mesmo
@@ -694,7 +669,7 @@ def defs_for(variant, e_lines):
     return out
 
 
-def rewrite(path, grid, variant):
+def rewrite(path, grid, variant, level):
     lines = open(path, encoding="utf-8").read().split("\n")
     while lines and not lines[-1].strip():
         lines.pop()
@@ -704,7 +679,13 @@ def rewrite(path, grid, variant):
     e_lines = block_for(head, "e")
     # tirar definições que este script gera (para poder correr várias vezes)
     head = [l for l in head if not any(l.startswith(c + "_") for c in NEW_IDS)]
-    head = [l for l in head if not l.startswith(story.PREFIXES)]
+    head = [l for l in head if not l.startswith(story.PREFIXES) and not l.startswith(EXTRA_KEYS)]
+    for i, l in enumerate(head):
+        k, _, v = l.partition(" ")
+        if k in OVERRIDES:
+            head[i] = f"{k} {OVERRIDES[k]}"
+        elif k == "AMMO" and v.isdigit() and int(v) < MIN_AMMO:
+            head[i] = f"AMMO {MIN_AMMO}"
     # textos
     for i, l in enumerate(head):
         m = re.match(r"^(.)_(NAME|DESCRIPTION) ", l)
@@ -713,7 +694,7 @@ def rewrite(path, grid, variant):
             head[i] = f"{m.group(1)}_{m.group(2)} {name if m.group(2) == 'NAME' else desc}"
     # inserir antes das cores F/C do chão e teto
     idx = next(i for i, l in enumerate(head) if re.match(r"^F\s+\d", l))
-    head = (head[:idx] + defs_for(variant, e_lines) + [""]
+    head = (head[:idx] + defs_for(variant, e_lines, level) + [""]
             + story.lines_for(os.path.basename(path), variant, grid) + [""] + head[idx:])
     s = "\n".join(head)
     s = re.sub(r"\n{3,}", "\n\n", s)
@@ -812,12 +793,73 @@ def validate(path, exit_char="n"):
             errs.append(f"exit {exit_char} at {ex},{ey} unreachable")
     if not exits:
         errs.append(f"no exit {exit_char}")
-    # objetos duros não podem tapar passagens de 1 célula
+    if any(k.startswith("OBJECTIVE_") for k in types):
+        order, why = solve(types, g, kind, start, exit_char)
+        print(f"   percurso: {' -> '.join(order)}")
+        if why:
+            errs.append(why)
     count = {}
     for c in used:
         count[c] = sum(r.count(c) for r in grid)
     enemies = {c: count[c] for c in used if ids.get(c) == "CHARACTER"}
     return errs, (W, H), enemies, len(players)
+
+
+def solve(types, g, kind, start, exit_char):
+    """Joga o puzzle no papel: anda só por onde o jogador pode (objetos duros
+    tapam, portas trancadas e portões só com a chave), apanha o que dá
+    chaves e puxa alavancas, até à saída. Devolve a ordem e o erro."""
+    H, W = len(g), len(g[0])
+    held = set()
+    order = []
+    def hard(x, y):
+        c = g[y][x]
+        k = kind(x, y)
+        if k in ("WALL", "ELEVATOR", "OUT", "UNDEF"):
+            return True
+        if k == "BILLBOARD":
+            return types.get(f"{c}_HARD", "TRUE") != "FALSE"
+        if k == "DOOR":
+            key = types.get(f"{c}_KEY")
+            return bool(key) and key not in held
+        return False
+    def gives_drop(c):
+        item = types.get(f"{c}_ITEM")
+        return types.get(f"{item}_GIVES") if item else None
+    objectives = [types[f"OBJECTIVE_{i}_DONE"] for i in range(1, 9) if f"OBJECTIVE_{i}_DONE" in types]
+    for _ in range(20):
+        seen = {start}
+        q = deque([start])
+        while q:
+            x, y = q.popleft()
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                nx, ny = x + dx, y + dy
+                if (nx, ny) in seen or hard(nx, ny):
+                    continue
+                seen.add((nx, ny))
+                q.append((nx, ny))
+        got = False
+        for y in range(H):
+            for x in range(W):
+                c = g[y][x]
+                k = kind(x, y)
+                near = any((x + dx, y + dy) in seen for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+                if k == "DROP" and (x, y) in seen and gives_drop(c) and gives_drop(c) not in held:
+                    held.add(gives_drop(c))
+                    order.append(f"{gives_drop(c)}@{x},{y}")
+                    got = True
+                elif k == "ELEVATOR" and near and types.get(f"{c}_GIVES") and types[f"{c}_GIVES"] not in held \
+                        and types.get(f"{c}_KEY", "") in held | {""}:
+                    held.add(types[f"{c}_GIVES"])
+                    order.append(f"{types[f'{c}_GIVES']}@{x},{y}")
+                    got = True
+                elif c == exit_char and k == "ELEVATOR" and near and types.get(f"{c}_KEY", "") in held | {""}:
+                    missing = [o for o in objectives if o not in held]
+                    order.append(f"saída@{x},{y}")
+                    return order, (f"objectives not done at exit: {missing}" if missing else None)
+        if not got:
+            break
+    return order, f"exit {exit_char} unreachable with {sorted(held)}"
 
 
 CAMPAIGN = {
@@ -836,7 +878,7 @@ def main():
             grid = g1 if which == "1" else g2
             if variant == "mega":
                 grid = grid.replace("y", "f")
-            rewrite(os.path.join(MAPS, name), grid, variant)
+            rewrite(os.path.join(MAPS, name), grid, variant, which)
     ok = True
     for name in list(CAMPAIGN) + ["hub.cub"]:
         errs, size, enemies, np_ = validate(os.path.join(MAPS, name), "a" if name == "hub.cub" else "n")

@@ -11,7 +11,7 @@ MAX_HEALTH 100
 0_INVENTORY P
 1_INVENTORY K
 DROP_ITEMS TRUE
-AMMO 8
+AMMO 24
 
 FRIENDLY_FIRE FALSE
 
@@ -376,7 +376,7 @@ $_STILL_SPRITE assets/oms3d/textures/billboards/plant-gold.bmp
 %_STILL_SPRITE assets/oms3d/textures/billboards/barrel-toxic.bmp
 
 U_TYPE COLLECTIBLE
-U_HEALTH 10
+U_HEALTH 15
 U_NAME Racao de combate
 U_SINGLE_USE TRUE
 U_USE_SOUND assets/oms3d/sounds/heal1.mp3
@@ -384,7 +384,7 @@ U_DESCRIPTION Racao de combate e pao com chourico
 U_ICON_SPRITE assets/oms3d/textures/billboards/food.bmp
 
 Z_TYPE COLLECTIBLE
-Z_AMMO 10
+Z_AMMO 12
 Z_NAME Municoes
 Z_SINGLE_USE TRUE
 Z_USE_SOUND assets/oms3d/sounds/get-ammo.mp3
@@ -416,7 +416,7 @@ z_ICON_SPRITE assets/oms3d/textures/billboards/gem.bmp
 7_ICON_SPRITE assets/oms3d/textures/billboards/treasure.bmp
 
 I_TYPE COLLECTIBLE
-I_HEALTH 25
+I_HEALTH 30
 I_NAME Primeiros socorros
 I_SINGLE_USE TRUE
 I_USE_SOUND assets/oms3d/sounds/heal2.mp3
@@ -425,13 +425,13 @@ I_ICON_SPRITE assets/oms3d/textures/billboards/medkit.bmp
 
 Y_TYPE WEAPON
 Y_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
-Y_DAMAGE 10
+Y_DAMAGE 7
 Y_AMMO_USAGE 1
 Y_NAME Espingarda do invasor
 Y_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 Y_USE_SOUND_VOLUME 0.5
 Y_DESCRIPTION Espingarda de assalto do atirador invasor
-Y_USE_DELAY 0.8
+Y_USE_DELAY 0.9
 Y_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 Y_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
 Y_SCREEN_USE_SPRITE_UPDATE_DELAY 0.4
@@ -723,6 +723,81 @@ n_SO assets/oms3d/textures/lever-down.bmp
 n_WE assets/oms3d/textures/lever-down.bmp
 n_EA assets/oms3d/textures/lever-down.bmp
 
+3_TYPE DROP
+3_ITEM 5
+3_AUTO_USE TRUE
+3_HARD FALSE
+
+5_TYPE COLLECTIBLE
+5_NAME Chave do paiol
+5_DESCRIPTION Chave do paiol
+5_SINGLE_USE TRUE
+5_GIVES 5
+5_USE_SOUND assets/oms3d/sounds/key.mp3
+5_USE_SOUND_VOLUME 0.6
+5_ICON_SPRITE assets/oms3d/textures/billboards/key-paiol.bmp
+5_ICON_USE_SPRITE assets/oms3d/textures/hud/keys/key-paiol.bmp
+
+4_TYPE DROP
+4_ITEM 6
+4_AUTO_USE TRUE
+4_HARD FALSE
+
+6_TYPE COLLECTIBLE
+6_NAME Cargas de demolição
+6_DESCRIPTION Cargas de demolição
+6_SINGLE_USE TRUE
+6_GIVES 6
+6_USE_SOUND assets/oms3d/sounds/key.mp3
+6_USE_SOUND_VOLUME 0.6
+6_ICON_SPRITE assets/oms3d/textures/billboards/charges.bmp
+6_ICON_USE_SPRITE assets/oms3d/textures/hud/keys/charges.bmp
+
+D_TYPE DOOR
+D_TARGETABLE TRUE
+D_AUTO_CLOSE_DELAY 8000.0
+D_ANIMATION_DELAY 1
+D_DOOR_SPRITE assets/oms3d/textures/door-paiol.bmp
+D_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+D_DIRECTION WEST
+D_OPEN_SOUND assets/oms3d/sounds/door-open.mp3
+D_OPEN_SOUND_VOLUME 0.4
+D_CLOSE_SOUND assets/oms3d/sounds/door-close.mp3
+D_CLOSE_SOUND_VOLUME 0.4
+D_KEY 5
+D_LOCKED_TEXT Trancado. Falta a chave do paiol.
+
+V_TYPE DOOR
+V_TARGETABLE TRUE
+V_ANIMATION_DELAY 2
+V_CLOSEABLE FALSE
+V_DOOR_SPRITE assets/oms3d/textures/gate.bmp
+V_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+V_DIRECTION NORTH
+V_OPEN_SOUND assets/oms3d/sounds/gate.mp3
+V_OPEN_SOUND_VOLUME 0.7
+V_KEY >
+V_KEY_OPENS TRUE
+V_LOCKED_TEXT O portão abre pela alavanca da guarda.
+
+>_TYPE ELEVATOR
+>_TARGETABLE TRUE
+>_GIVES >
+>_NO assets/oms3d/textures/lever-gate-down.bmp
+>_SO assets/oms3d/textures/lever-gate-down.bmp
+>_WE assets/oms3d/textures/lever-gate-down.bmp
+>_EA assets/oms3d/textures/lever-gate-down.bmp
+>_ON_SPRITE assets/oms3d/textures/lever-gate-up.bmp
+
+n_KEY 6
+n_LOCKED_TEXT Sem as cargas não fecha a porta do mar.
+n_ON_SPRITE assets/oms3d/textures/lever-up.bmp
+y_ON_SPRITE assets/oms3d/textures/lever-up.bmp
+LOCKED_SOUND assets/oms3d/sounds/locked.mp3
+LOCKED_SOUND_VOLUME 0.6
+LEVER_SOUND assets/oms3d/sounds/lever.mp3
+LEVER_SOUND_VOLUME 0.7
+
 L_TYPE CHARACTER
 L_MAX_HEALTH 150
 L_SCORE 200
@@ -829,26 +904,26 @@ R_DROP_ITEMS TRUE
 
 Q_TYPE WEAPON
 Q_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
-Q_DAMAGE 7
+Q_DAMAGE 5
 Q_AMMO_USAGE 1
 Q_NAME Pistola-metralhadora do invasor
 Q_USE_SOUND assets/oms3d/sounds/rifle.mp3
 Q_USE_SOUND_VOLUME 0.4
 Q_DESCRIPTION Pistola-metralhadora de tambor do soldado invasor
-Q_USE_DELAY 0.35
+Q_USE_DELAY 0.45
 Q_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 Q_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
 Q_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
 
 X_TYPE WEAPON
 X_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
-X_DAMAGE 15
+X_DAMAGE 11
 X_AMMO_USAGE 1
 X_NAME Pistola do comissario
 X_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 X_USE_SOUND_VOLUME 0.5
 X_DESCRIPTION Pistola do comissario invasor
-X_USE_DELAY 1.1
+X_USE_DELAY 1.25
 X_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 X_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
 X_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
@@ -929,7 +1004,7 @@ BRIEFING_SOUND_VOLUME 0.4
 BRIEFING_SOUND_LOOP TRUE
 BRIEFING_SPRITE assets/oms3d/story/briefing-2.bmp
 BRIEFING_TITLE DEFESA DO FORTE
-BRIEFING_TEXT O Forte é a última porta da cidade.|O inimigo desembarca na gruta do mar.|Feche-lhes a passagem, Sargento. A madrugada está perto.
+BRIEFING_TEXT O Forte é a última porta da cidade.|O portão do pátio abre pela alavanca da guarda.|No paiol estão as cargas de demolição.|Leve-as à gruta do mar e feche-lhes a porta, Sargento.
 ENDING_1_SPRITE assets/oms3d/story/ending-1.bmp
 ENDING_1_TEXT Madrugada. Os barcos inimigos fogem para o mar alto.|A bandeira continua no alto do Forte.
 ENDING_2_SPRITE assets/oms3d/story/ending-2.bmp
@@ -938,78 +1013,79 @@ ENDING_SOUND assets/oms3d/sounds/music/a-portuguesa.mp3
 ENDING_SOUND_VOLUME 0.5
 ENDING_SOUND_LOOP TRUE
 RADIO_PORTRAIT_SPRITE assets/oms3d/story/radio-major.bmp
-RADIO_1_TEXT Bem-vindo ao Forte, Sargento. A portaria é sua.
-RADIO_2_TEXT Soldados com pistolas-metralhadoras! Fique abrigado!
-RADIO_2_SEE L
-RADIO_3_TEXT Comissário à vista! Sem ele, eles desorganizam-se.
-RADIO_3_SEE R
-RADIO_4_TEXT O armeiro do Forte! A G3 está aí, use-a.
-RADIO_4_AT 61 51
-RADIO_5_TEXT A gruta do mar é já ali. Feche-lhes a entrada!
-RADIO_5_AT 9 27
-RADIO_6_TEXT Silva, está a perder sangue! Socorros, já!
-RADIO_6_HEALTH 30
+RADIO_1_TEXT Bem-vindo ao Forte. A alavanca do portão é na guarda.
+RADIO_2_TEXT Fechado! A alavanca fica no corpo da guarda.
+RADIO_2_AT 22 30
+RADIO_2_UNLESS >
+RADIO_3_TEXT Portão aberto! A chave do paiol está na caserna.
+RADIO_3_GOT >
+RADIO_4_TEXT O paiol está trancado. A chave está na caserna.
+RADIO_4_AT 28 24
+RADIO_4_UNLESS 5
+RADIO_5_TEXT Tem a chave! O paiol é a porta vermelha, a leste.
+RADIO_5_GOT 5
+RADIO_6_TEXT As cargas! Siga pelo túnel até à porta do mar.
+RADIO_6_GOT 6
+RADIO_7_TEXT Soldados com pistolas-metralhadoras! Fique abrigado!
+RADIO_7_SEE L
+RADIO_8_TEXT Comissário à vista! Sem ele, eles desorganizam-se.
+RADIO_8_SEE R
+RADIO_9_TEXT O armeiro do Forte! A G3 está aí, use-a.
+RADIO_9_AT 30 22
+RADIO_10_TEXT A gruta do mar é já ali. Feche-lhes a entrada!
+RADIO_10_AT 39 3
+RADIO_11_TEXT Silva, está a perder sangue! Socorros, já!
+RADIO_11_HEALTH 30
+OBJECTIVE_1_TEXT Abra o portão: alavanca da guarda
+OBJECTIVE_1_DONE >
+OBJECTIVE_2_TEXT Encontre a chave do paiol
+OBJECTIVE_2_DONE 5
+OBJECTIVE_3_TEXT Recolha as cargas no paiol
+OBJECTIVE_3_DONE 6
+OBJECTIVE_4_TEXT Feche a porta do mar, na gruta
 
 F 100, 100, 100
 C 50, 50, 50
 
-OOOOOOOOOOOOOOOOOOOO      ffffffkffffff     jjjjjjAjjjjjjAjjjjjj
-OOOOOOOOOOOOOOOOOOOO      f    (((    f     j#                #j
-OOO        OOOOOOOOO      f  *     *  f     j                  j
-OOO        OOOOOOOOO      f)         }f     j                  j
-OOO   dO   OOOOOOOOOffffifffJffftfffJfffiffff  ~   ~   ~   ~   j
-OOO   OO   OOOOOOOOOf         !   !         f                  q
-OOO        OOOOOOOOOf L     #       #       i                  j
-OOO (      OOOOOOOOOq           )           f           L      j
-OO    OOO     OOOOOOf    ^             ^    f   L              j
-OO    OOO     OOOOOOf           /           f ]               %j
-OO    OOO           f                       v    ,       ,    %j
-OO    OOO        =  f         L             f                  j
-OO    OOO           v    ^             ^    f     L         L  j
-OO    OOO  d        f                       f                  j
-OO  L OOO           f               L       f                  q
-OO    OOO     OOOOOOf           /           f  -   -   -   -   j
-OO    OOO     OOOOOOf    ^             ^    q             d    j
-OO:   OOOOOOOOOOOOOOi                       f         L        j
-OO    OOOOOOOOOOOOOOf                     e f'               ; j
-OO                OOf                       f                  j
-OO       e        OOffffkfifffffwfffffifkffffjjjjjjjjlhjjjjjjjjj
-OO              ; OOf                       f                 @F
-OOOOOOOOOOO       OOf                    '' f  R               F
-OOOOOOOOOOO   OO  OOf  ?                  ' f               R  F
-OOO      OO   OO  OOf           d           f     ~      ~     r
-OOO      OO (  L  OOi                       f                  F
-OOn      u        OOf     ^           ^     v         e        F
-OOO      OO       OOf                       f     ,       ,    F
-OOO      OOOOOOOOOOOf           ,           f                  F
-OOOOOOOOOOOOOOOOOOOOf                       f         -        F
-FFFFFFFFFFqFFFFFFFFFf ;     L               f                  r
-F     F       F&    f                       i    R         R   F
-F &   b       F  *  f     ,     \     ,     f                  F
-F     v   ,   x     f   R                   f;                }F
-F : = b       F | ) f               L       fFFFqFFFFFhFFFFFFFFF
-F     F       F     f                       f                ''f
-FFFFFFF  e    FFFFFkf           ,           f ;               'f
-F     b             f                       f               ;  f
-F &   v             f     ^           ^     f    ~     ~  ,    f
-F   = b   ,         i                       i                  f
-F     F             f         d             f       :          i
-FFFFFFF     R       f                   R   f              L   f
-F     b             f %%                  : f    ~     ~       f
-F &   v           @ f                       f                  f
-F (   c         -   ffffffqfffffhfffffqffffff R     ,     :    f
-F     F   ,         f#                     #r                  f
-FFFFFFF d           f   R               R   f    ~     ~       f
-F     b             f                       f                  i
-F   & b          e  v     ,  @  -     ,     v            e     f
-F     v             f                       f       L          f
-F }   c   ,         f       e      R        f                2 f
-F     b            ;r                     ; f}                %f
-FFFFFFFFFFrFFFFFrFFFffffJfffffffhfffffffJfffffffffffffffffffffff
-                          f           f
-                          f :         f
-                          f     ,     f
-                          f           f
-                          f     N     f
-                          f           f
-                          fpppppppppppf
+                             OOOOOOOOOOOOOOOOO
+                             OOOOp  e  OOOOOOO
+                   fffkfff   OOOOn     u  OOOO
+                   f * * f   OOOOp     O  OOOO
+                   f  }  f   OOOOOOOOOOO     O
+                   f(   (f   OOOOOOOOOOO L  }O
+                   f     f   OOOOOOOOOOO     O
+                 fffiftfifff OOOOOOOOOOO     O
+                 f# !   ! #f OOOOOOOOOOO  O  O
+                 f   )     f O=      OOO  O  O
+                 J ^  /  ^ J O     d OOO   e O
+                 f         f O   O   OOO     O
+                 f  e    L f O   O           O
+                 f         f O :            ;O
+                 J ^  /  ^ J O       OOO     O
+                 f         f OOO OOOOOOOOOOOOO
+      jjjAjjjAjjjf;       :f OOO OOOOOOOOOOOOO
+      j;      3 fffkffhffkfffOOO OOOOOOOOOOOOO
+      j         f          :iOOO OOOOOOOOOOOOO
+      j -   -   i e       L fFFFhFFFF
+      j         f           f      %F
+      m  e      f  "     "  f 2   L F
+      j      L  v           f       F
+      j -   -   f     #     D   ,   c
+      j         f           f       F
+      j'       :f   d       f     4 F
+      jjjjjjjjjji  "     "  f''  ; %F
+                f         e fFcFFFcFF
+        FFFFFFFFf;         FiFFlFFFF
+        F}  b    fffifVfifff       r
+        F & v  d q@-      ;q  ~ L  F
+        r   b    f       e f       F
+        FFFFF  , v         v   ,   >
+        F  (b    f R       f       F
+        F   v e  f#       #q ] ~   F
+        F;  b    ffJffhffJff e    :F
+        FFFFFFtFFF f     f FFFFqFFFF
+           F    )F f  ,  f
+           F *   F f     f
+           F   * F f  N  f
+           F}    F f:    f
+           FFFFFFF fpppppf
