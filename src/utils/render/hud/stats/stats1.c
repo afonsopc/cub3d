@@ -12,89 +12,77 @@
 
 #include "stats.h"
 
+/*
+** The status bar art (scripts/oms_art/hud.py) is 640 units wide; each value
+** is drawn centred in its own box, below the label, and shrunk when the
+** text would not fit (big scores, health on maps with a huge MAX_HEALTH).
+*/
+static void	draw_in_box(t_game *game, t_ftm_image *canvas, char *text,
+	t_hud_box box)
+{
+	t_ftm_text_config	cfg;
+	double				u;
+	int					w;
+	int					maxw;
+
+	u = box.stats_size.width / 640.0;
+	cfg = (t_ftm_text_config){text, (t_coords){0, 0, 0},
+		box.stats_size.width * 0.04, box.stats_size.width * 0.008,
+		0xCFFFFFFF};
+	maxw = (box.x1 - box.x0 - 10) * u;
+	w = ftm_get_text_size_prediction(game->hud.stats_font, cfg);
+	while (w > maxw && cfg.height > 6)
+	{
+		cfg.height = cfg.height * 0.9;
+		cfg.spacing = cfg.height / 5;
+		w = ftm_get_text_size_prediction(game->hud.stats_font, cfg);
+	}
+	cfg.coords.x = (box.x0 + box.x1) / 2.0 * u - (w - cfg.spacing) / 2.0;
+	cfg.coords.y = canvas->size.height - box.stats_size.height
+		+ box.stats_size.height * (49.0 / 80.0) - cfg.height / 2.0;
+	ftm_draw_text(canvas, game->hud.stats_font, cfg);
+}
+
 void	render_score_text(t_game *game, t_ftm_image *canvas,
 	t_character *character, t_size stats_size)
 {
-	t_coords	text_pos;
-	char		*score_text;
-	double		score_scaler;
+	char	*text;
 
-	score_text = ft_strf("%d", character->score);
-	score_scaler = 4.85;
 	if (character->score > 99999)
 		character->score = 99999;
-	if (ft_strlen(score_text) == 3)
-		score_scaler = 5.25;
-	if (ft_strlen(score_text) == 4)
-		score_scaler = 5.45;
-	if (ft_strlen(score_text) == 5)
-		score_scaler = 5.65;
-	text_pos = (t_coords){stats_size.width / score_scaler,
-		canvas->size.height - stats_size.height * 0.5, 0};
-	ftm_draw_text(canvas, game->hud.stats_font,
-		(t_ftm_text_config){
-		.text = score_text,
-		.coords = text_pos,
-		.height = stats_size.width * 0.04,
-		.spacing = stats_size.width * 0.008,
-		.color = 0xCFFFFFFF
-	});
-	free(score_text);
+	text = ft_strf("%d", character->score);
+	draw_in_box(game, canvas, text, (t_hud_box){84, 196, stats_size});
+	free(text);
 }
 
 void	render_ammo_text(t_game *game, t_ftm_image *canvas,
 	t_character *character, t_size stats_size)
 {
-	t_coords	text_pos;
-	char		*ammo_text;
-	double		ammo_scaler;
+	char	*text;
 
 	if (character->ammo > 999)
-		ammo_text = ft_strdup("999");
+		text = ft_strdup("999");
 	else
-		ammo_text = ft_strf("%d", character->ammo);
-	ammo_scaler = 1.47;
-	if (ft_strlen(ammo_text) == 3)
-		ammo_scaler = 1.50;
-	if (ft_strlen(ammo_text) == 2)
-		ammo_scaler = 1.48;
-	text_pos = (t_coords){stats_size.width / ammo_scaler,
-		canvas->size.height - stats_size.height * 0.5, 0};
-	ftm_draw_text(canvas, game->hud.stats_font,
-		(t_ftm_text_config){
-		.text = ammo_text,
-		.coords = text_pos,
-		.height = stats_size.width * 0.04,
-		.spacing = stats_size.width * 0.008,
-		.color = 0xCFFFFFFF
-	});
-	free(ammo_text);
+		text = ft_strf("%d", character->ammo);
+	draw_in_box(game, canvas, text, (t_hud_box){410, 480, stats_size});
+	free(text);
 }
 
+/* health as a percentage of the maximum, like the classic status bars */
 void	render_health_text(t_game *game, t_ftm_image *canvas,
 	t_character *character, t_size stats_size)
 {
-	t_coords			text_pos;
-	char				*health_text;
-	double				health_scaler;
+	char	*text;
+	int		hp;
+	int		max;
 
-	health_text = ft_strf("%d%%", character->billboard.entity.health);
-	health_scaler = 1.88;
-	if (ft_strlen(health_text) == 3)
-		health_scaler = 1.81;
-	if (ft_strlen(health_text) == 2)
-		health_scaler = 1.78;
-	text_pos = (t_coords){stats_size.width / health_scaler,
-		canvas->size.height - stats_size.height * 0.5, 0};
-	ftm_draw_text(canvas, game->hud.stats_font,
-		(t_ftm_text_config){
-		.text = health_text,
-		.coords = text_pos,
-		.height = stats_size.width * 0.04,
-		.spacing = stats_size.width * 0.008,
-		.color = 0xCFFFFFFF
-	});
-	free(health_text);
+	hp = character->billboard.entity.health;
+	max = character->billboard.entity.max_health;
+	if (max > 0 && max != 100)
+		hp = (int)((long long)hp * 100 / max + (hp > 0 && hp * 100LL < max));
+	text = ft_strf("%d%%", hp);
+	draw_in_box(game, canvas, text, (t_hud_box){334, 406, stats_size});
+	free(text);
 }
 
 t_size	get_hand_item_size(t_ftm_image *image, double max_w,

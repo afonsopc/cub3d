@@ -15,6 +15,13 @@
 
 # include "../hud.h"
 
+typedef struct s_hud_box
+{
+	int		x0;
+	int		x1;
+	t_size	stats_size;
+}	t_hud_box;
+
 void	render_score_text(t_game *game, t_ftm_image *canvas,
 			t_character *character, t_size stats_size);
 void	render_ammo_text(t_game *game, t_ftm_image *canvas,
