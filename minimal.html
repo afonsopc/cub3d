@@ -472,8 +472,68 @@
     <script type="text/javascript">
       let gameStarted = false;
       const canvas = document.getElementById("canvas");
+      // Touch controls never cover the game: the window is split between the
+      // canvas and the controls. Either a panel under the game (portrait:
+      // a row of buttons above the two joysticks) or a column on each side
+      // (landscape), whichever leaves the game bigger.
+      const canvasSize = () => {
+        const w = canvas.width, h = canvas.height;
+        if (!w || !h || (w === 300 && h === 150)) return { w: 640, h: 480 };
+        return { w, h };
+      };
+      const placeTouchControls = () => {
+        if (!isMobile) return null;
+        const W = window.innerWidth, H = window.innerHeight;
+        const { w: cw, h: ch } = canvasSize();
+        const m = 12, g = 8;
+        const J = Math.round(Math.max(88, Math.min(120, Math.min(W, H) * 0.3)));
+        const B = Math.round(J * 0.47);
+        const panel = m + B + g + J + m;
+        const column = m + J + m;
+        const below = Math.min(W / cw, (H - panel) / ch);
+        const sides = H >= m + 2 * B + 2 * g + J + m ? Math.min((W - 2 * column) / cw, H / ch) : 0;
+        const left = document.getElementById("leftJoystick");
+        const right = document.getElementById("rightJoystick");
+        const buttons = document.querySelector(".action-buttons");
+        const put = (el, x, y) => {
+          el.style.left = x + "px";
+          el.style.top = y + "px";
+          el.style.right = "auto";
+          el.style.bottom = "auto";
+        };
+        for (const j of [left, right]) j.style.width = j.style.height = J + "px";
+        for (const b of document.querySelectorAll(".action-btn")) b.style.width = b.style.height = B + "px";
+        buttons.style.gap = g + "px";
+        buttons.style.flexDirection = "row";
+        put(left, m, H - m - J);
+        put(right, W - m - J, H - m - J);
+        if (below >= sides) {
+          const s = Math.max(below, 0.05);
+          buttons.style.flexWrap = "nowrap";
+          buttons.style.width = 4 * B + 3 * g + "px";
+          put(buttons, (W - (4 * B + 3 * g)) / 2, H - panel + m);
+          return { x: (W - cw * s) / 2, y: Math.max(0, (H - panel - ch * s) / 2), s };
+        }
+        buttons.style.flexWrap = "wrap";
+        buttons.style.width = 2 * B + g + "px";
+        put(buttons, W - column + m + (J - (2 * B + g)) / 2, m);
+        return { x: (W - cw * sides) / 2, y: (H - ch * sides) / 2, s: sides };
+      };
       const strechCanvasToWindow = () => {
-        if (!gameStarted) return;
+        const touch = placeTouchControls();
+        // Never scale the canvas before SDL has sized it: SDL reads the scaled
+        // (CSS) size while creating its window, takes the canvas as sized from
+        // outside and shrinks it to 0x0.
+        const w = canvas.width, h = canvas.height;
+        if (!gameStarted || w < 2 || h < 2 || (w === 300 && h === 150)) return;
+        if (touch) {
+          canvas.style.position = "absolute";
+          canvas.style.transformOrigin = "0 0";
+          canvas.style.left = touch.x + "px";
+          canvas.style.top = touch.y + "px";
+          canvas.style.transform = `scale(${touch.s})`;
+          return;
+        }
 
         console.log("Resizing canvas to fit window");
         const canvasWidth = canvas.width || 640;
@@ -489,6 +549,9 @@
         canvas.style.position = "absolute";
       };
 
+      // The canvas changes size when the game starts (and per level).
+      if (window.ResizeObserver) new ResizeObserver(() => strechCanvasToWindow()).observe(canvas);
+      document.addEventListener("DOMContentLoaded", strechCanvasToWindow);
       window.addEventListener("resize", strechCanvasToWindow);
       window.addEventListener("orientationchange", strechCanvasToWindow);
       window.addEventListener("load", strechCanvasToWindow);
