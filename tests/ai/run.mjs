@@ -108,12 +108,12 @@ function check(name, ok, detail) {
 // 6. puzzle com teclas: portão fechado, porta trancada, alavanca, chave, documentos
 {
   const log = await play("puzzle", [
-    ["e", 80], ["wait", 600],                 // portão: recusa
-    ["ArrowLeft", 1000], ["wait", 900], ["e", 80], ["wait", 600], ["ArrowLeft", 1000], // porta trancada: recusa
-    ["ArrowLeft", 500], ["w", 500], ["e", 80], ["wait", 2600], // alavanca a oeste
+    ["e", 80], ["wait", 600],                                // portão: recusa
+    ["ArrowRight", 500], ["w", 500], ["e", 80], ["wait", 600], // porta trancada a leste: recusa
+    ["s", 500], ["ArrowLeft", 1000], ["w", 500], ["e", 80], ["wait", 2600], // alavanca a oeste
     ["s", 500], ["ArrowRight", 500], ["w", 1150], ["wait", 300], // pelo portão até à chave
-    ["ArrowRight", 1000], ["w", 1500],        // volta até à porta trancada
-    ["e", 80], ["wait", 1300], ["w", 700],    // abre-a com a chave: documentos
+    ["ArrowRight", 1000], ["w", 1150], ["ArrowLeft", 500],   // volta e vira para a porta
+    ["w", 600], ["e", 80], ["wait", 1300], ["w", 700],       // abre-a com a chave: documentos
   ], 1500);
   check("portão fechado recusa sem a alavanca", has(log, /^STORY toast O port/));
   check("porta trancada recusa sem a chave", has(log, /^STORY toast Trancada/));

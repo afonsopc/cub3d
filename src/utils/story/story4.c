@@ -110,7 +110,7 @@ static void	draw_strip(t_ftm_image *c, t_coords o, int h, char *text)
 	pad = h / 4;
 	w = story_text_w(cub3d()->game->hud.action_font, text, h);
 	ftm_draw_rectangle(c, (t_coords){o.x - pad, o.y - pad, 0},
-		(t_size){w + pad * 2, h + pad * 2}, (t_ftm_rectangle){0xC0101418,
+		(t_size){w + pad * 3, h + pad * 2}, (t_ftm_rectangle){0xC0101418,
 		0xFFE8C860, (t_size){2, 2}});
 }
 
@@ -146,16 +146,18 @@ static void	render_toast(t_game *game, t_ftm_image *c)
 	t_keyring	*kr;
 	int			h;
 	int			w;
+	int			pad;
 
 	kr = &game->keyring;
 	if (!kr->toast[0] || ft_get_time() - kr->toast_at > 2600)
 		return ;
 	h = story_snap_h(c->size.height * 0.036);
+	pad = h / 4;
 	w = story_text_w(game->hud.action_font, kr->toast, h);
-	draw_strip(c, (t_coords){c->size.width / 2 - w / 2,
-		c->size.height * 0.40, 0}, h, kr->toast);
+	draw_strip(c, (t_coords){c->size.width / 2 - w / 2 - pad / 2,
+		c->size.height * 0.29, 0}, h, kr->toast);
 	story_text_at(c, game->hud.action_font, (t_ftm_text_config){kr->toast,
-		{c->size.width / 2, c->size.height * 0.40, 0}, h, 0, 0xFFF2EEDC},
+		{c->size.width / 2, c->size.height * 0.29, 0}, h, 0, 0xFFF2EEDC},
 		true);
 }
 

@@ -50,15 +50,13 @@ GRIDS = {
     # puzzle (jogado com teclas): o portão V só abre pela alavanca >, a
     # porta D só com a chave 3, e atrás dela estão os documentos 4
     "puzzle": [
-        "fffffffff",
-        "f   3   f",
-        "f       f",
-        "ffffVffff",
-        "f       f",
-        ">   N   f",
-        "ffffDffff",
-        "f   4   f",
-        "fffffffff",
+        "fffffffffff",
+        "f   3   fff",
+        "f       fff",
+        "ffffVffffff",
+        "f       fff",
+        ">   N   D4f",
+        "fffffffffff",
     ],
     # quatro guardas e um cão contornam colunas até ao jogador
     "crowd": [

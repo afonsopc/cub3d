@@ -1009,12 +1009,10 @@ T_OPEN_SOUND_VOLUME 0.8
 F 100, 100, 100
 C 50, 50, 50
 
-fffffffff
-f   3   f
-f       f
-ffffVffff
-f       f
->   N   f
-ffffDffff
-f   4   f
-fffffffff
+fffffffffff
+f   3   fff
+f       fff
+ffffVffffff
+f       fff
+>   N   D4f
+fffffffffff
