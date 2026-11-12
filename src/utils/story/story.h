@@ -37,8 +37,10 @@
 # define STORY_RADIO_MIN_MS 3500
 # define STORY_RADIO_PER_CHAR_MS 55
 # define STORY_TRIGGER_RADIUS 1.1
-/* the VGA font glyphs are 16 px wide boxes; pull the letters together */
-# define STORY_SPACING -0.42
+/* VGA font glyphs are 16x16 boxes: draw them at whole multiples only (crisp
+** pixels) and pull the letters together by 6 font pixels */
+# define STORY_GLYPH 16
+# define STORY_GLYPH_TRIM 6
 
 typedef struct s_story_box
 {
@@ -62,6 +64,8 @@ int			story_draw_block(t_ftm_image *canvas, t_ftm_font *font, char *text,
 				t_story_box box);
 int			story_visible_chars(t_story *st);
 int			story_text_len(char *text);
+int			story_snap_h(double h);
+int			story_text_w(t_ftm_font *font, char *s, int h);
 void		story_draw_panel(t_ftm_image *canvas, t_sprite *sprite);
 void		story_text_at(t_ftm_image *canvas, t_ftm_font *font,
 				t_ftm_text_config cfg, bool centered);

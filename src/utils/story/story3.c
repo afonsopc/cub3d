@@ -101,18 +101,33 @@ static int	pct(int a, int b)
 	return (a * 100 / b);
 }
 
-static void	row(t_game *game, t_ftm_image *c, int i, char *label, char *value)
+/* label on the left, count right-aligned, percentage in its own column */
+static void	row(t_game *game, t_ftm_image *c, int i, char *cols[3])
 {
-	int	h;
-	int	y;
+	t_ftm_font	*f;
+	int			h;
+	int			y;
 
-	h = c->size.height * 0.05;
-	y = c->size.height * (0.36 + 0.09 * i);
-	story_text_at(c, game->hud.action_font, (t_ftm_text_config){label,
-		{c->size.width * 0.18, y, 0}, h, 0, 0xFFE8C860}, false);
-	story_text_at(c, game->hud.action_font, (t_ftm_text_config){value,
-		{c->size.width * 0.58, y, 0}, h, 0, 0xFFF2EEDC}, false);
-	free(value);
+	f = game->hud.action_font;
+	h = story_snap_h(c->size.height * 0.042);
+	y = c->size.height * 0.40 + i * h * 1.9;
+	story_text_at(c, f, (t_ftm_text_config){cols[0], {c->size.width * 0.16, y,
+		0}, h, 0, 0xFFE8C860}, false);
+	if (cols[1])
+		story_text_at(c, f, (t_ftm_text_config){cols[1], {c->size.width * 0.66
+			- story_text_w(f, cols[1], h), y, 0}, h, 0, 0xFFF2EEDC}, false);
+	if (cols[2])
+		story_text_at(c, f, (t_ftm_text_config){cols[2], {c->size.width * 0.84
+			- story_text_w(f, cols[2], h), y, 0}, h, 0, 0xFFF2EEDC}, false);
+	(free(cols[1]), free(cols[2]));
+}
+
+static void	stat_row(t_game *game, t_ftm_image *c, int i, int ab[2])
+{
+	static char	*labels[] = {"INIMIGOS", "TESOURO", "SEGREDOS"};
+
+	row(game, c, i, (char *[3]){labels[i], sfmt("%d/%d", ab[0], ab[1]),
+		sfmt("%d%%", pct(ab[0], ab[1]))});
 }
 
 void	story_render_stats(t_game *game, t_ftm_image *c)
@@ -136,17 +151,14 @@ void	story_render_stats(t_game *game, t_ftm_image *c)
 		st->level_name, {c->size.width / 2, c->size.height * 0.19, 0},
 		c->size.height * 0.045, 0, 0xFFF2EEDC}, true);
 	if (shown > 0)
-		row(game, c, 0, "INIMIGOS", sfmt("%d/%d  %d%%", st->kills,
-				st->kills_total, pct(st->kills, st->kills_total)));
+		stat_row(game, c, 0, (int [2]){st->kills, st->kills_total});
 	if (shown > 1)
-		row(game, c, 1, "TESOURO", sfmt("%d/%d  %d%%", st->treasure,
-				st->treasure_total, pct(st->treasure, st->treasure_total)));
+		stat_row(game, c, 1, (int [2]){st->treasure, st->treasure_total});
 	if (shown > 2)
-		row(game, c, 2, "SEGREDOS", sfmt("%d/%d  %d%%", st->secrets,
-				st->secrets_total, pct(st->secrets, st->secrets_total)));
+		stat_row(game, c, 2, (int [2]){st->secrets, st->secrets_total});
 	if (shown > 3)
-		row(game, c, 3, "TEMPO", sfmt("%02d:%02d", st->seconds / 60,
-				st->seconds % 60));
+		row(game, c, 3, (char *[3]){"TEMPO", sfmt("%02d:%02d",
+				st->seconds / 60, st->seconds % 60), NULL});
 	if (shown > 4)
-		row(game, c, 4, "PONTOS", sfmt("%d", st->score));
+		row(game, c, 4, (char *[3]){"PONTOS", sfmt("%d", st->score), NULL});
 }

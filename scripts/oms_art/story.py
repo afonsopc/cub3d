@@ -13,7 +13,7 @@
 S = "assets/oms3d/story"
 
 INTRO = [
-    ("intro-1", "1968. Uma noite sem lua.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa."),
+    ("intro-1", "1968. Uma noite de lua cheia.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa."),
     ("intro-2", "Paraquedistas inimigos caem sobre a cidade.|As comunicações cortam-se uma a uma."),
     ("intro-3", "No Quartel-General, o Major Andrade reúne os últimos homens.|\"Eles já estão cá dentro.\""),
     ("intro-4", "Sargento Silva: aguente o Quartel-General e depois o Forte.|Até à madrugada não há reforços."),

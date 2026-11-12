@@ -22,6 +22,17 @@ int	story_text_len(char *text)
 	return (n);
 }
 
+/* nearest whole multiple of the glyph size (never below 1x) */
+int	story_snap_h(double h)
+{
+	int	k;
+
+	k = (int)(h / STORY_GLYPH + 0.5);
+	if (k < 1)
+		k = 1;
+	return (k * STORY_GLYPH);
+}
+
 int	story_visible_chars(t_story *st)
 {
 	return ((int)(((long long)ft_get_time() - (long long)st->phase_at)
@@ -33,24 +44,28 @@ void	story_text_at(t_ftm_image *canvas, t_ftm_font *font,
 {
 	unsigned int	color;
 
-	cfg.spacing = cfg.height * STORY_SPACING;
+	cfg.height = story_snap_h(cfg.height);
+	cfg.spacing = -STORY_GLYPH_TRIM * (cfg.height / STORY_GLYPH);
 	if (centered)
-		cfg.coords.x -= ftm_get_text_size_prediction(font, cfg) / 2.0;
+		cfg.coords.x -= ftm_get_text_size_prediction(font, cfg) / 2;
+	cfg.coords.x = (int)cfg.coords.x;
+	cfg.coords.y = (int)cfg.coords.y;
 	color = cfg.color;
 	cfg.color = 0xFF000000;
-	cfg.coords.x += ft_max(1, cfg.height / 16);
-	cfg.coords.y += ft_max(1, cfg.height / 16);
+	cfg.coords.x += 1;
+	cfg.coords.y += 1;
 	ftm_draw_text(canvas, font, cfg);
-	cfg.coords.x -= ft_max(1, cfg.height / 16);
-	cfg.coords.y -= ft_max(1, cfg.height / 16);
+	cfg.coords.x -= 1;
+	cfg.coords.y -= 1;
 	cfg.color = color;
 	ftm_draw_text(canvas, font, cfg);
 }
 
-static int	text_w(t_ftm_font *font, char *s, int h)
+int	story_text_w(t_ftm_font *font, char *s, int h)
 {
-	return (ftm_get_text_size_prediction(font,
-			(t_ftm_text_config){s, {0, 0, 0}, h, h * STORY_SPACING, 0}));
+	h = story_snap_h(h);
+	return (ftm_get_text_size_prediction(font, (t_ftm_text_config){s,
+			{0, 0, 0}, h, -STORY_GLYPH_TRIM * (h / STORY_GLYPH), 0}));
 }
 
 /* draws one wrapped line (up to `left` visible chars); returns chars used */
@@ -96,7 +111,7 @@ static void	draw_paragraph(t_ftm_image *canvas, t_ftm_font *font, char *p,
 		ft_memcpy(tmp + t, p, word);
 		t += word;
 		tmp[t] = '\0';
-		if (len && (t > 250 || text_w(font, tmp, b->text_h) > b->w))
+		if (len && (t > 250 || story_text_w(font, tmp, b->text_h) > b->w))
 		{
 			buf[len] = '\0';
 			draw_line(canvas, font, buf, b);
@@ -124,6 +139,7 @@ int	story_draw_block(t_ftm_image *canvas, t_ftm_font *font, char *text,
 
 	if (!text || !font)
 		return (0);
+	b.text_h = story_snap_h(b.text_h);
 	copy = ft_strdup(text);
 	p = copy;
 	y0 = b.y;
@@ -155,19 +171,31 @@ void	story_draw_panel(t_ftm_image *canvas, t_sprite *sprite)
 		.pixel_modifier = NULL});
 }
 
-static void	draw_hints(t_game *game, t_ftm_image *c, bool done)
+/* intro/briefing: SALTAR in the top band and the hint at the bottom;
+** stats/ending: CONTINUAR at the bottom right */
+static void	draw_hints(t_game *game, t_ftm_image *c, bool done, bool skip)
 {
 	t_ftm_font	*f;
 	int			h;
+	char		*t;
 
 	f = game->hud.action_font;
-	h = c->size.height * 0.03;
-	story_text_at(c, f, (t_ftm_text_config){"SALTAR >>", {c->size.width
-			* 0.03, c->size.height * 0.03, 0}, h, 0, 0xFFB8B8B0}, false);
-	if (done && (ft_get_time() / 450) % 2)
-		story_text_at(c, f, (t_ftm_text_config){
-			"Toque ou carregue numa tecla", {c->size.width / 2,
-			c->size.height * 0.94, 0}, h, 0, 0xFFE8C860}, true);
+	h = STORY_GLYPH;
+	if (skip)
+		story_text_at(c, f, (t_ftm_text_config){"SALTAR >>", {c->size.width
+				* 0.025, c->size.height * 0.018, 0}, h, 0, 0xFFB8B8B0}, false);
+	if (!done || !((ft_get_time() / 450) % 2))
+		return ;
+	t = "Toque ou carregue numa tecla";
+	if (!skip)
+		t = "CONTINUAR >";
+	if (skip)
+		story_text_at(c, f, (t_ftm_text_config){t, {c->size.width / 2,
+				c->size.height * 0.955, 0}, h, 0, 0xFFE8C860}, true);
+	else
+		story_text_at(c, f, (t_ftm_text_config){t, {c->size.width * 0.97
+				- story_text_w(f, t, h * 2), c->size.height * 0.93, 0}, h * 2,
+			0, 0xFFE8C860}, false);
 }
 
 static void	render_panel_text(t_game *game, t_ftm_image *c, char *title,
@@ -192,7 +220,7 @@ static void	render_panel_text(t_game *game, t_ftm_image *c, char *title,
 		b.y = c->size.height * 0.62;
 	}
 	story_draw_block(c, game->hud.action_font, text, b);
-	draw_hints(game, c, st->typed_all);
+	draw_hints(game, c, st->typed_all, st->phase != STORY_ENDING);
 }
 
 void	story_frame(t_game *game, t_ftm_window *window)
@@ -220,6 +248,6 @@ void	story_frame(t_game *game, t_ftm_window *window)
 			render_panel_text(game, c, NULL, st->ending_text[st->index]));
 	else if (st->phase == STORY_STATS)
 		(story_draw_panel(c, st->stats_sprite), story_render_stats(game, c),
-			draw_hints(game, c, st->typed_all));
+			draw_hints(game, c, st->typed_all, false));
 	ftm_put_image_to_window(window, c, (t_coords){0, 0, 0});
 }

@@ -44,6 +44,44 @@ def text_band(img, y0=TEXT_Y):
     return img
 
 
+def top_band(img, y1=16):
+    """Faixa escura em cima, onde o jogo escreve SALTAR (fora da ilustração)."""
+    img[:y1] = img[:y1] * 0.15 + np.array([10, 10, 14]) * 0.85
+    img[y1 - 1] = (90, 70, 30)
+    return img
+
+
+def dither_cone(img, apex, top, bottom, col, strength=0.55):
+    """Feixe de luz suave: triângulo com ponteado que esmorece ao longe."""
+    ax, ay = apex
+    x1 = top[0]
+    for x in range(min(ax, x1), max(ax, x1) + 1):
+        t = abs(x - ax) / max(1, abs(x1 - ax))
+        ya = ay + (top[1] - ay) * t
+        yb = ay + (bottom[1] - ay) * t
+        for y in range(int(ya), int(yb) + 1):
+            if not (0 <= y < H and 0 <= x < W):
+                continue
+            a = strength * (1 - t) ** 0.8
+            if (x + y) % 2 == 0 or t < 0.08:
+                img[y, x] = img[y, x] * (1 - a) + np.array(col) * a
+    return img
+
+
+def dither_cone_v(img, apex, ytop, xl, xr, col, strength=0.45):
+    """Holofote: cone vertical com ponteado, mais forte junto à base."""
+    ax, ay = apex
+    for y in range(ytop, ay + 1):
+        t = (ay - y) / max(1, ay - ytop)
+        xa = ax + (xl - ax) * t
+        xb = ax + (xr - ax) * t
+        for x in range(int(xa), int(xb) + 1):
+            if 0 <= x < W and (x + y) % 2 == 0:
+                a = strength * (1 - 0.6 * t)
+                img[y, x] = img[y, x] * (1 - a) + np.array(col) * a
+    return img
+
+
 def frame(img):
     img[0:2] = (90, 70, 30)
     img[-2:] = (90, 70, 30)
@@ -75,10 +113,22 @@ def stars_sky(img, n, seed, ymax):
 
 
 def ship(d, x, y, s, col=(30, 30, 38)):
+    """Navio de guerra em silhueta: casco, superestrutura, mastro, canhão,
+    vigias acesas e a esteira na água."""
+    lit = tuple(min(255, c + 26) for c in col)
     d.polygon([(x, y), (x + 60 * s, y), (x + 54 * s, y + 8 * s), (x + 6 * s, y + 8 * s)], fill=col)
-    d.rectangle([x + 20 * s, y - 10 * s, x + 34 * s, y], fill=col)
-    d.rectangle([x + 26 * s, y - 20 * s, x + 28 * s, y - 10 * s], fill=col)
-    star(d, x + 27 * s, y - 5 * s, 2.5 * s, STAR_RED)
+    d.line([(x + 2 * s, y), (x + 58 * s, y)], fill=lit)
+    d.rectangle([x + 20 * s, y - 10 * s, x + 36 * s, y], fill=col)
+    d.rectangle([x + 24 * s, y - 15 * s, x + 32 * s, y - 10 * s], fill=col)
+    d.line([(x + 28 * s, y - 15 * s), (x + 28 * s, y - 26 * s)], fill=col)
+    d.line([(x + 24 * s, y - 22 * s), (x + 32 * s, y - 22 * s)], fill=col)
+    d.line([(x + 40 * s, y - 3 * s), (x + 52 * s, y - 6 * s)], fill=col, width=max(1, int(2 * s)))
+    d.rectangle([x + 38 * s, y - 4 * s, x + 44 * s, y], fill=col)
+    for k in range(4):
+        px = x + (10 + k * 11) * s
+        d.point((px, y + 3 * s), fill=(230, 200, 110))
+    star(d, x + 28 * s, y - 5 * s, 2.5 * s, STAR_RED)
+    d.line([(x - 10 * s, y + 9 * s), (x + 64 * s, y + 9 * s)], fill=(60, 80, 120))
 
 
 def intro1():
@@ -93,12 +143,15 @@ def intro1():
     d.polygon([(0, 70), (60, 64), (90, 80), (120, 92), (0, 92)], fill=(20, 18, 16))
     d.rectangle([30, 44, 38, 66], fill=(200, 196, 180))  # farol
     d.polygon([(28, 44), (40, 44), (34, 38)], fill=(150, 30, 30))
-    d.polygon([(38, 48), (140, 36), (140, 60)], fill=(70, 70, 50))  # feixe
     for i, (x, y, s) in enumerate(((150, 96, 1.0), (215, 90, 0.8), (270, 98, 0.6))):
         ship(d, x, y, s)
     for x, y in ((140, 116), (175, 120), (205, 114)):  # barcaças
         d.polygon([(x, y), (x + 18, y), (x + 15, y + 5), (x + 3, y + 5)], fill=(40, 40, 46))
-    return frame(text_band(np.array(im).astype(float)))
+        d.line([(x - 6, y + 6), (x + 22, y + 6)], fill=(60, 80, 120))
+    img = np.array(im).astype(float)
+    img = dither_cone(img, (38, 48), (150, 30), (150, 64), (255, 236, 170))  # feixe do farol
+    img[45:51, 33:36] = (255, 240, 180)
+    return frame(top_band(text_band(img)))
 
 
 def intro2():
@@ -117,14 +170,16 @@ def intro2():
             if rng.random() < 0.25:
                 d.rectangle([x + 4, wy, x + 7, wy + 3], fill=(230, 190, 90))
         x += w + 2
-    for (sx, sy) in ((40, 10), (110, 30), (160, 14), (230, 26), (290, 8)):  # holofotes
-        d.polygon([(sx + 10, TEXT_Y - 30), (sx - 6, sy), (sx + 6, sy)], fill=(60, 60, 70))
+    img2 = np.array(im).astype(float)
+    for (sx, sy) in ((40, 18), (110, 30), (160, 20), (230, 26), (290, 18)):  # holofotes
+        img2 = dither_cone_v(img2, (sx + 10, TEXT_Y - 30), sy, sx - 7, sx + 7, (200, 200, 230))
+    im, d = draw(img2)
     for (px, py) in ((60, 30), (100, 54), (150, 40), (200, 62), (245, 34), (280, 58)):
         d.pieslice([px - 9, py - 8, px + 9, py + 8], 180, 360, fill=(170, 160, 130))
         d.line([(px - 8, py), (px, py + 10)], fill=(90, 90, 80))
         d.line([(px + 8, py), (px, py + 10)], fill=(90, 90, 80))
         d.rectangle([px - 1, py + 10, px + 1, py + 15], fill=(60, 64, 40))
-    return frame(text_band(np.array(im).astype(float)))
+    return frame(top_band(text_band(np.array(im).astype(float))))
 
 
 def commander_face():
@@ -179,7 +234,7 @@ def intro3():
     star(d, 150, 104, 4, STAR_RED)
     img = np.array(im).astype(float)
     img = portrait(img, commander_face(), 20, 30, 2)
-    return frame(text_band(img))
+    return frame(top_band(text_band(img)))
 
 
 def silva_face():
@@ -200,8 +255,8 @@ def intro4():
     fl[:, :9] = flags.GREEN
     fl[:, 9:] = flags.RED
     img[30:44, 252:274] = fl
-    img = portrait(img, silva_face(), 30, 8, 4)
-    return frame(text_band(img))
+    img = portrait(img, silva_face(), 30, 16, 4)
+    return frame(top_band(text_band(img)))
 
 
 def ending1():
@@ -215,7 +270,7 @@ def ending1():
     d.rectangle([0, 60, 110, 100], fill=(40, 34, 32))
     for x in range(0, 110, 12):
         d.rectangle([x, 54, x + 7, 60], fill=(40, 34, 32))
-    d.rectangle([70, 14, 72, 60], fill=(60, 50, 40))
+    d.rectangle([70, 18, 72, 60], fill=(60, 50, 40))
     for i, (x, y, s) in enumerate(((210, 104, 0.5), (260, 100, 0.4))):
         ship(d, x, y, s, (60, 60, 70))
     img = np.array(im).astype(float)
@@ -226,20 +281,20 @@ def ending1():
     m = a[..., 3] > 0
     oy, ox = 11 - a.shape[0] // 2, 14 - a.shape[1] // 2
     fl[oy : oy + a.shape[0], ox : ox + a.shape[1]][m] = a[..., :3][m]
-    img[14:36, 72:106] = fl
-    return frame(text_band(img))
+    img[18:40, 72:106] = fl
+    return frame(top_band(text_band(img)))
 
 
 def ending2():
     """Silva com a cruz de guerra ao peito."""
     img = canvas((40, 48, 30), (20, 24, 16))
-    img = portrait(img, silva_face(), 112, 4, 3)
+    img = portrait(img, silva_face(), 112, 18, 3)
     im, d = draw(img)
-    cx, cy = 160, 108
+    cx, cy = 160, 120
     d.rectangle([cx - 5, cy - 14, cx + 5, cy - 6], fill=flags.GREEN)
     d.rectangle([cx - 1, cy - 14, cx + 5, cy - 6], fill=flags.RED)
     d.polygon([(cx, cy - 6), (cx + 7, cy), (cx, cy + 7), (cx - 7, cy)], fill=(236, 190, 60))
-    return frame(text_band(np.array(im).astype(float)))
+    return frame(top_band(text_band(np.array(im).astype(float))))
 
 
 def briefing(which):
@@ -272,14 +327,20 @@ def briefing(which):
 
 
 def stats_bg():
-    img = canvas((26, 30, 40), (12, 14, 20))
-    img[:46] = img[:46] * 0.6
-    img[45] = (200, 160, 60)
-    a = flags.arms(18)
-    for (x, y) in ((14, 6), (W - 14 - a.shape[1], 6)):
-        paste(img, a, x, y)
-    for y in range(64, 176, 18):
-        img[y + 14, 40:280] = (60, 64, 80)
+    """Painel limpo: faixa do título com as armas nos cantos e um só quadro
+    escuro para as linhas de números (sem riscas)."""
+    img = np.zeros((H, W, 3)) + np.array([22, 26, 36])
+    img[:52] = (12, 14, 20)
+    img[51] = (200, 160, 60)
+    img[52] = (90, 70, 30)
+    a = flags.arms(16)
+    for x in (10, W - 10 - a.shape[1]):
+        paste(img, a, x, (52 - a.shape[0]) // 2)
+    img[62:178, 36:284] = (14, 16, 24)
+    img[62, 36:284] = (70, 76, 96)
+    img[177, 36:284] = (70, 76, 96)
+    img[62:178, 36] = (70, 76, 96)
+    img[62:178, 283] = (70, 76, 96)
     return frame(img)
 
 

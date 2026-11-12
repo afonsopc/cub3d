@@ -933,7 +933,7 @@ T_OPEN_SOUND_VOLUME 0.8
 LEVEL_NAME Defesa do Quartel-General
 STATS_SPRITE assets/oms3d/story/stats.bmp
 INTRO_1_SPRITE assets/oms3d/story/intro-1.bmp
-INTRO_1_TEXT 1968. Uma noite sem lua.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa.
+INTRO_1_TEXT 1968. Uma noite de lua cheia.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa.
 INTRO_2_SPRITE assets/oms3d/story/intro-2.bmp
 INTRO_2_TEXT Paraquedistas inimigos caem sobre a cidade.|As comunicações cortam-se uma a uma.
 INTRO_3_SPRITE assets/oms3d/story/intro-3.bmp

@@ -12,7 +12,8 @@
 
 #include "story.h"
 
-/* radio line states: 0 waiting for its trigger, 1 queued, 2 said */
+/* radio line states: 0 waiting for its trigger, 1 queued, 2 said.
+** The box leaves the top-right corner free for the touch buttons. */
 
 static bool	sees_type(t_game *game, char c)
 {
@@ -108,7 +109,7 @@ void	story_render_radio(t_game *game, t_ftm_image *c)
 	if (st->radio_current < 0 || st->phase != STORY_PLAY)
 		return ;
 	o = (t_coords){c->size.width * 0.03, c->size.height * 0.03, 0};
-	s = (t_size){c->size.width * 0.94, c->size.height * 0.15};
+	s = (t_size){c->size.width * 0.80, c->size.height * 0.15};
 	ftm_draw_rectangle(c, o, s, (t_ftm_rectangle){0xD8101418, 0xFFE8C860,
 		(t_size){2, 2}});
 	img = st->radio_portrait ? get_sprite_image(st->radio_portrait) : NULL;
