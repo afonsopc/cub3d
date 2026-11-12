@@ -20,9 +20,18 @@ SRCS = $(shell find src -name "**.c")
 OBJ_DIR = web_obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-CFLAGS += -pthread -msimd128 -s USE_SDL=2 -s USE_PTHREADS=1
-LDLIBS += -O3 -flto
-LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5 -s USE_SDL=2 -s ASSERTIONS=1
+# THREADS=1 needs SharedArrayBuffer (cross-origin isolated page). The default
+# build is single-threaded so it also runs where that is not available (any
+# plain static host, pages without cross-origin isolation).
+THREADS ?= 0
+CFLAGS += -msimd128 -s USE_SDL=2
+LDLIBS += -O3 -flto -s USE_SDL=2 -s ASSERTIONS=1
+ifeq ($(THREADS),1)
+CFLAGS += -pthread -s USE_PTHREADS=1
+LDLIBS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=5
+else
+LDLIBS += -s ALLOW_MEMORY_GROWTH=0
+endif
 LDLIBS += --preload-file maps --preload-file assets/42lisboa --shell-file minimal.html
 LDLIBS += --preload-file assets/fonts --preload-file assets/sounds
 LDLIBS += --preload-file assets/textures --preload-file assets/wolf3d
@@ -33,9 +42,12 @@ LDLIBS += -s EXPORT_ES6=1 -s MODULARIZE=1
 
 all: $(NAME)
 
-$(NAME): headers/miniaudio.h $(OBJS)
+$(NAME): headers/miniaudio.h assets/wolf3d $(OBJS)
 	@echo "\033[1;32mCompiling \033[1;0m\"$(OBJS)\"\033[1;32m into \033[1;0m\"$(NAME)\"\033[1;32m.\033[0m"
 	@$(CC) -o $(NAME).html $(OBJS) $(CFLAGS) $(INCLUDES) $(LIBS) $(LDLIBS)
+
+assets/wolf3d:
+	@$(MAKE) -f Makefile assets/wolf3d
 
 headers/miniaudio.h:
 	@echo "\033[1;32mCompiling \033[1;0m\"miniaudio\"\033[1;32m.\033[0m"

@@ -31,7 +31,8 @@ void	ftt_clear_thread(t_ftt_thread *thread)
 	thread->running = false;
 	pthread_cond_signal(&thread->start_cond);
 	pthread_mutex_unlock(&thread->start_mutex);
-	pthread_join(thread->thread, NULL);
+	if (!FTT_INLINE)
+		pthread_join(thread->thread, NULL);
 	pthread_mutex_destroy(&thread->start_mutex);
 	pthread_cond_destroy(&thread->start_cond);
 	pthread_mutex_destroy(&thread->done_mutex);

@@ -22,6 +22,14 @@
 // Internal Libs
 # include <ft_utils.h>
 
+// Web build without SharedArrayBuffer (no -pthread, e.g. inside the iOS
+// app's WKWebView): the "threads" run their routine inline on ftt_thread_run.
+# if defined(__EMSCRIPTEN__) && !defined(__EMSCRIPTEN_PTHREADS__)
+#  define FTT_INLINE 1
+# else
+#  define FTT_INLINE 0
+# endif
+
 typedef struct s_ftt_thread
 {
 	pthread_t		thread;

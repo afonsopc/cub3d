@@ -48,6 +48,8 @@ void	ftt_thread_init(t_ftt_thread *thread)
 	pthread_cond_init(&thread->start_cond, NULL);
 	pthread_mutex_init(&thread->done_mutex, NULL);
 	pthread_cond_init(&thread->done_cond, NULL);
+	if (FTT_INLINE)
+		return ;
 	pthread_create(&thread->thread, NULL, thread_routine, thread);
 }
 
@@ -73,6 +75,15 @@ void	ftt_thread_run(t_ftt_thread *thread)
 		return ;
 	}
 	thread->running = true;
+	pthread_mutex_unlock(&thread->start_mutex);
+	if (FTT_INLINE)
+	{
+		if (thread->routine)
+			thread->routine(thread->data);
+		thread->running = false;
+		return ;
+	}
+	pthread_mutex_lock(&thread->start_mutex);
 	pthread_cond_signal(&thread->start_cond);
 	pthread_mutex_unlock(&thread->start_mutex);
 }
