@@ -1,7 +1,7 @@
-# Objetos do cenário, pontos a apanhar e armas do tema Estado Novo. Os
-# móveis e objetos são voxels de baixa resolução; os pontos pequenos (cravo,
-# jornal Avante!, mala de escudos, comida, estojo) são píxeis desenhados à
-# mão em 64x64, como nos jogos VGA. Tudo original.
+# Objetos do cenário, pontos a apanhar e armas (tema: defesa do forte). Os
+# móveis e objetos são voxels de baixa resolução; os pontos pequenos
+# (medalha, cruz de guerra, caixa de ouro, ração com pão e chouriço, estojo)
+# são píxeis desenhados à mão em 64x64, como nos jogos VGA. Tudo original.
 import math
 import random
 
@@ -338,29 +338,33 @@ def well(water):
 
 # ------------------------------------------------------------------ píxeis à mão (64x64)
 
-CRAVO = [
-    "....rRr.rR......",
-    "...rRRrrRRr.....",
-    "..rRrRRrRrRr....",
-    ".rRRrrRRRrRRr...",
-    ".rRrRRrRrRRrr...",
-    "..rrRrRRrRrr....",
-    "...rrrRRrrr.....",
-    "....gGGGg.......",
-    ".....gGg........",
-    "......Gg........",
-    "......Gg..gl....",
-    "......gG.gl.....",
-    "......Gggl......",
-    "......Gg........",
-    ".....gG.........",
-    ".....Gg.........",
-    ".....gG.........",
-    "....gG..........",
-    "....Gg..........",
-    "....g...........",
-]
-CRAVO_C = {"r": (150, 10, 20), "R": (226, 30, 40), "g": (30, 90, 40), "G": (70, 150, 60), "l": (90, 170, 70)}
+
+
+def sandbags():
+    """Trincheira de sacos de areia (onde os invasores entraram)."""
+    m = Model()
+    r = random.Random(11)
+    for row, (z, n, off) in enumerate(((0, 4, 0.0), (3.2, 4, 2.5), (6.4, 3, 1.2), (9.6, 2, 3.6))):
+        for i in range(n):
+            x = -11 + off + i * 6.0
+            c = (166, 146, 100) if (i + row) % 2 else (146, 128, 86)
+            c = tuple(int(v * r.uniform(0.92, 1.06)) for v in c)
+            ellipsoid(m, x, 0, z + 1.6, 3.0, 3.4, 1.8, c)
+            box(m, x - 0.3, x + 0.3, -3.5, -3.2, z + 0.6, z + 2.6, (110, 96, 64))
+    return m
+
+
+def lantern():
+    """Lanterna de campanha pendurada do teto."""
+    m = Model()
+    cyl_z(m, 0, 0, 0.4, 52, 60, IRON)
+    box(m, -2.2, 2.2, -2.2, 2.2, 50.5, 51.5, (60, 80, 50))
+    for x in (-2, 2):
+        for y in (-2, 2):
+            box(m, x - 0.3, x + 0.3, y - 0.3, y + 0.3, 45, 50.5, (60, 80, 50))
+    cyl_z(m, 0, 0, 1.6, 45.5, 50, LAMP)
+    box(m, -2.4, 2.4, -2.4, 2.4, 44.2, 45.2, (60, 80, 50))
+    return m
 
 
 def sprite_canvas():
@@ -375,88 +379,100 @@ def shadow(img, cx, cy, rx, ry=1.6):
     return img
 
 
-def cravo():
+RIBBON = [(0, 110, 0), (0, 110, 0), (220, 20, 20), (220, 20, 20), (220, 20, 20)]
+
+
+def _ribbon(img, x0, y0, w, h):
+    for x in range(w):
+        c = RIBBON[int(x / w * len(RIBBON))]
+        img[y0 : y0 + h, x0 + x] = (*c, 255)
+    img[y0, x0 : x0 + w] = (250, 220, 120, 255)
+    img[y0 + h - 1, x0 : x0 + w] = (130, 20, 20, 255)
+
+
+def medal():
+    """Medalha militar (pontos): fita verde e vermelha e disco de bronze."""
     img = sprite_canvas()
-    g = np.repeat(np.repeat(grid(CRAVO, CRAVO_C), 2, axis=0), 2, axis=1)
-    paste(img, g, 18, 22)
-    shadow(img, 28, 62, 8)
+    _ribbon(img, 25, 34, 14, 12)
+    img[46:48, 30:34] = (*GOLD_D, 255)
+    for y in range(48, 62):
+        for x in range(22, 42):
+            d = math.hypot(x - 31.5, y - 54.5)
+            if d <= 7.2:
+                img[y, x] = (205, 140, 70, 255) if d < 5.5 else (150, 96, 44, 255)
+                if d < 3.5 and abs(x - 31.5) + abs(y - 54.5) < 3.6:
+                    img[y, x] = (250, 210, 140, 255)
+    img[50, 28:31] = (255, 236, 190, 255)
+    shadow(img, 32, 62, 7)
     return img
 
 
-def avante():
-    """Maço de jornais clandestinos Avante! atados com cordel."""
+def war_cross():
+    """Cruz de guerra dourada sobre uma almofada verde (mais pontos)."""
     img = sprite_canvas()
-    x0, x1, y0 = 18, 46, 46
-    for i in range(4):
-        y = y0 + i * 3
-        img[y : y + 3, x0 - i % 2 : x1 - i % 2] = (*PAPER, 255)
-        img[y + 2, x0 - i % 2 : x1 - i % 2] = (170, 160, 130, 255)
-    img[y0 - 12 : y0, x0 + 2 : x1 + 2] = (*PAPER, 255)  # o de cima, inclinado
-    img[y0 - 12 : y0 - 6, x0 + 3 : x1 + 1] = (200, 24, 28, 255)
-    rgb = img[..., :3].copy()
-    rgb = draw_text(rgb, "AVANTE!", x0 + 4, y0 - 11, 1, (250, 240, 220))
-    img[..., :3] = rgb
-    for y in range(y0 - 4, y0 - 1):
-        img[y, x0 + 4 : x1, :3] = (90, 86, 80)
-        img[y, x0 + 4 + (y % 2) * 6 : x0 + 8 + (y % 2) * 6, :3] = (*PAPER,)
-    img[y0 - 5 : y0 + 12, 31:33] = (130, 100, 60, 255)  # cordel
-    img[y0 + 4, x0 - 1 : x1 + 1] = (130, 100, 60, 255)
-    shadow(img, 32, 59, 16)
+    img[50:60, 16:48] = (30, 90, 40, 255)
+    img[50, 16:48] = (70, 140, 80, 255)
+    img[59, 16:48] = (16, 50, 22, 255)
+    for y in range(28, 54):
+        for x in range(18, 46):
+            dx, dy = abs(x - 31.5), abs(y - 40.5)
+            if max(dx, dy) > 12:
+                continue
+            if dy <= 2.5 + dx * 0.45 and dx <= 12 or dx <= 2.5 + dy * 0.45 and dy <= 12:
+                img[y, x] = (*GOLD, 255)
+                if dx < 1 or dy < 1:
+                    img[y, x] = (255, 236, 140, 255)
+    for y in range(36, 46):
+        for x in range(27, 37):
+            if math.hypot(x - 31.5, y - 40.5) <= 4.2:
+                img[y, x] = (200, 20, 24, 255)
+    img[39:42, 30:33] = (255, 255, 240, 255)
+    shadow(img, 32, 62, 18)
     return img
 
 
-def suitcase():
-    """Mala aberta cheia de notas de escudos."""
+def gold_crate():
+    """Caixa de madeira aberta com barras de ouro (muitos pontos)."""
     img = sprite_canvas()
-    # tampa aberta
-    img[30:44, 14:50] = (90, 56, 30, 255)
-    img[31:43, 15:49] = (120, 76, 40, 255)
-    img[32:42, 17:47] = (150, 40, 40, 255)  # forro
-    # caixa
-    img[46:58, 12:52] = (110, 68, 34, 255)
-    img[46, 12:52] = (160, 110, 60, 255)
-    img[57, 12:52] = (60, 36, 18, 255)
-    img[50:52, 12:52] = (60, 40, 20, 255)
-    # notas (verde e castanho)
-    r = random.Random(3)
-    for i in range(12):
-        x, y = r.randint(14, 40), r.randint(42, 47)
-        c = r.choice([(120, 150, 100), (150, 130, 90), (110, 140, 120)])
-        img[y : y + 3, x : x + 9] = (*c, 255)
-        img[y + 1, x + 3 : x + 6] = (70, 90, 60, 255)
-    img[28:31, 28:36] = (200, 170, 80, 255)  # pega
-    img[47:50, 30:34] = (220, 190, 90, 255)  # fecho
+    img[42:60, 10:54] = (110, 70, 36, 255)
+    img[42, 10:54] = (160, 110, 60, 255)
+    img[59, 10:54] = (60, 36, 18, 255)
+    img[48:50, 10:54] = (80, 50, 24, 255)
+    img[54:56, 10:54] = (80, 50, 24, 255)
+    for i, (x, y) in enumerate(((14, 37), (24, 37), (34, 37), (44, 37), (19, 32), (29, 32), (39, 32))):
+        if x + 9 > 54:
+            continue
+        img[y : y + 5, x : x + 9] = (*GOLD, 255)
+        img[y, x + 1 : x + 8] = (255, 236, 140, 255)
+        img[y + 4, x : x + 9] = (*GOLD_D, 255)
     rgb = img[..., :3].copy()
-    rgb = draw_text(rgb, "ESC", 26, 35, 1, (240, 210, 120))
+    rgb = draw_text(rgb, "OURO", 24, 50, 1, (240, 210, 120))
     img[..., :3] = rgb
-    shadow(img, 32, 59, 22)
+    shadow(img, 32, 61, 24)
     return img
 
 
 def food():
-    """Prato com pão e sardinhas."""
+    """Ração de combate (lata verde-oliva) e pão com chouriço."""
     img = sprite_canvas()
-    for y in range(50, 60):
-        for x in range(12, 52):
-            if ((x - 32) / 20) ** 2 + ((y - 55) / 5) ** 2 <= 1:
-                img[y, x] = (230, 228, 220, 255) if ((x - 32) / 16) ** 2 + ((y - 55) / 3.6) ** 2 > 1 else (210, 206, 196, 255)
-                if ((x - 32) / 20) ** 2 + ((y - 55) / 5) ** 2 > 0.85:
-                    img[y, x] = (40, 70, 160, 255)
-    # sardinhas
-    for k, (y, x0) in enumerate(((51, 18), (54, 22), (49, 26))):
-        for x in range(x0, x0 + 14):
-            t = (x - x0) / 14
-            h = 2 if 0.15 < t < 0.85 else 1
-            img[y - h // 2 : y + h, x] = (160, 170, 180, 255) if t < 0.85 else (110, 120, 130, 255)
-            img[y - 1, x] = (90, 100, 120, 255) if t < 0.85 else img[y - 1, x]
-        img[y, x0 + 2] = (20, 20, 20, 255)
-    # pão
-    for y in range(44, 55):
-        for x in range(34, 50):
-            d = ((x - 42) / 8) ** 2 + ((y - 50) / 5.5) ** 2
+    # lata
+    img[40:58, 10:30] = (86, 98, 54, 255)
+    img[40, 10:30] = (130, 142, 90, 255)
+    img[57, 10:30] = (50, 58, 30, 255)
+    img[40:58, 10] = (60, 70, 36, 255)
+    rgb = img[..., :3].copy()
+    rgb = draw_text(rgb, "RAÇÃO", 11, 46, 1, (230, 226, 190))
+    img[..., :3] = rgb
+    # pão com chouriço
+    for y in range(44, 60):
+        for x in range(32, 56):
+            d = ((x - 44) / 11) ** 2 + ((y - 52) / 7) ** 2
             if d <= 1:
-                img[y, x] = (190, 130, 60, 255) if d > 0.5 or y > 50 else (220, 170, 90, 255)
-    img[47, 38:46] = (150, 96, 40, 255)
+                img[y, x] = (200, 140, 66, 255) if d > 0.45 or y > 52 else (226, 176, 96, 255)
+    for (x, y) in ((38, 51), (42, 49), (46, 51), (50, 49), (40, 55), (48, 55)):
+        img[y : y + 3, x : x + 3] = (160, 30, 30, 255)
+        img[y, x] = (210, 90, 70, 255)
+    shadow(img, 32, 61, 24)
     return img
 
 
@@ -490,8 +506,8 @@ DECOR = {
     "barrel-toxic": (drum, {}),
     "lamp": (lamp, {}),
     "pillar": (pillar, {}),
-    "broken-robot": (books, {}),
-    "cables": (chains, {"hang": True}),
+    "broken-robot": (sandbags, {}),
+    "cables": (lantern, {"hang": True}),
     "table-chairs": (lambda: table(True), {}),
     "table": (table, {}),
     "well-water": (lambda: well(True), {}),
@@ -499,9 +515,9 @@ DECOR = {
 }
 
 PIXEL = {
-    "gem": cravo,
-    "trophy": avante,
-    "treasure": suitcase,
+    "gem": medal,
+    "trophy": war_cross,
+    "treasure": gold_crate,
     "food": food,
     "medkit": medkit,
 }
@@ -548,23 +564,19 @@ def fbp():
     return m
 
 
-def mg():
-    """Metralhadora de fita: caixa grossa, cano com manga furada e fita."""
+def g3():
+    """Espingarda automática G3 (ícone): coronha, caixa, carregador reto,
+    guarda-mão verde, tubo de armar e túnel do ponto de mira."""
     m = Model()
-    box(m, -3.2, 3.2, -8, 10, 0, 6, STEEL)
-    box(m, -3.3, 3.3, -8, 10, 5, 6, STEEL_L)
-    cyl_y(m, 0, 3, 2.4, -24, -8, (40, 42, 46))
-    for y in range(-23, -9, 3):
-        for a in range(0, 360, 60):
-            x, z = math.cos(math.radians(a)) * 2.4, 3 + math.sin(math.radians(a)) * 2.4
-            box(m, x - 0.4, x + 0.4, y - 0.4, y + 0.4, z - 0.4, z + 0.4, (14, 14, 16))
-    cyl_y(m, 0, 3, 1.0, -27, -24, STEEL_L)
-    box(m, -1.6, 1.6, 4, 8, -7, 0, GRIP)
-    box(m, -0.6, 0.6, -4, 4, 6, 8, STEEL_L)  # pega de transporte
-    # fita de munições a sair da esquerda
-    for i in range(7):
-        y = -4 + i * 1.6
-        box(m, -10 + i * 0.6, -3.3, y - 0.6, y + 0.6, 2, 3.2, BRASS)
+    box(m, -1.6, 1.6, 6, 16, -1, 3.5, (40, 42, 46))  # coronha
+    box(m, -1.7, 1.7, -6, 6, 0, 4.5, STEEL)  # caixa
+    box(m, -1.0, 1.0, -3, 1, -7, 0, (50, 52, 56))  # carregador
+    box(m, -1.2, 1.2, 3, 6, -5, 0, (40, 42, 46))  # punho
+    box(m, -1.9, 1.9, -16, -6, 0.5, 4.0, (64, 74, 48))  # guarda-mão
+    cyl_y(m, 0, 2.2, 0.6, -24, -16, STEEL)  # cano
+    cyl_y(m, 0, 4.6, 0.7, -16, 0, STEEL_L)  # tubo de armar
+    box(m, -0.8, 0.8, -23, -21, 2.6, 6, STEEL_L)  # túnel do ponto de mira
+    box(m, -0.9, 0.9, 2, 4, 4.5, 6.4, STEEL_L)  # alça
     return m
 
 

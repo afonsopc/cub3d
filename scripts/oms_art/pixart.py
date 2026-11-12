@@ -1,5 +1,5 @@
 # Arte de píxeis escrita à mão em texto: cada carácter é uma cor. Usado para
-# o retrato, a cara da barra de estado, o cravo, emblemas e ícones.
+# o retrato, a cara da barra de estado, emblemas e ícones.
 import numpy as np
 
 T = None  # transparente

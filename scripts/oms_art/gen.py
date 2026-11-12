@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# Gera toda a arte do cub3d no tema Estado Novo (estilo VGA do início dos
-# anos 90): paredes, portas, objetos, inimigos (agente da polícia política,
-# legionário, guarda da GNR e cão de guarda), armas, barra de estado com a
-# cara do resistente, algarismos e cartazes. Tudo desenhado aqui por código
+# Gera toda a arte do cub3d (defesa do forte, estilo VGA do início dos anos
+# 90): paredes, portas, objetos, inimigos de uma invasão fictícia (atirador,
+# soldado de capacete, comissário e cão de ataque), armas, barra de estado
+# com a cara do soldado português, algarismos e cartazes. Tudo desenhado aqui por código
 # (voxels de baixa resolução e píxeis escritos à mão), sem imagens de
 # terceiros. Uso (precisa de numpy e pillow):
 #
@@ -81,9 +81,9 @@ DIRS = {
 }
 
 
-# pasta -> farda. sentinel/ e hound/ mantêm o nome de pasta antigo (os mapas
-# e o código já apontam para lá): agora são o agente e o cão de guarda.
-GUARDS = {"sentinel": ch.PIDE, "legiao": ch.LEGIAO, "gnr": ch.GNR}
+# pasta -> farda. Os nomes de pasta antigos ficam (os mapas apontam para lá):
+# sentinel/ atirador, legiao/ soldado de capacete, gnr/ comissário, hound/ cão.
+GUARDS = {"sentinel": ch.ATIRADOR, "legiao": ch.SOLDADO, "gnr": ch.COMISSARIO}
 
 
 def characters(only=None):
@@ -148,7 +148,7 @@ def weapons():
     E = dc.EMISSIVE
     # pastas antigas: blaster = pistola, rifle = FBP, cannon = metralhadora, blade = faca
     guns = {"blaster": (dc.pistol, (103, 69), False), "rifle": (dc.fbp, (78, 24), True),
-            "cannon": (dc.mg, (104, 30), True)}
+            "cannon": (dc.g3, (104, 30), True)}
     for name, (fn, icon, two) in guns.items():
         g = fn()
         for i, fr in enumerate(fw.gun_frames(name)):

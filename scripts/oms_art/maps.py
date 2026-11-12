@@ -4,30 +4,30 @@
 #   python3 scripts/oms_art/maps.py          # reescreve os mapas e valida
 #   python3 scripts/oms_art/maps.py --check  # só valida
 #
-# missao1: "Sede da polícia política" (inspirada na sede da Rua António
-# Maria Cardoso, em Lisboa). missao2: "Forte prisão" (inspirado em Peniche e
-# Caxias). As plantas são desenhadas aqui, sala a sala, e não seguem nenhum
+# Ficção de arcada: o jogador é um soldado do Exército Português que defende
+# o quartel-general (missao1, "Defesa do Quartel-General") e o forte
+# (missao2, "Defesa do Forte") de uma invasão estrangeira fictícia. As plantas são desenhadas aqui, sala a sala, e não seguem nenhum
 # nível de outro jogo. missao1_mega e missao1_42 usam a planta da missao1
 # com o cabeçalho próprio de cada variante.
 #
 # Legenda (iguais nos 4 mapas da campanha):
 #   paredes  f pedra   g arco   k retrato   i estandarte   J lápide
-#            q cartaz de propaganda   r aviso da censura
-#            a azulejo   B painel de azulejos   b cela   c cela com catre
+#            q cartaz da época   r rombo com o estandarte dos invasores
+#            a azulejo   B painel de azulejos   b grade   c arrecadação de armas
 #            j madeira   l emblema   m retrato em madeira   A Mocidade
-#            F tijolo da prisão   O rocha   p porta de elevador (parede)
+#            F tijolo   O rocha   p porta de elevador (parede)
 #   portas   v (passa-se de este para oeste)   h (de norte para sul)
 #            u porta da saída   s t w x T paredes falsas (segredos)
 #   alavancas n saída   y segredo para a missao1_mega
-#   inimigos e agente da PIDE   R guarda da GNR   L legionário   d cão
+#   inimigos e atirador invasor   R comissário   L soldado de capacete   d cão
 #   jogador  E W (missao1, 4 lugares)   N (missao2)
-#   largados : pão   ; munições   } socorros   ( cravo   ) Avante!
-#            * escudos   { pistola   [ faca   ] FBP   2 metralhadora
+#   largados : ração   ; munições   } socorros   ( medalha   ) cruz de guerra
+#            * ouro   { pistola   [ faca   ] FBP   2 G3
 #   objetos  . planta  , candeeiro de teto  / lustre  = vaso de barro
-#            ' pipa  ? poço  + poço com água  - mesa  | processos  " livros
+#            ' pipa  ? poço  + poço com água  - mesa  | papéis  " sacos de areia
 #            \ esfera armilar  ~ mesa e cadeiras  ! jarra  @ candeeiro
 #            # bandeira  $ planta em vaso de latão  % bidão  ^ coluna
-#            & correntes  < máquina de escrever
+#            & lanterna  < máquina de escrever
 import os
 import re
 import sys
@@ -97,9 +97,10 @@ WALLISH = set("fgkiJqraBbcjlmAFOp1")
 
 
 def missao1():
-    """Sede da polícia política. Entra-se da rua (sudoeste), passa-se a
-    portaria, o átrio, o corredor dos gabinetes, o pátio de azulejos e o
-    gabinete do director, onde fica a saída."""
+    """Defesa do Quartel-General. Os invasores já entraram: parte-se da
+    entrada (sudoeste), recupera-se a portaria, o átrio, o corredor dos
+    gabinetes, o pátio de azulejos e o gabinete do comando, onde fica a
+    saída para o forte."""
     P = Plan(63, 55)
     # rua / entrada (início)
     P.room(0, 44, 10, 54, "f")
@@ -335,17 +336,17 @@ def missao1():
 
 
 def missao2():
-    """Forte prisão. Chega-se de elevador (sul), passa-se a portaria do
-    forte, o pátio, o corpo da guarda, a caserna da Legião e a capela; a
-    fuga é pela gruta do mar."""
+    """Defesa do Forte. Chega-se de elevador (sul) e retoma-se a portaria,
+    o pátio, o corpo da guarda, a caserna e a capela; os invasores entram
+    pela gruta do mar, onde fica a saída."""
     P = Plan(64, 60)
     P.room(26, 52, 38, 59, "f")  # elevador (início)
     P.room(20, 44, 44, 52, "f")  # portaria do forte
     P.room(20, 20, 44, 44, "f")  # pátio
     P.room(20, 4, 44, 20, "f")  # capela
     P.room(26, 0, 38, 4, "f")  # sacristia (segredo)
-    P.room(44, 0, 63, 20, "j")  # caserna da Legião
-    P.room(44, 20, 63, 34, "F")  # corpo da guarda (GNR)
+    P.room(44, 0, 63, 20, "j")  # caserna
+    P.room(44, 20, 63, 34, "F")  # corpo da guarda
     P.room(44, 34, 63, 52, "f")  # refeitório e arrecadação
     P.room(0, 30, 20, 52, "F")  # pavilhão prisional
     # gruta do mar: rocha maciça com uma passagem escavada
@@ -461,7 +462,7 @@ def missao2():
     many(",", [(50, 27), (58, 27)])
     many("}", [(62, 33)])
     many(";", [(45, 33)])
-    # caserna da Legião
+    # caserna
     for x in (47, 51, 55, 59):
         many("~", [(x, 4)])
         many("-", [(x, 15)])
@@ -591,10 +592,10 @@ ENEMY_WEAPONS = {
         f"Q_CANT_USE_SOUND {S}/empty.mp3",
         "Q_DAMAGE 7",
         "Q_AMMO_USAGE 1",
-        "Q_NAME FBP da Legiao",
+        "Q_NAME Pistola-metralhadora do invasor",
         f"Q_USE_SOUND {S}/rifle.mp3",
         "Q_USE_SOUND_VOLUME 0.4",
-        "Q_DESCRIPTION Pistola-metralhadora do legionario",
+        "Q_DESCRIPTION Pistola-metralhadora de tambor do soldado invasor",
         "Q_USE_DELAY 0.35",
         f"Q_SCREEN_SPRITE {T}/items/rifle/screen/0.bmp",
         f"Q_SCREEN_USE_SPRITE {T}/items/rifle/screen/2.bmp:{T}/items/rifle/screen/3.bmp",
@@ -605,10 +606,10 @@ ENEMY_WEAPONS = {
         f"X_CANT_USE_SOUND {S}/empty.mp3",
         "X_DAMAGE 15",
         "X_AMMO_USAGE 1",
-        "X_NAME Espingarda da GNR",
+        "X_NAME Pistola do comissario",
         f"X_USE_SOUND {S}/sentinel-fire.mp3",
         "X_USE_SOUND_VOLUME 0.5",
-        "X_DESCRIPTION Espingarda do guarda republicano",
+        "X_DESCRIPTION Pistola do comissario invasor",
         "X_USE_DELAY 1.1",
         f"X_SCREEN_SPRITE {T}/items/rifle/screen/0.bmp",
         f"X_SCREEN_USE_SPRITE {T}/items/rifle/screen/2.bmp:{T}/items/rifle/screen/3.bmp",
@@ -617,18 +618,18 @@ ENEMY_WEAPONS = {
 }
 
 STRINGS = {
-    "U": ("Pao e sardinhas", "Pao com sardinhas, mata a fome"),
-    "Z": ("Municoes", "Municoes para as armas"),
-    "o": ("Jornal Avante!", "Jornal clandestino, passa de mao em mao"),
-    "z": ("Cravo", "Um cravo vermelho"),
-    "7": ("Mala de escudos", "Dinheiro apreendido pela policia"),
+    "U": ("Racao de combate", "Racao de combate e pao com chourico"),
+    "Z": ("Municoes", "Caixa de municoes"),
+    "o": ("Cruz de guerra", "Condecoracao por bravura"),
+    "z": ("Medalha", "Medalha militar"),
+    "7": ("Caixa de ouro", "Barras de ouro do cofre do forte"),
     "I": ("Primeiros socorros", "Estojo de primeiros socorros"),
-    "Y": ("Pistola do agente", "Arma do agente da policia politica"),
-    "C": ("Dentes do cao", "Mordedura do cao de guarda"),
-    "H": ("Alto!", "Alto! Ninguem passa"),
+    "Y": ("Espingarda do invasor", "Espingarda de assalto do atirador invasor"),
+    "C": ("Dentes do cao", "Mordedura do cao de ataque"),
+    "H": ("Stoi!", "Grito de alerta do invasor"),
     "P": ("Pistola Walther", "Pistola semiautomatica, boa a curta distancia"),
-    "G": ("Metralhadora", "Metralhadora de fita, muito potente mas gasta muito"),
-    "K": ("Faca", "Faca, para combate corpo a corpo"),
+    "G": ("Espingarda G3", "Espingarda automatica G3, potente e rapida"),
+    "K": ("Faca", "Faca de combate, para corpo a corpo"),
     "M": ("FBP m/948", "Pistola-metralhadora portuguesa, boa a media distancia"),
 }
 

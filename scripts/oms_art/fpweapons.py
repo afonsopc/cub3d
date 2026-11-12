@@ -193,51 +193,49 @@ def fbp_frame(dx=0, dy=0, tilt=0):
     return p, p.T((32, 19))
 
 
-# ------------------------------------------------------------------ metralhadora
+# ------------------------------------------------------------------ G3
+
+HANDGUARD = (64, 74, 48)  # guarda-mão verde-escuro
+HANDGUARD_L = (98, 110, 74)
 
 
-def mg_frame(dx=0, dy=0, tilt=0):
+def g3_frame(dx=0, dy=0, tilt=0):
+    """Espingarda automática G3 vista de trás: caixa estreita, tubo de
+    armar por cima do cano, alça de tambor e túnel do ponto de mira."""
     p = Pen(dx, dy, GUN_SCALE, tilt)
-    # fita de munições a cair pela esquerda
-    for i in range(7):
-        x, y = 18 - i * 2.4, 40 + i * 3.4
-        p.poly([(x, y), (x + 4, y - 1), (x + 5, y + 2), (x + 1, y + 3)], BRASS)
-        p.poly([(x, y), (x + 1.5, y - 0.4), (x + 2.4, y + 2.6), (x + 1, y + 3)], COPPER)
-        p.line((x + 4, y - 1), (x + 5, y + 2), BRASS_D)
-    # mãos
-    sleeve(p, [(0, 64), (17, 64), (20, 57), (3, 55)])
-    fist(p, 4, 21, 47, 58)
-    sleeve(p, [(25, 64), (49, 64), (47, 58), (28, 58)])
-    fist(p, 27, 47, 49, 59)
-    # traseira da caixa
-    p.rect(19, 40, 45, 51, ST)
-    p.rect(19, 40, 45, 41, ST_L)
-    p.rect(44, 41, 45, 51, ST_D)
-    p.rect(28, 44, 36, 49, ST_D)
-    p.rect(29, 44, 35, 45, ST_L)
-    # tampa de alimentação a fugir para a frente
-    p.poly([(20, 40), (44, 40), (39, 27), (25, 27)], ST)
-    p.poly([(28, 40), (36, 40), (34, 27), (30, 27)], ST_L)
-    p.line((32, 40), (32, 28), ST_LL)
-    p.line((22, 36), (42, 36), ST_D)  # dobradiça da tampa
-    p.poly([(44, 40), (47, 43), (41, 28), (39, 27)], ST_D)
-    p.poly([(20, 40), (17, 43), (23, 28), (25, 27)], ST_D)
-    # mira de lâmina com entalhe
-    p.rect(28.5, 31, 35.5, 35, ST_D)
-    p.rect(28.5, 31, 31, 32.5, ST_LL)
-    p.rect(33, 31, 35.5, 32.5, ST_LL)
-    # pega de transporte
-    p.line((39, 38), (44, 31), ST_LL, 2)
-    p.line((44, 31), (41, 28), ST_L, 2)
-    # manga do cano com furos
-    p.poly([(27.5, 27), (36.5, 27), (35, 17), (29, 17)], ST_D)
-    p.poly([(30.5, 27), (33.5, 27), (33, 17), (31, 17)], ST)
-    for j, y in enumerate(range(18, 27, 2)):
-        for k in (-1, 1):
-            x = 32 + k * (2.4 + (y - 17) * 0.12)
-            p.rect(x - 0.6, y, x + 0.6, y + 1, ST_DD)
-    p.poly([(29.5, 17), (34.5, 17), (33.6, 14), (30.4, 14)], ST_L)  # quebra-chamas
-    return p, p.T((32, 14))
+    # mão esquerda no guarda-mão
+    sleeve(p, [(1, 64), (20, 64), (23, 55), (6, 53)])
+    fist(p, 7, 23, 44, 56)
+    # mão direita no punho
+    sleeve(p, [(27, 64), (51, 64), (49, 58), (30, 58)])
+    fist(p, 29, 49, 48, 59)
+    # traseira da caixa (com a coronha por baixo)
+    p.rect(24, 40, 40, 50, ST)
+    p.rect(24, 40, 40, 41, ST_L)
+    p.rect(39, 41, 40, 50, ST_D)
+    p.rect(28, 43, 36, 48, ST_DD)
+    # alça de mira de tambor
+    p.ellipse(32, 38, 4, 3, ST_L)
+    p.ellipse(32, 38, 1.6, 1.3, ST_DD)
+    # caixa a fugir para a frente
+    p.poly([(25, 40), (39, 40), (35, 26), (29, 26)], ST)
+    p.poly([(29.5, 40), (34.5, 40), (33, 26), (31, 26)], ST_L)
+    p.poly([(39, 40), (41, 43), (36, 27), (35, 26)], ST_D)
+    p.poly([(25, 40), (23, 43), (28, 27), (29, 26)], ST_D)
+    # guarda-mão verde
+    p.poly([(26, 33), (38, 33), (36, 24), (28, 24)], HANDGUARD)
+    p.poly([(29, 33), (35, 33), (34, 24), (30, 24)], HANDGUARD_L)
+    for y in (31, 29, 27):
+        p.line((28, y), (36, y), (40, 46, 30))
+    # tubo de armar por cima e cano
+    p.poly([(30.5, 34), (33.5, 34), (33, 18), (31, 18)], ST_D)
+    p.line((32, 34), (32, 19), ST_L)
+    p.rect(39, 34, 43, 36, ST_LL)  # alavanca de armar
+    p.poly([(31, 18), (33, 18), (32.6, 13), (31.4, 13)], ST_D)
+    # túnel do ponto de mira
+    p.ellipse(32, 17, 2.4, 2.0, ST_L)
+    p.ellipse(32, 17, 1.0, 0.9, ST_DD)
+    return p, p.T((32, 12))
 
 
 # ------------------------------------------------------------------ faca
@@ -274,7 +272,7 @@ FRAMES = [
     dict(dy=-1, tilt=0.3, fire=None),
 ]
 
-GUNS = {"blaster": pistol_frame, "rifle": fbp_frame, "cannon": mg_frame}
+GUNS = {"blaster": pistol_frame, "rifle": fbp_frame, "cannon": g3_frame}
 
 
 def gun_frames(name):

@@ -1,6 +1,7 @@
-# Paredes 64x64 do tema Estado Novo (sede da polícia política, forte-prisão):
-# pedra cinzenta de castelo, azulejo, madeira, tijolo de prisão, bandeiras,
-# retratos, cartazes de propaganda e de censura. Tudo desenhado por código.
+# Paredes 64x64 (quartel-general e forte a defender): pedra cinzenta de
+# castelo, azulejo, madeira, tijolo, bandeiras, retratos e cartazes da época,
+# e as marcas da invasão (rombo na parede com o estandarte vermelho dos
+# invasores). Tudo desenhado por código.
 import math
 import random
 
@@ -580,46 +581,6 @@ def poster_licao(img):
     return img
 
 
-def censura_board(img):
-    """Folha de jornal com o lápis azul da censura e o carimbo VISADO PELA
-    COMISSÃO DE CENSURA."""
-    x0, y0, x1, y1 = 6, 6, 58, 58
-    img[y0 + 1 : y1 + 1, x0 + 1 : x1 + 1] *= 0.5
-    img[y0:y1, x0:x1] = (222, 218, 200)
-    rng = random.Random(9)
-    # cabeçalho
-    img[y0 + 2 : y0 + 7, x0 + 3 : x1 - 3] = INK
-    img = centered(img, "DIÁRIO", (x0 + x1) / 2, y0 + 2, 1, (222, 218, 200))
-    # colunas de texto
-    for col in range(3):
-        cx0 = x0 + 3 + col * 17
-        for y in range(y0 + 10, y1 - 3, 2):
-            w = rng.randint(9, 15)
-            img[y, cx0 : cx0 + w] = (90, 88, 84)
-    # cortes a lápis azul
-    blue = (40, 70, 190)
-    for (ax, ay, bx, by) in ((x0 + 4, y0 + 12, x0 + 18, y0 + 26), (x0 + 18, y0 + 12, x0 + 4, y0 + 26),
-                             (x0 + 21, y0 + 30, x0 + 36, y0 + 46), (x0 + 36, y0 + 30, x0 + 21, y0 + 46)):
-        n = 40
-        for i in range(n + 1):
-            x = int(ax + (bx - ax) * i / n)
-            y = int(ay + (by - ay) * i / n)
-            img[y, x] = blue
-            img[y, min(x + 1, S - 1)] = blue
-    # carimbo
-    sx0, sy0, sx1, sy1 = x0 + 2, y1 - 22, x1 - 2, y1 - 2
-    ink = (120, 40, 140)
-    img[sy0:sy1, sx0:sx1] = img[sy0:sy1, sx0:sx1] * 0.55 + np.array([222, 218, 200]) * 0.45
-    img[sy0, sx0:sx1] = ink
-    img[sy1 - 1, sx0:sx1] = ink
-    img[sy0:sy1, sx0] = ink
-    img[sy0:sy1, sx1 - 1] = ink
-    img = centered(img, "VISADO PELA", (sx0 + sx1) / 2, sy0 + 2, 1, ink)
-    img = centered(img, "COMISSÃO DE", (sx0 + sx1) / 2, sy0 + 9, 1, ink)
-    img = centered(img, "CENSURA", (sx0 + sx1) / 2, sy0 + 15, 1, ink)
-    return img
-
-
 def trilogia_plaque(img):
     x0, y0, x1, y1 = 14, 10, 50, 54
     img = frame(img, x0, y0, x1, y1)
@@ -799,6 +760,79 @@ def dark(img, k=0.68):
     return np.clip(np.asarray(img, float) * k, 0, 255)
 
 
+def star(img, cx, cy, r, col):
+    pts = []
+    for i in range(10):
+        a = math.radians(-90 + i * 36)
+        rr = r if i % 2 == 0 else r * 0.42
+        pts.append((cx + math.cos(a) * rr, cy + math.sin(a) * rr))
+    im = Image.fromarray(np.clip(img, 0, 255).astype(np.uint8))
+    ImageDraw.Draw(im).polygon(pts, fill=tuple(int(c) for c in col))
+    return np.array(im).astype(float)
+
+
+def invader_wall(img):
+    """Parede arrombada pelos invasores: rombo com pedras soltas, estrela
+    vermelha pintada à pressa e o estandarte vermelho deles, rasgado."""
+    rng = random.Random(5)
+    # rombo
+    for y in range(30, 62):
+        for x in range(4, 30):
+            d = math.hypot((x - 16) / 12, (y - 48) / 14) + rng.uniform(-0.12, 0.12)
+            if d < 0.85:
+                img[y, x] = (14, 12, 12)
+            elif d < 1.0:
+                img[y, x] = img[y, x] * 0.55
+    for _ in range(14):
+        x, y = rng.randint(2, 32), rng.randint(56, 62)
+        img[y : y + 2, x : x + 3] = (100, 96, 88)
+    # fendas
+    for sx, sy in ((28, 34), (8, 32)):
+        x, y = sx, sy
+        for _ in range(16):
+            img[y, x] = (30, 28, 26)
+            x += rng.choice((-1, 0, 1))
+            y -= 1
+    # estrela pintada com tinta a escorrer
+    img = star(img, 20, 15, 10, (190, 20, 24))
+    for x in (14, 19, 25):
+        img[22 : 22 + rng.randint(3, 8), x] = (170, 16, 20)
+    # estandarte vermelho dos invasores, rasgado
+    x0, x1, y0, y1 = 36, 58, 6, 50
+    img[y0 - 2 : y0, x0 - 2 : x1 + 2] = (120, 90, 40)
+    for x in range(x0, x1):
+        fold = 0.82 + 0.18 * math.cos((x - x0) / (x1 - x0) * math.pi * 3)
+        bottom = y1 - (abs(((x - x0) * 7) % 9 - 4) if x > x0 + 6 else 0)
+        for y in range(y0, bottom):
+            img[y, x] = np.array((196, 22, 24)) * fold
+    img = star(img, 47, 16, 6, (250, 210, 40))
+    img[24:26, 41:53] = (250, 210, 40)
+    return img
+
+
+def armoury(base):
+    """Arrecadação com grade: espingardas no armeiro e caixas de munições."""
+    img = base.copy()
+    img[8:60, 7:57] = (18, 16, 16)
+    img[10:58, 9:55] = (52, 46, 38)
+    img[14:16, 11:53] = (96, 70, 40)  # prateleira do armeiro
+    img[44:46, 11:53] = (96, 70, 40)
+    for x in range(14, 52, 6):
+        img[16:44, x] = (40, 40, 44)  # cano
+        img[30:44, x - 1 : x + 2] = (110, 70, 36)  # coronha
+        img[22:26, x + 1] = (60, 60, 64)  # carregador
+    for x0 in (12, 32):
+        img[48:56, x0 : x0 + 16] = (86, 92, 56)
+        img[48, x0 : x0 + 16] = (120, 128, 80)
+        img[51:53, x0 + 6 : x0 + 10] = (220, 200, 120)
+    for x in range(9, 56, 6):
+        img[8:60, x : x + 2] = (92, 94, 100)
+        img[8:60, x] = (150, 152, 158)
+    for y in (8, 9, 32, 33, 58, 59):
+        img[y, 7:57] = (110, 112, 118)
+    return img
+
+
 def walls():
     w = {}
     w["stone0"] = stone(1)
@@ -810,12 +844,12 @@ def walls():
     w["stone-plaque"] = trilogia_plaque(stone(5))
     w["stone-arch"] = arch(stone(6))
     w["stone-poster"] = poster_licao(stone(7))
-    w["stone-censura"] = censura_board(stone(8))
+    w["stone-censura"] = invader_wall(stone(8))  # nome antigo do ficheiro
     w["blue0"] = azulejo(9, 0)
     w["blue1"] = azulejo(10, 1)
     w["azulejo-panel"] = azulejo_panel()
     w["blue-cell"] = cell_bars(stone(11, base=(116, 112, 104)))
-    w["blue-cell-robot"] = cell_bars(stone(12, base=(116, 112, 104)), cot=True)
+    w["blue-cell-robot"] = armoury(stone(12, base=(116, 112, 104)))
     w["wood"] = wood(13)
     w["wood-emblem"] = armillary(cross_of_christ(wood(14), 32, 14, 5), 32, 38, 13)
     w["wood-painting"] = portrait(wood(15), 17, 12)

@@ -1,7 +1,10 @@
-# Personagens do tema Estado Novo, em voxels de baixa resolução (para o
-# aspeto de píxeis grossos dos jogos VGA): o agente da polícia política
-# (gabardina e chapéu), o legionário (camisa verde e capacete), o guarda da
-# GNR (farda cinzenta e boné) e o cão de guarda. Só adultos. Tudo original.
+# Inimigos em voxels de baixa resolução (aspeto de píxeis grossos dos jogos
+# VGA): uma força de invasão estrangeira e fictícia, ao estilo das fardas
+# soviéticas dos anos 60/70 -- o atirador (gorro de pele com estrela
+# vermelha e espingarda de assalto tipo AK), o soldado de capacete com
+# pistola-metralhadora de tambor tipo PPSh, o comissário (capote e boné de
+# pala com banda vermelha, pistola) e o cão de ataque. Só adultos e só
+# combatentes. Tudo original.
 import math
 
 from vox import Model, box, chain, cyl_x, cyl_y, cyl_z, ellipsoid, rot_x, rot_y, rot_z, transformed
@@ -21,22 +24,27 @@ WHITE = (236, 232, 220)
 
 EMISSIVE = (FLASH_Y, FLASH_O)
 
-PIDE = dict(
-    name="pide", coat=(150, 128, 90), coat_d=(112, 94, 64), shirt=(220, 216, 200), tie=(70, 30, 30),
-    trousers=(52, 50, 50), shoes=(30, 24, 20), hat="fedora", hat_c=(70, 62, 52), band=(30, 26, 22),
-    gun="pistol", belt=(60, 44, 30), moustache=True, boots=False,
-)
-LEGIAO = dict(
-    name="legiao", coat=None, shirt=(64, 100, 52), shirt_d=(44, 72, 38), tie=None,
-    trousers=(58, 62, 44), shoes=(28, 22, 18), hat="helmet", hat_c=(84, 92, 64), band=None,
-    gun="smg", belt=(70, 50, 28), strap=True, moustache=False, boots=True,
-)
-GNR = dict(
-    name="gnr", coat=None, shirt=(104, 108, 110), shirt_d=(78, 82, 86), tie=None,
-    trousers=(80, 84, 88), shoes=(20, 18, 18), hat="cap", hat_c=(64, 68, 74), band=(150, 24, 28),
-    gun="rifle", belt=(26, 22, 20), strap=True, moustache=True, boots=True,
-)
+STAR = (210, 20, 24)
 
+# sentinel/: atirador com espingarda de assalto
+ATIRADOR = dict(
+    name="atirador", coat=None, shirt=(128, 122, 78), shirt_d=(98, 92, 56), tie=None,
+    trousers=(106, 100, 62), shoes=(26, 22, 18), hat="ushanka", hat_c=(96, 72, 46),
+    band=(70, 52, 32), gun="ak", belt=(66, 46, 26), strap=False, moustache=False, boots=True,
+)
+# legiao/: soldado de capacete com pistola-metralhadora de tambor
+SOLDADO = dict(
+    name="soldado", coat=None, shirt=(104, 108, 64), shirt_d=(78, 82, 46), tie=None,
+    trousers=(96, 94, 58), shoes=(24, 20, 16), hat="helmet", hat_c=(70, 86, 52), band=None,
+    gun="ppsh", belt=(70, 50, 28), strap=True, moustache=True, boots=True,
+)
+# gnr/: comissário de capote e boné de pala
+COMISSARIO = dict(
+    name="comissario", coat=(96, 90, 72), coat_d=(70, 64, 50), shirt=(120, 116, 80),
+    tie=(60, 56, 40), trousers=(70, 66, 50), shoes=(18, 16, 14), hat="cap",
+    hat_c=(88, 92, 60), band=STAR, gun="pistol", belt=(60, 40, 22), moustache=True,
+    boots=True,
+)
 
 def _gun(m, kind, xf, flash=False):
     """Arma na mão direita (lado -x), cano para -y a partir da mão (z~15)."""
@@ -50,6 +58,20 @@ def _gun(m, kind, xf, flash=False):
         box(m, hx - 0.5, hx + 0.5, -12, -9, 15, 16, GUN_L, xf=xf)
         box(m, hx - 0.6, hx + 0.6, -5, -3, 11, 14.5, GUN, xf=xf)  # carregador
         box(m, hx - 0.8, hx + 0.8, 3, 7, 14, 16, STOCK, xf=xf)
+        tip = -13
+    elif kind == "ppsh":
+        box(m, hx - 0.9, hx + 0.9, -7, 2, 14.5, 16.5, GUN, xf=xf)
+        box(m, hx - 1.0, hx + 1.0, -11, -7, 14.8, 16.4, GUN_L, xf=xf)  # manga
+        box(m, hx - 1.2, hx + 1.2, -6.5, -2.5, 10.5, 14.5, GUN, xf=xf)  # tambor
+        box(m, hx - 0.9, hx + 0.9, 2, 7, 13.5, 16, STOCK, xf=xf)
+        tip = -12
+    elif kind == "ak":
+        box(m, hx - 0.8, hx + 0.8, -4, 3, 14.5, 16.5, GUN, xf=xf)
+        box(m, hx - 0.9, hx + 0.9, -8, -4, 14.6, 16.4, STOCK, xf=xf)  # guarda-mão
+        box(m, hx - 0.4, hx + 0.4, -13, -8, 15.2, 16, GUN, xf=xf)
+        box(m, hx - 0.6, hx + 0.6, -3, -1, 11.5, 14.5, GUN_L, xf=xf)  # carregador curvo
+        box(m, hx - 0.6, hx + 0.6, -4, -2.5, 10, 11.5, GUN_L, xf=xf)
+        box(m, hx - 0.9, hx + 0.9, 3, 8, 13.6, 16, STOCK, xf=xf)
         tip = -13
     else:
         box(m, hx - 0.9, hx + 0.9, -6, 7, 14, 16.5, STOCK, xf=xf)
@@ -143,18 +165,26 @@ def human(sp, leg=0.0, arm=0.0, bob=0.0, pose="still", flash=False, blood=0):
         cyl_z(m, 0, 0, 3.9, 48.5, 52, hc, xf=f)
         cyl_z(m, 0, 0, 4.0, 48.5, 49.7, sp["band"], xf=f)
         box(m, -0.8, 0.8, -4.0, 4.0, 51.5, 52.3, hc, xf=f)  # vinco
+    elif hat == "ushanka":
+        # gorro de pele com abas e estrela vermelha à frente
+        cyl_z(m, 0, 0, 4.4, 46.5, 51, hc, xf=f)
+        cyl_z(m, 0, 0, 4.7, 46.5, 48, sp["band"], xf=f)
+        for sx in (-1, 1):
+            box(m, sx * 4.0 - 0.7, sx * 4.0 + 0.7, -2.2, 2.4, 41.5, 47, sp["band"], xf=f)
+        box(m, -1.0, 1.0, -4.9, -4.6, 48.6, 50.4, STAR, xf=f)
     elif hat == "helmet":
         ellipsoid(m, 0, 0, 47.5, 4.9, 4.9, 4.8, hc, xf=f)
         cyl_z(m, 0, 0, 5.3, 46, 47, sp.get("shirt_d", hc), xf=f)
         box(m, -3.0, 3.0, -3.6, -3.3, 45, 45.6, EYE, xf=f)  # sombra da pala
+        box(m, -0.8, 0.8, -5.0, -4.7, 48.5, 50, STAR, xf=f)  # estrela
     else:  # boné de pala
         cyl_z(m, 0, 0, 3.9, 47.5, 49.5, hc, xf=f)
         cyl_z(m, 0, 0, 4.0, 47.5, 48.3, sp["band"], xf=f)
         box(m, -4.1, 4.1, -4.2, 0.6, 49.5, 51, hc, xf=f)
         box(m, -3.0, 3.0, -5.6, -3.3, 47.5, 48.1, (16, 16, 18), xf=f)  # pala
-        box(m, -0.6, 0.6, -4.1, -3.9, 48.4, 49.2, (220, 190, 80), xf=f)  # emblema
+        box(m, -0.7, 0.7, -4.3, -4.0, 48.2, 49.6, (230, 200, 60), xf=f)  # estrela
     # braços (lado -x leva a arma)
-    two_hand = sp["gun"] in ("rifle", "smg")
+    two_hand = sp["gun"] in ("rifle", "smg", "ak", "ppsh")
     for side in (-1, 1):
         sh = (side * 6.6, 0, 36.5)
         if pose in ("aim", "shoot"):
@@ -223,9 +253,9 @@ def human_death(sp, stage):
 
 # ---------------------------------------------------------------- cão de guarda
 
-FUR = (150, 104, 56)
-FUR_D = (96, 64, 34)
-SADDLE = (40, 30, 24)
+FUR = (120, 96, 70)
+FUR_D = (78, 60, 40)
+SADDLE = (30, 26, 24)
 NOSE = (20, 16, 14)
 TONGUE = (200, 80, 80)
 TEETH = (236, 232, 220)

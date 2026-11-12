@@ -377,10 +377,10 @@ $_STILL_SPRITE assets/oms3d/textures/billboards/plant-gold.bmp
 
 U_TYPE COLLECTIBLE
 U_HEALTH 10
-U_NAME Pao e sardinhas
+U_NAME Racao de combate
 U_SINGLE_USE TRUE
 U_USE_SOUND assets/oms3d/sounds/heal1.mp3
-U_DESCRIPTION Pao com sardinhas, mata a fome
+U_DESCRIPTION Racao de combate e pao com chourico
 U_ICON_SPRITE assets/oms3d/textures/billboards/food.bmp
 
 Z_TYPE COLLECTIBLE
@@ -388,31 +388,31 @@ Z_AMMO 10
 Z_NAME Municoes
 Z_SINGLE_USE TRUE
 Z_USE_SOUND assets/oms3d/sounds/get-ammo.mp3
-Z_DESCRIPTION Municoes para as armas
+Z_DESCRIPTION Caixa de municoes
 Z_ICON_SPRITE assets/oms3d/textures/billboards/ammo.bmp
 
 o_TYPE COLLECTIBLE
 o_SCORE 500
-o_NAME Jornal Avante!
+o_NAME Cruz de guerra
 o_SINGLE_USE TRUE
 o_USE_SOUND assets/oms3d/sounds/pickup2.mp3
-o_DESCRIPTION Jornal clandestino, passa de mao em mao
+o_DESCRIPTION Condecoracao por bravura
 o_ICON_SPRITE assets/oms3d/textures/billboards/trophy.bmp
 
 z_TYPE COLLECTIBLE
 z_SCORE 100
-z_NAME Cravo
+z_NAME Medalha
 z_SINGLE_USE TRUE
 z_USE_SOUND assets/oms3d/sounds/pickup1.mp3
-z_DESCRIPTION Um cravo vermelho
+z_DESCRIPTION Medalha militar
 z_ICON_SPRITE assets/oms3d/textures/billboards/gem.bmp
 
 7_TYPE COLLECTIBLE
 7_SCORE 1000
-7_NAME Mala de escudos
+7_NAME Caixa de ouro
 7_SINGLE_USE TRUE
 7_USE_SOUND assets/oms3d/sounds/pickup3.mp3
-7_DESCRIPTION Dinheiro apreendido pela policia
+7_DESCRIPTION Barras de ouro do cofre do forte
 7_ICON_SPRITE assets/oms3d/textures/billboards/treasure.bmp
 
 I_TYPE COLLECTIBLE
@@ -427,10 +427,10 @@ Y_TYPE WEAPON
 Y_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 Y_DAMAGE 10
 Y_AMMO_USAGE 1
-Y_NAME Pistola do agente
+Y_NAME Espingarda do invasor
 Y_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 Y_USE_SOUND_VOLUME 0.5
-Y_DESCRIPTION Arma do agente da policia politica
+Y_DESCRIPTION Espingarda de assalto do atirador invasor
 Y_USE_DELAY 0.8
 Y_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 Y_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
@@ -445,7 +445,7 @@ C_NAME Dentes do cao
 C_RANGE 2.5
 C_USE_SOUND assets/oms3d/sounds/hound-bark.mp3
 C_USE_SOUND_VOLUME 0.5
-C_DESCRIPTION Mordedura do cao de guarda
+C_DESCRIPTION Mordedura do cao de ataque
 C_USE_DELAY 1.0
 C_SCREEN_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp
 C_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp:assets/oms3d/textures/billboards/hound/right2.bmp:assets/oms3d/textures/billboards/hound/right3.bmp
@@ -454,11 +454,11 @@ C_SCREEN_USE_SPRITE_LOOP TRUE
 C_ICON_SPRITE assets/oms3d/textures/billboards/hound/right1.bmp
 
 H_TYPE ITEM
-H_NAME Alto!
+H_NAME Stoi!
 H_USE_SOUND assets/oms3d/sounds/alert.mp3
 H_USE_SOUND_VOLUME 0.4
 H_SINGLE_USE TRUE
-H_DESCRIPTION Alto! Ninguem passa
+H_DESCRIPTION Grito de alerta do invasor
 H_USE_DELAY 0.6
 H_SCREEN_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 H_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/sentinel/halt.bmp
@@ -486,11 +486,11 @@ G_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 G_CANT_USE_SOUND_VOLUME 0.6
 G_DAMAGE 30
 G_AMMO_USAGE 1
-G_NAME Metralhadora
+G_NAME Espingarda G3
 G_USE_SOUND assets/oms3d/sounds/cannon.mp3
 G_USE_SOUND_VOLUME 0.3
 G_GET_SOUND assets/oms3d/sounds/get-cannon.mp3
-G_DESCRIPTION Metralhadora de fita, muito potente mas gasta muito
+G_DESCRIPTION Espingarda automatica G3, potente e rapida
 G_USE_DELAY 0.1
 G_SCREEN_SPRITE assets/oms3d/textures/items/cannon/screen/0.bmp
 G_SCREEN_USE_SPRITE assets/oms3d/textures/items/cannon/screen/2.bmp:assets/oms3d/textures/items/cannon/screen/3.bmp
@@ -506,7 +506,7 @@ K_NAME Faca
 K_RANGE 1
 K_USE_SOUND assets/oms3d/sounds/blade.mp3
 K_SINGLE_USE TRUE
-K_DESCRIPTION Faca, para combate corpo a corpo
+K_DESCRIPTION Faca de combate, para corpo a corpo
 K_USE_DELAY 0.1
 K_SCREEN_SPRITE assets/oms3d/textures/items/blade/screen/0.bmp
 K_SCREEN_USE_SPRITE assets/oms3d/textures/items/blade/screen/1.bmp:assets/oms3d/textures/items/blade/screen/2.bmp:assets/oms3d/textures/items/blade/screen/3.bmp:assets/oms3d/textures/items/blade/screen/4.bmp
@@ -831,10 +831,10 @@ Q_TYPE WEAPON
 Q_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 Q_DAMAGE 7
 Q_AMMO_USAGE 1
-Q_NAME FBP da Legiao
+Q_NAME Pistola-metralhadora do invasor
 Q_USE_SOUND assets/oms3d/sounds/rifle.mp3
 Q_USE_SOUND_VOLUME 0.4
-Q_DESCRIPTION Pistola-metralhadora do legionario
+Q_DESCRIPTION Pistola-metralhadora de tambor do soldado invasor
 Q_USE_DELAY 0.35
 Q_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 Q_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
@@ -844,10 +844,10 @@ X_TYPE WEAPON
 X_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 X_DAMAGE 15
 X_AMMO_USAGE 1
-X_NAME Espingarda da GNR
+X_NAME Pistola do comissario
 X_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 X_USE_SOUND_VOLUME 0.5
-X_DESCRIPTION Espingarda do guarda republicano
+X_DESCRIPTION Pistola do comissario invasor
 X_USE_DELAY 1.1
 X_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 X_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp

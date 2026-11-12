@@ -1349,9 +1349,9 @@ m_TYPE WEAPON
 m_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
 m_DAMAGE 10
 m_AMMO_USAGE 1
-m_NAME Pistola do agente
+m_NAME Espingarda
 m_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
-m_DESCRIPTION Arma do agente da policia politica
+m_DESCRIPTION Espingarda do soldado
 m_SINGLE_USE TRUE
 m_USE_DELAY 0.8
 m_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp

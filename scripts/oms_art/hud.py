@@ -1,6 +1,6 @@
-# Barra de estado e cara do jogador: um resistente português dos anos 70
-# (cabelo farto, patilhas, bigode, colarinho aberto) que se vai ferindo e
-# ensanguentando à medida que perde vida. Píxeis escritos à mão aqui.
+# Barra de estado e cara do jogador: um soldado português dos anos 60/70
+# (capacete verde-oliva, patilhas, bigode, gola da farda) que se vai ferindo
+# e ensanguentando à medida que perde vida. Píxeis escritos à mão aqui.
 import random
 
 import numpy as np
@@ -11,14 +11,14 @@ from pixfont import G, centered, draw_text, text_width
 # metade esquerda da cara (16 colunas, espelhada para 32x32)
 FACE = [
     "kkkkkkkkkkkkkkkk",
-    "kkkkkkkkkhhhhhhh",
-    "kkkkkkhhhHHHHHHH",
-    "kkkkkhHHHHHHHHHh",
-    "kkkkhHHHHHHHHHHH",
-    "kkkhHHHHHHHHHHHH",
-    "kkkHHHHHHHHHHHhH",
-    "kkHHHHHHHHSSSHHH",
-    "kkHHHHHHSSSSSSSS",
+    "kkkkkkkkkoGGGGGG",
+    "kkkkkkoGGGGGgggG",
+    "kkkkkoGGGGGgggGG",
+    "kkkkoGGGGGGGGGGG",
+    "kkkoGGGGGGGGGGGG",
+    "kkoGGGGGGGGGGGGG",
+    "kkoGGGGGGGGGGGGG",
+    "koDDDDDDDDDDDDDD",
     "kkHHHHHdSSSSSSSS",
     "kkHHHHdSbbbbSSSS",
     "kkHHHHdSSSSSSSSS",
@@ -46,7 +46,8 @@ FACE = [
 FCOL = {
     "k": None, "h": (92, 60, 34), "H": (56, 34, 20), "S": (224, 170, 128), "s": (190, 132, 94),
     "d": (142, 90, 60), "D": (96, 56, 36), "b": (50, 30, 18), "m": (60, 36, 22), "l": (150, 70, 60),
-    "n": (196, 138, 98), "w": (226, 222, 200), "c": (110, 78, 46),
+    "n": (196, 138, 98), "w": (92, 100, 58), "c": (112, 118, 70),
+    "G": (88, 100, 56), "g": (128, 140, 84), "D": (46, 52, 30), "o": (30, 34, 20),
 }
 BLOOD = (170, 10, 14)
 BLOOD_D = (110, 4, 8)
@@ -91,13 +92,14 @@ def face(state, look, dead=False, cheat=False):
     f = base_face()
     if cheat:
         f = eyes(f, 1, glow=True)
-        # sorriso largo e um cravo atrás da orelha
+        # sorriso largo e óculos escuros
         f[21, 12:20, :3] = (240, 236, 226)
         f[22, 13:19, :3] = (150, 70, 60)
-        for (x, y) in ((27, 13), (28, 13), (27, 14), (28, 14), (29, 14), (28, 15), (29, 12), (26, 12)):
-            f[y, x] = (226, 30, 40, 255)
-        f[16:19, 27, :3] = (60, 140, 60)
-        f[16:19, 27, 3] = 255
+        f[11:13, 8:14, :3] = (20, 20, 24)  # óculos escuros
+        f[11:13, 18:24, :3] = (20, 20, 24)
+        f[11, 14:18, :3] = (20, 20, 24)
+        f[11, 9:11, :3] = (200, 210, 230)
+        f[11, 19:21, :3] = (200, 210, 230)
         return f
     st = 6 if dead else state
     for k in range(st + 1):
@@ -128,23 +130,6 @@ NAVY_D = np.array([14, 20, 46], float)
 NAVY_L = np.array([80, 104, 170], float)
 GOLD = (232, 190, 80)
 
-CRAVO_SMALL = [
-    "..rRr.rR..",
-    ".rRRrrRRr.",
-    "rRrRRrRrRr",
-    ".rRrRRRrr.",
-    "..rrRRrr..",
-    "...gGGg...",
-    "....Gg....",
-    "....gG.gl.",
-    "....Ggl...",
-    "...gG.....",
-    "...Gg.....",
-    "..gG......",
-]
-CRAVO_C = {"r": (150, 10, 20), "R": (226, 30, 40), "g": (30, 90, 40), "G": (70, 150, 60), "l": (90, 170, 70)}
-
-
 def bevel_box(img, x0, y0, x1, y1, inset=True):
     img[y0:y1, x0:x1] = NAVY_D if inset else NAVY
     a, b = (NAVY_D * 0.6, NAVY_L) if inset else (NAVY_L, NAVY_D * 0.6)
@@ -172,12 +157,15 @@ def hud_bar(state, look, dead=False, cheat=False):
         img = bevel_box(img, x0, 6, x1, 74)
         if label:
             img = centered(img, label, (x0 + x1) / 2, LABEL_Y, 2, GOLD, shadow=(10, 10, 20))
-    # emblema do jogador: cravo e a data, centrados com margem
-    c = scale(grid(CRAVO_SMALL, CRAVO_C), 3)  # 30x36
+    # emblema: esfera armilar com o escudo e a palavra PÁTRIA, centrados
+    import flags
+
+    a = flags.arms(15)  # 35x35
     cx = (6 + 80) // 2
-    top = 6 + (68 - (36 + 5 + 10)) // 2
-    paste(img, c, cx - 15, top)
-    img = centered(img, "25·IV", cx, top + 41, 2, (236, 230, 210), shadow=(10, 10, 20))
+    top = 6 + (68 - (35 + 4 + 10)) // 2
+    paste(img, a, cx - a.shape[1] // 2, top)
+    img = centered(img, "PÁTRIA", cx, top + 39, 2 if text_width("PÁTRIA", 2) <= 66 else 1,
+                   (236, 230, 210), shadow=(10, 10, 20))
     # quatro lâmpadas de força, centradas como grupo
     bw, gap = 8, 5
     x = (200 + 260) // 2 - (4 * bw + 3 * gap) // 2
@@ -226,36 +214,40 @@ def digit(ch):
 
 
 def poster_mission():
-    """Cartaz da entrada da campanha: o forte ao entardecer e um cravo
-    gigante, OPERAÇÃO CRAVO."""
+    """Cartaz da entrada da campanha: DEFENDER A PÁTRIA -- o forte ao fim da
+    tarde com a bandeira nacional no alto da muralha."""
+    import flags
+
     W = 128
     img = np.zeros((W, W, 3))
     for y in range(W):
         t = y / W
-        img[y] = (120 + 90 * t, 30 + 40 * t, 30 + 10 * t)
-    # sol
-    for y in range(W):
-        for x in range(W):
-            if (x - 92) ** 2 + (y - 70) ** 2 < 18 ** 2:
-                img[y, x] = (250, 200, 90)
-    # forte (silhueta)
-    sil = (30, 18, 20)
-    img[78:W, :] = sil
-    for x in range(0, W, 10):
-        img[72:78, x : x + 6] = sil
-    img[56:78, 14:34] = sil
-    for x in range(14, 34, 6):
-        img[52:56, x : x + 4] = sil
-    img[90:W, :] = (24, 14, 16)
-    # cravo grande
-    c = scale(grid(CRAVO_SMALL, CRAVO_C), 6)
-    paste(img, c, 34, 38)
-    img[4:34, 4:124] = (20, 16, 18)
-    img[4, 4:124] = GOLD
-    img[33, 4:124] = GOLD
-    img = centered(img, "OPERAÇÃO", 64, 9, 2, (240, 230, 200))
-    img = centered(img, "CRAVO", 64, 21, 2, (236, 50, 50))
-    img = centered(img, "LIBERDADE", 64, 112, 2, (240, 230, 200), shadow=(0, 0, 0))
+        img[y] = (60 + 120 * t, 80 + 60 * t, 120 - 30 * t)
+    sil = (34, 30, 28)
+    img[84:W, :] = sil
+    for x in range(0, W, 12):
+        img[76:84, x : x + 7] = sil
+    img[52:84, 82:110] = sil  # torre
+    for x in range(82, 110, 7):
+        img[46:52, x : x + 4] = sil
+    img[96:W, :] = (26, 22, 22)
+    # mastro e bandeira em cima da torre
+    img[14:47, 94:96] = (60, 50, 40)
+    fl = np.zeros((22, 32, 3))
+    fl[:, :13] = flags.GREEN
+    fl[:, 13:] = flags.RED
+    ar = flags.arms(8)
+    m = ar[..., 3] > 0
+    oy, ox = 11 - ar.shape[0] // 2, 13 - ar.shape[1] // 2
+    region = fl[max(0, oy) : oy + ar.shape[0], max(0, ox) : ox + ar.shape[1]]
+    region[m[: region.shape[0], : region.shape[1]]] = ar[..., :3][m][: region[m[: region.shape[0], : region.shape[1]]].shape[0]]
+    img[14:36, 96:128] = fl[:, :32]
+    img[4:34, 4:90] = (20, 18, 18)
+    img[4, 4:90] = GOLD
+    img[33, 4:90] = GOLD
+    img = centered(img, "DEFENDER", 47, 9, 2, (240, 230, 200))
+    img = centered(img, "A PÁTRIA", 47, 21, 2, (240, 210, 60))
+    img = centered(img, "DEFESA DO FORTE", 64, 112, 1, (240, 230, 200), shadow=(0, 0, 0))
     img[0:2] = (60, 40, 30)
     img[W - 2 :] = (60, 40, 30)
     img[:, 0:2] = (60, 40, 30)

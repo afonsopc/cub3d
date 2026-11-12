@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
-# Sons e músicas do cub3d, versão "Estado Novo" (estilo dos jogos de 1992):
-# tudo sintetizado aqui (ondas quadradas/pulso, triangulares, FM de dois
+# Sons e músicas do cub3d (defesa do forte, estilo dos jogos de 1992): tudo
+# sintetizado aqui (ondas quadradas/pulso, triangulares, FM de dois
 # operadores, ruído e formantes de voz), nenhuma gravação nem amostra de
-# terceiros. As melodias são escritas neste ficheiro e são originais.
+# terceiros.
 #
-#   - tiros: pistola tipo Walther, rajada da FBP, metralhadora pesada,
-#     tiro do inimigo (agente da PIDE / GNR), faca;
-#   - apito do guarda ("Alto!"), gritos de queda (voz por formantes),
-#     latido e ganido do cão de guarda;
-#   - portas pesadas, parede secreta de pedra, apanhar cravos, o "Avante!",
-#     a mala de escudos, munições, armas, comida e estojo de primeiros
-#     socorros;
-#   - músicas: marcha de banda filarmónica (nível 1), fado (nível 2 da sala
-#     42), marcha sombria da fortaleza (nível 2) e marcha da liberdade (mega).
+#   - tiros: pistola tipo Walther, rajada da FBP, G3, tiro do inimigo, faca;
+#   - apito de alerta, gritos de queda (voz por formantes), latido e ganido
+#     do cão de ataque;
+#   - portas pesadas, parede secreta de pedra, medalhas, cruz de guerra,
+#     ouro, munições, armas, ração e estojo de primeiros socorros;
+#   - músicas (ver CREDITS.md):
+#       music-1    marcha heroica, original (nível 1)
+#       music-2    marcha de combate, tensa, original (variante 42)
+#       music-3    marcha sombria do forte, original (nível 2)
+#       music-mega "A Portuguesa" de Alfredo Keil (1890, domínio público),
+#                  transcrita da partitura de 1910 (Revista da Semana n.º 544,
+#                  IMSLP) e arranjada aqui em 8 bits (nível bónus / vitória)
 #
 # Precisa de numpy e do `lame` para os MP3.
 #
@@ -226,7 +229,7 @@ def creak(dur, seed, f=380):
 
 
 def whistle(dur, f, seed):
-    """Apito de polícia: senoide aguda com o trilo da bolinha + sopro."""
+    """Apito de alerta: senoide aguda com o trilo da bolinha + sopro."""
     t = t_(dur)
     rng = random.Random(seed)
     trill = 1 + 0.035 * np.sign(np.sin(2 * np.pi * rng.uniform(26, 32) * t))
@@ -249,10 +252,10 @@ def sfx():
     ring = 0.15 * E(osc("sin", sweep(2400, 3200, 0.2), 0.2), 0.01, 0.06)
     write("blade", crush(mix(swish, ring), 7, 2), vol=0.7)
 
-    # cravo: duas notas de caixinha de música
+    # medalha: duas notas de caixinha de música
     bell = lambda f, d=0.22: E(fm(f, d, ratio=3.5, index=1.6, idecay=0.05), 0.001, d / 3)
     write("pickup1", seq(bell(1568), bell(2093, 0.3)), vol=0.6)
-    # Avante!: folhear de jornal + sinal
+    # cruz de guerra: estojo a abrir + sinal
     rustle = np.concatenate([E(smooth(hp(noise(0.05, 40 + i)), 2), 0.003, 0.02) for i in range(4)])
     write("pickup2", mix(0.7 * rustle, at(seq(bell(1319, 0.12), bell(1760, 0.12), bell(2637, 0.3)), 0.12)), vol=0.65)
     # mala de escudos: moedas a cair + arpejo grande
@@ -453,7 +456,7 @@ def finish(name, tr, kbps=56):
     write(name, crush(x, 8, 1), kbps=kbps, vol=0.62)
 
 
-# ---------- music-1: marcha de banda filarmónica (2/4, lá menor, tensa)
+# ---------- marcha de combate (lá menor, tensa) -> music-2
 
 M1_A = [
     "E4:2 A4:2 A4:1 B4:1 C5:2", "B4:2 A4:2 E4:4", "G#4:2 B4:2 B4:1 C5:1 D5:2", "C5:2 B4:2 G#4:4",
@@ -468,12 +471,12 @@ M1_B_CH = ["C", "G", "Am", "E", "F", "C", "E", "Am"]
 
 
 def march(tr, sections, t0, step, bar_steps, lead=brass, lead_g=0.32, harmony=None, drums="march", bass_g=0.4,
-          roll_every=8):
+          roll_every=8, transpose=0):
     t = t0
     bar = 0
     for mel, chords in sections:
         for i, (m, ch) in enumerate(zip(mel, chords)):
-            notes = phrase(m)
+            notes = [(n + transpose if n else None, d) for n, d in phrase(m)]
             tr.notes(notes, t, step, lead, lead_g)
             if harmony:
                 tr.notes([(n - harmony if n else None, d) for n, d in notes], t, step, lead, lead_g * 0.45)
@@ -507,8 +510,8 @@ def march(tr, sections, t0, step, bar_steps, lead=brass, lead_g=0.32, harmony=No
     return t
 
 
-def music1():
-    step = 60 / 112 / 4
+def music_combat():
+    step = 60 / 118 / 4
     tr = Track(80)
     t = 0.0
     # entrada: caixa sozinha 2 compassos
@@ -520,7 +523,7 @@ def music1():
     t = march(tr, [(M1_B, M1_B_CH), (M1_A, M1_A_CH)], t, step, 8, harmony=3)
     t = march(tr, [(M1_A, M1_A_CH)], t, step, 8, harmony=12, lead_g=0.28)
     tr.out = tr.out[: int(t * SR) + 4000]
-    finish("music-1", tr)
+    finish("music-2", tr)
 
 
 # ---------- music-2: fado (4/4 lento, mi menor harmónico)
@@ -615,7 +618,7 @@ def music3():
     finish("music-3", tr)
 
 
-# ---------- music-mega: marcha da liberdade (dó maior, viva)
+# ---------- music-1: marcha heroica (dó maior, viva), original
 
 L_A = [
     "G4:2 C5:2 E5:2 G5:2", "E5:3 D5:1 C5:4", "D5:2 G5:2 B5:2 G5:2", "F5:3 E5:1 D5:4",
@@ -629,8 +632,8 @@ L_B = [
 L_B_CH = ["F", "C", "G", "C", "F", "C", "G7", "C"]
 
 
-def music_mega():
-    step = 60 / 132 / 4
+def music_heroic():
+    step = 60 / 128 / 4
     tr = Track(80)
     t = 0.0
     for s in range(32):
@@ -646,14 +649,53 @@ def music_mega():
     tr.put(brass(hz(64), 0.9), t, 0.2)
     tr.put(tuba(hz(36), 0.9), t, 0.4)
     tr.out = tr.out[: int((t + 1.0) * SR)]
+    finish("music-1", tr)
+
+
+# ---------- music-mega: "A Portuguesa" (Alfredo Keil, 1890; domínio público)
+# Melodia do canto lida na partitura publicada em 1910 (em mi bemol maior),
+# aqui transposta para dó maior. Estrofe ("Heróis do mar ... Portugal!") e
+# coro ("Às armas ... marchar!"). Passos de semicolcheia, compasso 4/4.
+
+PT_VERSE = [
+    "r:11 G4:1 E4:3 C4:1",
+    "A4:8 G4:7 A4:1", "G4:4 F4:4 E4:3 C4:1 B3:3 C4:1", "E4:8 F#4:3 G4:1 A4:3 B4:1",
+    "G4:8 r:4 G4:3 B4:1", "D5:8 B4:4 G4:2 F4:2", "F4:8 E4:4 G4:3 E4:1",
+    "C4:6 B3:2 C4:2 D4:2 E4:2 F4:2", "D4:10 r:5 G4:1",
+]
+PT_VERSE_CH = ["C", "F", "C", "G", "G", "G7", "C", "C", "G"]
+PT_CHORUS = [
+    "A4:8 B4:7 F4:1", "A4:8 G4:4 E4:2 F4:2", "E4:4 E4:4 G4:4 E4:4", "D4:14 G4:2",
+    "A4:8 B4:7 F4:1", "A4:8 G4:4 E4:1 G4:1 C5:2", "D5:8 B4:6 A4:2", "G4:10 E4:2 F4:2 G4:2",
+    "A4:4 A4:4 A4:6 G4:2", "G4:4 B4:4 C5:8",
+]
+PT_CHORUS_CH = ["F", "C", "C", "G", "F", "C", "G", "C", "F", "C"]
+
+
+def music_portuguesa():
+    step = 60 / 108 / 4
+    tr = Track(90)
+    t = 0.0
+    for s in range(16):  # rufo de entrada
+        tr.put(snare(500 + s, 0.2 + 0.12 * (s % 4 == 0), 0.06), t + s * step)
+    t += 16 * step
+    t = march(tr, [(PT_VERSE, PT_VERSE_CH), (PT_CHORUS, PT_CHORUS_CH)], t, step, 16, lead_g=0.34,
+              transpose=12)
+    t = march(tr, [(PT_VERSE, PT_VERSE_CH), (PT_CHORUS, PT_CHORUS_CH)], t, step, 16, lead_g=0.3,
+              harmony=12, transpose=12)
+    tr.put(cymbal(998, 1.4), t, 1.2)
+    tr.put(brass(hz(72), 1.2), t, 0.35)
+    tr.put(brass(hz(64), 1.2), t, 0.22)
+    tr.put(tuba(hz(36), 1.2), t, 0.4)
+    tr.out = tr.out[: int((t + 1.3) * SR)]
     finish("music-mega", tr)
 
 
 def music():
-    music1()
-    music2()
+    music_heroic()
+    music_combat()
     music3()
-    music_mega()
+    music_portuguesa()
 
 
 if __name__ == "__main__":

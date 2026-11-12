@@ -276,10 +276,10 @@ $_STILL_SPRITE assets/42lisboa/kitchen-table.bmp
 
 U_TYPE COLLECTIBLE
 U_HEALTH 10
-U_NAME Pao e sardinhas
+U_NAME Racao de combate
 U_SINGLE_USE TRUE
 U_USE_SOUND assets/oms3d/sounds/heal1.mp3
-U_DESCRIPTION Pao com sardinhas, mata a fome
+U_DESCRIPTION Racao de combate e pao com chourico
 U_ICON_SPRITE assets/oms3d/textures/billboards/food.bmp
 
 Z_TYPE COLLECTIBLE
@@ -287,31 +287,31 @@ Z_AMMO 10
 Z_NAME Municoes
 Z_SINGLE_USE TRUE
 Z_USE_SOUND assets/oms3d/sounds/get-ammo.mp3
-Z_DESCRIPTION Municoes para as armas
+Z_DESCRIPTION Caixa de municoes
 Z_ICON_SPRITE assets/oms3d/textures/billboards/ammo.bmp
 
 o_TYPE COLLECTIBLE
 o_SCORE 500
-o_NAME Jornal Avante!
+o_NAME Cruz de guerra
 o_SINGLE_USE TRUE
 o_USE_SOUND assets/oms3d/sounds/pickup2.mp3
-o_DESCRIPTION Jornal clandestino, passa de mao em mao
+o_DESCRIPTION Condecoracao por bravura
 o_ICON_SPRITE assets/oms3d/textures/billboards/trophy.bmp
 
 z_TYPE COLLECTIBLE
 z_SCORE 100
-z_NAME Cravo
+z_NAME Medalha
 z_SINGLE_USE TRUE
 z_USE_SOUND assets/oms3d/sounds/pickup1.mp3
-z_DESCRIPTION Um cravo vermelho
+z_DESCRIPTION Medalha militar
 z_ICON_SPRITE assets/oms3d/textures/billboards/gem.bmp
 
 7_TYPE COLLECTIBLE
 7_SCORE 1000
-7_NAME Mala de escudos
+7_NAME Caixa de ouro
 7_SINGLE_USE TRUE
 7_USE_SOUND assets/oms3d/sounds/pickup3.mp3
-7_DESCRIPTION Dinheiro apreendido pela policia
+7_DESCRIPTION Barras de ouro do cofre do forte
 7_ICON_SPRITE assets/oms3d/textures/billboards/treasure.bmp
 
 I_TYPE COLLECTIBLE
@@ -323,19 +323,19 @@ I_DESCRIPTION Estojo de primeiros socorros
 I_ICON_SPRITE assets/oms3d/textures/billboards/medkit.bmp
 
 H_TYPE ITEM
-H_NAME Alto!
+H_NAME Stoi!
 H_USE_SOUND assets/oms3d/sounds/alert.mp3
 H_SINGLE_USE TRUE
-H_DESCRIPTION Alto! Ninguem passa
+H_DESCRIPTION Grito de alerta do invasor
 H_USE_DELAY 0.6
 H_SCREEN_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 H_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/sentinel/halt.bmp
 H_ICON_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 
 Y_TYPE ITEM
-Y_NAME Pistola do agente
+Y_NAME Espingarda do invasor
 Y_SINGLE_USE TRUE
-Y_DESCRIPTION Arma do agente da policia politica
+Y_DESCRIPTION Espingarda de assalto do atirador invasor
 Y_USE_DELAY 0.6
 Y_SCREEN_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
 Y_SCREEN_USE_SPRITE assets/oms3d/textures/billboards/sentinel/still-front.bmp
