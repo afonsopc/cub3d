@@ -34,34 +34,42 @@ prisoners as targets; the Mocidade Portuguesa appears only as décor.
 | `maps/missao1*.cub`, `maps/missao2.cub` | original level layouts ("Defesa do Quartel-General", "Defesa do Forte") | `maps.py` (draws the floors room by room and validates them) |
 | `assets/textures/oms-wall.bmp`, `assets/textures/pv-wall.bmp`, `assets/pt/textures/portugal.bmp` | wood/stone walls with banners | made by an earlier version of the script (commit de4b182); the coat of arms comes from `assets/textures/oms.bmp`, the portrait (`scripts/oms_art/src/pv-portrait.png`) from the authors' own art; the national arms are public domain |
 | `assets/oms3d/sounds/*.mp3` | pistol, FBP, G3, knife, enemy shot, alert whistle, death cries, dog bark and yelp, doors, stone push-wall, pickups; locked door rattle, key jingle, lever and iron gate | `sounds.py`: synthesized (pulse/triangle waves, 2-operator FM, noise, formant voices) |
-| `assets/oms3d/sounds/music/*.mp3` (copies of `scripts/oms_art/music/*.mp3`) | ten 8-bit arrangements of period songs (see below) | `scripts/oms_art/music/` (`chip.py` synth, one script per song, `render_all.py`, `loops.json`) |
+| `assets/oms3d/sounds/music/*.mp3` (copies of `scripts/oms_art/music/*.mp3`) | seventeen 8-bit arrangements of period songs (see below) | `scripts/oms_art/music/` (`chip.py` synth, one script per song, `render_all.py`, `loops.json`) |
 
-## Music: the ten songs and their copyright status
+## Music: the seventeen songs and their copyright status
 
-The music is ten 8-bit arrangements (square/pulse lead, bass, march drums)
+The music is seventeen 8-bit arrangements (square/pulse lead, bass, march drums)
 written note by note in `scripts/oms_art/music/`; no recording is used or
 shipped. Portugal/EU protect a melody for the composer's life + 70 years, so
 it is free only when the composer died before 1 January 1956.
 
-**Afonso (the owner) decided to include all ten as 8-bit arrangements** (the
-first six on 2026-11-12, the last four, from the YouTube links he chose, the
-same day). Only "A Portuguesa" is known to be in the public domain; the other
-nine are protected or of unknown status and need a licence (e.g. through SPA,
+**Afonso (the owner) decided to include all seventeen as 8-bit arrangements**
+(the first six on 2026-11-12, then four and then seven more, from the YouTube
+links and time ranges he chose, the same day). Only "A Portuguesa" is known to
+be in the public domain; the other sixteen are protected or of unknown status
+and need a licence (e.g. through SPA,
 Sociedade Portuguesa de Autores) or proof of public domain before any public
 release (site, App Store, Play Store).
 
 | Song | In the game | Composer (music) | Died | Status | How it was written |
 | --- | --- | --- | --- | --- | --- |
 | "A Portuguesa" (1890), official 1957 version | ending / victory (`ENDING_SOUND`, missao2) | Alfredo Keil | 1907 | public domain | from the official version (1957 sheet music and the Wikimedia Commons MIDI), checked by ear; earlier print: Revista da Semana n.º 544 (1910), IMSLP |
-| "Hino da Mocidade Portuguesa" (1937) | title / intro panels (`INTRO_SOUND`, missao1) | Rui Correia Leite (a family member credits Affonso Correia Leite); words Mário Beirão | not found | uncertain, treated as protected | by ear, no public score |
-| "Marcha da Legião Portuguesa" | level 1 "Defesa do Quartel-General" (`BACKGROUND_SOUND`, missao1) | not identified | — | unknown, treated as protected | by ear |
-| "Angola é nossa!" (1961) | level 2 "Defesa do Forte" (`BACKGROUND_SOUND`, missao2) | Duarte Ferreira Pestana; words Santos Braga | not found (active in 1961) | very likely protected | by ear |
-| "Hino da Legião Portuguesa" (1937) | combat variant / 42 and sbj floors (`BACKGROUND_SOUND`, missao1_42, sbj); second track of level 1 and of the bonus floor (playlists in `src/utils/story/story5.c`) | attributed to Frederico de Freitas (single source); words José Gonçalves Lobo | 1980 | protected | by ear |
-| "Deus, Pátria, Rei" (monarchist song) | briefings (`BRIEFING_SOUND`) | not identified | — | unknown, treated as protected | by ear |
+| "Hino da Mocidade Portuguesa" (1937) | level 1 "Defesa do Quartel-General", third track (missao1 and missao1_42 playlists, `story5.c`) | Rui Correia Leite (a family member credits Affonso Correia Leite); words Mário Beirão | not found | uncertain, treated as protected | by ear, no public score |
+| "Marcha da Legião Portuguesa" | briefings (`BRIEFING_SOUND`, every story map) | not identified | — | unknown, treated as protected | by ear |
+| "Angola é nossa!" (1961) | title / intro panels (`INTRO_SOUND`, missao1, missao1_42) | Duarte Ferreira Pestana; words Santos Braga | not found (active in 1961) | very likely protected | by ear |
+| "Hino da Legião Portuguesa" (1937) | bonus floor, first track (`BACKGROUND_SOUND`, missao1_mega) and sbj floor, first track (`BACKGROUND_SOUND`, sbj) | attributed to Frederico de Freitas (single source); words José Gonçalves Lobo | 1980 | protected | by ear |
+| "Deus, Pátria, Rei" (monarchist song) | level 1 "Defesa do Quartel-General", first track (`BACKGROUND_SOUND`, missao1 and missao1_42) | not identified | — | unknown, treated as protected | by ear |
 | "A nossa terra" (marcha, 1955), sung by Anita Guerreiro | end-of-level stats screen (`STATS`, `story5.c`, every story map without its own `STATS_SOUND`) | Armando Tavares Belo (b. Faro 1911, conductor of the Emissora Nacional light orchestra) | not found (active long after 1956) | protected | by ear from https://youtu.be/71mzpwZ4PMg (demucs vocal stem, pYIN + basic-pitch, two stanzas voted per 16th) |
-| "Pátria Ditosa" (1967), sung by Maria Pereira (EP "Madragoa Noiva do Tejo", Valentim de Carvalho) | bonus floor, first track (missao1_mega playlist, `story5.c`) | António Lages (music and words; publisher SPA) | not found (active in 1967) | protected | by ear from https://youtu.be/NWaM3-W-imY |
-| "Partida para o Ultramar" (1960s) | level 2 "Defesa do Forte", second track after "Angola é nossa!" (missao2 playlist, `story5.c`) | Conjunto Os Peles Vermelhas (performers; composer not identified) | — | unknown, treated as protected | by ear from https://youtu.be/M-csXTCD7mU |
-| "Na hora da despedida (Adeus!)" (fado, 1966), sung by Ada de Castro in the revue "Tudo à Mostra" (Teatro Maria Vitória) | hub / menu world (`hub.cub` playlist, `story5.c`) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/HPUBh3LMavg |
+| "Pátria Ditosa" (1967), sung by Maria Pereira (EP "Madragoa Noiva do Tejo", Valentim de Carvalho) | level 2 "Defesa do Forte", second track (missao2 playlist, `story5.c`) | António Lages (music and words; publisher SPA) | not found (active in 1967) | protected | by ear from https://youtu.be/NWaM3-W-imY |
+| "Partida para o Ultramar" (1960s) | level 2 "Defesa do Forte", first track (`BACKGROUND_SOUND`, missao2) | Conjunto Os Peles Vermelhas (performers; composer not identified) | — | unknown, treated as protected | by ear from https://youtu.be/M-csXTCD7mU |
+| "Na hora da despedida (Adeus!)" (fado, 1966), sung by Ada de Castro in the revue "Tudo à Mostra" (Teatro Maria Vitória) | hub / menu world, first track (`hub.cub` playlist, `story5.c`) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/HPUBh3LMavg |
+| "Despedida" | hub / menu world, second track (`hub.cub` playlist) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/4dtwTUk7Jjo?t=439 (7:19–10:12) |
+| "Soldados de Portugal" | level 1 and the 42 floor (missao1_42), fifth track (playlists in `story5.c`) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/4dtwTUk7Jjo?t=1577 (26:17–29:11) |
+| "Adeus Guiné" | level 2 "Defesa do Forte", fourth track (missao2 playlist) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/4dtwTUk7Jjo?t=3600 (1:00:00–1:03:29) |
+| "Fado Angola" | hub / menu world, third track (`hub.cub` playlist) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/4dtwTUk7Jjo?t=4052 (1:07:32–1:10:32) |
+| "Hino dos Fuzileiros" | level 1 and the 42 floor, fourth track; sbj floor, second track (playlists in `story5.c`) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/4dtwTUk7Jjo?t=4426 (1:13:46–1:16:31) |
+| "Moçambique é Portugal!" | level 2 "Defesa do Forte", third track (missao2 playlist) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/4dtwTUk7Jjo?t=6615 (1:50:15–1:53:04) |
+| "Ressurreição", hymn of the Movimento Nacionalista Português | level 1 "Defesa do Quartel-General" and the 42 floor, second track, one of the main songs; bonus floor (missao1_mega), second track (playlists in `story5.c`) | not identified | — | unknown, treated as protected | by ear from https://youtu.be/2HTAvpnuxAY (whole video) |
 
 Sources for the composer research: https://imslp.org/wiki/A_Portuguesa_(Keil,_Alfredo),
 https://anthems.fandom.com/wiki/Hino_da_Mocidade_Portuguesa,
@@ -73,7 +81,11 @@ https://en.wikipedia.org/wiki/Frederico_de_Freitas,
 https://www.rtp.pt/rtpmemoria/gramofone/orquestra-ligeira-e-coro-feminino-da-emissora-nacional-tavares-belo-direccao-por-joao-carlos-callixto_1280,
 https://www.museudofado.pt/en/fado/persolanity/ada-de-castro-en, and the
 YouTube metadata of the four recordings (the "Pátria Ditosa" upload is the
-label's own, with composer and publisher).
+label's own, with composer and publisher). The seven songs added last come
+from the compilation "Two hours of Portuguese songs in the Colonial War
+(Overseas War)" and the video "Ressurreição - Hino do Movimento Nacionalista
+Português", both uploaded by "Sam!"; their titles come from the video's
+chapters, which name neither composers nor performers.
 
 ## Third-party
 

@@ -999,7 +999,7 @@ T_OPEN_SOUND_VOLUME 0.8
 
 LEVEL_NAME Nível bónus
 STATS_SPRITE assets/oms3d/story/stats.bmp
-BRIEFING_SOUND assets/oms3d/sounds/music/deus-patria-rei.mp3
+BRIEFING_SOUND assets/oms3d/sounds/music/marcha-legiao.mp3
 BRIEFING_SOUND_VOLUME 0.4
 BRIEFING_SOUND_LOOP TRUE
 BRIEFING_SPRITE assets/oms3d/story/briefing-1.bmp

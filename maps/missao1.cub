@@ -1,4 +1,4 @@
-BACKGROUND_SOUND assets/oms3d/sounds/music/marcha-legiao.mp3
+BACKGROUND_SOUND assets/oms3d/sounds/music/deus-patria-rei.mp3
 BACKGROUND_SOUND_VOLUME 0.3
 BACKGROUND_SOUND_LOOP TRUE
 BACKGROUND_SPRITE assets/oms3d/textures/wood-dark.bmp
@@ -1007,7 +1007,7 @@ T_OPEN_SOUND_VOLUME 0.8
 
 LEVEL_NAME Defesa do Quartel-General
 STATS_SPRITE assets/oms3d/story/stats.bmp
-BRIEFING_SOUND assets/oms3d/sounds/music/deus-patria-rei.mp3
+BRIEFING_SOUND assets/oms3d/sounds/music/marcha-legiao.mp3
 BRIEFING_SOUND_VOLUME 0.4
 BRIEFING_SOUND_LOOP TRUE
 INTRO_1_SPRITE assets/oms3d/story/intro-1.bmp
@@ -1018,7 +1018,7 @@ INTRO_3_SPRITE assets/oms3d/story/intro-3.bmp
 INTRO_3_TEXT Major Andrade: "Eles já estão cá dentro."
 INTRO_4_SPRITE assets/oms3d/story/intro-4.bmp
 INTRO_4_TEXT Silva, aguente até à madrugada.
-INTRO_SOUND assets/oms3d/sounds/music/hino-mocidade.mp3
+INTRO_SOUND assets/oms3d/sounds/music/angola-e-nossa.mp3
 INTRO_SOUND_VOLUME 0.4
 INTRO_SOUND_LOOP TRUE
 BRIEFING_SPRITE assets/oms3d/story/briefing-1.bmp

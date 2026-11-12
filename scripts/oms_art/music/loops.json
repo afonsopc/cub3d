@@ -98,5 +98,75 @@
     "meter": "2/4",
     "title": "Na hora da despedida (Adeus!)",
     "method": "ear"
+  },
+  "despedida.mp3": {
+    "bpm": 152.7,
+    "bars": 65,
+    "seconds": 76.621,
+    "intro_seconds": 1.179,
+    "passes": 1,
+    "meter": "3/4",
+    "title": "Despedida",
+    "method": "ear"
+  },
+  "soldados-de-portugal.mp3": {
+    "bpm": 88.0,
+    "bars": 77,
+    "seconds": 105.0,
+    "intro_seconds": 1.364,
+    "passes": 2,
+    "meter": "2/4",
+    "title": "Soldados de Portugal",
+    "method": "ear"
+  },
+  "adeus-guine.mp3": {
+    "bpm": 101.9,
+    "bars": 55,
+    "seconds": 64.769,
+    "intro_seconds": 1.178,
+    "passes": 1,
+    "meter": "2/4",
+    "title": "Adeus Guiné",
+    "method": "ear"
+  },
+  "fado-angola.mp3": {
+    "bpm": 163.3,
+    "bars": 107,
+    "seconds": 78.628,
+    "intro_seconds": 0.735,
+    "passes": 1,
+    "meter": "2/4",
+    "title": "Fado Angola",
+    "method": "ear"
+  },
+  "hino-fuzileiros.mp3": {
+    "bpm": 110.6,
+    "bars": 53,
+    "seconds": 115.009,
+    "intro_seconds": 2.17,
+    "passes": 1,
+    "meter": "4/4",
+    "title": "Hino dos Fuzileiros",
+    "method": "ear"
+  },
+  "mocambique-e-portugal.mp3": {
+    "bpm": 93.1,
+    "bars": 67,
+    "seconds": 86.359,
+    "intro_seconds": 1.289,
+    "passes": 1,
+    "meter": "2/4",
+    "title": "Moçambique é Portugal!",
+    "method": "ear"
+  },
+  "ressurreicao.mp3": {
+    "bpm": 166.3,
+    "bars": 73,
+    "seconds": 79.014,
+    "intro_seconds": 1.082,
+    "passes": 1,
+    "meter": "6/8",
+    "title": "Ressurreição",
+    "method": "ear"
   }
 }

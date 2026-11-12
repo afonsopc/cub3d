@@ -23,10 +23,14 @@
 #define STATS_MUSIC "a-nossa-terra"
 
 static const char	*g_playlists[][2] = {
-{"hub.cub", "hora-da-despedida"},
-{"missao1.cub", "*:hino-legiao"},
-{"missao2.cub", "*:partida-ultramar"},
-{"missao1_mega.cub", "patria-ditosa:*"},
+{"hub.cub", "hora-da-despedida:despedida:fado-angola"},
+{"missao1.cub", "*:ressurreicao:hino-mocidade"
+	":hino-fuzileiros:soldados-de-portugal"},
+{"missao1_42.cub", "*:ressurreicao:hino-mocidade"
+	":hino-fuzileiros:soldados-de-portugal"},
+{"missao2.cub", "*:patria-ditosa:mocambique-e-portugal:adeus-guine"},
+{"missao1_mega.cub", "*:ressurreicao"},
+{"sbj.cub", "*:hino-fuzileiros"},
 {NULL, NULL}
 };
 
