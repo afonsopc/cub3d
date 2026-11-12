@@ -78,4 +78,7 @@ void		story_snapshot_stats(t_game *game);
 void		story_count_totals(t_game *game);
 void		story_render_stats(t_game *game, t_ftm_image *canvas);
 
+/* story5.c: music the map does not set (stats screen, level playlists) */
+void		story_music_init(t_game *game);
+
 #endif

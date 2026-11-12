@@ -73,6 +73,7 @@ t_fta_audio	*fta_audio_new(const char *path)
 	audio->length *= 1000;
 	audio->sounds = NULL;
 	audio->sounds_count = 0;
+	fta_trim_gapless(audio, path);
 	return (audio);
 }
 

@@ -28,7 +28,8 @@ void	fta_audio_config(t_fta_audio *audio, t_fta_audio_config config)
 	{
 		j = 0;
 		while (j < audio->sounds_count)
-			fta_audio_config(audio->sounds[j++], config);
+			fta_audio_config(audio->sounds[j++], (t_fta_audio_config){
+				config.volume, config.loop && !audio->playlist});
 		return ;
 	}
 	i = -1;
@@ -79,6 +80,8 @@ void	fta_play(t_fta_audio *audio)
 
 	if (!audio || !fta_engine()->initialized)
 		return ;
+	if (audio->playlist)
+		return (fta_playlist_play(audio));
 	if (audio->sounds_count > 0)
 	{
 		random_index = rand() % audio->sounds_count;
@@ -98,6 +101,7 @@ void	fta_stop(t_fta_audio *audio)
 
 	if (!audio || !fta_engine()->initialized)
 		return ;
+	audio->running = false;
 	i = -1;
 	while (++i < audio->sounds_count)
 		fta_stop(audio->sounds[i]);

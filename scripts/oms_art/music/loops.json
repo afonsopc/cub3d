@@ -58,5 +58,45 @@
     "meter": "2/4",
     "title": "Deus, Pátria, Rei",
     "method": "ear"
+  },
+  "partida-ultramar.mp3": {
+    "bpm": 113.8,
+    "bars": 65,
+    "seconds": 102.812,
+    "intro_seconds": 1.582,
+    "passes": 2,
+    "meter": "6/8",
+    "title": "Partida para o Ultramar",
+    "method": "ear"
+  },
+  "a-nossa-terra.mp3": {
+    "bpm": 132.1,
+    "bars": 103,
+    "seconds": 93.565,
+    "intro_seconds": 0.908,
+    "passes": 2,
+    "meter": "2/4",
+    "title": "A nossa terra",
+    "method": "ear"
+  },
+  "patria-ditosa.mp3": {
+    "bpm": 129.3,
+    "bars": 35,
+    "seconds": 64.965,
+    "intro_seconds": 1.856,
+    "passes": 1,
+    "meter": "4/4",
+    "title": "Pátria Ditosa",
+    "method": "ear"
+  },
+  "hora-da-despedida.mp3": {
+    "bpm": 127.4,
+    "bars": 83,
+    "seconds": 78.179,
+    "intro_seconds": 0.942,
+    "passes": 1,
+    "meter": "2/4",
+    "title": "Na hora da despedida (Adeus!)",
+    "method": "ear"
   }
 }

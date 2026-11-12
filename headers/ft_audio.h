@@ -35,6 +35,9 @@ typedef struct s_fta_audio
 	float				length;
 	struct s_fta_audio	**sounds;
 	size_t				sounds_count;
+	bool				playlist;
+	bool				running;
+	size_t				current;
 }	t_fta_audio;
 
 typedef struct s_fta_engine
@@ -52,6 +55,10 @@ void			fta_audio_config(t_fta_audio *audio, t_fta_audio_config config);
 void			fta_play(t_fta_audio *audio);
 void			fta_stop(t_fta_audio *audio);
 bool			fta_is_playing(t_fta_audio *audio);
+t_fta_audio		*fta_playlist_new(const char *paths);
+bool			fta_update(t_fta_audio *audio);
+void			fta_playlist_play(t_fta_audio *audio);
+void			fta_trim_gapless(t_fta_audio *audio, const char *path);
 void			fta_clear_audio(void *audio);
 void			fta_free_audio(void *audio);
 

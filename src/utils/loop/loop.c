@@ -120,6 +120,9 @@ void	loop(void)
 		in_loop = false;
 		return ;
 	}
+	if (fta_update(cub3d()->game->background_sound))
+		printf("STORY music track %zu\n",
+			cub3d()->game->background_sound->current);
 	update_frame(cub3d()->game);
 	call_entity_frames(cub3d()->game, &cub3d()->game->fps);
 	story_play_frame(cub3d()->game);

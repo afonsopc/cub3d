@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Gera as seis marchas em 8 bits (MP3 mono 22050 Hz, 56 kbps, em loop) nesta
+# Gera as dez canções em 8 bits (MP3 mono 22050 Hz, 56 kbps, em loop) nesta
 # pasta e, opcionalmente, pré-escutas de 30 s noutra pasta. Escreve também
 # loops.json com a duração e o tempo de cada faixa.
 #
@@ -22,6 +22,10 @@ SONGS = [
     "hino_legiao",
     "marcha_legiao",
     "deus_patria_rei",
+    "partida_ultramar",
+    "a_nossa_terra",
+    "patria_ditosa",
+    "hora_despedida",
 ]
 
 

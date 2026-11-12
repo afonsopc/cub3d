@@ -135,6 +135,7 @@ void	story_init(t_game *game)
 	st->ending_sound = ft_hashmap_get_value(game->sounds, "ENDING");
 	st->intro_sound = ft_hashmap_get_value(game->sounds, "INTRO");
 	st->brief_sound = ft_hashmap_get_value(game->sounds, "BRIEFING");
+	story_music_init(game);
 	load_radios(game, st);
 	story_count_totals(game);
 	st->phase_at = ft_get_time();
@@ -175,12 +176,14 @@ static void	music(t_game *game, t_fta_audio *play)
 	fta_stop(st->intro_sound);
 	fta_stop(st->brief_sound);
 	fta_stop(st->ending_sound);
+	fta_stop(ft_hashmap_get_value(game->sounds, "STATS"));
 	if (play)
 		fta_stop(game->background_sound);
 	st->playing = play;
 	fta_play(play);
 	printf("STORY music %s\n", !play ? "level" : play == st->intro_sound
-		? "intro" : play == st->brief_sound ? "briefing" : "ending");
+		? "intro" : play == st->brief_sound ? "briefing" : play
+		== st->ending_sound ? "ending" : "stats");
 }
 
 bool	story_blocking(t_game *game)
@@ -230,6 +233,9 @@ static void	enter(t_game *game, int phase)
 	fta_stop(game->background_sound);
 	if (phase == STORY_ENDING && st->ending_sound)
 		music(game, st->ending_sound);
+	else if (phase == STORY_STATS && ft_hashmap_get_value(game->sounds,
+			"STATS"))
+		music(game, ft_hashmap_get_value(game->sounds, "STATS"));
 	else if (phase == STORY_BRIEFING || phase == STORY_STATS)
 		music(game, st->brief_sound);
 	printf("STORY phase %d\n", phase);
