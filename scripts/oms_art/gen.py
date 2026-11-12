@@ -173,8 +173,20 @@ def hud():
         save(hd.digit(c), f"{ord(c)}.bmp", root=fdir)
 
 
+def puzzles():
+    import puzzles_art as pz
+
+    for name, img in pz.walls().items():
+        save(img, f"{name}.bmp")
+        save(dark(img), f"{name}-dark.bmp")
+    for name, fn in pz.PIXEL.items():
+        save(x2(fn()), f"billboards/{name}.bmp")
+    for name in pz.ICONS:
+        save(x2(pz.icon(name)), f"hud/keys/{name}.bmp")
+
+
 def main():
-    what = sys.argv[1:] or ["walls", "chars", "decor", "weapons", "hud", "posters"]
+    what = sys.argv[1:] or ["walls", "chars", "decor", "weapons", "hud", "posters", "puzzles"]
     if "walls" in what:
         for name, img in wl.walls().items():
             save(img, f"{name}.bmp")
@@ -187,6 +199,8 @@ def main():
         weapons()
     if "hud" in what:
         hud()
+    if "puzzles" in what:
+        puzzles()
     if "posters" in what:
         t = os.path.join(ROOT, "assets", "textures")
         save(hd.poster_mission(), "missao.bmp", root=t)

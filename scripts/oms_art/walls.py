@@ -739,7 +739,7 @@ def lift_panel():
     return np.clip(img, 0, 255)
 
 
-def lever(img, down=True):
+def lever(img, down=True, label="SAÍDA"):
     img[20:46, 24:40] = (60, 58, 54)
     img[20, 24:40] = (128, 124, 116)
     img[45, 24:40] = (30, 28, 26)
@@ -752,7 +752,7 @@ def lever(img, down=True):
         for i in range(12):
             img[21 + i, 31:33] = (180, 176, 168)
         img[17:21, 29:35] = (40, 160, 60)
-    img = centered(img, "SAÍDA", 32, 50, 1, (230, 220, 190), shadow=(20, 20, 20))
+    img = centered(img, label, 32, 50, 1, (230, 220, 190), shadow=(20, 20, 20))
     return img
 
 

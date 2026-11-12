@@ -151,7 +151,7 @@ def hud_bar(state, look, dead=False, cheat=False):
     # grelha: margem 6, intervalos de 4, todas as caixas de y 6 a 74.
     # Os números são desenhados pelo jogo a meio da barra (y ~ 40-66).
     panels = [(6, 80, ""), (84, 196, "PONTOS"), (200, 260, "FORÇA"), (264, 330, None),
-              (334, 406, "VIDA"), (410, 480, "BALAS"), (484, 634, "")]
+              (334, 406, "VIDA"), (410, 480, "BALAS"), (484, 524, None), (528, 634, "")]
     LABEL_Y = 12
     for x0, x1, label in panels:
         img = bevel_box(img, x0, 6, x1, 74)
@@ -175,6 +175,11 @@ def hud_bar(state, look, dead=False, cheat=False):
         img[30:66, xx : xx + bw] = (230, 40, 40) if on else (70, 26, 30)
         img[30, xx : xx + bw] = (255, 170, 150) if on else (90, 50, 50)
         img[65, xx : xx + bw] = (110, 10, 14)
+    # duas casas para as chaves e os documentos (o jogo desenha os ícones
+    # centrados em x 504 e y 24 / 56; ver src/utils/story/story4.c)
+    for cy in (24, 56):
+        img = bevel_box(img, 504 - 15, cy - 15, 504 + 15, cy + 15)
+        img[cy - 14 : cy + 14, 504 - 14 : 504 + 14] = NAVY_D * 0.7
     # cara (32x32 -> 64x64), por trás um fundo próprio
     f = scale(face(state, look, dead, cheat), 2)
     img[8:72, 265:329] = NAVY_D * 1.6

@@ -322,9 +322,28 @@ def sfx():
     write("hound-down", crush(mix(yelp, at(whine, 0.42), at(thud(0.15, 70, 141) * 0.4, 0.15)), 7, 2), vol=0.7)
 
 
+def puzzle_sfx():
+    """Fechadura trancada, chave, alavanca e portão de ferro."""
+    rattle = mix(*[at(click(200 + i, 0.02, 2) * (1 - 0.2 * i), 0.07 * i) for i in range(3)])
+    write("locked", mix(rattle, at(thud(0.09, 180, 205) * 0.6, 0.22)), vol=0.6)
+    bell = lambda f, d=0.16: E(fm(f, d, ratio=3.1, index=1.2, idecay=0.04), 0.001, d / 3)
+    jingle = mix(*[at(bell(2300 + 350 * (i % 3), 0.1) * 0.5, 0.045 * i) for i in range(5)])
+    write("key", mix(jingle, at(seq(bell(1319, 0.1), bell(1976, 0.28)), 0.12)), vol=0.6)
+    ratchet = np.concatenate([click(210 + i, 0.012, 2) * 0.6 for i in range(6)])
+    write("lever", seq(ratchet, thud(0.16, 75, 216) * 1.2, at(click(217, 0.03), 0.0)), vol=0.7)
+    d = 1.6
+    grind = smooth(noise(d, 220), 12) * (0.6 + 0.4 * np.abs(np.sin(2 * np.pi * 5 * t_(d))))
+    squeal = 0.12 * E(osc("saw", sweep(520, 610, d), d), 0.2)
+    chain = mix(*[at(click(230 + i, 0.015, 2) * 0.4, 0.11 * i) for i in range(13)])
+    clang = thud(0.3, 60, 240) * 1.3
+    write("gate", mix(E(grind * 1.5, 0.08) * np.linspace(1, 0.5, int(d * SR)), squeal, chain, at(clang, d - 0.05)), vol=0.65)
+
+
 # A música do jogo (seis marchas em 8 bits) está em scripts/oms_art/music
 # (render_all.py) e é copiada para assets/oms3d/sounds/music.
 
 
 if __name__ == "__main__":
-    sfx()
+    if sys.argv[1:] != ["puzzles"]:
+        sfx()
+    puzzle_sfx()
