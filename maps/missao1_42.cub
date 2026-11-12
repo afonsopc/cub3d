@@ -781,19 +781,19 @@ BRIEFING_SOUND assets/oms3d/sounds/music/deus-patria-rei.mp3
 BRIEFING_SOUND_VOLUME 0.4
 BRIEFING_SOUND_LOOP TRUE
 INTRO_1_SPRITE assets/oms3d/story/intro-1.bmp
-INTRO_1_TEXT 1968. Uma noite de lua cheia.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa.
+INTRO_1_TEXT 1968. Uma frota inimiga chega à costa.
 INTRO_2_SPRITE assets/oms3d/story/intro-2.bmp
-INTRO_2_TEXT Paraquedistas inimigos caem sobre a cidade.|As comunicações cortam-se uma a uma.
+INTRO_2_TEXT Paraquedistas caem sobre a cidade.
 INTRO_3_SPRITE assets/oms3d/story/intro-3.bmp
-INTRO_3_TEXT No Quartel-General, o Major Andrade reúne os últimos homens.|"Eles já estão cá dentro."
+INTRO_3_TEXT Major Andrade: "Eles já estão cá dentro."
 INTRO_4_SPRITE assets/oms3d/story/intro-4.bmp
-INTRO_4_TEXT Sargento Silva: aguente o Quartel-General e depois o Forte.|Até à madrugada não há reforços.
+INTRO_4_TEXT Silva, aguente até à madrugada.
 INTRO_SOUND assets/oms3d/sounds/music/hino-mocidade.mp3
 INTRO_SOUND_VOLUME 0.4
 INTRO_SOUND_LOOP TRUE
 BRIEFING_SPRITE assets/oms3d/story/briefing-1.bmp
 BRIEFING_TITLE DEFESA DO QUARTEL-GENERAL
-BRIEFING_TEXT Silva, o inimigo entrou pela portaria.|O oficial de dia tem a chave do arsenal.|No arsenal há armas e a alavanca do portão do pátio.|Traga-me os planos do Forte, do gabinete do comando.
+BRIEFING_TEXT O inimigo entrou pela portaria.|Traga-me os planos do Forte.
 RADIO_PORTRAIT_SPRITE assets/oms3d/story/radio-major.bmp
 RADIO_1_TEXT Aqui Andrade. O oficial de dia tem a chave do arsenal.
 RADIO_2_TEXT Tem a chave! O arsenal é a porta dourada do átrio.

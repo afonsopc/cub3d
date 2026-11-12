@@ -25,20 +25,16 @@ def sound(key, name, vol="0.4"):
     return [f"{key}_SOUND {M}/{name}.mp3", f"{key}_SOUND_VOLUME {vol}", f"{key}_SOUND_LOOP TRUE"]
 
 INTRO = [
-    ("intro-1", "1968. Uma noite de lua cheia.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa."),
-    ("intro-2", "Paraquedistas inimigos caem sobre a cidade.|As comunicações cortam-se uma a uma."),
-    ("intro-3", "No Quartel-General, o Major Andrade reúne os últimos homens.|\"Eles já estão cá dentro.\""),
-    ("intro-4", "Sargento Silva: aguente o Quartel-General e depois o Forte.|Até à madrugada não há reforços."),
+    ("intro-1", "1968. Uma frota inimiga chega à costa."),
+    ("intro-2", "Paraquedistas caem sobre a cidade."),
+    ("intro-3", "Major Andrade: \"Eles já estão cá dentro.\""),
+    ("intro-4", "Silva, aguente até à madrugada."),
 ]
 
 BRIEF1 = ("DEFESA DO QUARTEL-GENERAL",
-          "Silva, o inimigo entrou pela portaria.|O oficial de dia tem a chave do arsenal.|"
-          "No arsenal há armas e a alavanca do portão do pátio.|"
-          "Traga-me os planos do Forte, do gabinete do comando.")
+          "O inimigo entrou pela portaria.|Traga-me os planos do Forte.")
 BRIEF2 = ("DEFESA DO FORTE",
-          "O Forte é a última porta da cidade.|O portão do pátio abre pela alavanca da guarda.|"
-          "No paiol estão as cargas de demolição.|"
-          "Leve-as à gruta do mar e feche-lhes a porta, Sargento.")
+          "O Forte é a última porta da cidade.|Feche-lhes a porta do mar, Sargento.")
 BRIEF_MEGA = ("NÍVEL BÓNUS", "Munições sem fim e vida de ferro.|Divirta-se, Sargento. Ninguém está a contar.")
 
 ENDING = [

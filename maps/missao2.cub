@@ -1004,7 +1004,7 @@ BRIEFING_SOUND_VOLUME 0.4
 BRIEFING_SOUND_LOOP TRUE
 BRIEFING_SPRITE assets/oms3d/story/briefing-2.bmp
 BRIEFING_TITLE DEFESA DO FORTE
-BRIEFING_TEXT O Forte é a última porta da cidade.|O portão do pátio abre pela alavanca da guarda.|No paiol estão as cargas de demolição.|Leve-as à gruta do mar e feche-lhes a porta, Sargento.
+BRIEFING_TEXT O Forte é a última porta da cidade.|Feche-lhes a porta do mar, Sargento.
 ENDING_1_SPRITE assets/oms3d/story/ending-1.bmp
 ENDING_1_TEXT Madrugada. Os barcos inimigos fogem para o mar alto.|A bandeira continua no alto do Forte.
 ENDING_2_SPRITE assets/oms3d/story/ending-2.bmp
