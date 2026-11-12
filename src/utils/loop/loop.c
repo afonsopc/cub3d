@@ -111,8 +111,16 @@ void	loop(void)
 		fta_play(cub3d()->game->background_sound);
 	playing_bg_music = true;
 	pthread_mutex_lock(&cub3d()->game_mutex);
+	if (story_blocking(cub3d()->game))
+	{
+		story_frame(cub3d()->game, cub3d()->window);
+		pthread_mutex_unlock(&cub3d()->game_mutex);
+		in_loop = false;
+		return ;
+	}
 	update_frame(cub3d()->game);
 	call_entity_frames(cub3d()->game, &cub3d()->game->fps);
+	story_play_frame(cub3d()->game);
 	update_walls_matrix(cub3d()->game);
 	update_billboards_vec(cub3d()->game);
 	render_players_game(cub3d()->game, cub3d()->window);

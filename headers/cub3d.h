@@ -474,6 +474,75 @@ struct s_fps
 	int		min;
 };
 
+# define STORY_MAX_PANELS 8
+# define STORY_MAX_RADIO 24
+
+typedef enum e_story_phase
+{
+	STORY_PLAY,
+	STORY_INTRO,
+	STORY_BRIEFING,
+	STORY_STATS,
+	STORY_ENDING
+}	t_story_phase;
+
+typedef enum e_radio_kind
+{
+	RADIO_START,
+	RADIO_AT,
+	RADIO_SEE,
+	RADIO_HEALTH
+}	t_radio_kind;
+
+// mensagem de rádio do comandante, disparada por dados do mapa (RADIO_n_*)
+typedef struct s_story_radio
+{
+	int		kind;
+	double	x;
+	double	y;
+	char	see;
+	int		health;
+	char	*text;
+	int		state;
+}	t_story_radio;
+
+// ecrãs de história, ordens, rádio e estatísticas (src/utils/story)
+typedef struct s_story
+{
+	int				phase;
+	int				index;
+	t_time			phase_at;
+	bool			typed_all;
+	int				intro_count;
+	char			*intro_text[STORY_MAX_PANELS];
+	t_sprite		*intro_sprite[STORY_MAX_PANELS];
+	int				ending_count;
+	char			*ending_text[STORY_MAX_PANELS];
+	t_sprite		*ending_sprite[STORY_MAX_PANELS];
+	char			*brief_title;
+	char			*brief_text;
+	t_sprite		*brief_sprite;
+	char			*level_name;
+	t_sprite		*stats_sprite;
+	t_sprite		*radio_portrait;
+	t_fta_audio		*ending_sound;
+	t_story_radio	radio[STORY_MAX_RADIO];
+	int				radio_count;
+	int				radio_current;
+	t_time			radio_at;
+	char			*pending_map;
+	t_time			play_start;
+	int				kills;
+	int				kills_total;
+	int				treasure;
+	int				treasure_total;
+	int				secrets;
+	int				secrets_total;
+	int				seconds;
+	int				score;
+	t_ftm_image		*canvas;
+}	t_story;
+
 struct s_game
 {
 	t_fps				fps;
@@ -492,6 +561,7 @@ struct s_game
 	t_fta_audio			*background_sound;
 	t_sprite			*background_sprite;
 	t_ftt_thread		*camera_threads[CAMERA_THREADS];
+	t_story				story;
 };
 
 struct s_cub3d
@@ -508,6 +578,17 @@ struct s_cub3d
 
 // enemy AI: a gunshot noise spreads through open space (brain2.c)
 void				ai_noise(t_game *game, t_character *shooter);
+
+// história (src/utils/story)
+void				story_init(t_game *game);
+void				story_free(t_game *game);
+bool				story_blocking(t_game *game);
+void				story_frame(t_game *game, t_ftm_window *window);
+bool				story_key(t_game *game, t_ftm_key_hook_values khv);
+void				story_play_frame(t_game *game);
+void				story_render_radio(t_game *game, t_ftm_image *canvas);
+bool				story_level_end(t_game *game, char *next_map);
+char				*story_text(const char *utf8);
 
 // cub3d
 t_cub3d				*cub3d(void);

@@ -79,6 +79,7 @@ static void	finalize_game(t_ftm_window *window, t_game *game)
 	game->background_sprite = ft_hashmap_get_value(game->sprites, "BACKGROUND");
 	if (game->players[0])
 		game->players[0]->character.billboard.entity.active = true;
+	story_init(game);
 }
 
 t_game	*game_new_e(t_ftm_window *window, t_map *map)

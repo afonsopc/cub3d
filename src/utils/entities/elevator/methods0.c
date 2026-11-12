@@ -30,6 +30,8 @@ void	elevator_action(t_entity *entity, t_character *actioner)
 	if (!entity)
 		return ;
 	elevator = (t_elevator *)entity;
+	if (story_level_end(cub3d()->game, elevator->map_path))
+		return ;
 	cub3d()->new_map_path = elevator->map_path;
 }
 

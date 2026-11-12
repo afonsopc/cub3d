@@ -34,7 +34,7 @@ const browser = await browserType.launch({ headless: true });
 async function play(map, steps, ms) {
   const page = await browser.newPage({ viewport: { width: 1024, height: 768 } });
   const log = [];
-  page.on("console", (m) => { const t = m.text(); if (t.startsWith("AI ")) log.push(t); });
+  page.on("console", (m) => { const t = m.text(); if (t.startsWith("AI ") || t.startsWith("STORY ")) log.push(t); });
   await page.goto(`http://localhost:${port}/aitest.html?map=tests/${map}.cub`);
   await page.waitForFunction('typeof gameStarted !== "undefined" && gameStarted', null, { timeout: 60000 });
   await page.waitForTimeout(2500);
@@ -94,6 +94,15 @@ function check(name, ok, detail) {
   const stuck = s.map((e) => log.filter((l) => l.startsWith(`AI ${e.id} stuck`)).length);
   check("todos os inimigos chegam ao jogador", engaged.length === s.length, `${engaged.length}/${s.length}`);
   check("nenhum fica preso de forma repetida", stuck.every((n) => n <= 3), `re-routes: ${stuck.join(",")}`);
+}
+
+// 5. rádio: início, sítio (andar 1 casa), ver um atirador, vida baixa
+{
+  const log = await play("radio", [["w", 500], ["Space", 80]], 15000);
+  check("rádio ao começar", has(log, /^STORY radio \d+: teste inicio/));
+  check("rádio ao chegar a um sítio", has(log, /^STORY radio \d+: teste sitio/));
+  check("rádio ao ver um atirador", has(log, /^STORY radio \d+: teste atirador/));
+  check("rádio com pouca vida", has(log, /^STORY radio \d+: teste vida/));
 }
 
 await browser.close();

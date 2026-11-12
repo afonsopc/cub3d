@@ -19,6 +19,7 @@ void	clear_game(void *data)
 	game = data;
 	if (!game)
 		return ;
+	story_free(game);
 	ft_list_destroy(&game->entities);
 	ft_hashmap_destroy(game->sprites);
 	ft_hashmap_destroy(game->sprites_3d);

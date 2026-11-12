@@ -31,6 +31,9 @@
 import os
 import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import story  # noqa: E402
 from collections import deque
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
@@ -701,6 +704,7 @@ def rewrite(path, grid, variant):
     e_lines = block_for(head, "e")
     # tirar definições que este script gera (para poder correr várias vezes)
     head = [l for l in head if not any(l.startswith(c + "_") for c in NEW_IDS)]
+    head = [l for l in head if not l.startswith(story.PREFIXES)]
     # textos
     for i, l in enumerate(head):
         m = re.match(r"^(.)_(NAME|DESCRIPTION) ", l)
@@ -709,7 +713,8 @@ def rewrite(path, grid, variant):
             head[i] = f"{m.group(1)}_{m.group(2)} {name if m.group(2) == 'NAME' else desc}"
     # inserir antes das cores F/C do chão e teto
     idx = next(i for i, l in enumerate(head) if re.match(r"^F\s+\d", l))
-    head = head[:idx] + defs_for(variant, e_lines) + head[idx:]
+    head = (head[:idx] + defs_for(variant, e_lines) + [""]
+            + story.lines_for(os.path.basename(path), variant, grid) + [""] + head[idx:])
     s = "\n".join(head)
     s = re.sub(r"\n{3,}", "\n\n", s)
     if not s.endswith("\n\n"):

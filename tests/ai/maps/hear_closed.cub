@@ -930,6 +930,7 @@ T_DIRECTION NORTH
 T_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
 T_OPEN_SOUND_VOLUME 0.8
 
+
 F 100, 100, 100
 C 50, 50, 50
 

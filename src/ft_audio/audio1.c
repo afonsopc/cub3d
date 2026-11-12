@@ -91,3 +91,17 @@ void	fta_play(t_fta_audio *audio)
 		i = 0;
 	ma_sound_start(&audio->sound[i]);
 }
+
+void	fta_stop(t_fta_audio *audio)
+{
+	size_t	i;
+
+	if (!audio || !fta_engine()->initialized)
+		return ;
+	i = -1;
+	while (++i < audio->sounds_count)
+		fta_stop(audio->sounds[i]);
+	i = -1;
+	while (++i < FT_AUDIO_SOUND_INSTANCES)
+		ma_sound_stop(&audio->sound[i]);
+}

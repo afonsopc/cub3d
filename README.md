@@ -13,7 +13,7 @@ The project explores mathematical concepts of raycasting to simulate a three-dim
 The project features two main maps:
 
 *   🏫 **42 Lisboa:** A 3D version of the [42 Lisboa](https://www.42lisboa.com) campus that you can explore.
-*   🕹️ **Missão:** A complete *first-person shooter* in the early-90s VGA style: as a Portuguese Army soldier of the 1960s/70s you defend the headquarters and the fort against a fictional foreign invasion force — riflemen, SMG troopers, commissars and attack dogs — with medals, rations, two floors and a secret bonus floor.
+*   🕹️ **Missão:** A complete *first-person shooter* in the early-90s VGA style: as a Portuguese Army soldier of the 1960s/70s you defend the headquarters and the fort against a fictional foreign invasion force — riflemen, SMG troopers, commissars and attack dogs — with medals, rations, two floors and a secret bonus floor. Between levels there are 90s-style story screens (intro, briefings with typewriter text, radio messages from the commander, end-of-level stats and an ending), all written as plain keys in the map files (see `src/utils/story/story.h`).
 
 ### Web Version
 

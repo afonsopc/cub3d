@@ -19,10 +19,10 @@ void	render_action(t_game *game, t_ftm_image *canvas, t_character *character)
 	if (!character->target_entity || !character->target_entity->actionable)
 		return ;
 	text_config = (t_ftm_text_config){
-		.text = "Press ACTION to interact",
+		.text = "E - usar",
 		.coords = {0, 0, 0},
 		.height = canvas->size.height * 0.03,
-		.spacing = 0,
+		.spacing = -canvas->size.height * 0.03 * 0.42,
 		.color = 0xFFDDDDDD
 	};
 	text_config.coords.x = (canvas->size.width / 2)

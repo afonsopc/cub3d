@@ -76,6 +76,27 @@ static void	game_keys(t_game *game, t_ftm_key_hook_values khv)
 		cub3d()->window->using_mouse = !cub3d()->window->using_mouse;
 }
 
+#ifdef AI_TRACE
+
+/* test builds only: F9 uses the level exit lever ('n') from anywhere */
+static void	debug_exit(t_game *game, t_ftm_key_hook_values khv)
+{
+	t_list		*l;
+	t_entity	*e;
+
+	if (!game || khv.key != FTM_KEY_F9 || !khv.down || !game->players[0])
+		return ;
+	l = game->entities;
+	while (l)
+	{
+		e = l->data;
+		l = l->next;
+		if (e->type == ENTITY_ELEVATOR && e->identifier == 'n' && e->action)
+			return (e->action(e, (t_character *)game->players[0]));
+	}
+}
+#endif
+
 void	key_hook(t_ftm_key_hook_values khv)
 {
 	t_game	*game;
@@ -84,8 +105,13 @@ void	key_hook(t_ftm_key_hook_values khv)
 	pthread_mutex_lock(&cub3d()->game_mutex);
 	if (game != cub3d()->game)
 		return (pthread_mutex_unlock(&cub3d()->game_mutex), (void)0);
+	if (story_key(game, khv))
+		return (pthread_mutex_unlock(&cub3d()->game_mutex), (void)0);
+#ifdef AI_TRACE
+	debug_exit(game, khv);
+#endif
 	call_entity_keys(game, khv);
-	if (khv.key == FTM_KEY_ESC)
+	if (khv.key == FTM_KEY_ESC && khv.down)
 	{
 		cub3d()->new_map_path = DEFAULT_MAP_PATH;
 		pthread_mutex_unlock(&cub3d()->game_mutex);

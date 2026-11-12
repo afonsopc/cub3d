@@ -922,6 +922,29 @@ T_DIRECTION NORTH
 T_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
 T_OPEN_SOUND_VOLUME 0.8
 
+LEVEL_NAME Defesa do Forte
+STATS_SPRITE assets/oms3d/story/stats.bmp
+BRIEFING_SPRITE assets/oms3d/story/briefing-2.bmp
+BRIEFING_TITLE DEFESA DO FORTE
+BRIEFING_TEXT O Forte é a última porta da cidade.|O inimigo desembarca na gruta do mar.|Feche-lhes a passagem, Sargento. A madrugada está perto.
+ENDING_1_SPRITE assets/oms3d/story/ending-1.bmp
+ENDING_1_TEXT Madrugada. Os barcos inimigos fogem para o mar alto.|A bandeira continua no alto do Forte.
+ENDING_2_SPRITE assets/oms3d/story/ending-2.bmp
+ENDING_2_TEXT O Sargento Silva recebe a Cruz de Guerra.|"Missão cumprida, Silva. Vá descansar."|FIM
+ENDING_SOUND assets/oms3d/sounds/music-mega.mp3
+RADIO_PORTRAIT_SPRITE assets/oms3d/story/radio-major.bmp
+RADIO_1_TEXT Bem-vindo ao Forte, Sargento. A portaria é sua.
+RADIO_2_TEXT Soldados com pistolas-metralhadoras! Fique abrigado!
+RADIO_2_SEE L
+RADIO_3_TEXT Comissário à vista! Sem ele, eles desorganizam-se.
+RADIO_3_SEE R
+RADIO_4_TEXT O armeiro do Forte! A G3 está aí, use-a.
+RADIO_4_AT 61 51
+RADIO_5_TEXT A gruta do mar é já ali. Feche-lhes a entrada!
+RADIO_5_AT 9 27
+RADIO_6_TEXT Silva, está a perder sangue! Socorros, já!
+RADIO_6_HEALTH 30
+
 F 100, 100, 100
 C 50, 50, 50
 

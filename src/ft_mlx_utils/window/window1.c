@@ -58,7 +58,8 @@ int	window_key_up_hook(int key, void *window)
 
 int	window_mouse_down_hook(int key, int x, int y, void *window)
 {
-	if (((t_ftm_window *)window)->using_mouse)
+	if (((t_ftm_window *)window)->using_mouse
+		|| ((t_ftm_window *)window)->forward_clicks)
 		return (window_key_hook((t_ftm_key_hook_values){key, {x, y, 0}, 1.0,
 				true, NULL}, window));
 	return (0);

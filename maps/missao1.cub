@@ -930,6 +930,34 @@ T_DIRECTION NORTH
 T_OPEN_SOUND assets/oms3d/sounds/secret-wall.mp3
 T_OPEN_SOUND_VOLUME 0.8
 
+LEVEL_NAME Defesa do Quartel-General
+STATS_SPRITE assets/oms3d/story/stats.bmp
+INTRO_1_SPRITE assets/oms3d/story/intro-1.bmp
+INTRO_1_TEXT 1968. Uma noite sem lua.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa.
+INTRO_2_SPRITE assets/oms3d/story/intro-2.bmp
+INTRO_2_TEXT Paraquedistas inimigos caem sobre a cidade.|As comunicações cortam-se uma a uma.
+INTRO_3_SPRITE assets/oms3d/story/intro-3.bmp
+INTRO_3_TEXT No Quartel-General, o Major Andrade reúne os últimos homens.|"Eles já estão cá dentro."
+INTRO_4_SPRITE assets/oms3d/story/intro-4.bmp
+INTRO_4_TEXT Sargento Silva: aguente o Quartel-General e depois o Forte.|Até à madrugada não há reforços.
+BRIEFING_SPRITE assets/oms3d/story/briefing-1.bmp
+BRIEFING_TITLE DEFESA DO QUARTEL-GENERAL
+BRIEFING_TEXT Silva, o inimigo entrou pela portaria.|Limpe o átrio e os gabinetes, um a um.|A saída para o Forte é pelo gabinete do comando.
+RADIO_PORTRAIT_SPRITE assets/oms3d/story/radio-major.bmp
+RADIO_1_TEXT Silva, aqui Andrade. Ouve-me? Avance com cuidado.
+RADIO_2_TEXT Atiradores à vista! Procure abrigo e não pare.
+RADIO_2_SEE e
+RADIO_3_TEXT Cães de ataque! Não os deixe chegar perto!
+RADIO_3_SEE d
+RADIO_4_TEXT Um comissário! Abata-o primeiro, Silva!
+RADIO_4_SEE R
+RADIO_5_TEXT O armeiro! Pegue na FBP e nas munições.
+RADIO_5_AT 9 36
+RADIO_6_TEXT Reforços a caminho, aguente!
+RADIO_6_AT 56 14
+RADIO_7_TEXT Está ferido, Silva! Procure um estojo de socorros!
+RADIO_7_HEALTH 30
+
 F 100, 100, 100
 C 50, 50, 50
 

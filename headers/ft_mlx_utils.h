@@ -71,6 +71,7 @@
 # define FTM_KEY_F5 1073741886
 # define FTM_KEY_F6 1073741887
 # define FTM_KEY_F7 1073741888
+# define FTM_KEY_F9 1073741890
 # define FTM_KEY_0 48
 # define FTM_KEY_1 49
 # define FTM_KEY_2 50
@@ -149,6 +150,7 @@ struct s_ftm_window
 	void				*display;
 	t_list				*controllers;
 	bool				using_mouse;
+	bool				forward_clicks;
 	bool				fullscreen;
 	char				*title;
 	void				(*loop_hook)(void);
