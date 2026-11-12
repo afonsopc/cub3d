@@ -95,6 +95,8 @@ static void	load_radios(t_game *game, t_story *st)
 	}
 }
 
+static void	music(t_game *game, t_fta_audio *play);
+
 /* the intro is shown once per session (dying sends you back to the hub) */
 static bool	intro_seen(bool set)
 {
@@ -131,13 +133,15 @@ void	story_init(t_game *game)
 	st->stats_sprite = ft_hashmap_get_value(game->sprites, "STATS");
 	st->radio_portrait = ft_hashmap_get_value(game->sprites, "RADIO_PORTRAIT");
 	st->ending_sound = ft_hashmap_get_value(game->sounds, "ENDING");
+	st->intro_sound = ft_hashmap_get_value(game->sounds, "INTRO");
+	st->brief_sound = ft_hashmap_get_value(game->sounds, "BRIEFING");
 	load_radios(game, st);
 	story_count_totals(game);
 	st->phase_at = ft_get_time();
 	if (st->intro_count && !intro_seen(false))
-		st->phase = STORY_INTRO;
+		(st->phase = STORY_INTRO, music(game, st->intro_sound));
 	else if (st->brief_text)
-		st->phase = STORY_BRIEFING;
+		(st->phase = STORY_BRIEFING, music(game, st->brief_sound));
 	else
 		story_start_play(game);
 }
@@ -160,6 +164,25 @@ void	story_free(t_game *game)
 	ft_bzero(st, sizeof(t_story));
 }
 
+/* only one music at a time: the level's, or the one of the story screen */
+static void	music(t_game *game, t_fta_audio *play)
+{
+	t_story	*st;
+
+	st = &game->story;
+	if (st->playing == play)
+		return ;
+	fta_stop(st->intro_sound);
+	fta_stop(st->brief_sound);
+	fta_stop(st->ending_sound);
+	if (play)
+		fta_stop(game->background_sound);
+	st->playing = play;
+	fta_play(play);
+	printf("STORY music %s\n", !play ? "level" : play == st->intro_sound
+		? "intro" : play == st->brief_sound ? "briefing" : "ending");
+}
+
 bool	story_blocking(t_game *game)
 {
 	return (game && game->story.phase != STORY_PLAY);
@@ -170,6 +193,7 @@ void	story_start_play(t_game *game)
 	t_story	*st;
 
 	st = &game->story;
+	music(game, NULL);
 	st->phase = STORY_PLAY;
 	st->play_start = ft_get_time();
 	game->fps.last_frame_time = ft_get_time();
@@ -184,8 +208,8 @@ static void	finish_level(t_game *game)
 	t_story	*st;
 
 	st = &game->story;
-	if (st->ending_sound)
-		fta_stop(st->ending_sound);
+	music(game, NULL);
+	fta_stop(game->background_sound);
 	if (cub3d()->window)
 		cub3d()->window->forward_clicks = false;
 	printf("STORY next map %s\n", st->pending_map);
@@ -203,11 +227,11 @@ static void	enter(t_game *game, int phase)
 	st->index = 0;
 	st->phase_at = ft_get_time();
 	st->typed_all = false;
-	if (phase == STORY_ENDING)
-	{
-		fta_stop(game->background_sound);
-		fta_play(st->ending_sound);
-	}
+	fta_stop(game->background_sound);
+	if (phase == STORY_ENDING && st->ending_sound)
+		music(game, st->ending_sound);
+	else if (phase == STORY_BRIEFING || phase == STORY_STATS)
+		music(game, st->brief_sound);
 	printf("STORY phase %d\n", phase);
 }
 

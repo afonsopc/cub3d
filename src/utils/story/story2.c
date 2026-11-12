@@ -76,6 +76,18 @@ void	story_play_frame(t_game *game)
 	int			i;
 
 	st = &game->story;
+#ifdef AI_TRACE
+	{
+		static t_time	last;
+
+		if (ft_get_time() - last > 5000)
+			printf("STORY audio level=%d at %llds\n",
+				fta_is_playing(game->background_sound), (long long)(ft_get_time()
+					- st->play_start) / 1000);
+		if (ft_get_time() - last > 5000)
+			last = ft_get_time();
+	}
+#endif
 	if (!game->players[0] || st->phase != STORY_PLAY)
 		return ;
 	p = (t_character *)game->players[0];

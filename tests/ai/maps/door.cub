@@ -1,4 +1,4 @@
-BACKGROUND_SOUND assets/oms3d/sounds/music-1.mp3
+BACKGROUND_SOUND assets/oms3d/sounds/music/marcha-legiao.mp3
 BACKGROUND_SOUND_VOLUME 0.3
 BACKGROUND_SOUND_LOOP TRUE
 BACKGROUND_SPRITE assets/oms3d/textures/wood-dark.bmp

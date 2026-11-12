@@ -230,6 +230,19 @@ void	story_frame(t_game *game, t_ftm_window *window)
 
 	st = &game->story;
 	window->forward_clicks = true;
+#ifdef AI_TRACE
+	{
+		static t_time	last;
+
+		if (ft_get_time() - last > 3000)
+		{
+			last = ft_get_time();
+			printf("STORY audio phase=%d screen=%d level=%d\n", st->phase,
+				fta_is_playing(st->playing), fta_is_playing(
+					game->background_sound));
+		}
+	}
+#endif
 	if (!st->canvas || st->canvas->size.width != window->size.width
 		|| st->canvas->size.height != window->size.height)
 		(ftm_free_image(st->canvas), st->canvas = ftm_image_new(window,

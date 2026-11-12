@@ -51,6 +51,7 @@ t_fta_audio		*fta_audio_new_multi(const char *paths);
 void			fta_audio_config(t_fta_audio *audio, t_fta_audio_config config);
 void			fta_play(t_fta_audio *audio);
 void			fta_stop(t_fta_audio *audio);
+bool			fta_is_playing(t_fta_audio *audio);
 void			fta_clear_audio(void *audio);
 void			fta_free_audio(void *audio);
 

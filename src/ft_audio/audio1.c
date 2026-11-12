@@ -105,3 +105,20 @@ void	fta_stop(t_fta_audio *audio)
 	while (++i < FT_AUDIO_SOUND_INSTANCES)
 		ma_sound_stop(&audio->sound[i]);
 }
+
+bool	fta_is_playing(t_fta_audio *audio)
+{
+	size_t	i;
+
+	if (!audio || !fta_engine()->initialized)
+		return (false);
+	i = -1;
+	while (++i < audio->sounds_count)
+		if (fta_is_playing(audio->sounds[i]))
+			return (true);
+	i = -1;
+	while (++i < FT_AUDIO_SOUND_INSTANCES)
+		if (ma_sound_is_playing(&audio->sound[i]))
+			return (true);
+	return (false);
+}

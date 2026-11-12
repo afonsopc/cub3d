@@ -526,6 +526,9 @@ typedef struct s_story
 	t_sprite		*stats_sprite;
 	t_sprite		*radio_portrait;
 	t_fta_audio		*ending_sound;
+	t_fta_audio		*intro_sound;
+	t_fta_audio		*brief_sound;
+	t_fta_audio		*playing;
 	t_story_radio	radio[STORY_MAX_RADIO];
 	int				radio_count;
 	int				radio_current;

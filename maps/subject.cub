@@ -36,7 +36,7 @@ p_EA NULL
 9_WE assets/oms3d/textures/door-frame.bmp
 9_EA assets/oms3d/textures/door-frame.bmp
 MOUSE FALSE
-BACKGROUND_SOUND assets/oms3d/sounds/music-1.mp3
+BACKGROUND_SOUND assets/oms3d/sounds/music/marcha-legiao.mp3
 BACKGROUND_SOUND_VOLUME 0.1
 BACKGROUND_SOUND_LOOP TRUE
 

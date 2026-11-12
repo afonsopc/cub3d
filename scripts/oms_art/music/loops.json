@@ -1,0 +1,62 @@
+{
+  "hino-mocidade.mp3": {
+    "bpm": 132.5,
+    "bars": 41,
+    "seconds": 74.264,
+    "intro_seconds": 1.811,
+    "passes": 1,
+    "meter": "4/4",
+    "title": "Hino da Mocidade Portuguesa",
+    "method": "ear"
+  },
+  "a-portuguesa.mp3": {
+    "bpm": 103,
+    "bars": 27,
+    "seconds": 62.913,
+    "intro_seconds": 0.0,
+    "passes": 1,
+    "meter": "4/4",
+    "title": "A Portuguesa (versão oficial de 1957)",
+    "method": "score"
+  },
+  "angola-e-nossa.mp3": {
+    "bpm": 126.0,
+    "bars": 46,
+    "seconds": 87.619,
+    "intro_seconds": 1.905,
+    "passes": 1,
+    "meter": "4/4",
+    "title": "Angola é nossa!",
+    "method": "ear"
+  },
+  "hino-legiao.mp3": {
+    "bpm": 128.8,
+    "bars": 51,
+    "seconds": 95.031,
+    "intro_seconds": 1.863,
+    "passes": 2,
+    "meter": "4/4",
+    "title": "Hino da Legião Portuguesa",
+    "method": "ear"
+  },
+  "marcha-legiao.mp3": {
+    "bpm": 135.2,
+    "bars": 41,
+    "seconds": 72.781,
+    "intro_seconds": 1.775,
+    "passes": 1,
+    "meter": "4/4",
+    "title": "Marcha da Legião Portuguesa",
+    "method": "ear"
+  },
+  "deus-patria-rei.mp3": {
+    "bpm": 119.0,
+    "bars": 97,
+    "seconds": 97.815,
+    "intro_seconds": 1.008,
+    "passes": 2,
+    "meter": "2/4",
+    "title": "Deus, Pátria, Rei",
+    "method": "ear"
+  }
+}

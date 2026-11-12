@@ -107,9 +107,11 @@ void	loop(void)
 		in_loop = false;
 		return ;
 	}
-	if (!playing_bg_music)
+	if (!playing_bg_music && !story_blocking(cub3d()->game))
+	{
 		fta_play(cub3d()->game->background_sound);
-	playing_bg_music = true;
+		playing_bg_music = true;
+	}
 	pthread_mutex_lock(&cub3d()->game_mutex);
 	if (story_blocking(cub3d()->game))
 	{

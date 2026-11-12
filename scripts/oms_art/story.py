@@ -11,6 +11,12 @@
 # reais. O comandante é o Major Andrade; o jogador, o Sargento Silva.
 
 S = "assets/oms3d/story"
+M = "assets/oms3d/sounds/music"
+
+
+def sound(key, name, vol="0.4"):
+    """Música de um ecrã da história, em ciclo."""
+    return [f"{key}_SOUND {M}/{name}.mp3", f"{key}_SOUND_VOLUME {vol}", f"{key}_SOUND_LOOP TRUE"]
 
 INTRO = [
     ("intro-1", "1968. Uma noite de lua cheia.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa."),
@@ -86,11 +92,12 @@ def radio_lines(radio, grid):
 
 def lines_for(name, variant, grid):
     """Chaves da história para um mapa da campanha."""
-    out = [f"STATS_SPRITE {S}/stats.bmp"]
+    out = [f"STATS_SPRITE {S}/stats.bmp"] + sound("BRIEFING", "deus-patria-rei")
     if name.startswith("missao1") and variant != "mega":
         out.insert(0, "LEVEL_NAME Defesa do Quartel-General")
         for i, (img, text) in enumerate(INTRO, 1):
             out += [f"INTRO_{i}_SPRITE {S}/{img}.bmp", f"INTRO_{i}_TEXT {text}"]
+        out += sound("INTRO", "hino-mocidade")
         out += [f"BRIEFING_SPRITE {S}/briefing-1.bmp", f"BRIEFING_TITLE {BRIEF1[0]}",
                 f"BRIEFING_TEXT {BRIEF1[1]}"]
         out += radio_lines(RADIO1, grid)
@@ -104,9 +111,10 @@ def lines_for(name, variant, grid):
                 f"BRIEFING_TEXT {BRIEF2[1]}"]
         for i, (img, text) in enumerate(ENDING, 1):
             out += [f"ENDING_{i}_SPRITE {S}/{img}.bmp", f"ENDING_{i}_TEXT {text}"]
-        out.append("ENDING_SOUND assets/oms3d/sounds/music-mega.mp3")
+        out += sound("ENDING", "a-portuguesa", "0.5")
         out += radio_lines(RADIO2, grid)
     return out
 
 
 PREFIXES = ("LEVEL_NAME", "INTRO_", "BRIEFING_", "STATS_SPRITE", "ENDING_", "RADIO_")
+# (os ficheiros de música vêm de scripts/oms_art/music, copiados para M)

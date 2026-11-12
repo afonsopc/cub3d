@@ -117,6 +117,9 @@ lldb: $(NAME)
 assets:
 	@python3 scripts/oms_art/gen.py
 	@python3 scripts/oms_art/sounds.py
+	@python3 scripts/oms_art/story_art.py
+	@python3 scripts/oms_art/music/render_all.py
+	@mkdir -p assets/oms3d/sounds/music && cp scripts/oms_art/music/*.mp3 assets/oms3d/sounds/music/
 
 fonts:
 	@bash scripts/fonts.sh

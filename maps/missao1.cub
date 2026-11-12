@@ -1,4 +1,4 @@
-BACKGROUND_SOUND assets/oms3d/sounds/music-1.mp3
+BACKGROUND_SOUND assets/oms3d/sounds/music/marcha-legiao.mp3
 BACKGROUND_SOUND_VOLUME 0.3
 BACKGROUND_SOUND_LOOP TRUE
 BACKGROUND_SPRITE assets/oms3d/textures/wood-dark.bmp
@@ -932,6 +932,9 @@ T_OPEN_SOUND_VOLUME 0.8
 
 LEVEL_NAME Defesa do Quartel-General
 STATS_SPRITE assets/oms3d/story/stats.bmp
+BRIEFING_SOUND assets/oms3d/sounds/music/deus-patria-rei.mp3
+BRIEFING_SOUND_VOLUME 0.4
+BRIEFING_SOUND_LOOP TRUE
 INTRO_1_SPRITE assets/oms3d/story/intro-1.bmp
 INTRO_1_TEXT 1968. Uma noite de lua cheia.|Uma frota estrangeira, sem bandeira conhecida, aproxima-se da costa portuguesa.
 INTRO_2_SPRITE assets/oms3d/story/intro-2.bmp
@@ -940,6 +943,9 @@ INTRO_3_SPRITE assets/oms3d/story/intro-3.bmp
 INTRO_3_TEXT No Quartel-General, o Major Andrade reúne os últimos homens.|"Eles já estão cá dentro."
 INTRO_4_SPRITE assets/oms3d/story/intro-4.bmp
 INTRO_4_TEXT Sargento Silva: aguente o Quartel-General e depois o Forte.|Até à madrugada não há reforços.
+INTRO_SOUND assets/oms3d/sounds/music/hino-mocidade.mp3
+INTRO_SOUND_VOLUME 0.4
+INTRO_SOUND_LOOP TRUE
 BRIEFING_SPRITE assets/oms3d/story/briefing-1.bmp
 BRIEFING_TITLE DEFESA DO QUARTEL-GENERAL
 BRIEFING_TEXT Silva, o inimigo entrou pela portaria.|Limpe o átrio e os gabinetes, um a um.|A saída para o Forte é pelo gabinete do comando.

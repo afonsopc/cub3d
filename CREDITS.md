@@ -32,22 +32,38 @@ prisoners as targets; the Mocidade Portuguesa appears only as décor.
 | `assets/textures/missao.bmp` | hub poster for the campaign ("Defender a Pátria — Defesa do Forte") | `hud.py` |
 | `maps/missao1*.cub`, `maps/missao2.cub` | original level layouts ("Defesa do Quartel-General", "Defesa do Forte") | `maps.py` (draws the floors room by room and validates them) |
 | `assets/textures/oms-wall.bmp`, `assets/textures/pv-wall.bmp`, `assets/pt/textures/portugal.bmp` | wood/stone walls with banners | made by an earlier version of the script (commit de4b182); the coat of arms comes from `assets/textures/oms.bmp`, the portrait (`scripts/oms_art/src/pv-portrait.png`) from the authors' own art; the national arms are public domain |
-| `assets/oms3d/sounds/*.mp3` | pistol, FBP, G3, knife, enemy shot, alert whistle, death cries, dog bark and yelp, doors, stone push-wall, pickups; music: `music-1` heroic march, `music-2` tense combat march, `music-3` dark fort march (all three original melodies) and `music-mega` (see below) | `sounds.py`: synthesized (pulse/triangle waves, 2-operator FM, noise, formant voices) |
+| `assets/oms3d/sounds/*.mp3` | pistol, FBP, G3, knife, enemy shot, alert whistle, death cries, dog bark and yelp, doors, stone push-wall, pickups | `sounds.py`: synthesized (pulse/triangle waves, 2-operator FM, noise, formant voices) |
+| `assets/oms3d/sounds/music/*.mp3` (copies of `scripts/oms_art/music/*.mp3`) | six 8-bit arrangements of period songs (see below) | `scripts/oms_art/music/` (`chip.py` synth, one script per song, `render_all.py`, `loops.json`) |
 
-## Music: requested tunes and their copyright status
+## Music: the six songs and their copyright status
 
-Portugal/EU: life of the composer + 70 years, so a melody is free only when
-its composer died before 1 January 1956. Only public-domain melodies are
-reproduced in the game; the others got an original march instead.
+The music is six 8-bit arrangements (square/pulse lead, bass, march drums)
+written note by note in `scripts/oms_art/music/`; no recording is used or
+shipped. Portugal/EU protect a melody for the composer's life + 70 years, so
+it is free only when the composer died before 1 January 1956.
 
-| Tune | Composer (music) | Died | Status | Used |
-| --- | --- | --- | --- | --- |
-| "A Portuguesa" (1890) | Alfredo Keil | 1907 | public domain | yes: `music-mega`, melody transcribed from the 1910 voice-and-piano print (Revista da Semana n.º 544, Rio de Janeiro; public domain scan on IMSLP, https://imslp.org/wiki/A_Portuguesa_(Keil,_Alfredo)) and arranged here; no recording was used |
-| "Hino da Mocidade Portuguesa" (1937) | Rui Correia Leite (a family member credits Affonso Correia Leite); words by Mário Beirão | not found | uncertain → treated as protected | no, original march instead (sources: https://anthems.fandom.com/wiki/Hino_da_Mocidade_Portuguesa, https://hinomocidadeportuguesa.blogspot.com/2009/03/hino-da-mocidade-portuguesa.html) |
-| "Angola é nossa!" (1961) | Duarte Ferreira Pestana; words by Santos Braga | not found (active composer in 1961) | very likely protected | no (source: https://www.mdwiki.org/wiki/Draft:Angola_%C3%A9_Nossa) |
-| "Hino da Legião Portuguesa" (1937) | attributed to Frederico de Freitas (single source); words by José Gonçalves Lobo | 1980 | protected | no (sources: https://pt.wikisource.org/wiki/Hino_da_Legi%C3%A3o_Portuguesa, https://www.ruadireita.pt/editorial/os-desfiles-militares-de-que-a-patria-tanto-carece-40297.html, https://en.wikipedia.org/wiki/Frederico_de_Freitas) |
-| "Marcha da Legião Portuguesa" | not identified | — | unknown → treated as protected | no |
-| "Deus, Pátria, Rei" (monarchist song) | not identified | — | unknown → treated as protected | no |
+**Afonso (the owner) decided to include all six as 8-bit arrangements.** Only
+"A Portuguesa" is known to be in the public domain; the other five are
+protected or of unknown status and need a licence (e.g. through SPA,
+Sociedade Portuguesa de Autores) or proof of public domain before any public
+release (site, App Store, Play Store).
+
+| Song | In the game | Composer (music) | Died | Status | How it was written |
+| --- | --- | --- | --- | --- | --- |
+| "A Portuguesa" (1890), official 1957 version | ending / victory (`ENDING_SOUND`, missao2) | Alfredo Keil | 1907 | public domain | from the official version (1957 sheet music and the Wikimedia Commons MIDI), checked by ear; earlier print: Revista da Semana n.º 544 (1910), IMSLP |
+| "Hino da Mocidade Portuguesa" (1937) | title / intro panels (`INTRO_SOUND`, missao1) | Rui Correia Leite (a family member credits Affonso Correia Leite); words Mário Beirão | not found | uncertain, treated as protected | by ear, no public score |
+| "Marcha da Legião Portuguesa" | level 1 "Defesa do Quartel-General" (`BACKGROUND_SOUND`, missao1) | not identified | — | unknown, treated as protected | by ear |
+| "Angola é nossa!" (1961) | level 2 "Defesa do Forte" (`BACKGROUND_SOUND`, missao2) | Duarte Ferreira Pestana; words Santos Braga | not found (active in 1961) | very likely protected | by ear |
+| "Hino da Legião Portuguesa" (1937) | combat variant / 42 and bonus floors (`BACKGROUND_SOUND`, missao1_42, missao1_mega, sbj) | attributed to Frederico de Freitas (single source); words José Gonçalves Lobo | 1980 | protected | by ear |
+| "Deus, Pátria, Rei" (monarchist song) | briefings and end-of-level stats (`BRIEFING_SOUND`) | not identified | — | unknown, treated as protected | by ear |
+
+Sources for the composer research: https://imslp.org/wiki/A_Portuguesa_(Keil,_Alfredo),
+https://anthems.fandom.com/wiki/Hino_da_Mocidade_Portuguesa,
+https://hinomocidadeportuguesa.blogspot.com/2009/03/hino-da-mocidade-portuguesa.html,
+https://www.mdwiki.org/wiki/Draft:Angola_%C3%A9_Nossa,
+https://pt.wikisource.org/wiki/Hino_da_Legi%C3%A3o_Portuguesa,
+https://www.ruadireita.pt/editorial/os-desfiles-militares-de-que-a-patria-tanto-carece-40297.html,
+https://en.wikipedia.org/wiki/Frederico_de_Freitas.
 
 ## Third-party
 
