@@ -13,7 +13,7 @@ import path from "node:path";
 
 const dir = path.resolve(process.argv[2] || ".");
 const pw = await import(path.join(process.env.PLAYWRIGHT || "playwright-core", "index.mjs"));
-const browserType = pw.webkit || pw.chromium;
+const browserType = pw.chromium;
 
 // página de arranque que passa o mapa como argumento
 const shell = fs.readFileSync(path.join(dir, "cub3d.html"), "utf8").replace(
@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(f).pipe(res);
 }).listen(0);
 const port = server.address().port;
-const browser = await browserType.launch({ headless: true });
+const browser = await browserType.launch({ headless: true, channel: process.env.CHANNEL || undefined });
 
 async function play(map, steps, ms) {
   const page = await browser.newPage({ viewport: { width: 1024, height: 768 } });
@@ -103,6 +103,24 @@ function check(name, ok, detail) {
   check("rádio ao chegar a um sítio", has(log, /^STORY radio \d+: teste sitio/));
   check("rádio ao ver um atirador", has(log, /^STORY radio \d+: teste atirador/));
   check("rádio com pouca vida", has(log, /^STORY radio \d+: teste vida/));
+}
+
+// 6. puzzle com teclas: portão fechado, porta trancada, alavanca, chave, documentos
+{
+  const log = await play("puzzle", [
+    ["e", 80], ["wait", 600],                 // portão: recusa
+    ["ArrowLeft", 1000], ["wait", 900], ["e", 80], ["wait", 600], ["ArrowLeft", 1000], // porta trancada: recusa
+    ["ArrowLeft", 500], ["w", 500], ["e", 80], ["wait", 2600], // alavanca a oeste
+    ["s", 500], ["ArrowRight", 500], ["w", 1150], ["wait", 300], // pelo portão até à chave
+    ["ArrowRight", 1000], ["w", 1500],        // volta até à porta trancada
+    ["e", 80], ["wait", 1300], ["w", 700],    // abre-a com a chave: documentos
+  ], 1500);
+  check("portão fechado recusa sem a alavanca", has(log, /^STORY toast O port/));
+  check("porta trancada recusa sem a chave", has(log, /^STORY toast Trancada/));
+  check("alavanca abre o portão", has(log, /^STORY key >/));
+  check("apanha a chave", has(log, /^STORY key 5/));
+  check("porta trancada abre com a chave e dá acesso aos documentos", has(log, /^STORY key 6/),
+    log.filter((l) => l.startsWith("STORY")).join(" | "));
 }
 
 await browser.close();

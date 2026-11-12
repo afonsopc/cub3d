@@ -376,7 +376,7 @@ $_STILL_SPRITE assets/oms3d/textures/billboards/plant-gold.bmp
 %_STILL_SPRITE assets/oms3d/textures/billboards/barrel-toxic.bmp
 
 U_TYPE COLLECTIBLE
-U_HEALTH 10
+U_HEALTH 15
 U_NAME Racao de combate
 U_SINGLE_USE TRUE
 U_USE_SOUND assets/oms3d/sounds/heal1.mp3
@@ -384,7 +384,7 @@ U_DESCRIPTION Racao de combate e pao com chourico
 U_ICON_SPRITE assets/oms3d/textures/billboards/food.bmp
 
 Z_TYPE COLLECTIBLE
-Z_AMMO 10
+Z_AMMO 12
 Z_NAME Municoes
 Z_SINGLE_USE TRUE
 Z_USE_SOUND assets/oms3d/sounds/get-ammo.mp3
@@ -416,7 +416,7 @@ z_ICON_SPRITE assets/oms3d/textures/billboards/gem.bmp
 7_ICON_SPRITE assets/oms3d/textures/billboards/treasure.bmp
 
 I_TYPE COLLECTIBLE
-I_HEALTH 25
+I_HEALTH 30
 I_NAME Primeiros socorros
 I_SINGLE_USE TRUE
 I_USE_SOUND assets/oms3d/sounds/heal2.mp3
@@ -425,13 +425,13 @@ I_ICON_SPRITE assets/oms3d/textures/billboards/medkit.bmp
 
 Y_TYPE WEAPON
 Y_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
-Y_DAMAGE 10
+Y_DAMAGE 7
 Y_AMMO_USAGE 1
 Y_NAME Espingarda do invasor
 Y_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 Y_USE_SOUND_VOLUME 0.5
 Y_DESCRIPTION Espingarda de assalto do atirador invasor
-Y_USE_DELAY 0.8
+Y_USE_DELAY 0.9
 Y_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 Y_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
 Y_SCREEN_USE_SPRITE_UPDATE_DELAY 0.4
@@ -731,6 +731,81 @@ y_SO assets/oms3d/textures/lever-down.bmp
 y_WE assets/oms3d/textures/lever-down.bmp
 y_EA assets/oms3d/textures/lever-down.bmp
 
+3_TYPE DROP
+3_ITEM 5
+3_AUTO_USE TRUE
+3_HARD FALSE
+
+5_TYPE COLLECTIBLE
+5_NAME Chave do arsenal
+5_DESCRIPTION Chave do arsenal
+5_SINGLE_USE TRUE
+5_GIVES 5
+5_USE_SOUND assets/oms3d/sounds/key.mp3
+5_USE_SOUND_VOLUME 0.6
+5_ICON_SPRITE assets/oms3d/textures/billboards/key-arsenal.bmp
+5_ICON_USE_SPRITE assets/oms3d/textures/hud/keys/key-arsenal.bmp
+
+4_TYPE DROP
+4_ITEM 6
+4_AUTO_USE TRUE
+4_HARD FALSE
+
+6_TYPE COLLECTIBLE
+6_NAME Planos de defesa do Forte
+6_DESCRIPTION Planos de defesa do Forte
+6_SINGLE_USE TRUE
+6_GIVES 6
+6_USE_SOUND assets/oms3d/sounds/key.mp3
+6_USE_SOUND_VOLUME 0.6
+6_ICON_SPRITE assets/oms3d/textures/billboards/docs.bmp
+6_ICON_USE_SPRITE assets/oms3d/textures/hud/keys/docs.bmp
+
+D_TYPE DOOR
+D_TARGETABLE TRUE
+D_AUTO_CLOSE_DELAY 8000.0
+D_ANIMATION_DELAY 1
+D_DOOR_SPRITE assets/oms3d/textures/door-arsenal.bmp
+D_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+D_DIRECTION WEST
+D_OPEN_SOUND assets/oms3d/sounds/door-open.mp3
+D_OPEN_SOUND_VOLUME 0.4
+D_CLOSE_SOUND assets/oms3d/sounds/door-close.mp3
+D_CLOSE_SOUND_VOLUME 0.4
+D_KEY 5
+D_LOCKED_TEXT Trancada. Falta a chave do arsenal.
+
+V_TYPE DOOR
+V_TARGETABLE TRUE
+V_ANIMATION_DELAY 2
+V_CLOSEABLE FALSE
+V_DOOR_SPRITE assets/oms3d/textures/gate.bmp
+V_SIDES_SPRITE assets/oms3d/textures/door-frame.bmp
+V_DIRECTION NORTH
+V_OPEN_SOUND assets/oms3d/sounds/gate.mp3
+V_OPEN_SOUND_VOLUME 0.7
+V_KEY >
+V_KEY_OPENS TRUE
+V_LOCKED_TEXT O portão abre pela alavanca do arsenal.
+
+>_TYPE ELEVATOR
+>_TARGETABLE TRUE
+>_GIVES >
+>_NO assets/oms3d/textures/lever-gate-down.bmp
+>_SO assets/oms3d/textures/lever-gate-down.bmp
+>_WE assets/oms3d/textures/lever-gate-down.bmp
+>_EA assets/oms3d/textures/lever-gate-down.bmp
+>_ON_SPRITE assets/oms3d/textures/lever-gate-up.bmp
+
+n_KEY 6
+n_LOCKED_TEXT Ainda não tem os planos do Forte.
+n_ON_SPRITE assets/oms3d/textures/lever-up.bmp
+y_ON_SPRITE assets/oms3d/textures/lever-up.bmp
+LOCKED_SOUND assets/oms3d/sounds/locked.mp3
+LOCKED_SOUND_VOLUME 0.6
+LEVER_SOUND assets/oms3d/sounds/lever.mp3
+LEVER_SOUND_VOLUME 0.7
+
 L_TYPE CHARACTER
 L_MAX_HEALTH 150
 L_SCORE 200
@@ -837,26 +912,26 @@ R_DROP_ITEMS TRUE
 
 Q_TYPE WEAPON
 Q_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
-Q_DAMAGE 7
+Q_DAMAGE 5
 Q_AMMO_USAGE 1
 Q_NAME Pistola-metralhadora do invasor
 Q_USE_SOUND assets/oms3d/sounds/rifle.mp3
 Q_USE_SOUND_VOLUME 0.4
 Q_DESCRIPTION Pistola-metralhadora de tambor do soldado invasor
-Q_USE_DELAY 0.35
+Q_USE_DELAY 0.45
 Q_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 Q_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
 Q_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp
 
 X_TYPE WEAPON
 X_CANT_USE_SOUND assets/oms3d/sounds/empty.mp3
-X_DAMAGE 15
+X_DAMAGE 11
 X_AMMO_USAGE 1
 X_NAME Pistola do comissario
 X_USE_SOUND assets/oms3d/sounds/sentinel-fire.mp3
 X_USE_SOUND_VOLUME 0.5
 X_DESCRIPTION Pistola do comissario invasor
-X_USE_DELAY 1.1
+X_USE_DELAY 1.25
 X_SCREEN_SPRITE assets/oms3d/textures/items/rifle/screen/0.bmp
 X_SCREEN_USE_SPRITE assets/oms3d/textures/items/rifle/screen/2.bmp:assets/oms3d/textures/items/rifle/screen/3.bmp
 X_ICON_SPRITE assets/oms3d/textures/items/rifle/icon.bmp

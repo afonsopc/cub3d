@@ -84,6 +84,12 @@ static void	debug_exit(t_game *game, t_ftm_key_hook_values khv)
 	t_list		*l;
 	t_entity	*e;
 
+	if (game && khv.key == FTM_KEY_F10 && khv.down)
+		autopilot_toggle(game);
+	if (game && khv.key == FTM_KEY_F11 && khv.down && game->players[0])
+		printf("AUTO pos %.2f %.2f\n",
+			((t_entity *)game->players[0])->coords.x,
+			((t_entity *)game->players[0])->coords.y);
 	if (!game || khv.key != FTM_KEY_F9 || !khv.down || !game->players[0])
 		return ;
 	l = game->entities;

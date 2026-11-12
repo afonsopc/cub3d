@@ -2,6 +2,7 @@
 # Gera os mapas de teste da IA (tests/ai/maps) com as definições do
 # missao1.cub e plantas pequenas, cada uma para um comportamento.
 import os
+import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -46,6 +47,19 @@ GRIDS = {
         "f   N   f",
         "fffffffff",
     ],
+    # puzzle (jogado com teclas): o portão V só abre pela alavanca >, a
+    # porta D só com a chave 3, e atrás dela estão os documentos 4
+    "puzzle": [
+        "fffffffff",
+        "f   3   f",
+        "f       f",
+        "ffffVffff",
+        "f       f",
+        ">   N   f",
+        "ffffDffff",
+        "f   4   f",
+        "fffffffff",
+    ],
     # quatro guardas e um cão contornam colunas até ao jogador
     "crowd": [
         "fffffffffffffff",
@@ -63,10 +77,10 @@ def main():
     src = open(os.path.join(ROOT, "maps", "missao1.cub")).read()
     head = src[: src.index("\nF 100")]
     # sem os ecrãs da história (introdução, ordens, rádio): só a IA
-    prefixes = ("LEVEL_NAME", "INTRO_", "BRIEFING_", "STATS_SPRITE", "ENDING_", "RADIO_")
+    prefixes = ("LEVEL_NAME", "INTRO_", "BRIEFING_", "STATS_SPRITE", "ENDING_", "RADIO_", "OBJECTIVE_")
     head = "\n".join(l for l in head.split("\n") if not l.startswith(prefixes))
     head = head.replace("MAX_HEALTH 100\n", "MAX_HEALTH 100000\n")
-    head = head.replace("AMMO 8\n", "AMMO 99\n")
+    head = re.sub(r"\nAMMO \d+\n", "\nAMMO 99\n", head)
     os.makedirs(os.path.join(HERE, "maps"), exist_ok=True)
     for name, rows in GRIDS.items():
         extra = ""

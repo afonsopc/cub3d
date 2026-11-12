@@ -14,6 +14,9 @@
 
 void	frame(t_game *game, t_entity *entity, double delta_time)
 {
+#ifdef AI_TRACE
+	autopilot_frame(game, entity);
+#endif
 	moviment_frame(game, entity, delta_time);
 	if (entity->character)
 		targets_frame(game, (t_character *)entity, PLAYER_FOV);
