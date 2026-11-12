@@ -124,11 +124,12 @@ void	render_hand_item_icon(t_ftm_image *canvas, t_character *character,
 	if (!item)
 		return ;
 	image = get_sprite_image(item->icon_sprite);
-	item_size = get_hand_item_size(image, stats_size.width * 0.15,
+	item_size = get_hand_item_size(image, stats_size.width * (96.0 / 640.0),
 			stats_size.height * 0.5);
 	ftm_put_image_to_canvas(canvas, image,
 		(t_ftm_pitc_config){
-		.coords = (t_coords){(stats_size.width * 0.87) - (item_size.width / 2),
+		.coords = (t_coords){(stats_size.width * (581.0 / 640.0))
+		- (item_size.width / 2),
 		(canvas->size.height - stats_size.height * 0.5) - (item_size.height
 			/ 2), 0},
 		.crop = false,

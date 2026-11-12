@@ -28,5 +28,6 @@ void	render_game(t_game *game, t_ftm_image *canvas, t_character *character)
 	render_ceiling_and_floor(game, canvas);
 	render_camera(game, canvas, character);
 	render_hud(game, canvas, character);
+	story_render_puzzle(game, canvas);
 	story_render_radio(game, canvas);
 }

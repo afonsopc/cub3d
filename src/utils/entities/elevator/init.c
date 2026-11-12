@@ -12,6 +12,25 @@
 
 #include "elevator.h"
 
+/* alavancas: KEY c (só funciona com c), GIVES c (dá c ao jogador, p.ex.
+** abre um portão), ON_SPRITE (como fica depois de puxada) */
+static void	lever_config(t_game *game, t_elevator *elevator, char identifier)
+{
+	char	*v;
+
+	v = hashmap_get_with_identifier(game, game->map->types, identifier, "KEY");
+	if (v && *v)
+		elevator->key = *v;
+	v = hashmap_get_with_identifier(game, game->map->types, identifier,
+			"GIVES");
+	if (v && *v)
+		elevator->gives = *v;
+	elevator->locked_text = story_text(hashmap_get_with_identifier(game,
+				game->map->types, identifier, "LOCKED_TEXT"));
+	elevator->on_sprite = hashmap_get_with_identifier(game, game->sprites,
+			identifier, "ON");
+}
+
 void	init_elevator(t_game *game, t_ftm_window *window,
 	t_elevator *elevator, char identifier)
 {
@@ -23,7 +42,8 @@ void	init_elevator(t_game *game, t_ftm_window *window,
 	elevator->wall.entity.shot = elevator_shot;
 	elevator->map_path = hashmap_get_with_identifier(game, game->map->types,
 			identifier, "MAP_PATH");
-	elevator->wall.entity.actionable = !!elevator->map_path;
+	lever_config(game, elevator, identifier);
+	elevator->wall.entity.actionable = elevator->map_path || elevator->gives;
 }
 
 t_elevator	*elevator_new(t_game *game, t_ftm_window *window, char identifier)

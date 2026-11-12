@@ -57,7 +57,8 @@ static void	count(t_game *game, int counts[5])
 		}
 		if (is_treasure(e) && e->active)
 			counts[2]++;
-		if (e->type == ENTITY_DOOR && !((t_door *)e)->closeable)
+		if (e->type == ENTITY_DOOR && !((t_door *)e)->closeable
+			&& !((t_door *)e)->key)
 		{
 			counts[3]++;
 			counts[4] += ((t_door *)e)->opened;

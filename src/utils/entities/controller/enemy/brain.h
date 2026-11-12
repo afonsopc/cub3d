@@ -44,6 +44,7 @@ long long	brain_since(t_time t);
 /* brain1.c: grid, paths, sight */
 bool		brain_cell_walkable(t_game *game, int x, int y, bool doors_too);
 bool		brain_next_step(t_game *game, t_character *c, t_coords goal);
+bool		brain_line_of_sight(t_game *game, t_entity *from, t_entity *to);
 bool		brain_can_see(t_game *game, t_character *c, t_character *target);
 t_player	*brain_nearest_player(t_game *game, t_character *c);
 

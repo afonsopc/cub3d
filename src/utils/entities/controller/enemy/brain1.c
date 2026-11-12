@@ -66,6 +66,9 @@ bool	brain_cell_walkable(t_game *game, int x, int y, bool doors_too)
 		return (!g->furniture || !g->furniture[y * g->w + x]);
 	if (e->type != ENTITY_DOOR)
 		return (false);
+	if (((t_door *)e)->key && !((t_door *)e)->opened
+		&& !game_has_key(game, ((t_door *)e)->key))
+		return (false);
 	if (((t_door *)e)->closeable && doors_too)
 		return (true);
 	return (((t_door *)e)->opened && !e->hard);
@@ -160,7 +163,7 @@ bool	brain_next_step(t_game *game, t_character *c, t_coords goal)
 }
 
 /* line of sight through open doors only */
-static bool	line_of_sight(t_game *game, t_entity *from, t_entity *to)
+bool	brain_line_of_sight(t_game *game, t_entity *from, t_entity *to)
 {
 	t_coords	pos;
 	t_raycast	ray;
@@ -211,7 +214,7 @@ bool	brain_can_see(t_game *game, t_character *c, t_character *target)
 		ang += 360.0;
 	if (fabs(ang) > AI_VIEW_CONE / 2.0 && d > 1.2)
 		return (false);
-	return (line_of_sight(game, e, (t_entity *)target));
+	return (brain_line_of_sight(game, e, (t_entity *)target));
 }
 
 t_player	*brain_nearest_player(t_game *game, t_character *c)

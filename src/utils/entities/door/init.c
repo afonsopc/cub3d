@@ -55,6 +55,23 @@ static void	set_sprites(t_door *door)
 	door->wall.south_sprite = door->wall.north_sprite;
 }
 
+/* KEY c: só abre quando o jogador tem c (chave ou alavanca); KEY_OPENS TRUE:
+** abre-se sozinha quando o jogador recebe c (portão de alavanca) */
+static void	door_lock_config(t_game *game, t_door *door, char identifier)
+{
+	char	*v;
+
+	v = hashmap_get_with_identifier(game, game->map->types, identifier, "KEY");
+	if (v && *v)
+		door->key = *v;
+	door->key_opens = ft_strequal(hashmap_get_with_identifier(game,
+				game->map->types, identifier, "KEY_OPENS"), "TRUE");
+	door->locked_text = story_text(hashmap_get_with_identifier(game,
+				game->map->types, identifier, "LOCKED_TEXT"));
+	door->locked_sound = hashmap_get_with_identifier(game, game->sounds,
+			identifier, "LOCKED");
+}
+
 static void	crazy_door_things(t_game *game, t_ftm_window *window,
 	t_door *door, char identifier)
 {
@@ -80,6 +97,7 @@ static void	crazy_door_things(t_game *game, t_ftm_window *window,
 				game->map->types, identifier, "ANIMATION_DELAY")) * 10;
 	init_animation_sprites_e(door, window);
 	set_sprites(door);
+	door_lock_config(game, door, identifier);
 }
 
 void	init_door_e(t_game *game, t_ftm_window *window, t_door *door,

@@ -91,6 +91,28 @@ void	clear_door(void *data)
 	door = (t_door *)data;
 	free_sprite(door->opening_sprite);
 	free(door->door_sprite);
+	free(door->locked_text);
+}
+
+/* porta trancada: o jogador ouve a fechadura e lê o que falta */
+static bool	door_locked(t_door *door, t_character *actioner)
+{
+	t_game	*game;
+
+	game = cub3d()->game;
+	if (!door->key || door->opened || game_has_key(game, door->key))
+		return (false);
+	if (actioner && actioner->billboard.entity.type == ENTITY_PLAYER
+		&& ft_get_time() - game->keyring.toast_at > 1500)
+	{
+		if (door->locked_sound)
+			fta_play(door->locked_sound);
+		else
+			fta_play(game->keyring.locked_sound);
+		if (door->locked_text)
+			game_toast(game, door->locked_text);
+	}
+	return (true);
 }
 
 void	door_action(t_entity *entity, t_character *actioner)
@@ -99,6 +121,8 @@ void	door_action(t_entity *entity, t_character *actioner)
 
 	door = (t_door *)entity;
 	if (door->opened && door_occupied(cub3d()->game, entity))
+		return ;
+	if (door_locked(door, actioner))
 		return ;
 	wall_action(entity, actioner);
 	door->opened = !door->opened;

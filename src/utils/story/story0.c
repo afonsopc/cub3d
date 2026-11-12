@@ -64,6 +64,46 @@ static void	*map_sprite(t_game *game, char *fmt, int i)
 	return (v);
 }
 
+/* RADIO_n_GOT c: quando o jogador recebe c; RADIO_n_UNLESS c: não dispara
+** se o jogador já tiver c (p.ex. "a porta está trancada" com a chave) */
+static void	radio_keys(t_game *game, t_story_radio *r, int n)
+{
+	char	*key;
+	char	*v;
+
+	key = ft_strf("RADIO_%d_GOT", n);
+	v = ft_hashmap_get_value(game->map->types, key);
+	if (v && *v)
+		(r->kind = RADIO_GOT, r->see = *v);
+	free(key);
+	key = ft_strf("RADIO_%d_UNLESS", n);
+	v = ft_hashmap_get_value(game->map->types, key);
+	if (v && *v)
+		r->unless = *v;
+	free(key);
+}
+
+static void	load_objectives(t_game *game, t_story *st)
+{
+	char	*key;
+	char	*v;
+
+	st->obj_current = -1;
+	while (st->obj_count < STORY_MAX_PANELS)
+	{
+		st->obj_text[st->obj_count] = map_text(game, "OBJECTIVE_%d_TEXT",
+				st->obj_count + 1);
+		if (!st->obj_text[st->obj_count])
+			return ;
+		key = ft_strf("OBJECTIVE_%d_DONE", st->obj_count + 1);
+		v = ft_hashmap_get_value(game->map->types, key);
+		if (v && *v)
+			st->obj_done[st->obj_count] = *v;
+		free(key);
+		st->obj_count++;
+	}
+}
+
 static void	load_radios(t_game *game, t_story *st)
 {
 	t_story_radio	*r;
@@ -91,6 +131,7 @@ static void	load_radios(t_game *game, t_story *st)
 		if (v && *v)
 			(r->kind = RADIO_HEALTH, r->health = ft_atoi(v));
 		free(key);
+		radio_keys(game, r, st->radio_count + 1);
 		st->radio_count++;
 	}
 }
@@ -137,6 +178,9 @@ void	story_init(t_game *game)
 	st->brief_sound = ft_hashmap_get_value(game->sounds, "BRIEFING");
 	story_music_init(game);
 	load_radios(game, st);
+	load_objectives(game, st);
+	game->keyring.locked_sound = ft_hashmap_get_value(game->sounds, "LOCKED");
+	game->keyring.lever_sound = ft_hashmap_get_value(game->sounds, "LEVER");
 	story_count_totals(game);
 	st->phase_at = ft_get_time();
 	if (st->intro_count && !intro_seen(false))
@@ -159,6 +203,9 @@ void	story_free(t_game *game)
 	i = -1;
 	while (++i < st->radio_count)
 		free(st->radio[i].text);
+	i = -1;
+	while (++i < st->obj_count)
+		free(st->obj_text[i]);
 	(free(st->brief_title), free(st->brief_text), free(st->level_name));
 	free(st->pending_map);
 	ftm_free_image(st->canvas);

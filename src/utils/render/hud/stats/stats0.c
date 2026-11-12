@@ -50,5 +50,6 @@ t_size	render_stats(t_game *game, t_ftm_image *canvas, t_character *character)
 	render_ammo_text(game, canvas, character, stats_size);
 	render_score_text(game, canvas, character, stats_size);
 	render_hand_item_icon(canvas, character, stats_size);
+	render_keys(game, canvas, stats_size);
 	return (stats_size);
 }

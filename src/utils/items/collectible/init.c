@@ -15,6 +15,8 @@
 void	init_collectible(t_game *game, t_ftm_window *window,
 	t_collectible *collectible, char identifier)
 {
+	char	*v;
+
 	if (!collectible)
 		return ;
 	init_item(game, window, (t_item *)collectible, identifier);
@@ -29,6 +31,10 @@ void	init_collectible(t_game *game, t_ftm_window *window,
 					game->map->types, identifier, "AMMO")));
 	collectible->score = fabs(ft_atof(hashmap_get_with_identifier(game,
 					game->map->types, identifier, "SCORE")));
+	v = hashmap_get_with_identifier(game, game->map->types, identifier,
+			"GIVES");
+	if (v && *v)
+		collectible->gives = *v;
 }
 
 t_collectible	*collectible_new(t_game *game, t_ftm_window *window,

@@ -182,6 +182,7 @@ struct s_collectible
 	int		health;
 	int		score;
 	int		ammo;
+	char	gives;
 };
 
 struct s_weapon
@@ -381,6 +382,11 @@ struct s_elevator
 {
 	t_wall		wall;
 	char		*map_path;
+	char		key;
+	char		gives;
+	bool		pulled;
+	char		*locked_text;
+	t_sprite	*on_sprite;
 };
 
 struct s_door
@@ -400,6 +406,10 @@ struct s_door
 	int			animation_frames;
 	t_fta_audio	*open_sound;
 	t_fta_audio	*close_sound;
+	char		key;
+	bool		key_opens;
+	char		*locked_text;
+	t_fta_audio	*locked_sound;
 };
 
 struct s_map
@@ -491,7 +501,8 @@ typedef enum e_radio_kind
 	RADIO_START,
 	RADIO_AT,
 	RADIO_SEE,
-	RADIO_HEALTH
+	RADIO_HEALTH,
+	RADIO_GOT
 }	t_radio_kind;
 
 // mensagem de rádio do comandante, disparada por dados do mapa (RADIO_n_*)
@@ -504,6 +515,7 @@ typedef struct s_story_radio
 	int		health;
 	char	*text;
 	int		state;
+	char	unless;
 }	t_story_radio;
 
 // ecrãs de história, ordens, rádio e estatísticas (src/utils/story)
@@ -544,7 +556,26 @@ typedef struct s_story
 	int				seconds;
 	int				score;
 	t_ftm_image		*canvas;
+	int				obj_count;
+	char			*obj_text[STORY_MAX_PANELS];
+	char			obj_done[STORY_MAX_PANELS];
+	int				obj_current;
+	t_time			obj_at;
 }	t_story;
+
+# define GAME_MAX_KEYS 16
+
+// chaves, documentos e alavancas que o jogador já tem (src/utils/story/story4.c)
+typedef struct s_keyring
+{
+	int				count;
+	char			keys[GAME_MAX_KEYS + 1];
+	t_sprite		*icons[GAME_MAX_KEYS];
+	char			toast[128];
+	t_time			toast_at;
+	t_fta_audio		*locked_sound;
+	t_fta_audio		*lever_sound;
+}	t_keyring;
 
 struct s_game
 {
@@ -565,6 +596,7 @@ struct s_game
 	t_sprite			*background_sprite;
 	t_ftt_thread		*camera_threads[CAMERA_THREADS];
 	t_story				story;
+	t_keyring			keyring;
 };
 
 struct s_cub3d
@@ -592,6 +624,17 @@ void				story_play_frame(t_game *game);
 void				story_render_radio(t_game *game, t_ftm_image *canvas);
 bool				story_level_end(t_game *game, char *next_map);
 char				*story_text(const char *utf8);
+bool				game_has_key(t_game *game, char key);
+void				game_give_key(t_game *game, char key, t_sprite *icon,
+						const char *name);
+void				game_toast(t_game *game, const char *latin1);
+void				story_render_puzzle(t_game *game, t_ftm_image *canvas);
+void				render_keys(t_game *game, t_ftm_image *canvas,
+						t_size stats_size);
+# ifdef AI_TRACE
+void				autopilot_frame(t_game *game, t_entity *entity);
+void				autopilot_toggle(t_game *game);
+# endif
 
 // cub3d
 t_cub3d				*cub3d(void);

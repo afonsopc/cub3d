@@ -42,6 +42,8 @@ static bool	triggered(t_game *game, t_story_radio *r, t_character *p)
 			< STORY_TRIGGER_RADIUS);
 	if (r->kind == RADIO_SEE)
 		return (sees_type(game, r->see));
+	if (r->kind == RADIO_GOT)
+		return (game_has_key(game, r->see));
 	if (r->kind == RADIO_HEALTH)
 	{
 		max = pe->max_health;
@@ -93,8 +95,13 @@ void	story_play_frame(t_game *game)
 	p = (t_character *)game->players[0];
 	i = -1;
 	while (++i < st->radio_count)
+	{
+		if (!st->radio[i].state && st->radio[i].unless
+			&& game_has_key(game, st->radio[i].unless))
+			st->radio[i].state = 3;
 		if (!st->radio[i].state && triggered(game, &st->radio[i], p))
 			st->radio[i].state = 1;
+	}
 	if (st->radio_current >= 0 && (long long)ft_get_time()
 		- (long long)st->radio_at > radio_length(&st->radio[st->radio_current]))
 		st->radio_current = -1;

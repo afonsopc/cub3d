@@ -36,6 +36,10 @@ void	collectible_use(t_item *item, t_drop *drop)
 	if (item->user->ammo < 0)
 		item->user->ammo = 0;
 	item->user->score += collectible->score;
+	if (collectible->gives
+		&& item->user->billboard.entity.type == ENTITY_PLAYER)
+		game_give_key(cub3d()->game, collectible->gives, item->icon_use_sprite
+			? item->icon_use_sprite : item->icon_sprite, item->name);
 }
 
 void	collectible_drop(t_game *game, t_ftm_window *window, t_item *item,
